@@ -1,0 +1,3001 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Defs/HediffDef[label [contains(text(), " arm") or contains(text(), " leg") or contains(text(), " foot") or contains(text(), " hand")]]/label-->
+<Defs>
+	<XmlExtensions.SettingsMenuDef>
+		<modId>Vita.CarryCapacityFromBionics</modId>
+		<label>Carry Capacity from Bionics</label>
+		<defaultSpacing>3</defaultSpacing>
+		<settings>
+			<!--			
+			
+				New Line and Gaps 
+			
+-->
+
+			<li Class="XmlExtensions.Setting.Text">
+				<text>Core Implants</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li Class="XmlExtensions.Setting.GapLine"/>
+			<li Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<!--			
+			
+				Split columns Left side
+			
+-->
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Arm</label>
+								<key>ToggleSimpleProstheticArm</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Leg</label>
+								<key>ToggleSimpleProstheticLeg</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Wooden Hand</label>
+								<key>ToggleWoodenHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Wooden Foot</label>
+								<key>ToggleWoodenFoot</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Peg Leg</label>
+								<key>TogglePegLeg</key>
+								<defaultValue>false</defaultValue>
+							</li>
+											
+						</leftCol>
+						<!--			
+			
+				Split columns Right side
+			
+-->
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSimpleProstheticArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>SimpleProstheticArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSimpleProstheticLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>SimpleProstheticLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-7.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleWoodenHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>WoodenHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-2</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleWoodenFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>WoodenFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>TogglePegLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>PegLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-10</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+											
+						</rightCol>
+					</li>
+
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>24</spacing>
+					</li>
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li MayRequire="Ludeon.RimWorld.Royalty" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Field Hand</label>
+								<key>ToggleFieldHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Drill Arm</label>
+								<key>ToggleDrillArm</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Power Claw</label>
+								<key>TogglePowerClaw</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Arm</label>
+								<key>ToggleBionicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Leg</label>
+								<key>ToggleBionicLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Arm</label>
+								<key>ToggleArchotechArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Leg</label>
+								<key>ToggleArchotechLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Spine</label>
+								<key>ToggleBionicSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Anomaly" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Revenant Vertebrae</label>
+								<key>ToggleRevenantVertebrae</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li MayRequire="Ludeon.RimWorld.Royalty" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFieldHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FieldHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleDrillArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>DrillArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>TogglePowerClaw</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>PowerClaw</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleBionicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>BionicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleBionicLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>BionicLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>22.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleArchotechArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>ArchotechArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleArchotechLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>ArchotechLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>40</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleBionicSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>BionicSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Anomaly" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRevenantVertebrae</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RevenantVertebrae</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - [FSF] Advanced Bionics Expansion
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequireAnyOf="FrozenSnowFox.AdvancedBionicsExpansion,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Text">
+				<text>[FSF] Advanced Bionics Expansion</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Text">
+				<text>[FSF] Vanilla Bionics Expansion</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequireAnyOf="FrozenSnowFox.AdvancedBionicsExpansion,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequireAnyOf="FrozenSnowFox.AdvancedBionicsExpansion,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequireAnyOf="FrozenSnowFox.AdvancedBionicsExpansion,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequireAnyOf="FrozenSnowFox.AdvancedBionicsExpansion,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<!--			
+			
+				Split columns Left side
+			
+-->
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Hand</label>
+								<key>ToggleFSFProstheticHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Foot</label>
+								<key>ToggleFSFProstheticFoot</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Spine</label>
+								<key>ToggleFSFProstheticSpine</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Bone</label>
+								<key>ToggleFSFArtificialBone</key>
+								<defaultValue>false</defaultValue>
+							</li>
+						</leftCol>
+						<!--			
+			
+				Split columns Right side
+			
+-->
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFProstheticHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFProstheticHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFProstheticFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFProstheticFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFProstheticSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFProstheticSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFArtificialBone</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFArtificialBone</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>24</spacing>
+					</li>
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Power Arm</label>
+								<key>ToggleFSFBionicPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Construction Arm</label>
+								<key>ToggleFSFBionicConstructionArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Production Arm</label>
+								<key>ToggleFSFBionicCraftingArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Chef Arm</label>
+								<key>ToggleFSFBionicCookingArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Breaching Arm</label>
+								<key>ToggleFSFBionicBreachArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Drill Arm</label>
+								<key>ToggleFSFBionicDrillArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Field Arm</label>
+								<key>ToggleFSFBionicFieldArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Drill Arm</label>
+								<key>ToggleFSFBionicDrillArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Field Arm</label>
+								<key>ToggleFSFBionicFieldArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Cleaning Leg</label>
+								<key>ToggleFSFBionicCleanerLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Arm</label>
+								<key>ToggleFSFAdvBionicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Construction Arm</label>
+								<key>ToggleFSFAdvBionicConstructionArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Production Arm</label>
+								<key>ToggleFSFAdvBionicCraftingArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Chef Arm</label>
+								<key>ToggleFSFAdvBionicCookingArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Power Arm</label>
+								<key>ToggleFSFAdvBionicPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Breaching Arm</label>
+								<key>ToggleFSFAdvBionicBreachArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Shocker Arm</label>
+								<key>ToggleFSFAdvBionicTaserArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Medic Arm</label>
+								<key>ToggleFSFAdvBionicMedicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Field Arm</label>
+								<key>ToggleFSFAdvBionicFieldArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Drill Arm</label>
+								<key>ToggleFSFAdvBionicDrillArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Leg</label>
+								<key>ToggleFSFAdvBionicLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Power Leg</label>
+								<key>ToggleFSFAdvBionicPowerLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Cleaning Leg</label>
+								<key>ToggleFSFAdvBionicCleanerLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Spine</label>
+								<key>ToggleFSFAdvBionicSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Anomaly,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Revenant Spine</label>
+								<key>ToggleFSFAdvBionicRevenantSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Power Arm</label>
+								<key>ToggleFSFArchotechPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Medic Arm</label>
+								<key>ToggleFSFArchotechMedicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Spine</label>
+								<key>ToggleFSFArchotechSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicConstructionArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicConstructionArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicCraftingArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicCraftingArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicCookingArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicCookingArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicBreachArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicBreachArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicDrillArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicDrillArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicFieldArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicFieldArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicDrillArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicDrillArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.VanillaBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicFieldArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicFieldArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFBionicCleanerLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFBionicCleanerLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>22.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicConstructionArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicConstructionArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicCraftingArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicCraftingArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicCookingArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicCookingArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicBreachArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicBreachArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicTaserArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicTaserArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicMedicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicMedicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicFieldArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicFieldArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicDrillArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicDrillArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>40</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicPowerLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicPowerLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>40</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicCleanerLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicCleanerLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>40</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>32</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Anomaly,FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFAdvBionicRevenantSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFAdvBionicRevenantSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>32</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFArchotechPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFArchotechPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>32</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFArchotechMedicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFArchotechMedicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>32</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleFSFArchotechSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>FSFArchotechSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>42</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - Rah's Bionics and Surgery Expansion
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequireAnyOf="rah.rbse,rah.rbsehc" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="rah.rbse" Class="XmlExtensions.Setting.Text">
+				<text>Rah's Bionics and Surgery Expansion</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="rah.rbsehc" Class="XmlExtensions.Setting.Text">
+				<text>Rah's Bionics and Surgery Expansion (Hardcore Edition)</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequireAnyOf="rah.rbse,rah.rbsehc" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequireAnyOf="rah.rbse,rah.rbsehc" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequireAnyOf="rah.rbse,rah.rbsehc" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequireAnyOf="rah.rbse,rah.rbsehc" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<!--			
+			
+				Split columns Left side
+			
+-->
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Hand</label>
+								<key>ToggleRBSESimpleProstheticHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Foot</label>
+								<key>ToggleRBSESimpleProstheticFoot</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Radius</label>
+								<key>ToggleRBSEArtificialRadius</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Femur</label>
+								<key>ToggleRBSEArtificialFemur</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Humerus</label>
+								<key>ToggleRBSEArtificialHumerus</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Tibia</label>
+								<key>ToggleRBSEArtificialTibia</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Spinal Fusion</label>
+								<key>ToggleRBSESpinalFusion</key>
+								<defaultValue>false</defaultValue>
+							</li>
+						</leftCol>
+						<!--			
+			
+				Split columns Right side
+			
+-->
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSESimpleProstheticHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSESimpleProstheticHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSESimpleProstheticFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSESimpleProstheticFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEArtificialRadius</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEArtificialRadius</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEArtificialFemur</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEArtificialFemur</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEArtificialHumerus</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEArtificialHumerus</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-2</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEArtificialTibia</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEArtificialTibia</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-2</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSESpinalFusion</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSESpinalFusion</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>24</spacing>
+					</li>
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Power Arm</label>
+								<key>ToggleRBSEPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Hand</label>
+								<key>ToggleRBSEBionicHand</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Foot</label>
+								<key>ToggleRBSEBionicFoot</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Hand</label>
+								<key>ToggleRBSEAdvancedBionicHand</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Foot</label>
+								<key>ToggleRBSEAdvancedBionicFoot</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Power Arm</label>
+								<key>ToggleRBSEAdvancedPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Arm</label>
+								<key>ToggleRBSEAdvancedBionicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Leg</label>
+								<key>ToggleRBSEAdvancedBionicLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Spine</label>
+								<key>ToggleRBSEAdvancedBionicSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Exoskeleton Suit</label>
+								<key>ToggleRBSEExoskeletonSuit</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEBionicHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEBionicHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEBionicFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEBionicFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>8</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedBionicHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedBionicHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>7</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedBionicFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedBionicFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>14</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>18</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedBionicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedBionicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedBionicLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedBionicLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>35</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEAdvancedBionicSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEAdvancedBionicSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRBSEExoskeletonSuit</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RBSEExoskeletonSuit</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - EPOE
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="ykara.epoe" Class="XmlExtensions.Setting.Text">
+				<text>Expanded Prosthetics and Organ Engineering</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="ykara.elstrages.epoe" Class="XmlExtensions.Setting.Text">
+				<text>EPOE 1.6 Update (Expanded Prosthetics and Organ Engineering)</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Text">
+				<text>Expanded Prosthetics and Organ Engineering - Forked</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Text">
+				<text>EPOE-Forked: Royalty DLC expansion</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<!--			
+			
+				Split columns Left side
+			
+-->
+						<leftCol>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Finger</label>
+								<key>ToggleEPOESimpleProstheticFinger</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Toe</label>
+								<key>ToggleEPOESimpleProstheticToe</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Hand</label>
+								<key>ToggleEPOESimpleProstheticHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Prosthetic Foot</label>
+								<key>ToggleEPOESimpleProstheticFoot</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Replacement Spine</label>
+								<key>ToggleEPOESimpleSpine</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Pelvis</label>
+								<key>ToggleEPOEArtificialPelvis</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Artificial Clavicle</label>
+								<key>ToggleEPOEArtificialClavicle</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Hook Hand</label>
+								<key>ToggleEPOEHookHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Steel Arm</label>
+								<key>ToggleEPOESteelArm</key>
+								<defaultValue>false</defaultValue>
+							</li>
+						</leftCol>
+						<!--			
+			
+				Split columns Right side
+			
+-->
+						<rightCol>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESimpleProstheticFinger</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESimpleProstheticFinger</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-0.3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESimpleProstheticToe</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESimpleProstheticToe</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-0.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESimpleProstheticHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESimpleProstheticHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESimpleProstheticFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESimpleProstheticFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESimpleSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESimpleSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEArtificialPelvis</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEArtificialPelvis</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEArtificialClavicle</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEArtificialClavicle</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEHookHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEHookHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-1</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOESteelArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOESteelArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>-3</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>24</spacing>
+					</li>
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Finger</label>
+								<key>ToggleEPOEBionicFinger</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Toe</label>
+								<key>ToggleEPOEBionicToe</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Hand</label>
+								<key>ToggleEPOEBionicHand</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Bionic Foot</label>
+								<key>ToggleEPOEBionicFoot</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Advanced Drill Arm</label>
+								<key>ToggleEPOEEPOE_AdvancedDrillArm</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Advanced Field Hand</label>
+								<key>ToggleEPOEEPOE_AdvancedFieldHand</key>
+								<defaultValue>false</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Power Arm</label>
+								<key>ToggleEPOEPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Muscle Stimulator (Arms)</label>
+								<key>ToggleEPOEMuscleStimulatorArms</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Muscle Stimulator (Legs)</label>
+								<key>ToggleEPOEMuscleStimulatorLegs</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Power Arm</label>
+								<key>ToggleEPOEAdvancedPowerArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Power Claw</label>
+								<key>ToggleEPOEAdvancedPowerClaw</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Hand</label>
+								<key>ToggleEPOEAdvancedBionicHand</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Foot</label>
+								<key>ToggleEPOEAdvancedBionicFoot</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Arm</label>
+								<key>ToggleEPOEAdvancedBionicArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Leg</label>
+								<key>ToggleEPOEAdvancedBionicLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Bionic Spine</label>
+								<key>ToggleEPOEAdvancedBionicSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Exoskeleton Suit</label>
+								<key>ToggleEPOEExoskeletonSuit</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Protective Exoskeleton</label>
+								<key>ToggleEPOEEPIA_ProtectiveExoskeleton</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEBionicFinger</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEBionicFinger</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>1</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEBionicToe</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEBionicToe</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>1</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEBionicHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEBionicHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEBionicFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEBionicFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>8</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEEPOE_AdvancedDrillArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEEPOE_AdvancedDrillArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="Ludeon.RimWorld.Royalty,vat.epoeforkedroyalty" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEEPOE_AdvancedFieldHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEEPOE_AdvancedFieldHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEMuscleStimulatorArms</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEMuscleStimulatorArms</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>12.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEMuscleStimulatorLegs</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEMuscleStimulatorLegs</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedPowerArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedPowerArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedPowerClaw</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedPowerClaw</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>7.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedBionicHand</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedBionicHand</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>7.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedBionicFoot</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedBionicFoot</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>15</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedBionicArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedBionicArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>22.5</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedBionicLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedBionicLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>35</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEAdvancedBionicSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEAdvancedBionicSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>30</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequireAnyOf="ykara.epoe,ykara.elstrages.epoe,vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEExoskeletonSuit</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEExoskeletonSuit</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="vat.epoeforked" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleEPOEEPIA_ProtectiveExoskeleton</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>EPOEEPIA_ProtectiveExoskeleton</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - Archotech Expanded/Prosthetics
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequireAnyOf="teok25.archotechexpanded,teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="teok25.archotechexpanded" Class="XmlExtensions.Setting.Text">
+				<text>Archotech Expanded</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.Text">
+				<text>Archotech Expanded Prosthetics</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="NightKosh.AdvancedArchotechArm" Class="XmlExtensions.Setting.Text">
+				<text>Archotech Expanded Arm</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequireAnyOf="teok25.archotechexpanded,teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequireAnyOf="teok25.archotechexpanded,teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequireAnyOf="teok25.archotechexpanded,teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequireAnyOf="teok25.archotechexpanded,teok25.archotechexpanded.prosthetics" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Advanced Archotech Arm</label>
+								<key>ToggleAEAdvancedArchotechArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li MayRequire="NightKosh.AdvancedArchotechArm" Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Adv. Archotech Obliterator</label>
+								<key>ToggleAdvancedArchotechObliterator</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Advanced Archotech Leg</label>
+								<key>ToggleAEAdvancedArchotechLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Death Claw</label>
+								<key>ToggleAEArchotechDeathClaw</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Obliterator</label>
+								<key>ToggleAEArchotechObliterator</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Pelvis</label>
+								<key>ToggleAEArchotechPelvis</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Membrane</label>
+								<key>ToggleAEArchotechMembrane</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Spine</label>
+								<key>ToggleAEArchotechSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEAdvancedArchotechArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEAdvancedArchotechArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>65</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li MayRequire="NightKosh.AdvancedArchotechArm" Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAdvancedArchotechObliterator</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AdvancedArchotechObliterator</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>65</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEAdvancedArchotechLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEAdvancedArchotechLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>100</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEArchotechDeathClaw</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEArchotechDeathClaw</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEArchotechObliterator</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEArchotechObliterator</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEArchotechPelvis</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEArchotechPelvis</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>35</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEArchotechMembrane</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEArchotechMembrane</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>35</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleAEArchotechSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>AEArchotechSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>42</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - V.O.I.D
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.Text">
+				<text>V.O.I.D</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequire="RH2.Faction.VOID" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Voidtech Arm</label>
+								<key>ToggleRH2_VOIDArchotechArm</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Voidtech Leg</label>
+								<key>ToggleRH2_VOIDArchotechLeg</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Voidtech Spine</label>
+								<key>ToggleRH_VOIDBionicSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRH2_VOIDArchotechArm</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RH2_VOIDArchotechArm</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRH2_VOIDArchotechLeg</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RH2_VOIDArchotechLeg</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>40</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleRH_VOIDBionicSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>RH_VOIDBionicSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+			
+			
+			
+			
+			
+				New Section - SoS2
+			
+			
+			
+			
+			
+			
+-->
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.Text">
+				<text>SoS2</text>
+				<font>Medium</font>
+				<anchor>Middle</anchor>
+			</li>
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.GapLine"/>
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.Gap">
+				<spacing>5</spacing>
+			</li>
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+			<!--			
+			
+				New Section 
+			
+-->
+			<li MayRequire="kentington.saveourship2" Class="XmlExtensions.Setting.Section">
+				<settings>
+
+					<!--			
+			
+				Core Bionics
+			
+-->
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Psychic Manipulator</label>
+								<key>ToggleSoSPsychicManipulator</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Spine</label>
+								<key>ToggleSoSArchotechSpine</key>
+								<defaultValue>true</defaultValue>
+							</li>
+							<li Class="XmlExtensions.Setting.Checkbox">
+								<padRight>200</padRight>
+								<label>Archotech Skin</label>
+								<key>ToggleSoSArchotechSkin</key>
+								<defaultValue>true</defaultValue>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSoSPsychicManipulator</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>SoSPsychicManipulator</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>20</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSoSArchotechSpine</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>SoSArchotechSpine</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>25</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSoSArchotechSkin</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<padLeft>85</padLeft>
+										<key>SoSArchotechSkin</key>
+										<label>Extra carry capacity in kg</label>
+										<defaultValue>0</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</rightCol>
+					</li>
+
+				</settings>
+			</li>
+			<!--			
+			
+				End gap and Reset button
+			
+-->
+			<li Class="XmlExtensions.Setting.Gap">
+				<spacing>30</spacing>
+			</li>
+			<li Class="XmlExtensions.Setting.ResetSettings">
+				<padRight>700</padRight>
+			</li>
+		</settings>
+	</XmlExtensions.SettingsMenuDef>
+</Defs>

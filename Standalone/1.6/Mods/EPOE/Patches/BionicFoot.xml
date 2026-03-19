@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.OptionalPatch">
+		<modId>Vita.CarryCapacityFromBionics</modId>
+		<key>ToggleEPOEBionicFoot</key>
+		<defaultValue>true</defaultValue>
+		<caseTrue>
+			<Operation Class="XmlExtensions.UseSetting">
+				<modId>Vita.CarryCapacityFromBionics</modId>
+				<key>EPOEBionicFoot</key>
+				<defaultValue>8</defaultValue>
+				<apply>
+					<Operation Class="PatchOperationConditional">
+						<xpath>Defs/HediffDef[defName="BionicFoot"]/stages</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/HediffDef[defName="BionicFoot"]</xpath>
+							<value>
+								<stages>
+									<li/>
+								</stages>
+							</value>
+						</nomatch>
+					</Operation>
+					<Operation Class="PatchOperationConditional">
+						<xpath>Defs/HediffDef[defName="BionicFoot"]/stages/li/statOffsets</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/HediffDef[defName="BionicFoot"]/stages/li</xpath>
+							<value>
+								<statOffsets/>
+							</value>
+						</nomatch>
+					</Operation>
+					<Operation Class="PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="BionicFoot"]/stages/li/statOffsets</xpath>
+						<value>
+							<CarryCapacityBonus>{EPOEBionicFoot}</CarryCapacityBonus>
+						</value>
+					</Operation>
+				</apply>
+			</Operation>
+		</caseTrue>
+	</Operation>
+</Patch>

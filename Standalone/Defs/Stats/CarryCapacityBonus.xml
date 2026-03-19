@@ -1,0 +1,14 @@
+<Defs>
+	<StatDef>
+		<defName>CarryCapacityBonus</defName>
+		<label>Mass carry capacity</label>
+		<description>Total mass carrying capacity of the pawn in caravans.</description>
+		<workerClass>Vita.CarryCapacityFromBionics.StatWorker_CarryCapacityBonus</workerClass>
+		<category>BasicsPawn</category>
+		<defaultBaseValue>0</defaultBaseValue>
+		<hideAtValue>35</hideAtValue>
+		<toStringStyle>FloatTwoOrThree</toStringStyle>
+		<formatString>{0} kg</formatString>
+		<formatStringUnfinalized>{0} kg</formatStringUnfinalized>
+	</StatDef>
+</Defs>

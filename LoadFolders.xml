@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<loadFolders>
+	<v1.6>
+
+		<!-- ===================================================== -->
+		<!-- Standalone Mode (only when VEF is NOT active) -->
+		<!-- ===================================================== -->
+
+		<!-- Assembly, Def, and Settings -->
+		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
+
+		<!-- Core patches -->
+		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Ludeon/Core</li>
+	
+		<!-- DLC patches -->
+		<li IfModActive="Ludeon.RimWorld.Royalty" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Ludeon/Royalty</li>
+		<li IfModActive="Ludeon.RimWorld.Anomaly" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Ludeon/Anomaly</li>
+
+		<!-- 3rd-party patches -->
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/FSFABE</li>
+		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/FSFVBE</li>
+		<li IfModActive="rah.rbse" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/RBSE</li>
+		<li IfModActive="rah.rbsehc" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/RBSE</li>
+		<li IfModActive="ykara.elstrages.epoe" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOE</li>
+		<li IfModActive="vat.epoeforked" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOEForked</li>
+		<li IfModActive="vat.epoeforkedroyalty" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActive="teok25.archotechexpanded" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="teok25.archotechexpanded.prosthetics" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="NightKosh.AdvancedArchotechArm" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActive="RH2.Faction.VOID" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/VOID</li>
+		<li IfModActive="kentington.saveourship2" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/SoS2</li>
+
+		<!-- ===================================================== -->
+		<!-- VEF Mode (only when VEF is active) -->
+		<!-- ===================================================== -->
+
+		<!-- Settings -->
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">VEF</li>
+
+		<!-- Core patches -->
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">VEF/1.6/Ludeon/Core</li>
+	
+		<!-- DLC patches -->
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,Ludeon.RimWorld.Royalty">VEF/1.6/Ludeon/Royalty</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,Ludeon.RimWorld.Anomaly">VEF/1.6/Ludeon/Anomaly</li>
+
+		<!-- 3rd-party patches -->
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,FrozenSnowFox.AdvancedBionicsExpansion">VEF/1.6/Mods/FSFABE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,FrozenSnowFox.VanillaBionicsExpansion">VEF/1.6/Mods/FSFVBE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,rah.rbse">VEF/1.6/Mods/RBSE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,rah.rbsehc">VEF/1.6/Mods/RBSE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,ykara.elstrages.epoe">VEF/1.6/Mods/EPOE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,vat.epoeforked">VEF/1.6/Mods/EPOEForked</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,vat.epoeforkedroyalty">VEF/1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,teok25.archotechexpanded">VEF/1.6/Mods/ArchotechExpanded</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,teok25.archotechexpanded.prosthetics">VEF/1.6/Mods/ArchotechExpanded</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,NightKosh.AdvancedArchotechArm">VEF/1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,RH2.Faction.VOID">VEF/1.6/Mods/VOID</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,kentington.saveourship2">VEF/1.6/Mods/SoS2</li>
+	</v1.6>
+</loadFolders>

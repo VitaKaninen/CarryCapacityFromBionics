@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Carry Capacity from Bionics</name>
+	<author>VitaKaninen</author>
+	<packageId>Vita.CarryCapacityFromBionics</packageId>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<description>
+[h2]Description[/h2]
+Adds Extra pawn inventory and caravan carrying capacity from Bionics.  
+	
+This is intended to be used with mods such as "Pick Up and Haul" and "While You're Up", that utilize the player's inventory for hauling around the map.
+
+[h2]FAQ[/h2]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] What are the values you used for each bionic, and how did you arrive at that number?
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] Here is a spreadsheet with all the bionics and their values, and the method I used.
+[url=https://docs.google.com/spreadsheets/d/1k_BQcZxK3mnv6ZPR2nTX4FIXxrspoflj-XeAvqf1gKI/edit?usp=sharing]Carry Capacity from Bionics[/url]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] What if I don't like the values you chose?
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] The mod comes with settings for each body part, and you can enable or disable anything you like, or adjust the settings to your liking.
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] Can I add it to an existing save?
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] Yes, it can be safely added or removed at any time.
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] What mods are supported?
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] The following mods are currently supported:
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2006925330]FSF Advanced Bionics Expansion[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1419675146]FSF Vanilla Bionics Expansion[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=850429707]Rah's Bionics and Surgery Expansion[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=850428056]Rah's Bionics and Surgery Expansion - Hardcore Edition[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882712052]EPOE 1.6 Update (Expanded Prosthetics and Organ Engineering)[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1949064302]EPOE-Forked: Expanded Prosthetics and Organ Engineering - Forked[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2008970276]EPOE-Forked: Royalty DLC expansion[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1442734859]Archotech Expanded[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1467604976]Archotech Expanded Prosthetics[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2883208829]V.O.I.D Faction[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SoS2[/url]
+
+
+If you find any bugs, have some suggestions, or would like to see other mods supported, please let me know.
+
+</description>
+	<modDependencies>
+		<li>
+			<packageId>imranfish.xmlextensions</packageId>
+			<displayName>XML Extensions</displayName>
+			<downloadUrl>https://github.com/15adhami/XmlExtensions/releases</downloadUrl>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2574315206</steamWorkshopUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>Ludeon.Rimworld</li>
+		<li>Ludeon.Rimworld.Royalty</li>
+		<li>Ludeon.Rimworld.Ideology</li>
+		<li>Ludeon.Rimworld.Biotech</li>
+		<li>Ludeon.Rimworld.Anomaly</li>
+		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+		<li>imranfish.xmlextensions</li>
+		<li>FrozenSnowFox.AdvancedBionicsExpansion</li>
+		<li>FrozenSnowFox.VanillaBionicsExpansion</li>
+		<li>rah.rbse</li>
+		<li>rah.rbsehc</li>
+		<li>ykara.epoe</li>
+		<li>ykara.elstrages.epoe</li>
+		<li>vat.epoeforked</li>
+		<li>vat.epoeforkedroyalty</li>
+		<li>teok25.archotechexpanded</li>
+		<li>teok25.archotechexpanded.prosthetics</li>
+		<li>NightKosh.AdvancedArchotechArm</li>
+		<li>RH2.Faction.VOID</li>
+		<li>kentington.saveourship2</li>
+	</loadAfter>
+</ModMetaData>

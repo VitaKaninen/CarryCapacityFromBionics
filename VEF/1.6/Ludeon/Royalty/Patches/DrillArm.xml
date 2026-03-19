@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.OptionalPatch">
+		<modId>Vita.CarryCapacityFromBionics</modId>
+		<key>ToggleDrillArm</key>
+		<defaultValue>false</defaultValue>
+		<caseTrue>
+			<Operation Class="XmlExtensions.UseSetting">
+				<modId>Vita.CarryCapacityFromBionics</modId>
+				<key>DrillArm</key>
+				<defaultValue>0</defaultValue>
+				<apply>
+					<Operation Class="PatchOperationConditional">
+						<xpath>Defs/HediffDef[defName="DrillArm"]/stages</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/HediffDef[defName="DrillArm"]</xpath>
+							<value>
+								<stages>
+									<li/>
+								</stages>
+							</value>
+						</nomatch>
+					</Operation>
+					<Operation Class="PatchOperationConditional">
+						<xpath>Defs/HediffDef[defName="DrillArm"]/stages/li/statOffsets</xpath>
+						<nomatch Class="PatchOperationAdd">
+							<xpath>Defs/HediffDef[defName="DrillArm"]/stages/li</xpath>
+							<value>
+								<statOffsets/>
+							</value>
+						</nomatch>
+					</Operation>
+					<Operation Class="PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="DrillArm"]/stages/li/statOffsets</xpath>
+						<value>
+							<VEF_MassCarryCapacity>{DrillArm}</VEF_MassCarryCapacity>
+						</value>
+					</Operation>
+				</apply>
+			</Operation>
+		</caseTrue>
+	</Operation>
+</Patch>
+

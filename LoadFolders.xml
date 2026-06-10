@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <loadFolders>
+	<!--
+		NOTE: RimWorld processes this list BOTTOM-UP: the last entry loads/applies first and has
+		the lowest override priority. Patches therefore run bottom-to-top, which is why the
+		folders are listed in reverse of the desired settings-menu section order (Core first).
+		Every patch file must have a UNIQUE filename: files at the same mod-relative path
+		(e.g. two folders both containing Patches/CarryCapacity.xml) shadow each other and only
+		one of them loads. This bit us badly - see CLAUDE.md gotchas.
+	-->
 	<v1.6>
-		<!-- Always loaded: PatchDefs + settings menu skeleton -->
-		<li>Common</li>
+		<!-- TEMP DEBUG: listed first so it applies LAST and dumps the final patched state. Remove. -->
+		<li>1.6/Debug</li>
+
+		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
+		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
+		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
+		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
+		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
+		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
+		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
+		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
+		<li IfModActiveAll="FrozenSnowFox.VanillaBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFVBE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE</li>
+		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
+		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
+
+		<!-- Core + DLC patches (applied first overall, so Core Implants is the top menu section) -->
+		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
+		<li>1.6/Ludeon/Core</li>
 
 		<!-- Standalone stat machinery (assembly + StatDef), only when VEF is NOT active.
 		     When VEF is active the patches write to VEF's own VEF_MassCarryCapacity stat instead;
 		     the choice is made inside the CCFB_Implant PatchDef (Common/Defs/PatchDefs.xml). -->
 		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
 
-		<!-- Core + DLC patches -->
-		<li>1.6/Ludeon/Core</li>
-		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
-		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
-
-		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
-		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
-		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
-		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
-		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE</li>
-		<li IfModActiveAll="FrozenSnowFox.VanillaBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFVBE_Royalty</li>
-		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
-		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
-		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
-		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
-		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
-		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
-		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
-		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
-		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
-		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
-		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
-
-		<!-- TEMP DEBUG: dumps final patched state to the log; listed last on purpose. Remove. -->
-		<li>1.6/Debug</li>
+		<!-- Always loaded: PatchDefs + settings menu skeleton -->
+		<li>Common</li>
 	</v1.6>
 </loadFolders>

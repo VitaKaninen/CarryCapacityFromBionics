@@ -39,9 +39,10 @@ Intended to pair with hauling mods like *Pick Up and Haul* / *While You're Up* t
 are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
 menu needs no `MayRequire` gating at all.
 
-**Per-source patch files** live at `1.6/<Source>/Patches/CarryCapacity.xml`
-(`1.6/Ludeon/{Core,Royalty,Anomaly}` and `1.6/Mods/<ModShortName>`). Each file is just one
-`ApplyPatch → CCFB_Section` call, then one `ApplyPatch → CCFB_Implant` call per implant.
+**Per-source patch files** live at `1.6/<Source>/Patches/CCFB_<Folder>.xml`
+(`1.6/Ludeon/{Core,Royalty,Anomaly}` and `1.6/Mods/<ModShortName>`; filenames MUST stay unique
+across folders — see gotchas). Each file is just one `ApplyPatch → CCFB_Section` call, then one
+`ApplyPatch → CCFB_Implant` call per implant.
 
 **Adding an implant** = one `ApplyPatch` block. **Adding a mod** = new folder +
 `LoadFolders.xml` entry (+ section label).
@@ -101,14 +102,25 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - SoS2 — `kentington.saveourship2`
 
 ## Conventions / gotchas
-- **Do NOT use `CreateDocument`/`MergeDocument` (the XML Extensions side-document speed
-  pattern) in this mod.** It was tried (see git history): every operation ran without errors and
-  the in-game patch viewer showed the ops executing against the side documents with correct
-  xpaths, but the merged hediff changes never reached the parsed defs in RimWorld 1.6 — pawns
-  got no carry bonus, before/after def XML was identical. Patching the main document directly
-  works. (XE's `MergeDocument` was rewritten in XE v1.9.2 from node-replacement to in-place
-  `ReplaceWith`, hinting at known node-identity trouble in this area; source mirror in
-  `..\XmlExtensionsSource`.)
+- **THE BIG ONE — patch files in different load folders MUST have unique filenames.**
+  RimWorld treats `loadFolders` entries as override layers: files at the same mod-relative path
+  (e.g. two folders each containing `Patches/CarryCapacity.xml`) shadow each other and only one
+  loads — **silently, no error anywhere**. The first refactor build named every per-source file
+  `CarryCapacity.xml`; only one of six files ran (menu showed only the EPOE section, other
+  implants got no bonus). Hence the `CCFB_<Folder>.xml` naming. The OLD 252-file layout dodged
+  this by accident with its unique-per-implant names — though not entirely: RBSE, EPOE and
+  EPOE‑Forked shared names like `AdvancedBionicArm.xml`, a latent version of the same bug when
+  two of those mods were active together.
+- **RimWorld processes `loadFolders` bottom-up** (last entry applies first), so patch-file
+  application order — and therefore settings-menu section order — follows the reversed list.
+  LoadFolders.xml is deliberately listed in reverse (Core last). Correctness never depends on
+  this (CCFB_Section is idempotent); only the menu's section order does.
+- The `CreateDocument`/`MergeDocument` side-document speed pattern was first blamed for the
+  shadowing symptom and removed (see git history). It was exonerated — the patch files never
+  ran at all — but it has not been re-verified in-game since, so re-adding it is optional
+  future work, to be tested with the diagnostic logging pattern from the debugging session.
+  XE source mirror for reference: `..\XmlExtensionsSource` (note: XE rewrote `MergeDocument`
+  to in-place `ReplaceWith` in v1.9.2).
 - Patch-time substitution nesting: in `CCFB_Implant`, `{{key}}` becomes `{<actual key>}` after
   PatchDef substitution, which `UseSetting` then replaces with the setting's value (same pattern
   as the wiki's Mood Matters tutorial).

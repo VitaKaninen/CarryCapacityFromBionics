@@ -101,6 +101,18 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - VOID — `RH2.Faction.VOID`
 - SoS2 — `kentington.saveourship2`
 
+## Planned future support (per VitaKaninen, 2026-06)
+- Integrated Implants (`lts.I`, ws 3223443793) — in progress.
+- Yet Another Prosthetic Expansion - Core (ws 2808872704) and - Animals (ws 2808876573)
+- Medieval Prosthetics (ws 2101545242)
+- Astraltech Bionic Implants (ws 3337372073)
+- Vanilla Archotech Implants (ws 2715093425)
+- [SMP] Simple Archotech Implants (ws 2462646185)
+- Neolithic Prosthetics (ws 3338191290)
+- Industrial Prosthetics (ws 3420999158)
+- A Dog Said... Animal Prosthetics 2 (ws 3238353862)
+- Cybernetic Organism and Neural Network (ws 2045064990)
+
 ## Conventions / gotchas
 - **THE BIG ONE — patch files in different load folders MUST have unique filenames.**
   RimWorld treats `loadFolders` entries as override layers: files at the same mod-relative path

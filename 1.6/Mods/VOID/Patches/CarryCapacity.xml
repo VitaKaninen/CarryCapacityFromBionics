@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="RH2_VOIDArchotechArm" or defName="RH2_VOIDArchotechLeg" or defName="RH_VOIDBionicSpine"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>V.O.I.D</li>
+			<li>VOID</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RH2_VOIDArchotechArm</li>
+			<li>RH2_VOIDArchotechArm</li>
+			<li>Voidtech Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>VOID</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RH2_VOIDArchotechLeg</li>
+			<li>RH2_VOIDArchotechLeg</li>
+			<li>Voidtech Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>VOID</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RH_VOIDBionicSpine</li>
+			<li>RH_VOIDBionicSpine</li>
+			<li>Voidtech Spine</li>
+			<li>true</li>
+			<li>20</li>
+			<li>VOID</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

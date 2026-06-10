@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="EPOE_AdvancedDrillArm" or defName="EPOE_AdvancedFieldHand"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>EPOE-Forked: Royalty DLC expansion</li>
+			<li>EPOEForkedRoyalty</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>EPOE_AdvancedDrillArm</li>
+			<li>EPOEEPOE_AdvancedDrillArm</li>
+			<li>Advanced Drill Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>EPOEForkedRoyalty</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>EPOE_AdvancedFieldHand</li>
+			<li>EPOEEPOE_AdvancedFieldHand</li>
+			<li>Advanced Field Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>EPOEForkedRoyalty</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

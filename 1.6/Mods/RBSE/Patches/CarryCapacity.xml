@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="SimpleProstheticHand" or defName="SimpleProstheticFoot" or defName="ArtificialRadius" or defName="ArtificialFemur" or defName="ArtificialHumerus" or defName="ArtificialTibia" or defName="SpinalFusion" or defName="PowerArm" or defName="BionicHand" or defName="BionicFoot" or defName="AdvancedBionicHand" or defName="AdvancedBionicFoot" or defName="AdvancedPowerArm" or defName="AdvancedBionicArm" or defName="AdvancedBionicLeg" or defName="AdvancedBionicSpine" or defName="ExoskeletonSuit"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Rah's Bionics and Surgery Expansion</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticHand</li>
+			<li>RBSESimpleProstheticHand</li>
+			<li>Prosthetic Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticFoot</li>
+			<li>RBSESimpleProstheticFoot</li>
+			<li>Prosthetic Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialRadius</li>
+			<li>RBSEArtificialRadius</li>
+			<li>Artificial Radius</li>
+			<li>false</li>
+			<li>-1</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialFemur</li>
+			<li>RBSEArtificialFemur</li>
+			<li>Artificial Femur</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialHumerus</li>
+			<li>RBSEArtificialHumerus</li>
+			<li>Artificial Humerus</li>
+			<li>false</li>
+			<li>-2</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialTibia</li>
+			<li>RBSEArtificialTibia</li>
+			<li>Artificial Tibia</li>
+			<li>false</li>
+			<li>-2</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SpinalFusion</li>
+			<li>RBSESpinalFusion</li>
+			<li>Spinal Fusion</li>
+			<li>false</li>
+			<li>-5</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>PowerArm</li>
+			<li>RBSEPowerArm</li>
+			<li>Power Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicHand</li>
+			<li>RBSEBionicHand</li>
+			<li>Bionic Hand</li>
+			<li>true</li>
+			<li>5</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicFoot</li>
+			<li>RBSEBionicFoot</li>
+			<li>Bionic Foot</li>
+			<li>true</li>
+			<li>8</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicHand</li>
+			<li>RBSEAdvancedBionicHand</li>
+			<li>Adv. Bionic Hand</li>
+			<li>true</li>
+			<li>7</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicFoot</li>
+			<li>RBSEAdvancedBionicFoot</li>
+			<li>Adv. Bionic Foot</li>
+			<li>true</li>
+			<li>14</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedPowerArm</li>
+			<li>RBSEAdvancedPowerArm</li>
+			<li>Adv. Power Arm</li>
+			<li>true</li>
+			<li>18</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicArm</li>
+			<li>RBSEAdvancedBionicArm</li>
+			<li>Adv. Bionic Arm</li>
+			<li>true</li>
+			<li>20</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicLeg</li>
+			<li>RBSEAdvancedBionicLeg</li>
+			<li>Adv. Bionic Leg</li>
+			<li>true</li>
+			<li>35</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicSpine</li>
+			<li>RBSEAdvancedBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
+			<li>true</li>
+			<li>25</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ExoskeletonSuit</li>
+			<li>RBSEExoskeletonSuit</li>
+			<li>Exoskeleton Suit</li>
+			<li>true</li>
+			<li>25</li>
+			<li>RBSE</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

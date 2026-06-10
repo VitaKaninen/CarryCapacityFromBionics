@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="SimpleProstheticFinger" or defName="SimpleProstheticToe" or defName="SimpleProstheticHand" or defName="SimpleProstheticFoot" or defName="SimpleSpine" or defName="HookHand" or defName="SteelArm" or defName="BionicFinger" or defName="BionicToe" or defName="BionicHand" or defName="BionicFoot" or defName="PowerArm" or defName="MuscleStimulatorArms" or defName="MuscleStimulatorLegs" or defName="AdvancedPowerArm" or defName="AdvancedPowerClaw" or defName="AdvancedBionicHand" or defName="AdvancedBionicFoot" or defName="AdvancedBionicArm" or defName="AdvancedBionicLeg" or defName="AdvancedBionicSpine" or defName="ExoskeletonSuit" or defName="EPIA_ProtectiveExoskeleton"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Expanded Prosthetics and Organ Engineering - Forked</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticFinger</li>
+			<li>EPOESimpleProstheticFinger</li>
+			<li>Prosthetic Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticToe</li>
+			<li>EPOESimpleProstheticToe</li>
+			<li>Prosthetic Toe</li>
+			<li>false</li>
+			<li>-0.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticHand</li>
+			<li>EPOESimpleProstheticHand</li>
+			<li>Prosthetic Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticFoot</li>
+			<li>EPOESimpleProstheticFoot</li>
+			<li>Prosthetic Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleSpine</li>
+			<li>EPOESimpleSpine</li>
+			<li>Replacement Spine</li>
+			<li>false</li>
+			<li>-5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>HookHand</li>
+			<li>EPOEHookHand</li>
+			<li>Hook Hand</li>
+			<li>false</li>
+			<li>-1</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SteelArm</li>
+			<li>EPOESteelArm</li>
+			<li>Steel Arm</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicFinger</li>
+			<li>EPOEBionicFinger</li>
+			<li>Bionic Finger</li>
+			<li>true</li>
+			<li>1</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicToe</li>
+			<li>EPOEBionicToe</li>
+			<li>Bionic Toe</li>
+			<li>true</li>
+			<li>1</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicHand</li>
+			<li>EPOEBionicHand</li>
+			<li>Bionic Hand</li>
+			<li>true</li>
+			<li>5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BionicFoot</li>
+			<li>EPOEBionicFoot</li>
+			<li>Bionic Foot</li>
+			<li>true</li>
+			<li>8</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>PowerArm</li>
+			<li>EPOEPowerArm</li>
+			<li>Power Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MuscleStimulatorArms</li>
+			<li>EPOEMuscleStimulatorArms</li>
+			<li>Muscle Stimulator (Arms)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MuscleStimulatorLegs</li>
+			<li>EPOEMuscleStimulatorLegs</li>
+			<li>Muscle Stimulator (Legs)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedPowerArm</li>
+			<li>EPOEAdvancedPowerArm</li>
+			<li>Adv. Power Arm</li>
+			<li>true</li>
+			<li>20</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedPowerClaw</li>
+			<li>EPOEAdvancedPowerClaw</li>
+			<li>Adv. Power Claw</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicHand</li>
+			<li>EPOEAdvancedBionicHand</li>
+			<li>Adv. Bionic Hand</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicFoot</li>
+			<li>EPOEAdvancedBionicFoot</li>
+			<li>Adv. Bionic Foot</li>
+			<li>true</li>
+			<li>15</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicArm</li>
+			<li>EPOEAdvancedBionicArm</li>
+			<li>Adv. Bionic Arm</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicLeg</li>
+			<li>EPOEAdvancedBionicLeg</li>
+			<li>Adv. Bionic Leg</li>
+			<li>true</li>
+			<li>35</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AdvancedBionicSpine</li>
+			<li>EPOEAdvancedBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
+			<li>true</li>
+			<li>30</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ExoskeletonSuit</li>
+			<li>EPOEExoskeletonSuit</li>
+			<li>Exoskeleton Suit</li>
+			<li>true</li>
+			<li>25</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>EPIA_ProtectiveExoskeleton</li>
+			<li>EPOEEPIA_ProtectiveExoskeleton</li>
+			<li>Protective Exoskeleton</li>
+			<li>true</li>
+			<li>25</li>
+			<li>EPOEForked</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="FSFProstheticHand" or defName="FSFProstheticFoot" or defName="FSFProstheticSpine" or defName="FSFBionicPowerArm" or defName="FSFBionicConstructionArm" or defName="FSFBionicCraftingArm" or defName="FSFBionicCookingArm" or defName="FSFBionicBreachArm" or defName="FSFBionicCleanerLeg" or defName="FSFAdvBionicArm" or defName="FSFAdvBionicConstructionArm" or defName="FSFAdvBionicCraftingArm" or defName="FSFAdvBionicCookingArm" or defName="FSFAdvBionicPowerArm" or defName="FSFAdvBionicBreachArm" or defName="FSFAdvBionicTaserArm" or defName="FSFAdvBionicMedicArm" or defName="FSFAdvBionicLeg" or defName="FSFAdvBionicPowerLeg" or defName="FSFAdvBionicCleanerLeg" or defName="FSFAdvBionicSpine" or defName="FSFArchotechPowerArm" or defName="FSFArchotechMedicArm" or defName="FSFArchotechSpine"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>[FSF] Advanced Bionics Expansion</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticHand</li>
+			<li>FSFProstheticHand</li>
+			<li>Prosthetic Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticFoot</li>
+			<li>FSFProstheticFoot</li>
+			<li>Prosthetic Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticSpine</li>
+			<li>FSFProstheticSpine</li>
+			<li>Prosthetic Spine</li>
+			<li>false</li>
+			<li>-5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicPowerArm</li>
+			<li>FSFBionicPowerArm</li>
+			<li>Bionic Power Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicConstructionArm</li>
+			<li>FSFBionicConstructionArm</li>
+			<li>Bionic Construction Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicCraftingArm</li>
+			<li>FSFBionicCraftingArm</li>
+			<li>Bionic Production Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicCookingArm</li>
+			<li>FSFBionicCookingArm</li>
+			<li>Bionic Chef Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicBreachArm</li>
+			<li>FSFBionicBreachArm</li>
+			<li>Bionic Breaching Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicCleanerLeg</li>
+			<li>FSFBionicCleanerLeg</li>
+			<li>Bionic Cleaning Leg</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicArm</li>
+			<li>FSFAdvBionicArm</li>
+			<li>Adv. Bionic Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicConstructionArm</li>
+			<li>FSFAdvBionicConstructionArm</li>
+			<li>Adv. Bionic Construction Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicCraftingArm</li>
+			<li>FSFAdvBionicCraftingArm</li>
+			<li>Adv. Bionic Production Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicCookingArm</li>
+			<li>FSFAdvBionicCookingArm</li>
+			<li>Adv. Bionic Chef Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicPowerArm</li>
+			<li>FSFAdvBionicPowerArm</li>
+			<li>Adv. Bionic Power Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicBreachArm</li>
+			<li>FSFAdvBionicBreachArm</li>
+			<li>Adv. Bionic Breaching Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicTaserArm</li>
+			<li>FSFAdvBionicTaserArm</li>
+			<li>Adv. Bionic Shocker Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicMedicArm</li>
+			<li>FSFAdvBionicMedicArm</li>
+			<li>Adv. Bionic Medic Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicLeg</li>
+			<li>FSFAdvBionicLeg</li>
+			<li>Adv. Bionic Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicPowerLeg</li>
+			<li>FSFAdvBionicPowerLeg</li>
+			<li>Adv. Bionic Power Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicCleanerLeg</li>
+			<li>FSFAdvBionicCleanerLeg</li>
+			<li>Adv. Bionic Cleaning Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFAdvBionicSpine</li>
+			<li>FSFAdvBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
+			<li>true</li>
+			<li>32</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFArchotechPowerArm</li>
+			<li>FSFArchotechPowerArm</li>
+			<li>Archotech Power Arm</li>
+			<li>true</li>
+			<li>32</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFArchotechMedicArm</li>
+			<li>FSFArchotechMedicArm</li>
+			<li>Archotech Medic Arm</li>
+			<li>true</li>
+			<li>32</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFArchotechSpine</li>
+			<li>FSFArchotechSpine</li>
+			<li>Archotech Spine</li>
+			<li>true</li>
+			<li>42</li>
+			<li>FSFABE</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

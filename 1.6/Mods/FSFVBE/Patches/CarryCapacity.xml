@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Generated-style implant list. To add an implant: add its defName to the CreateDocument
+		xpath below AND add one ApplyPatch block. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Menu</docName>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
+	</Operation>
+	<Operation Class="XmlExtensions.CreateDocument">
+		<docName>CCFB_Hediffs</docName>
+		<xpath>Defs/HediffDef[defName="FSFProstheticHand" or defName="FSFProstheticFoot" or defName="FSFProstheticSpine" or defName="FSFArtificialBone" or defName="FSFBionicPowerArm" or defName="FSFArchotechSpine"]</xpath>
+	</Operation>
+
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>[FSF] Vanilla Bionics Expansion</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticHand</li>
+			<li>FSFProstheticHand</li>
+			<li>Prosthetic Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticFoot</li>
+			<li>FSFProstheticFoot</li>
+			<li>Prosthetic Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFProstheticSpine</li>
+			<li>FSFProstheticSpine</li>
+			<li>Prosthetic Spine</li>
+			<li>false</li>
+			<li>-5</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFArtificialBone</li>
+			<li>FSFArtificialBone</li>
+			<li>Artificial Bone</li>
+			<li>false</li>
+			<li>0</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFBionicPowerArm</li>
+			<li>FSFBionicPowerArm</li>
+			<li>Bionic Power Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FSFArchotechSpine</li>
+			<li>FSFArchotechSpine</li>
+			<li>Archotech Spine</li>
+			<li>true</li>
+			<li>42</li>
+			<li>FSFVBE</li>
+		</arguments>
+	</Operation>
+
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Hediffs</docName>
+	</Operation>
+	<Operation Class="XmlExtensions.MergeDocument">
+		<docName>CCFB_Menu</docName>
+	</Operation>
+</Patch>

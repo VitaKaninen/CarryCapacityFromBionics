@@ -11,139 +11,109 @@ Intended to pair with hauling mods like *Pick Up and Haul* / *While You're Up* t
 - Author: VitaKaninen
 - Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362
 - Values spreadsheet: https://docs.google.com/spreadsheets/d/1k_BQcZxK3mnv6ZPR2nTX4FIXxrspoflj-XeAvqf1gKI
+- XML Extensions wiki mirror (operation reference): `..\XmlExtensionsReference\pages\`
 
-## The single most important fact: two parallel branches
+## Architecture (PatchDef-based, single tree)
 
-The mod ships **two complete copies** of all patches, in top-level `Standalone/` and `VEF/`.
-Exactly one branch loads at runtime, decided by `LoadFolders.xml` on whether
-**Vanilla Expanded Framework** (`OskarPotocki.VanillaFactionsExpanded.Core`, "VEF") is active:
+> History: the mod used to ship two mirrored patch trees (`Standalone/` and `VEF/`, 252 files,
+> one per implant) plus two identical 3001-line settings menus. That was replaced by this
+> PatchDef architecture (one declaration per implant). If something looks missing, check git history.
 
-| | When loaded | Stat the bonus is written to | Needs C# assembly? |
-|---|---|---|---|
-| `Standalone/` | VEF **not** active (`IfModNotActive`) | `CarryCapacityBonus` (our own StatDef) | **Yes** |
-| `VEF/` | VEF **active** (`IfModActive`) | `VEF_MassCarryCapacity` (provided by VEF) | No |
+**One PatchDef is the whole mod.** `Common/Defs/PatchDefs.xml` defines:
 
-**A given patch file is byte-identical between the two branches except for one line** — the stat tag
-injected into `statOffsets`:
-- Standalone: `<CarryCapacityBonus>{Key}</CarryCapacityBonus>`
-- VEF: `<VEF_MassCarryCapacity>{Key}</VEF_MassCarryCapacity>`
+- **`CCFB_Implant`** — the template applied per implant. Args (in order):
+  `defName | settings key | menu label | toggle default | kg default | menu section tag`.
+  It does two things:
+  1. Injects the implant's **settings-menu row** (checkbox + numeric field) into its section.
+  2. If the toggle setting is on (`XmlExtensions.OptionalPatch` on `Toggle<key>`), reads the kg
+     value (`UseSetting` on `<key>`) and adds it to the hediff's `stages/li/statOffsets`
+     (creating `stages`/`li`/`statOffsets` via `XmlExtensions.Conditional` if absent).
+     **The VEF-vs-standalone choice happens here at patch time**: `XmlExtensions.FindMod`
+     (packageId) on `OskarPotocki.VanillaFactionsExpanded.Core` —
+     active → `<VEF_MassCarryCapacity>`, not active → `<CarryCapacityBonus>` (our own stat).
+- **`CCFB_Section`** — creates a labeled menu section (header + `SplitColumn` tagged
+  `CCFB_<section>`). **Idempotent** (guarded by an existence check), so every patch file calls it
+  for the section it needs and file/folder ordering doesn't matter.
 
-So any edit to a patch's *logic* must be mirrored in both branches. The `Standalone/Defs/SettingsMenuDef.xml`
-and `VEF/Defs/SettingsMenuDef.xml` are currently **identical** (verified via diff) — they live in
-different load folders only so the right one loads per branch.
+`Common/Defs/SettingsMenu.xml` is just a skeleton (title + restart warning). All sections and rows
+are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
+menu needs no `MayRequire` gating at all.
 
-## How the bonus is actually applied to the pawn (the Standalone C# half)
+**Per-source patch files** live at `1.6/<Source>/Patches/CarryCapacity.xml`
+(`1.6/Ludeon/{Core,Royalty,Anomaly}` and `1.6/Mods/<ModShortName>`). Each file:
+1. `CreateDocument` ×2 — copies our SettingsMenuDef (`CCFB_Menu`) and just the HediffDefs it
+   touches (`CCFB_Hediffs`, or-predicate of defNames) into side documents, so the many xpath
+   lookups don't scan the whole merged Def database (the XML Extensions speed pattern).
+2. One `ApplyPatch → CCFB_Section` call, then one `ApplyPatch → CCFB_Implant` call per implant.
+3. `MergeDocument` ×2 — writes changes back.
 
-`VEF/` relies on VEF's own `VEF_MassCarryCapacity` stat machinery, so it has **no assembly**.
-`Standalone/` ships a small assembly (`Standalone/Assemblies/CarryCapacityFromBionics.dll`,
-source in `Standalone/Source/CarryCapacityStandalone/`) that makes our custom stat actually affect
-carrying capacity:
+**Adding an implant** = one `ApplyPatch` block + its defName in that file's `CreateDocument`
+xpath. **Adding a mod** = new folder + `LoadFolders.xml` entry (+ section label).
 
-- `Standalone/Defs/Stats/CarryCapacityBonus.xml` — defines the `CarryCapacityBonus` StatDef
+### DLC-dependent implants of third-party mods
+No more `PatchOperationFindMod` wrappers — a mod's DLC-dependent implants live in a suffixed
+folder gated with `IfModActiveAll="<mod>,<DLC>"` in `LoadFolders.xml`, and inject their rows into
+the parent mod's menu section:
+- `FSFABE_Royalty` (4 implants), `FSFABE_Anomaly` (1), `FSFVBE_Royalty` (2)
+- `EPOEForkedRoyalty` (whole mod needs Royalty; has its own section)
+
+## The Standalone C# half (unchanged by the refactor)
+
+When VEF is active, VEF's own `VEF_MassCarryCapacity` stat machinery applies the bonus — no
+assembly needed. Otherwise the `Standalone` folder loads (`IfModNotActive` in LoadFolders):
+
+- `Standalone/Defs/Stats/CarryCapacityBonus.xml` — our `CarryCapacityBonus` StatDef
   (label "Mass carry capacity", `hideAtValue` 35, custom `workerClass`).
-- `StatWorker_CarryCapacityBonus.cs` — the stat's worker. Its base value = vanilla `MassUtility.Capacity(pawn)`
+- `StatWorker_CarryCapacityBonus.cs` — base value = vanilla `MassUtility.Capacity(pawn)`
   (computed with the transpiler's injection suppressed to avoid recursion).
-- `CarryCapacityFromBionics.cs` — Harmony **transpiler** on `MassUtility.Capacity`. After the method
-  computes its local, it calls `SetCarryCapacity` which (when not re-entrant) overwrites the result with
-  `pawn.GetStatValue(CarryCapacityBonus)`. The `includeStatWorkerResult` bool guards the recursion between
-  the two. Net effect: the implants' `statOffsets` flow into the `CarryCapacityBonus` stat, which becomes
-  the pawn's effective `MassUtility.Capacity`.
-- `CarryCapacityDefOf.cs` — `[DefOf]` handle for the StatDef. `HarmonyPatches.cs` — `PatchAll()` on startup.
+- `CarryCapacityFromBionics.cs` — Harmony **transpiler** on `MassUtility.Capacity`; overwrites the
+  result with `pawn.GetStatValue(CarryCapacityBonus)`; `includeStatWorkerResult` guards re-entry.
+- `CarryCapacityDefOf.cs` / `HarmonyPatches.cs` — DefOf handle, `PatchAll()` on startup.
 
-When editing C#: it targets .NET Framework 4.7.2; solution at
-`Standalone/Source/CarryCapacityStandalone/CarryCapacityFromBionics.sln`. The built DLL is committed
-under `Standalone/Assemblies/`.
-
-## Patch file structure & the buckets
-
-Every patch lives at `<Branch>/1.6/<Source>/Patches/<DefName>.xml` where `<Source>` is one of:
-`Ludeon/Core`, `Ludeon/Royalty`, `Ludeon/Anomaly`, or `Mods/<ModShortName>`.
-
-**Two axes determine a patch's exact shape:**
-
-### Axis 1 — branch (Standalone vs VEF)
-Only the injected stat tag differs (see table above).
-
-### Axis 2 — what guards it (this is the "buckets")
-There are **two internal patch shapes**. Which one is used depends on whether the implant's def is
-guaranteed to exist once its containing folder loads:
-
-**Bucket A — plain `OptionalPatch`** (the common case). Used for Core implants, vanilla **DLC** implants
-(Royalty/Anomaly), and most third‑party mod implants. The folder is only loaded when the relevant
-DLC/mod is present (handled entirely in `LoadFolders.xml`), so the patch body needs no further guard:
-
-```
-Operation XmlExtensions.OptionalPatch  (key=Toggle<Key>, defaultValue bool)
-  caseTrue:
-    Operation XmlExtensions.UseSetting (key=<Key>, defaultValue number)
-      apply:
-        1. PatchOperationConditional — ensure HediffDef/stages exists (nomatch → add <stages><li/></stages>)
-        2. PatchOperationConditional — ensure stages/li/statOffsets exists (nomatch → add <statOffsets/>)
-        3. PatchOperationAdd        — add <StatTag>{<Key>}</StatTag> into statOffsets
-```
-
-**Bucket B — wrapped in `PatchOperationFindMod`** (DLC‑guarded). Used when a *third‑party mod's* hediff
-only exists if a **DLC** is also active, and the folder can't be DLC‑gated cleanly via `LoadFolders`
-(e.g. one mod folder contains both DLC‑dependent and DLC‑independent hediffs). The same A body is nested
-inside a `FindMod` check for the DLC:
-
-```
-Operation PatchOperationFindMod  (mods: [Royalty] or [Anomaly])
-  match: XmlExtensions.OptionalPatch  ... (identical inner body to Bucket A)
-```
-
-Known Bucket B cases: `Mods/EPOEForkedRoyalty/*` (needs **Royalty**),
-`Mods/FSFABE/FSFAdvBionicRevenantSpine.xml` (needs **Anomaly**).
-
-> Note: vanilla DLC implants in `Ludeon/Royalty` & `Ludeon/Anomaly` are **Bucket A**, not B — their
-> DLC is gated by `LoadFolders` (`IfModActive="Ludeon.RimWorld.Royalty"` etc.), so no inner `FindMod`.
-
-### The three "factors" the user mentioned, mapped to mechanics
-1. **VEF or not** → which top-level branch folder (Axis 1).
-2. **Requires a DLC** → for vanilla DLC content, gated by `LoadFolders IfModActive(DLC)` (Bucket A).
-3. **Requires another mod** → gated by `LoadFolders IfModActive(mod)` / `IfModActiveAll(VEF,mod)` (Bucket A).
-4. **Requires both a mod AND a DLC** → mod gated by `LoadFolders`, DLC gated by inner `PatchOperationFindMod` (**Bucket B**).
+C# targets .NET Framework 4.7.2; solution at `Standalone/Source/CarryCapacityStandalone/`.
+Built DLL is committed under `Standalone/Assemblies/`.
 
 ## Settings keys — naming convention (matters for collisions)
 
-- Each implant has two setting keys: `Toggle<Key>` (checkbox bool) and `<Key>` (numeric kg value),
-  referenced identically in the patch (`OptionalPatch`/`UseSetting`) and in the settings menu
-  (`ToggleableSettings` → `Numeric`).
-- The **xpath always targets the real `defName`** (e.g. `AdvancedBionicArm`), but the **setting `<Key>`
-  is namespaced with the mod's short name** to avoid clashes when several mods define the same `defName`.
-  - RBSE's `AdvancedBionicArm` → key `RBSEAdvancedBionicArm` / `ToggleRBSEAdvancedBionicArm`.
-  - EPOE **and** EPOE‑Forked both use `EPOEAdvancedBionicArm` — deliberately **shared** (they're
-    alternative versions of the same mod; only one runs at a time, so settings carry over).
-  - EPOE‑Forked Royalty drill arm: key `EPOEEPOE_AdvancedDrillArm` (prefix `EPOE` + defName `EPOE_AdvancedDrillArm`).
-- In the settings menu, per‑mod sections are shown/hidden with `MayRequire` / `MayRequireAnyOf` on the
-  mod packageId; individual DLC items use `MayRequire="Ludeon.RimWorld.Anomaly"` etc.
+- Each implant: `Toggle<Key>` (checkbox bool) + `<Key>` (numeric kg). Defaults now live in
+  exactly one place — the `ApplyPatch` arguments (PatchDef threads them into both the patch
+  and the menu row, which previously had to be kept in sync by hand).
+- The xpath targets the real `defName`; the **key is prefixed with the mod's short name**
+  (e.g. RBSE's `AdvancedBionicArm` → `RBSEAdvancedBionicArm`).
+- **Deliberately shared keys** (alternative editions / overlapping mods): EPOE & EPOE‑Forked share
+  `EPOE*` keys; FSF ABE & VBE share `FSF*` keys for their common implants. `CCFB_Implant`'s menu
+  guard skips a row if any section already shows that key, so nothing renders twice when both
+  are active.
+- EPOE‑Forked Royalty drill arm: key `EPOEEPOE_AdvancedDrillArm` (prefix `EPOE` + defName).
 
 ## LoadFolders.xml — the dispatcher
 
-`LoadFolders.xml` is the source of truth for which folder loads under which mod/DLC combination.
-Standalone entries carry `IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core"`; VEF entries carry
-`IfModActive=` (and `IfModActiveAll="VEF,<mod>"` for third‑party). When **adding support for a new mod**:
-add a folder under both `Standalone/1.6/Mods/<X>` and `VEF/1.6/Mods/<X>`, add both `LoadFolders` entries,
-and add a settings section (gated by `MayRequire`) to **both** `SettingsMenuDef.xml` files.
+Source of truth for what loads when. `Common` always loads; `Standalone` loads only without VEF;
+each source folder is gated on its mod (`IfModActive`) or mod+DLC (`IfModActiveAll`). Folders
+reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, ArchotechExpanded both).
 
-### Supported third-party mods (folder ↔ packageId, from LoadFolders)
+### Supported third-party mods (folder ↔ packageId)
 - FSFABE — `FrozenSnowFox.AdvancedBionicsExpansion`
 - FSFVBE — `FrozenSnowFox.VanillaBionicsExpansion`
-- RBSE — `rah.rbse` **and** `rah.rbsehc` (hardcore edition; both point at the same `RBSE` folder)
-- EPOE — `ykara.elstrages.epoe`
+- RBSE — `rah.rbse` **and** `rah.rbsehc`
+- EPOE — `ykara.epoe` **and** `ykara.elstrages.epoe`
 - EPOEForked — `vat.epoeforked`
-- EPOEForkedRoyalty — `vat.epoeforkedroyalty` (Bucket B, needs Royalty)
+- EPOEForkedRoyalty — `vat.epoeforkedroyalty` (+ Royalty)
 - ArchotechExpanded — `teok25.archotechexpanded` **and** `teok25.archotechexpanded.prosthetics`
 - AdvancedArchotechArm — `NightKosh.AdvancedArchotechArm`
 - VOID — `RH2.Faction.VOID`
 - SoS2 — `kentington.saveourship2`
 
-## Conventions / gotchas for editing
-- **Mirror every logic change across `Standalone/` and `VEF/`** — only the injected stat tag should differ.
-- **Keep both `SettingsMenuDef.xml` files in sync** (currently identical).
-- Patch XML is the same boilerplate ~3-operation body everywhere; when scripting bulk edits, the only
-  per-file variables are: the `defName` (in xpaths), the setting `<Key>`, the toggle `defaultValue`,
-  the numeric `defaultValue`, and (Bucket B only) the `FindMod` DLC.
-- Settings changes require a **game restart** to take effect (stated in the menu UI).
-- All implant bonuses are added as `statOffsets` on the implant's `HediffDef` stage — the mod never
-  touches the body part or recipe defs.
+## Conventions / gotchas
+- Patch-time substitution nesting: in `CCFB_Implant`, `{{key}}` becomes `{<actual key>}` after
+  PatchDef substitution, which `UseSetting` then replaces with the setting's value (same pattern
+  as the wiki's Mood Matters tutorial).
+- `XmlExtensions.PatchDef` must be `Abstract="True"` with a `Name` attribute; called via
+  `ApplyPatch`'s `<patchName>`.
+- Only XmlExtensions operations accept `<xmlDoc>`; that's why the PatchDef uses
+  `XmlExtensions.Conditional` / `XmlExtensions.PatchOperationAdd` instead of the vanilla ops.
+- Settings changes require a **game restart** (stated in the menu UI).
+- The mod only ever adds `statOffsets` to the implant's `HediffDef` stage — never touches body
+  parts or recipes.
+- Historic quirk kept for behavior parity: if a hediff has multiple `stages/li` with
+  `statOffsets`, the offset is added to every such stage (only one stage is active at a time).

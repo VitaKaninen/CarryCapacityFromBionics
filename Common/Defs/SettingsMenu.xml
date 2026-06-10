@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<!--
+		Skeleton settings menu. Sections and per-implant rows are injected at patch time by the
+		CCFB_Section / CCFB_Implant PatchDefs (see PatchDefs.xml), called from each loaded
+		source folder's patch file. Only folders for active mods/DLC load, so the menu only ever
+		shows content that is actually present - no MayRequire gating needed.
+	-->
+	<XmlExtensions.SettingsMenuDef>
+		<modId>Vita.CarryCapacityFromBionics</modId>
+		<label>Carry Capacity from Bionics</label>
+		<defaultSpacing>3</defaultSpacing>
+		<settings>
+			<li Class="XmlExtensions.Setting.Text">
+				<text>Game must be restarted for any changes to take effect!</text>
+				<anchor>Middle</anchor>
+				<color>(255,0,0)</color>
+			</li>
+		</settings>
+	</XmlExtensions.SettingsMenuDef>
+</Defs>

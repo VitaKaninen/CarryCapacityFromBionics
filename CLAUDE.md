@@ -13,6 +13,71 @@ Intended to pair with hauling mods like *Pick Up and Haul* / *While You're Up* t
 - Values spreadsheet: https://docs.google.com/spreadsheets/d/1k_BQcZxK3mnv6ZPR2nTX4FIXxrspoflj-XeAvqf1gKI
 - XML Extensions wiki mirror (operation reference): `..\XmlExtensionsReference\pages\`
 
+## What the mod actually changes (game mechanics)
+
+RimWorld has **two separate carrying systems** — keep them straight:
+
+1. **In-hands carrying capacity** (vanilla `CarryingCapacity` stat, default 75): how many items
+   of one stack a pawn can carry in hand. Scales natively with **manipulation**, so any
+   manipulation-boosting implant raises it in pure vanilla (bionic arm = +12.5% manipulation
+   → 75×1.125 ≈ 84). **This mod never touches it.**
+2. **Inventory / caravan mass capacity** (`MassUtility.Capacity` = body size × 35 kg; shown in
+   the Gear tab; hard-coded in vanilla, not even a stat): the limit for pawn inventory and
+   caravan loading. **This is the only thing this mod changes**, via per-hediff `statOffsets`
+   (`VEF_MassCarryCapacity` when VEF is active, our own `CarryCapacityBonus` stat otherwise).
+   It matters mostly with inventory-hauling mods (Pick Up and Haul / While You're Up).
+
+## Value methodology (matches the Google Sheet)
+
+`value ≈ partEfficiency × importanceWeight × techMultiplier × 35 kg`, then hand-rounded.
+
+- **Weights**: arm 15%, leg 25%, spine/pelvis/exoskeleton/membrane 20%, foot 10%, hand 5%,
+  femur ~13%, humerus/tibia 6%, radius/clavicle 3%, finger/toe 1%.
+- **Tech multiplier**: industrial bionic 2, spacer/archotech 3, below-natural prosthetic −1,
+  crude (peg leg/hook/wooden) −2, pure utility arms (drill/field/claw) → weight 0% → value 0.
+- partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
+  one, e.g. muscle stimulators, estimate from its capMods).
+- **Defaults convention**: positive values default ON; zero-value utility parts and all
+  negative (prosthetic-penalty) entries default OFF.
+- **Skip implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several
+  Integrated Implants ones) — patching them would double-dip in VEF games.
+
+## Roadmap: adding support for a new mod
+
+1. **Read the source mod**: find it under
+   `C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\<workshopId>`. Read its
+   `About/About.xml` (packageId!) and its `loadFolders.xml` — conditional subfolders there
+   (DLC- or mod-gated) must be mirrored by our gating, or we'll patch defs that don't exist.
+   Also sanity-check its XML actually parses (one stray bad file under `Defs/` can silently
+   kill the whole mod's def loading — happened with Integrated Implants, Dec 2025).
+2. **Extract candidate hediffs** (script it): every `HediffDef` touching arms / legs / spine /
+   pelvis / hands / feet / tails / extra limbs, with `partEfficiency`, `capMods`
+   (Manipulation/Moving), and any **native** `CarryingCapacity`/`VEF_MassCarryCapacity`
+   statOffsets (→ skip those). Recipes' `appliedOnFixedBodyParts` tell you the body part.
+3. **Compute values** with the formula above; present the table (math vs proposed) for approval;
+   update the Google Sheet.
+4. **Keys**: `<ModShortName><defName>` (strip `Left`/`Right` — L/R pairs share one key, the
+   menu dedup-guard shows a single row controlling both hediffs).
+5. **Create folder(s)** `1.6/Mods/<ModShortName>[_<Condition>]/Patches/CCFB_<Folder>.xml`
+   (filename MUST be unique across all folders — see gotchas). File = one
+   `ApplyPatch → CCFB_Section` (label, tag) + one `ApplyPatch → CCFB_Implant` per hediff:
+   args `defName | key | label | toggleDefault | kgDefault | sectionTag`.
+6. **LoadFolders.xml**: add gated entries. Remember bottom-up application — new mods go near
+   the TOP of the 3rd-party block so their menu section lands at the bottom. Combine
+   `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely as needed.
+7. **About.xml**: add the mod to the description's supported list and to `loadAfter`.
+8. **Validate by script before testing**: all XML parses; every patched defName exists in the
+   source mod's def XML (catches typos AND naming-order surprises like `RBSE_LeftExtra...`);
+   no settings-key collisions; patch filenames unique. Then update this file's supported list.
+9. **Commit + push** (folder rule), **deploy** with:
+   `robocopy <repo> "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\CarryCapacityFromBionics" /MIR /XD .git .claude`
+10. **In-game test** (user does this): settings rows appear only when the mod is active; a pawn
+    with the implant shows base 35 + value in Gear tab / "Mass carry capacity" stat breakdown;
+    re-test with VEF active if time permits. NOTE: thanks to the missing-def guard, absent
+    hediffs are skipped *silently* — a clean log does NOT prove the patch landed; check the
+    in-game number. The log can be read directly at
+    `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`.
+
 ## Architecture (PatchDef-based, single tree)
 
 > History: the mod used to ship two mirrored patch trees (`Standalone/` and `VEF/`, 252 files,
@@ -115,7 +180,6 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
 
 ## Planned future support (per VitaKaninen, 2026-06)
-- Integrated Implants (`lts.I`, ws 3223443793) — in progress.
 - Yet Another Prosthetic Expansion - Core (ws 2808872704) and - Animals (ws 2808876573)
 - Medieval Prosthetics (ws 2101545242)
 - Astraltech Bionic Implants (ws 3337372073)

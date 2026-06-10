@@ -5,7 +5,6 @@
 		CCFB_Section: creates one labeled section (header + SplitColumn) in the settings menu.
 		Idempotent: if a SplitColumn tagged CCFB_{section} already exists, does nothing, so any
 		patch file may call it for the section it needs and patch-file order does not matter.
-		Runs inside the CCFB_Menu document (created by each patch file).
 	-->
 	<XmlExtensions.PatchDef Name="CCFB_Section" Abstract="True">
 		<parameters>
@@ -14,12 +13,10 @@
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
-				<xmlDoc>CCFB_Menu</xmlDoc>
-				<xpath>CCFB_Menu/XmlExtensions.SettingsMenuDef/settings/li/settings/li[tag="CCFB_{section}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xmlDoc>CCFB_Menu</xmlDoc>
-						<xpath>CCFB_Menu/XmlExtensions.SettingsMenuDef/settings</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>24</spacing>
@@ -62,7 +59,11 @@
 		2. If the toggle is on, adds <CarryCapacityBonus> (standalone) or <VEF_MassCarryCapacity>
 		   (when Vanilla Expanded Framework is active) to the hediff's stage statOffsets, creating
 		   stages/li/statOffsets as needed.
-		Runs inside the CCFB_Menu and CCFB_Hediffs documents (created by each patch file).
+
+		NOTE: deliberately patches the main document directly. An earlier version routed these
+		operations through CreateDocument/MergeDocument side documents (the XML Extensions speed
+		pattern); the operations all ran without errors but the merged hediff changes never
+		reached the parsed defs in RimWorld 1.6. See git history and CLAUDE.md gotchas.
 	-->
 	<XmlExtensions.PatchDef Name="CCFB_Implant" Abstract="True">
 		<parameters>
@@ -77,12 +78,10 @@
 
 			<!-- 1. Settings menu rows -->
 			<Operation Class="XmlExtensions.Conditional">
-				<xmlDoc>CCFB_Menu</xmlDoc>
-				<xpath>CCFB_Menu/XmlExtensions.SettingsMenuDef/settings//leftCol/li[key="Toggle{key}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xmlDoc>CCFB_Menu</xmlDoc>
-						<xpath>CCFB_Menu/XmlExtensions.SettingsMenuDef/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.Checkbox">
 								<padRight>200</padRight>
@@ -93,8 +92,7 @@
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xmlDoc>CCFB_Menu</xmlDoc>
-						<xpath>CCFB_Menu/XmlExtensions.SettingsMenuDef/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
 								<key>Toggle{key}</key>
@@ -131,12 +129,10 @@
 						<defaultValue>{valueDefault}</defaultValue>
 						<apply>
 							<Operation Class="XmlExtensions.Conditional">
-								<xmlDoc>CCFB_Hediffs</xmlDoc>
-								<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]/stages</xpath>
+								<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
 								<caseFalse>
 									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xmlDoc>CCFB_Hediffs</xmlDoc>
-										<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]</xpath>
+										<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
 										<value>
 											<stages>
 												<li/>
@@ -146,12 +142,10 @@
 								</caseFalse>
 							</Operation>
 							<Operation Class="XmlExtensions.Conditional">
-								<xmlDoc>CCFB_Hediffs</xmlDoc>
-								<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+								<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
 								<caseFalse>
 									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xmlDoc>CCFB_Hediffs</xmlDoc>
-										<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]/stages/li</xpath>
+										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
 										<value>
 											<statOffsets/>
 										</value>
@@ -165,8 +159,7 @@
 								<packageId>true</packageId>
 								<caseTrue>
 									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xmlDoc>CCFB_Hediffs</xmlDoc>
-										<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
 										<value>
 											<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
 										</value>
@@ -174,8 +167,7 @@
 								</caseTrue>
 								<caseFalse>
 									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xmlDoc>CCFB_Hediffs</xmlDoc>
-										<xpath>CCFB_Hediffs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
 										<value>
 											<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
 										</value>

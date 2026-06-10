@@ -40,15 +40,11 @@ are injected at patch time by the PatchDefs, **only for folders that actually lo
 menu needs no `MayRequire` gating at all.
 
 **Per-source patch files** live at `1.6/<Source>/Patches/CarryCapacity.xml`
-(`1.6/Ludeon/{Core,Royalty,Anomaly}` and `1.6/Mods/<ModShortName>`). Each file:
-1. `CreateDocument` ×2 — copies our SettingsMenuDef (`CCFB_Menu`) and just the HediffDefs it
-   touches (`CCFB_Hediffs`, or-predicate of defNames) into side documents, so the many xpath
-   lookups don't scan the whole merged Def database (the XML Extensions speed pattern).
-2. One `ApplyPatch → CCFB_Section` call, then one `ApplyPatch → CCFB_Implant` call per implant.
-3. `MergeDocument` ×2 — writes changes back.
+(`1.6/Ludeon/{Core,Royalty,Anomaly}` and `1.6/Mods/<ModShortName>`). Each file is just one
+`ApplyPatch → CCFB_Section` call, then one `ApplyPatch → CCFB_Implant` call per implant.
 
-**Adding an implant** = one `ApplyPatch` block + its defName in that file's `CreateDocument`
-xpath. **Adding a mod** = new folder + `LoadFolders.xml` entry (+ section label).
+**Adding an implant** = one `ApplyPatch` block. **Adding a mod** = new folder +
+`LoadFolders.xml` entry (+ section label).
 
 ### DLC-dependent implants of third-party mods
 No more `PatchOperationFindMod` wrappers — a mod's DLC-dependent implants live in a suffixed
@@ -105,6 +101,14 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - SoS2 — `kentington.saveourship2`
 
 ## Conventions / gotchas
+- **Do NOT use `CreateDocument`/`MergeDocument` (the XML Extensions side-document speed
+  pattern) in this mod.** It was tried (see git history): every operation ran without errors and
+  the in-game patch viewer showed the ops executing against the side documents with correct
+  xpaths, but the merged hediff changes never reached the parsed defs in RimWorld 1.6 — pawns
+  got no carry bonus, before/after def XML was identical. Patching the main document directly
+  works. (XE's `MergeDocument` was rewritten in XE v1.9.2 from node-replacement to in-place
+  `ReplaceWith`, hinting at known node-identity trouble in this area; source mirror in
+  `..\XmlExtensionsSource`.)
 - Patch-time substitution nesting: in `CCFB_Implant`, `{{key}}` becomes `{<actual key>}` after
   PatchDef substitution, which `UseSetting` then replaces with the setting's value (same pattern
   as the wiki's Mood Matters tutorial).

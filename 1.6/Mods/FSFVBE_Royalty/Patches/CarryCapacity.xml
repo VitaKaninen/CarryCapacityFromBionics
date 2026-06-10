@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<!--
-		Generated-style implant list. To add an implant: add its defName to the CreateDocument
-		xpath below AND add one ApplyPatch block. Arguments, in order:
+		One ApplyPatch block per implant. Arguments, in order:
 		defName | settings key | menu label | toggle default | kg default | menu section tag
 	-->
-	<Operation Class="XmlExtensions.CreateDocument">
-		<docName>CCFB_Menu</docName>
-		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]</xpath>
-	</Operation>
-	<Operation Class="XmlExtensions.CreateDocument">
-		<docName>CCFB_Hediffs</docName>
-		<xpath>Defs/HediffDef[defName="FSFBionicDrillArm" or defName="FSFBionicFieldArm"]</xpath>
-	</Operation>
-
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Section</patchName>
 		<arguments>
@@ -42,12 +32,5 @@
 			<li>12.5</li>
 			<li>FSFVBE</li>
 		</arguments>
-	</Operation>
-
-	<Operation Class="XmlExtensions.MergeDocument">
-		<docName>CCFB_Hediffs</docName>
-	</Operation>
-	<Operation Class="XmlExtensions.MergeDocument">
-		<docName>CCFB_Menu</docName>
 	</Operation>
 </Patch>

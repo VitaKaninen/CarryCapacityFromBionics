@@ -76,106 +76,113 @@
 		</parameters>
 		<apply>
 
-			<!-- 1. Settings menu rows -->
+			<!-- Skip this implant entirely (menu row AND hediff patch, no errors) if its HediffDef
+			     does not exist - e.g. the source mod renamed it, or failed to load its defs. -->
 			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
-				<caseFalse>
-					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
-						<value>
-							<li Class="XmlExtensions.Setting.Checkbox">
-								<padRight>200</padRight>
-								<label>{label}</label>
-								<key>Toggle{key}</key>
-								<defaultValue>{toggleDefault}</defaultValue>
-							</li>
-						</value>
-					</Operation>
-					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
-						<value>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>Toggle{key}</key>
-								<caseTrue>
-									<li Class="XmlExtensions.Setting.Numeric">
-										<decimals>1</decimals>
-										<padLeft>85</padLeft>
-										<key>{key}</key>
-										<label>Extra carry capacity in kg</label>
-										<defaultValue>{valueDefault}</defaultValue>
-									</li>
-								</caseTrue>
-								<caseFalse>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Disabled</text>
-										<anchor>Right</anchor>
-									</li>
-								</caseFalse>
-							</li>
-						</value>
-					</Operation>
-				</caseFalse>
-			</Operation>
-
-			<!-- 2. Hediff statOffsets patch -->
-			<Operation Class="XmlExtensions.OptionalPatch">
-				<modId>Vita.CarryCapacityFromBionics</modId>
-				<key>Toggle{key}</key>
-				<defaultValue>{toggleDefault}</defaultValue>
+				<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
 				<caseTrue>
-					<Operation Class="XmlExtensions.UseSetting">
-						<modId>Vita.CarryCapacityFromBionics</modId>
-						<key>{key}</key>
-						<defaultValue>{valueDefault}</defaultValue>
-						<apply>
-							<Operation Class="XmlExtensions.Conditional">
-								<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
-								<caseFalse>
-									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
-										<value>
-											<stages>
-												<li/>
-											</stages>
-										</value>
-									</Operation>
-								</caseFalse>
-							</Operation>
-							<Operation Class="XmlExtensions.Conditional">
-								<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-								<caseFalse>
-									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
-										<value>
-											<statOffsets/>
-										</value>
-									</Operation>
-								</caseFalse>
-							</Operation>
-							<Operation Class="XmlExtensions.FindMod">
-								<mods>
-									<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
-								</mods>
-								<packageId>true</packageId>
-								<caseTrue>
-									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-										<value>
-											<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
-										</value>
-									</Operation>
-								</caseTrue>
-								<caseFalse>
-									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-										<value>
-											<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
-										</value>
-									</Operation>
-								</caseFalse>
-							</Operation>
-						</apply>
-					</Operation>
+				<!-- 1. Settings menu rows -->
+				<Operation Class="XmlExtensions.Conditional">
+					<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
+					<caseFalse>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+							<value>
+								<li Class="XmlExtensions.Setting.Checkbox">
+									<padRight>200</padRight>
+									<label>{label}</label>
+									<key>Toggle{key}</key>
+									<defaultValue>{toggleDefault}</defaultValue>
+								</li>
+							</value>
+						</Operation>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+							<value>
+								<li Class="XmlExtensions.Setting.ToggleableSettings">
+									<key>Toggle{key}</key>
+									<caseTrue>
+										<li Class="XmlExtensions.Setting.Numeric">
+											<decimals>1</decimals>
+											<padLeft>85</padLeft>
+											<key>{key}</key>
+											<label>Extra carry capacity in kg</label>
+											<defaultValue>{valueDefault}</defaultValue>
+										</li>
+									</caseTrue>
+									<caseFalse>
+										<li Class="XmlExtensions.Setting.Text">
+											<text>Disabled</text>
+											<anchor>Right</anchor>
+										</li>
+									</caseFalse>
+								</li>
+							</value>
+						</Operation>
+					</caseFalse>
+				</Operation>
+
+				<!-- 2. Hediff statOffsets patch -->
+				<Operation Class="XmlExtensions.OptionalPatch">
+					<modId>Vita.CarryCapacityFromBionics</modId>
+					<key>Toggle{key}</key>
+					<defaultValue>{toggleDefault}</defaultValue>
+					<caseTrue>
+						<Operation Class="XmlExtensions.UseSetting">
+							<modId>Vita.CarryCapacityFromBionics</modId>
+							<key>{key}</key>
+							<defaultValue>{valueDefault}</defaultValue>
+							<apply>
+								<Operation Class="XmlExtensions.Conditional">
+									<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
+									<caseFalse>
+										<Operation Class="XmlExtensions.PatchOperationAdd">
+											<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
+											<value>
+												<stages>
+													<li/>
+												</stages>
+											</value>
+										</Operation>
+									</caseFalse>
+								</Operation>
+								<Operation Class="XmlExtensions.Conditional">
+									<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+									<caseFalse>
+										<Operation Class="XmlExtensions.PatchOperationAdd">
+											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
+											<value>
+												<statOffsets/>
+											</value>
+										</Operation>
+									</caseFalse>
+								</Operation>
+								<Operation Class="XmlExtensions.FindMod">
+									<mods>
+										<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+									</mods>
+									<packageId>true</packageId>
+									<caseTrue>
+										<Operation Class="XmlExtensions.PatchOperationAdd">
+											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+											<value>
+												<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
+											</value>
+										</Operation>
+									</caseTrue>
+									<caseFalse>
+										<Operation Class="XmlExtensions.PatchOperationAdd">
+											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+											<value>
+												<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
+											</value>
+										</Operation>
+									</caseFalse>
+								</Operation>
+							</apply>
+						</Operation>
+					</caseTrue>
+				</Operation>
 				</caseTrue>
 			</Operation>
 

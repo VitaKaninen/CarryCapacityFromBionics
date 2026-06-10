@@ -23,6 +23,10 @@ Intended to pair with hauling mods like *Pick Up and Haul* / *While You're Up* t
 
 - **`CCFB_Implant`** — the template applied per implant. Args (in order):
   `defName | settings key | menu label | toggle default | kg default | menu section tag`.
+  The whole body is wrapped in an existence check on the HediffDef: if the def is missing
+  (source mod renamed it, or its defs failed to load — e.g. Integrated Implants' broken
+  stray XML file, Dec 2025), the implant is skipped silently: no menu row, no patch, no
+  errors. Once the def exists again it patches normally.
   It does two things:
   1. Injects the implant's **settings-menu row** (checkbox + numeric field) into its section.
   2. If the toggle setting is on (`XmlExtensions.OptionalPatch` on `Toggle<key>`), reads the kg

@@ -21,6 +21,7 @@
 		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/FSFVBE</li>
 		<li IfModActive="rah.rbse" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/RBSE</li>
 		<li IfModActive="rah.rbsehc" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/RBSE</li>
+		<li IfModActive="ykara.epoe" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOE</li>
 		<li IfModActive="ykara.elstrages.epoe" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOE</li>
 		<li IfModActive="vat.epoeforked" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOEForked</li>
 		<li IfModActive="vat.epoeforkedroyalty" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone/1.6/Mods/EPOEForkedRoyalty</li>
@@ -49,6 +50,7 @@
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,FrozenSnowFox.VanillaBionicsExpansion">VEF/1.6/Mods/FSFVBE</li>
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,rah.rbse">VEF/1.6/Mods/RBSE</li>
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,rah.rbsehc">VEF/1.6/Mods/RBSE</li>
+		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,ykara.epoe">VEF/1.6/Mods/EPOE</li>
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,ykara.elstrages.epoe">VEF/1.6/Mods/EPOE</li>
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,vat.epoeforked">VEF/1.6/Mods/EPOEForked</li>
 		<li IfModActiveAll="OskarPotocki.VanillaFactionsExpanded.Core,vat.epoeforkedroyalty">VEF/1.6/Mods/EPOEForkedRoyalty</li>

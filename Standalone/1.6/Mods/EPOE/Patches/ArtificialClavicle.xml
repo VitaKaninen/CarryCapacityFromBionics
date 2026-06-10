@@ -2,7 +2,7 @@
 <Patch>
 	<Operation Class="XmlExtensions.OptionalPatch">
 		<modId>Vita.CarryCapacityFromBionics</modId>
-		<key>ToggleArtificialClavicle</key>
+		<key>ToggleEPOEArtificialClavicle</key>
 		<defaultValue>false</defaultValue>
 		<caseTrue>
 			<Operation Class="XmlExtensions.UseSetting">

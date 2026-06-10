@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
-	<!-- TEMP DEBUG -->
-	<Operation Class="XmlExtensions.Log">
-		<text>CCFB order marker: FSFVBE_Royalty file starting</text>
-	</Operation>
 	<!--
 		One ApplyPatch block per implant. Arguments, in order:
 		defName | settings key | menu label | toggle default | kg default | menu section tag

@@ -9,9 +9,6 @@
 		one of them loads. This bit us badly - see CLAUDE.md gotchas.
 	-->
 	<v1.6>
-		<!-- TEMP DEBUG: listed first so it applies LAST and dumps the final patched state. Remove. -->
-		<li>1.6/Debug</li>
-
 		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
 		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
 		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>

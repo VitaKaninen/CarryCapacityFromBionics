@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Left/right pairs share one key, so the menu shows a single row for both sides.
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraAdvancedBionicArm</li>
+			<li>IIExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (EPOE)</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraAdvancedBionicArm</li>
+			<li>IIExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (EPOE)</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraPowerArm</li>
+			<li>IIExtraPowerArm</li>
+			<li>Extra Power Arm (EPOE)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraPowerArm</li>
+			<li>IIExtraPowerArm</li>
+			<li>Extra Power Arm (EPOE)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraAdvancedPowerArm</li>
+			<li>IIExtraAdvancedPowerArm</li>
+			<li>Extra Adv. Power Arm (EPOE)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraAdvancedPowerArm</li>
+			<li>IIExtraAdvancedPowerArm</li>
+			<li>Extra Adv. Power Arm (EPOE)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

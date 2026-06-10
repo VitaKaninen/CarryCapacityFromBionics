@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Left/right pairs share one key, so the menu shows a single row for both sides.
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraFSFAdvBionicDrillArm</li>
+			<li>IIExtraFSFAdvBionicDrillArm</li>
+			<li>Extra Adv. Drill Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraFSFAdvBionicDrillArm</li>
+			<li>IIExtraFSFAdvBionicDrillArm</li>
+			<li>Extra Adv. Drill Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraFSFAdvBionicFieldArm</li>
+			<li>IIExtraFSFAdvBionicFieldArm</li>
+			<li>Extra Adv. Field Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraFSFAdvBionicFieldArm</li>
+			<li>IIExtraFSFAdvBionicFieldArm</li>
+			<li>Extra Adv. Field Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

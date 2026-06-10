@@ -10,6 +10,21 @@
 	-->
 	<v1.6>
 		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
+
+		<!-- Integrated Implants (lts.I). Suffixed folders mirror the mod's own conditional
+		     loading: _NoMSE2 content only exists without Medical System Expansion 2, _NoAEP
+		     only without Archotech Expanded Prosthetics; the donor-mod folders hold its
+		     extra-arm versions of other bionics mods' arms (these also need MSE2 absent). -->
+		<li IfModActiveAll="lts.I,rah.rbsehc" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
+		<li IfModActiveAll="lts.I,rah.rbse" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
+		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>
+		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE</li>
+		<li IfModActiveAll="lts.I,vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForkedRoyalty</li>
+		<li IfModActiveAll="lts.I,vat.epoeforked" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForked</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_NoMSE2</li>
+		<li IfModActive="lts.I" IfModNotActive="Teok25.ArchotechExpanded.Prosthetics">1.6/Mods/II_NoAEP</li>
+		<li IfModActive="lts.I">1.6/Mods/II</li>
+
 		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
 		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>

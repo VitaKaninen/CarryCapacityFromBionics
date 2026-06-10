@@ -100,6 +100,15 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - AdvancedArchotechArm — `NightKosh.AdvancedArchotechArm`
 - VOID — `RH2.Faction.VOID`
 - SoS2 — `kentington.saveourship2`
+- II (Integrated Implants) — `lts.I`, plus suffixed folders mirroring that mod's own conditional
+  loading: `II_NoAEP` (needs Archotech Expanded Prosthetics ABSENT), `II_NoMSE2` (needs Medical
+  System Expansion 2 ABSENT), and donor-mod extra-arm folders `II_EPOEForked`,
+  `II_EPOEForkedRoyalty`, `II_FSFABE`, `II_FSFABE_Royalty`, `II_RBSE` (each needs lts.I + the
+  donor mod (+DLC) + MSE2 absent). All inject into the single "Integrated Implants" section.
+  Left/right extra-arm hediffs are separate defs sharing one settings key (menu shows one row).
+  Deliberately NOT patched (the mod grants VEF_MassCarryCapacity natively — we'd double-dip):
+  StrengthEnhancer, SkeletalBracing, LTS_ManipulationTail, HulkificationSurgery. Also skipped:
+  ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - Integrated Implants (`lts.I`, ws 3223443793) — in progress.

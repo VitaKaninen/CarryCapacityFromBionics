@@ -37,6 +37,7 @@ This is intended to be used with mods such as "Pick Up and Haul" and "While You'
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1467604976]Archotech Expanded Prosthetics[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2883208829]V.O.I.D Faction[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SoS2[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3223443793]Integrated Implants[/url]
 
 
 If you find any bugs, have some suggestions, or would like to see other mods supported, please let me know.
@@ -71,5 +72,6 @@ If you find any bugs, have some suggestions, or would like to see other mods sup
 		<li>NightKosh.AdvancedArchotechArm</li>
 		<li>RH2.Faction.VOID</li>
 		<li>kentington.saveourship2</li>
+		<li>lts.I</li>
 	</loadAfter>
 </ModMetaData>

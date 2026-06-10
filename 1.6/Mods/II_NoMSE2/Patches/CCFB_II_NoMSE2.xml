@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Left/right pairs share one key, so the menu shows a single row for both sides.
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularBionicArm</li>
+			<li>IILTS_ModularBionicArm</li>
+			<li>Bionic Arm (Modular)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularBionicLeg</li>
+			<li>IILTS_ModularBionicLeg</li>
+			<li>Bionic Leg (Modular)</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularBionicSpine</li>
+			<li>IILTS_ModularBionicSpine</li>
+			<li>Bionic Spine (Modular)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularArchotechArm</li>
+			<li>IILTS_ModularArchotechArm</li>
+			<li>Archotech Arm (Modular)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularArchotechLeg</li>
+			<li>IILTS_ModularArchotechLeg</li>
+			<li>Archotech Leg (Modular)</li>
+			<li>true</li>
+			<li>40</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_ModularArchotechSpine</li>
+			<li>IILTS_ModularArchotechSpine</li>
+			<li>Archotech Spine (Modular)</li>
+			<li>true</li>
+			<li>32</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

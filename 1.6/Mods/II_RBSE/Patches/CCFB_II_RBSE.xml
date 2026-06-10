@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Left/right pairs share one key, so the menu shows a single row for both sides.
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_LeftExtraPowerArm</li>
+			<li>IIRBSE_ExtraPowerArm</li>
+			<li>Extra Power Arm (RBSE)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_RightExtraPowerArm</li>
+			<li>IIRBSE_ExtraPowerArm</li>
+			<li>Extra Power Arm (RBSE)</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_LeftExtraAdvancedPowerArm</li>
+			<li>IIRBSE_ExtraAdvancedPowerArm</li>
+			<li>Extra Adv. Power Arm (RBSE)</li>
+			<li>true</li>
+			<li>18</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_RightExtraAdvancedPowerArm</li>
+			<li>IIRBSE_ExtraAdvancedPowerArm</li>
+			<li>Extra Adv. Power Arm (RBSE)</li>
+			<li>true</li>
+			<li>18</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_LeftExtraAdvancedBionicArm</li>
+			<li>IIRBSE_ExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (RBSE)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RBSE_RightExtraAdvancedBionicArm</li>
+			<li>IIRBSE_ExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (RBSE)</li>
+			<li>true</li>
+			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

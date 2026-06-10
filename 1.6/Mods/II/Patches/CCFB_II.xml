@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Left/right pairs share one key, so the menu shows a single row for both sides.
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraBionicArm</li>
+			<li>IIExtraBionicArm</li>
+			<li>Extra Bionic Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraBionicArm</li>
+			<li>IIExtraBionicArm</li>
+			<li>Extra Bionic Arm</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraArchotechArm</li>
+			<li>IIExtraArchotechArm</li>
+			<li>Extra Archotech Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraArchotechArm</li>
+			<li>IIExtraArchotechArm</li>
+			<li>Extra Archotech Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraPowerClaw</li>
+			<li>IIExtraPowerClaw</li>
+			<li>Extra Power Claw</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraPowerClaw</li>
+			<li>IIExtraPowerClaw</li>
+			<li>Extra Power Claw</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraDrillArm</li>
+			<li>IIExtraDrillArm</li>
+			<li>Extra Drill Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraDrillArm</li>
+			<li>IIExtraDrillArm</li>
+			<li>Extra Drill Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraFieldHand</li>
+			<li>IIExtraFieldHand</li>
+			<li>Extra Field Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraFieldHand</li>
+			<li>IIExtraFieldHand</li>
+			<li>Extra Field Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LTS_BionicTail</li>
+			<li>IILTS_BionicTail</li>
+			<li>Bionic Tail</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

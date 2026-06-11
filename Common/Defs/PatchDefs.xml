@@ -88,11 +88,26 @@
 						<Operation Class="XmlExtensions.PatchOperationAdd">
 							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
 							<value>
-								<li Class="XmlExtensions.Setting.Checkbox">
-									<padRight>200</padRight>
-									<label>{label}</label>
-									<key>Toggle{key}</key>
-									<defaultValue>{toggleDefault}</defaultValue>
+								<!-- Checkbox first, then the name. CheckboxLabeled pins the box to the RIGHT
+								     edge of its rect, so a 24px-wide label-less checkbox puts the box flush
+								     left; the name is a separate Text with the full remaining width (long
+								     names wrap instead of truncating). Trade-off: only the box is clickable. -->
+								<li Class="XmlExtensions.Setting.SplitColumn">
+									<width>24</width>
+									<gapSize>6</gapSize>
+									<anchor>Middle</anchor>
+									<leftCol>
+										<li Class="XmlExtensions.Setting.Checkbox">
+											<label></label>
+											<key>Toggle{key}</key>
+											<defaultValue>{toggleDefault}</defaultValue>
+										</li>
+									</leftCol>
+									<rightCol>
+										<li Class="XmlExtensions.Setting.Text">
+											<text>{label}</text>
+										</li>
+									</rightCol>
 								</li>
 							</value>
 						</Operation>
@@ -226,11 +241,26 @@
 						<Operation Class="XmlExtensions.PatchOperationAdd">
 							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
 							<value>
-								<li Class="XmlExtensions.Setting.Checkbox">
-									<padRight>200</padRight>
-									<label>{label}</label>
-									<key>Toggle{key}</key>
-									<defaultValue>{toggleDefault}</defaultValue>
+								<!-- Checkbox first, then the name. CheckboxLabeled pins the box to the RIGHT
+								     edge of its rect, so a 24px-wide label-less checkbox puts the box flush
+								     left; the name is a separate Text with the full remaining width (long
+								     names wrap instead of truncating). Trade-off: only the box is clickable. -->
+								<li Class="XmlExtensions.Setting.SplitColumn">
+									<width>24</width>
+									<gapSize>6</gapSize>
+									<anchor>Middle</anchor>
+									<leftCol>
+										<li Class="XmlExtensions.Setting.Checkbox">
+											<label></label>
+											<key>Toggle{key}</key>
+											<defaultValue>{toggleDefault}</defaultValue>
+										</li>
+									</leftCol>
+									<rightCol>
+										<li Class="XmlExtensions.Setting.Text">
+											<text>{label}</text>
+										</li>
+									</rightCol>
 								</li>
 							</value>
 						</Operation>

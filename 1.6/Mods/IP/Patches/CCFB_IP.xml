@@ -14,6 +14,127 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
+			<li>IPFerroclaw</li>
+			<li>IPFerroclaw</li>
+			<li>Ferroclaw</li>
+			<li>false</li>
+			<li>0</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredHandUtilityMedical</li>
+			<li>IPPoweredHandUtilityMedical</li>
+			<li>Powered Medical Hand (Utility)</li>
+			<li>true</li>
+			<li>3</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredHandMilitaryMedical</li>
+			<li>IPPoweredHandMedical</li>
+			<li>Powered Medical Hand</li>
+			<li>true</li>
+			<li>3.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredHandNobleMedical</li>
+			<li>IPPoweredHandNobleMedical</li>
+			<li>Powered Medical Hand (Noble)</li>
+			<li>true</li>
+			<li>4</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredFootUtilityHunting</li>
+			<li>IPPoweredFootUtilityHunting</li>
+			<li>Powered Hunting Foot (Utility)</li>
+			<li>true</li>
+			<li>6.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredFootMilitaryHunting</li>
+			<li>IPPoweredFootHunting</li>
+			<li>Powered Hunting Foot</li>
+			<li>true</li>
+			<li>7</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredFootNobleHunting</li>
+			<li>IPPoweredFootNobleHunting</li>
+			<li>Powered Hunting Foot (Noble)</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredArmUtility</li>
+			<li>IPPoweredArmUtility</li>
+			<li>Powered Arm (Utility)</li>
+			<li>true</li>
+			<li>9.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredArmUtilityCombat</li>
+			<li>IPPoweredArmUtility</li>
+			<li>Powered Arm (Utility)</li>
+			<li>true</li>
+			<li>9.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredArmUtilityConstruct</li>
+			<li>IPPoweredArmUtility</li>
+			<li>Powered Arm (Utility)</li>
+			<li>true</li>
+			<li>9.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredArmUtilityLabor</li>
+			<li>IPPoweredArmUtility</li>
+			<li>Powered Arm (Utility)</li>
+			<li>true</li>
+			<li>9.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
 			<li>IPPoweredArm</li>
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
@@ -91,6 +212,17 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
+			<li>IPMechtechArm</li>
+			<li>IPMechtechArm</li>
+			<li>Mechtech Arm</li>
+			<li>true</li>
+			<li>10.5</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
 			<li>IPPoweredArmNoble</li>
 			<li>IPPoweredArmNoble</li>
 			<li>Powered Arm (Noble)</li>
@@ -135,50 +267,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>IPPoweredArmUtility</li>
-			<li>IPPoweredArmUtility</li>
-			<li>Powered Arm (Utility)</li>
-			<li>true</li>
-			<li>9.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredArmUtilityCombat</li>
-			<li>IPPoweredArmUtility</li>
-			<li>Powered Arm (Utility)</li>
-			<li>true</li>
-			<li>9.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredArmUtilityConstruct</li>
-			<li>IPPoweredArmUtility</li>
-			<li>Powered Arm (Utility)</li>
-			<li>true</li>
-			<li>9.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredArmUtilityLabor</li>
-			<li>IPPoweredArmUtility</li>
-			<li>Powered Arm (Utility)</li>
-			<li>true</li>
-			<li>9.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>IPPoweredArmUnique</li>
 			<li>IPPoweredArmUnique</li>
 			<li>Powered Arm (Unique)</li>
@@ -190,22 +278,44 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>IPMechtechArm</li>
-			<li>IPMechtechArm</li>
-			<li>Mechtech Arm</li>
+			<li>IPPoweredLegUtility</li>
+			<li>IPPoweredLegUtility</li>
+			<li>Powered Leg (Utility)</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>16</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>IPFerroclaw</li>
-			<li>IPFerroclaw</li>
-			<li>Ferroclaw</li>
-			<li>false</li>
-			<li>0</li>
+			<li>IPPoweredLegUtilityCombat</li>
+			<li>IPPoweredLegUtility</li>
+			<li>Powered Leg (Utility)</li>
+			<li>true</li>
+			<li>16</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredLegUtilityLabor</li>
+			<li>IPPoweredLegUtility</li>
+			<li>Powered Leg (Utility)</li>
+			<li>true</li>
+			<li>16</li>
+			<li>IP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IPPoweredLegUtilitySocial</li>
+			<li>IPPoweredLegUtility</li>
+			<li>Powered Leg (Utility)</li>
+			<li>true</li>
+			<li>16</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -333,50 +443,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>IPPoweredLegUtility</li>
-			<li>IPPoweredLegUtility</li>
-			<li>Powered Leg (Utility)</li>
-			<li>true</li>
-			<li>16</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredLegUtilityCombat</li>
-			<li>IPPoweredLegUtility</li>
-			<li>Powered Leg (Utility)</li>
-			<li>true</li>
-			<li>16</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredLegUtilityLabor</li>
-			<li>IPPoweredLegUtility</li>
-			<li>Powered Leg (Utility)</li>
-			<li>true</li>
-			<li>16</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredLegUtilitySocial</li>
-			<li>IPPoweredLegUtility</li>
-			<li>Powered Leg (Utility)</li>
-			<li>true</li>
-			<li>16</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>IPPoweredLegUnique</li>
 			<li>IPPoweredLegUnique</li>
 			<li>Powered Leg (Unique)</li>
@@ -393,72 +459,6 @@
 			<li>Powered Spine</li>
 			<li>true</li>
 			<li>14</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredHandMilitaryMedical</li>
-			<li>IPPoweredHandMedical</li>
-			<li>Powered Medical Hand</li>
-			<li>true</li>
-			<li>3.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredHandNobleMedical</li>
-			<li>IPPoweredHandNobleMedical</li>
-			<li>Powered Medical Hand (Noble)</li>
-			<li>true</li>
-			<li>4</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredHandUtilityMedical</li>
-			<li>IPPoweredHandUtilityMedical</li>
-			<li>Powered Medical Hand (Utility)</li>
-			<li>true</li>
-			<li>3</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredFootMilitaryHunting</li>
-			<li>IPPoweredFootHunting</li>
-			<li>Powered Hunting Foot</li>
-			<li>true</li>
-			<li>7</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredFootNobleHunting</li>
-			<li>IPPoweredFootNobleHunting</li>
-			<li>Powered Hunting Foot (Noble)</li>
-			<li>true</li>
-			<li>7.5</li>
-			<li>IP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>IPPoweredFootUtilityHunting</li>
-			<li>IPPoweredFootUtilityHunting</li>
-			<li>Powered Hunting Foot (Utility)</li>
-			<li>true</li>
-			<li>6.5</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>

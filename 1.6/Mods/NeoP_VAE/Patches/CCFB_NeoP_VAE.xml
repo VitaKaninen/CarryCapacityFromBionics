@@ -14,22 +14,22 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>O_BeaverTail</li>
-			<li>NeoPBeaverTail</li>
-			<li>Beaver Tail</li>
+			<li>O_KangarooLeg</li>
+			<li>NeoPKangarooLeg</li>
+			<li>Kangaroo Leg</li>
 			<li>false</li>
-			<li>0</li>
+			<li>-7.5</li>
 			<li>NeoP</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>O_KangarooLeg</li>
-			<li>NeoPKangarooLeg</li>
-			<li>Kangaroo Leg</li>
+			<li>O_BeaverTail</li>
+			<li>NeoPBeaverTail</li>
+			<li>Beaver Tail</li>
 			<li>false</li>
-			<li>-7.5</li>
+			<li>0</li>
 			<li>NeoP</li>
 		</arguments>
 	</Operation>

@@ -37,6 +37,28 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
+			<li>LeftExtraFSFAdvBionicConstructionArm</li>
+			<li>IIExtraFSFAdvBionicConstructionArm</li>
+			<li>Extra Adv. Construction Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraFSFAdvBionicConstructionArm</li>
+			<li>IIExtraFSFAdvBionicConstructionArm</li>
+			<li>Extra Adv. Construction Arm (FSF)</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
 			<li>LeftExtraFSFAdvBionicPowerArm</li>
 			<li>IIExtraFSFAdvBionicPowerArm</li>
 			<li>Extra Adv. Power Arm (FSF)</li>
@@ -103,28 +125,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>LeftExtraFSFAdvBionicConstructionArm</li>
-			<li>IIExtraFSFAdvBionicConstructionArm</li>
-			<li>Extra Adv. Construction Arm (FSF)</li>
-			<li>true</li>
-			<li>25</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>RightExtraFSFAdvBionicConstructionArm</li>
-			<li>IIExtraFSFAdvBionicConstructionArm</li>
-			<li>Extra Adv. Construction Arm (FSF)</li>
-			<li>true</li>
-			<li>25</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>LeftExtraFSFAdvBionicMedicArm</li>
 			<li>IIExtraFSFAdvBionicMedicArm</li>
 			<li>Extra Adv. Medic Arm (FSF)</li>
@@ -147,28 +147,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>LeftExtraFSFArchotechMedicArm</li>
-			<li>IIExtraFSFArchotechMedicArm</li>
-			<li>Extra Archotech Medic Arm (FSF)</li>
-			<li>true</li>
-			<li>32</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>RightExtraFSFArchotechMedicArm</li>
-			<li>IIExtraFSFArchotechMedicArm</li>
-			<li>Extra Archotech Medic Arm (FSF)</li>
-			<li>true</li>
-			<li>32</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>LeftExtraFSFArchotechPowerArm</li>
 			<li>IIExtraFSFArchotechPowerArm</li>
 			<li>Extra Archotech Power Arm (FSF)</li>
@@ -183,6 +161,28 @@
 			<li>RightExtraFSFArchotechPowerArm</li>
 			<li>IIExtraFSFArchotechPowerArm</li>
 			<li>Extra Archotech Power Arm (FSF)</li>
+			<li>true</li>
+			<li>32</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraFSFArchotechMedicArm</li>
+			<li>IIExtraFSFArchotechMedicArm</li>
+			<li>Extra Archotech Medic Arm (FSF)</li>
+			<li>true</li>
+			<li>32</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraFSFArchotechMedicArm</li>
+			<li>IIExtraFSFArchotechMedicArm</li>
+			<li>Extra Archotech Medic Arm (FSF)</li>
 			<li>true</li>
 			<li>32</li>
 			<li>II</li>

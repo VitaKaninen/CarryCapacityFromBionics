@@ -14,17 +14,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>BeaverTail</li>
-			<li>NeoPBeaverTail</li>
-			<li>Beaver Tail</li>
-			<li>false</li>
-			<li>0</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>KangarooLeg</li>
 			<li>NeoPKangarooLeg</li>
 			<li>Kangaroo Leg</li>
@@ -50,6 +39,17 @@
 			<li>CharmOfPanda</li>
 			<li>NeoPCharmOfPanda</li>
 			<li>Charm of Panda</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BeaverTail</li>
+			<li>NeoPBeaverTail</li>
+			<li>Beaver Tail</li>
 			<li>false</li>
 			<li>0</li>
 			<li>NeoP</li>

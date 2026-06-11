@@ -9,32 +9,34 @@
 		one of them loads. This bit us badly - see CLAUDE.md gotchas.
 	-->
 	<v1.6>
-		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
+		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC).
+		     The settings-menu sections show in ALPHABETICAL order (by section label); since this
+		     list applies bottom-up, the block below is sorted REVERSE-alphabetically. Within one
+		     mod's folder group, the base folder sits LAST so its rows show first in the section. -->
 
-		<!-- Industrial Prosthetics -->
-		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
+		<!-- Yet Another Prosthetic Expansion - Core. _NoSoS2 covers YAPE's own copies of SoS2's
+		     archotech parts (same defNames, shared settings keys with the SoS2 section). -->
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
+
+		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
+		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
+		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
+		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
 
 		<!-- Neolithic Prosthetics. Suffixed folders mirror the mod's own conditional loading
 		     (Odyssey / Vanilla Animals Expanded / Alpha Animals donor parts); _NativeVEF is the
 		     native-VEF override for its muffalo spines (author grants VEF_MassCarryCapacity;
 		     with VEF our setting replaces that value, without VEF we add our own stat). -->
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_NativeVEF</li>
-		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
-		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
-		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
 		<li IfModActiveAll="Uga.Booga,Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_Odyssey</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
+		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
-
-		<!-- Astraltech Bionic Implants -->
-		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
 
 		<!-- Medieval Prosthetics -->
 		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
-
-		<!-- Yet Another Prosthetic Expansion - Core. _NoSoS2 covers YAPE's own copies of SoS2's
-		     archotech parts (same defNames, shared settings keys with the SoS2 section). -->
-		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
-		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
 
 		<!-- Integrated Implants (lts.I). Suffixed folders mirror the mod's own conditional
 		     loading: _NoMSE2 content only exists without Medical System Expansion 2, _NoAEP
@@ -52,22 +54,25 @@
 		<li IfModActive="lts.I" IfModNotActive="Teok25.ArchotechExpanded.Prosthetics">1.6/Mods/II_NoAEP</li>
 		<li IfModActive="lts.I">1.6/Mods/II</li>
 
-		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
-		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
-		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
-		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
-		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
-		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
-		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
-		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
-		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
-		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
-		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
+		<!-- Industrial Prosthetics -->
+		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
+
 		<li IfModActiveAll="FrozenSnowFox.VanillaBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFVBE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE</li>
 		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
 		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
+		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
+		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
+		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
+		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
+
+		<!-- Astraltech Bionic Implants -->
+		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
+
+		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
 
 		<!-- Core + DLC patches (applied first overall, so Core Implants is the top menu section) -->
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>

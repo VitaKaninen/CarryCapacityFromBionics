@@ -69,9 +69,20 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>AstraltechAgilityBooster_hediff</li>
-			<li>AstralAgilityBooster</li>
-			<li>Agility Booster</li>
+			<li>Astraltech_Shoulder_Reinforcement_hediff</li>
+			<li>AstralShoulderReinforcement</li>
+			<li>Shoulder Reinforcement</li>
+			<li>true</li>
+			<li>15</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Knee_Enhancement_hediff</li>
+			<li>AstralKneeEnhancement</li>
+			<li>Knee Enhancement</li>
 			<li>true</li>
 			<li>20</li>
 			<li>Astral</li>
@@ -102,11 +113,11 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>AstraltechCoreStabilizer_hediff</li>
-			<li>AstralCoreStabilizer</li>
-			<li>Core Stabilizer</li>
+			<li>AstraltechAgilityBooster_hediff</li>
+			<li>AstralAgilityBooster</li>
+			<li>Agility Booster</li>
 			<li>true</li>
-			<li>25</li>
+			<li>20</li>
 			<li>Astral</li>
 		</arguments>
 	</Operation>
@@ -124,22 +135,11 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>Astraltech_Knee_Enhancement_hediff</li>
-			<li>AstralKneeEnhancement</li>
-			<li>Knee Enhancement</li>
+			<li>AstraltechCoreStabilizer_hediff</li>
+			<li>AstralCoreStabilizer</li>
+			<li>Core Stabilizer</li>
 			<li>true</li>
-			<li>20</li>
-			<li>Astral</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>Astraltech_Shoulder_Reinforcement_hediff</li>
-			<li>AstralShoulderReinforcement</li>
-			<li>Shoulder Reinforcement</li>
-			<li>true</li>
-			<li>15</li>
+			<li>25</li>
 			<li>Astral</li>
 		</arguments>
 	</Operation>

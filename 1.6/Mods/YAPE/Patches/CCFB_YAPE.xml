@@ -14,6 +14,28 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
+			<li>SimpleProstheticBIE_Finger</li>
+			<li>YAPESimpleProstheticFinger</li>
+			<li>Prosthetic Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticBIE_Toe</li>
+			<li>YAPESimpleProstheticToe</li>
+			<li>Prosthetic Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
 			<li>SimpleProstheticBIE_Hand</li>
 			<li>YAPESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
@@ -36,22 +58,22 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>SimpleProstheticBIE_Finger</li>
-			<li>YAPESimpleProstheticFinger</li>
-			<li>Prosthetic Finger</li>
-			<li>false</li>
-			<li>-0.3</li>
+			<li>BIE_BionicFinger</li>
+			<li>YAPEBionicFinger</li>
+			<li>Bionic Finger</li>
+			<li>true</li>
+			<li>1</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>SimpleProstheticBIE_Toe</li>
-			<li>YAPESimpleProstheticToe</li>
-			<li>Prosthetic Toe</li>
-			<li>false</li>
-			<li>-0.3</li>
+			<li>BIE_BionicToe</li>
+			<li>YAPEBionicToe</li>
+			<li>Bionic Toe</li>
+			<li>true</li>
+			<li>1</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -80,22 +102,44 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>BIE_BionicFinger</li>
-			<li>YAPEBionicFinger</li>
-			<li>Bionic Finger</li>
+			<li>BIE_AdvancedBionicFinger</li>
+			<li>YAPEAdvancedBionicFinger</li>
+			<li>Adv. Bionic Finger</li>
 			<li>true</li>
-			<li>1</li>
+			<li>1.5</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>BIE_BionicToe</li>
-			<li>YAPEBionicToe</li>
-			<li>Bionic Toe</li>
+			<li>BIE_AdvancedBionicToe</li>
+			<li>YAPEAdvancedBionicToe</li>
+			<li>Adv. Bionic Toe</li>
 			<li>true</li>
-			<li>1</li>
+			<li>1.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicHand</li>
+			<li>YAPEAdvancedBionicHand</li>
+			<li>Adv. Bionic Hand</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicFoot</li>
+			<li>YAPEAdvancedBionicFoot</li>
+			<li>Adv. Bionic Foot</li>
+			<li>true</li>
+			<li>15</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -129,50 +173,6 @@
 			<li>Adv. Bionic Spine</li>
 			<li>true</li>
 			<li>32</li>
-			<li>YAPE</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>BIE_AdvancedBionicHand</li>
-			<li>YAPEAdvancedBionicHand</li>
-			<li>Adv. Bionic Hand</li>
-			<li>true</li>
-			<li>7.5</li>
-			<li>YAPE</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>BIE_AdvancedBionicFoot</li>
-			<li>YAPEAdvancedBionicFoot</li>
-			<li>Adv. Bionic Foot</li>
-			<li>true</li>
-			<li>15</li>
-			<li>YAPE</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>BIE_AdvancedBionicFinger</li>
-			<li>YAPEAdvancedBionicFinger</li>
-			<li>Adv. Bionic Finger</li>
-			<li>true</li>
-			<li>1.5</li>
-			<li>YAPE</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>BIE_AdvancedBionicToe</li>
-			<li>YAPEAdvancedBionicToe</li>
-			<li>Adv. Bionic Toe</li>
-			<li>true</li>
-			<li>1.5</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>

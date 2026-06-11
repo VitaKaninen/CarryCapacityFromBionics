@@ -14,83 +14,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>SewnInBag</li>
-			<li>NeoPSewnInBag</li>
-			<li>Sewn-In Bag</li>
-			<li>true</li>
-			<li>10</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>InsectoidLimbs</li>
-			<li>NeoPInsectoidLimbs</li>
-			<li>Insectoid Limbs</li>
-			<li>true</li>
-			<li>7</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>TotemicArm</li>
-			<li>NeoPTotemicArm</li>
-			<li>Totemic Arm</li>
-			<li>false</li>
-			<li>-4</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>TotemicLeg</li>
-			<li>NeoPTotemicLeg</li>
-			<li>Totemic Leg</li>
-			<li>false</li>
-			<li>-6.5</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>TotemicTyrannoArm</li>
-			<li>NeoPTotemicTyrannoArm</li>
-			<li>Totemic Tyranno Arm</li>
-			<li>false</li>
-			<li>-4.5</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>SilverArm</li>
-			<li>NeoPSilverArm</li>
-			<li>Silver Arm</li>
-			<li>false</li>
-			<li>-2.5</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>SteelHand</li>
-			<li>NeoPSteelHand</li>
-			<li>Steel Hand</li>
-			<li>false</li>
-			<li>-1</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>SteelFinger</li>
 			<li>NeoPSteelFinger</li>
 			<li>Steel Finger</li>
@@ -113,22 +36,11 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>WoodFinger</li>
-			<li>NeoPWoodFinger</li>
-			<li>Wood Finger</li>
+			<li>SteelHand</li>
+			<li>NeoPSteelHand</li>
+			<li>Steel Hand</li>
 			<li>false</li>
-			<li>-0.3</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>WoodToe</li>
-			<li>NeoPWoodToe</li>
-			<li>Wood Toe</li>
-			<li>false</li>
-			<li>-0.3</li>
+			<li>-1</li>
 			<li>NeoP</li>
 		</arguments>
 	</Operation>
@@ -162,6 +74,72 @@
 			<li>Artificial Hoof</li>
 			<li>false</li>
 			<li>-2</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SilverArm</li>
+			<li>NeoPSilverArm</li>
+			<li>Silver Arm</li>
+			<li>false</li>
+			<li>-2.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicArm</li>
+			<li>NeoPTotemicArm</li>
+			<li>Totemic Arm</li>
+			<li>false</li>
+			<li>-4</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicTyrannoArm</li>
+			<li>NeoPTotemicTyrannoArm</li>
+			<li>Totemic Tyranno Arm</li>
+			<li>false</li>
+			<li>-4.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicLeg</li>
+			<li>NeoPTotemicLeg</li>
+			<li>Totemic Leg</li>
+			<li>false</li>
+			<li>-6.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodFinger</li>
+			<li>NeoPWoodFinger</li>
+			<li>Wood Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodToe</li>
+			<li>NeoPWoodToe</li>
+			<li>Wood Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
 			<li>NeoP</li>
 		</arguments>
 	</Operation>
@@ -338,6 +316,28 @@
 			<li>Beaver Tail</li>
 			<li>false</li>
 			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>InsectoidLimbs</li>
+			<li>NeoPInsectoidLimbs</li>
+			<li>Insectoid Limbs</li>
+			<li>true</li>
+			<li>7</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SewnInBag</li>
+			<li>NeoPSewnInBag</li>
+			<li>Sewn-In Bag</li>
+			<li>true</li>
+			<li>10</li>
 			<li>NeoP</li>
 		</arguments>
 	</Operation>

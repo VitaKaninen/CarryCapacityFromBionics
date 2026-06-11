@@ -68,9 +68,16 @@ RimWorld has **two separate carrying systems** — keep them straight:
    (filename MUST be unique across all folders — see gotchas). File = one
    `ApplyPatch → CCFB_Section` (label, tag) + one `ApplyPatch → CCFB_Implant` per hediff:
    args `defName | key | label | toggleDefault | kgDefault | sectionTag`.
-6. **LoadFolders.xml**: add gated entries. Remember bottom-up application — new mods go near
-   the TOP of the 3rd-party block so their menu section lands at the bottom. Combine
-   `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely as needed.
+6. **LoadFolders.xml**: add gated entries. The settings-menu sections are kept in
+   ALPHABETICAL order by section label (Core/DLC section first); since the list applies
+   bottom-up, the 3rd-party block is sorted reverse-alphabetically — insert the new mod at
+   its alphabetical slot, base folder LAST within its folder group (so its rows show first
+   in the section). Combine `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely.
+   **Row order inside a section** (June 2026 convention, mirrors the Google Sheet):
+   negative-value prosthetics first (−1 tech tier before the −2 crude tier), then zero-value
+   utility parts, then positives ascending by tech tier; within a tier small parts → large
+   (finger, toe, hand, foot, arm, leg, spine, pelvis/torso, whole-body/exoskeleton last);
+   variant families ascending by value (e.g. IP's Utility → base → Noble → Unique).
 7. **About.xml**: add the mod to the description's supported list and to `loadAfter`.
    If any new **root-level** file/folder is added to the repo, check `.rimignore` (dev files
    must not be uploaded to Steam — folder-wide rule, see parent CLAUDE.md).

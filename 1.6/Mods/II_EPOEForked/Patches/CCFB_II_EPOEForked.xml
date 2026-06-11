@@ -15,28 +15,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
-			<li>LeftExtraAdvancedBionicArm</li>
-			<li>IIExtraAdvancedBionicArm</li>
-			<li>Extra Adv. Bionic Arm (EPOE)</li>
-			<li>true</li>
-			<li>22.5</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>RightExtraAdvancedBionicArm</li>
-			<li>IIExtraAdvancedBionicArm</li>
-			<li>Extra Adv. Bionic Arm (EPOE)</li>
-			<li>true</li>
-			<li>22.5</li>
-			<li>II</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
 			<li>LeftExtraPowerArm</li>
 			<li>IIExtraPowerArm</li>
 			<li>Extra Power Arm (EPOE)</li>
@@ -75,6 +53,28 @@
 			<li>Extra Adv. Power Arm (EPOE)</li>
 			<li>true</li>
 			<li>20</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>LeftExtraAdvancedBionicArm</li>
+			<li>IIExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (EPOE)</li>
+			<li>true</li>
+			<li>22.5</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>RightExtraAdvancedBionicArm</li>
+			<li>IIExtraAdvancedBionicArm</li>
+			<li>Extra Adv. Bionic Arm (EPOE)</li>
+			<li>true</li>
+			<li>22.5</li>
 			<li>II</li>
 		</arguments>
 	</Operation>

@@ -15,6 +15,8 @@
 		     loading: _NoMSE2 content only exists without Medical System Expansion 2, _NoAEP
 		     only without Archotech Expanded Prosthetics; the donor-mod folders hold its
 		     extra-arm versions of other bionics mods' arms (these also need MSE2 absent). -->
+		<li IfModActiveAll="lts.I,Ludeon.RimWorld.Anomaly" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/II_NoVEF_Anomaly</li>
+		<li IfModActive="lts.I" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/II_NoVEF</li>
 		<li IfModActiveAll="lts.I,rah.rbsehc" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
 		<li IfModActiveAll="lts.I,rah.rbse" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
 		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>

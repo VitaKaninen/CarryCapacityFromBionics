@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Native-VEF catch-up (see CCFB_ImplantStandaloneOnly in Common/Defs/PatchDefs.xml).
+		These Integrated Implants grant VEF_MassCarryCapacity natively, so in VEF games the
+		author's own bonus applies and we stay out. This folder only loads WITHOUT VEF and adds
+		our CarryCapacityBonus at the author's own values, so all players get the same bonus.
+		Arguments: defName | settings key | menu label | toggle default | kg default | section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Integrated Implants</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<arguments>
+			<li>StrengthEnhancer</li>
+			<li>IIStrengthEnhancer</li>
+			<li>Strength Enhancer</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<arguments>
+			<li>SkeletalBracing</li>
+			<li>IISkeletalBracing</li>
+			<li>Skeletal Bracing</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<arguments>
+			<li>LTS_ManipulationTail</li>
+			<li>IILTS_ManipulationTail</li>
+			<li>Claw Tail</li>
+			<li>true</li>
+			<li>25</li>
+			<li>II</li>
+		</arguments>
+	</Operation>
+</Patch>

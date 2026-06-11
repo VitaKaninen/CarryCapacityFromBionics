@@ -53,7 +53,10 @@ RimWorld has **two separate carrying systems** — keep them straight:
 2. **Extract candidate hediffs** (script it): every `HediffDef` touching arms / legs / spine /
    pelvis / hands / feet / tails / extra limbs, with `partEfficiency`, `capMods`
    (Manipulation/Moving), and any **native** `CarryingCapacity`/`VEF_MassCarryCapacity`
-   statOffsets (→ skip those). Recipes' `appliedOnFixedBodyParts` tell you the body part.
+   statOffsets. Recipes' `appliedOnFixedBodyParts` tell you the body part. Implants with a
+   native `VEF_MassCarryCapacity` must NOT go through `CCFB_Implant` (double-dip in VEF
+   games); give them the standalone catch-up instead: `CCFB_ImplantStandaloneOnly` calls in a
+   `<ModShortName>_NoVEF` folder gated `IfModNotActive` VEF, at the author's own values.
 3. **Compute values** with the formula above; present the table (math vs proposed) for approval;
    update the Google Sheet.
 4. **Keys**: `<ModShortName><defName>` (strip `Left`/`Right` — L/R pairs share one key, the
@@ -66,6 +69,8 @@ RimWorld has **two separate carrying systems** — keep them straight:
    the TOP of the 3rd-party block so their menu section lands at the bottom. Combine
    `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely as needed.
 7. **About.xml**: add the mod to the description's supported list and to `loadAfter`.
+   If any new **root-level** file/folder is added to the repo, check `.rimignore` (dev files
+   must not be uploaded to Steam — folder-wide rule, see parent CLAUDE.md).
 8. **Validate by script before testing**: all XML parses; every patched defName exists in the
    source mod's def XML (catches typos AND naming-order surprises like `RBSE_LeftExtra...`);
    no settings-key collisions; patch filenames unique. Then update this file's supported list.
@@ -100,6 +105,14 @@ RimWorld has **two separate carrying systems** — keep them straight:
      **The VEF-vs-standalone choice happens here at patch time**: `XmlExtensions.FindMod`
      (packageId) on `OskarPotocki.VanillaFactionsExpanded.Core` —
      active → `<VEF_MassCarryCapacity>`, not active → `<CarryCapacityBonus>` (our own stat).
+- **`CCFB_ImplantStandaloneOnly`** — same as `CCFB_Implant` but ALWAYS writes our
+  `CarryCapacityBonus`, never the VEF stat. For the **native-VEF catch-up**: implants whose
+  source mod already grants `VEF_MassCarryCapacity` natively get the author's bonus in VEF
+  games (we stay out — patching would double-dip), but nothing in non-VEF games. A folder
+  gated `IfModNotActive` VEF calls this variant with the author's own values, so every player
+  gets the same bonus. Used by `II_NoVEF` / `II_NoVEF_Anomaly` (Strength Enhancer 25,
+  Skeletal Bracing 25, Claw Tail 25, Hulkification 50). These menu rows only appear in
+  non-VEF games (in VEF games the bonus is the author's, not ours — nothing to toggle).
 - **`CCFB_Section`** — creates a labeled menu section (header + `SplitColumn` tagged
   `CCFB_<section>`). **Idempotent** (guarded by an existence check), so every patch file calls it
   for the section it needs and file/folder ordering doesn't matter.
@@ -175,9 +188,11 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   `II_EPOEForkedRoyalty`, `II_FSFABE`, `II_FSFABE_Royalty`, `II_RBSE` (each needs lts.I + the
   donor mod (+DLC) + MSE2 absent). All inject into the single "Integrated Implants" section.
   Left/right extra-arm hediffs are separate defs sharing one settings key (menu shows one row).
-  Deliberately NOT patched (the mod grants VEF_MassCarryCapacity natively — we'd double-dip):
-  StrengthEnhancer, SkeletalBracing, LTS_ManipulationTail, HulkificationSurgery. Also skipped:
-  ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
+  Implants the mod buffs natively via VEF_MassCarryCapacity (StrengthEnhancer, SkeletalBracing,
+  LTS_ManipulationTail, HulkificationSurgery) are NOT patched normally (double-dip), but get
+  the **standalone catch-up** via `CCFB_ImplantStandaloneOnly` in `II_NoVEF` /
+  `II_NoVEF_Anomaly` (gated lts.I + VEF absent) at the author's own values 25/25/25/50.
+  Fully skipped: ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - Yet Another Prosthetic Expansion - Core (ws 2808872704) and - Animals (ws 2808876573)

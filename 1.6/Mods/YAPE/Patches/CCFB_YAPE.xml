@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Yet Another Prosthetic Expansion</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticBIE_Hand</li>
+			<li>YAPESimpleProstheticHand</li>
+			<li>Prosthetic Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticBIE_Foot</li>
+			<li>YAPESimpleProstheticFoot</li>
+			<li>Prosthetic Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticBIE_Finger</li>
+			<li>YAPESimpleProstheticFinger</li>
+			<li>Prosthetic Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SimpleProstheticBIE_Toe</li>
+			<li>YAPESimpleProstheticToe</li>
+			<li>Prosthetic Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_BionicHand</li>
+			<li>YAPEBionicHand</li>
+			<li>Bionic Hand</li>
+			<li>true</li>
+			<li>4</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_BionicFoot</li>
+			<li>YAPEBionicFoot</li>
+			<li>Bionic Foot</li>
+			<li>true</li>
+			<li>8</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_BionicFinger</li>
+			<li>YAPEBionicFinger</li>
+			<li>Bionic Finger</li>
+			<li>true</li>
+			<li>1</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_BionicToe</li>
+			<li>YAPEBionicToe</li>
+			<li>Bionic Toe</li>
+			<li>true</li>
+			<li>1</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicArm</li>
+			<li>YAPEAdvancedBionicArm</li>
+			<li>Adv. Bionic Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicLeg</li>
+			<li>YAPEAdvancedBionicLeg</li>
+			<li>Adv. Bionic Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicSpine</li>
+			<li>YAPEAdvancedBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
+			<li>true</li>
+			<li>32</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicHand</li>
+			<li>YAPEAdvancedBionicHand</li>
+			<li>Adv. Bionic Hand</li>
+			<li>true</li>
+			<li>7.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicFoot</li>
+			<li>YAPEAdvancedBionicFoot</li>
+			<li>Adv. Bionic Foot</li>
+			<li>true</li>
+			<li>15</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicFinger</li>
+			<li>YAPEAdvancedBionicFinger</li>
+			<li>Adv. Bionic Finger</li>
+			<li>true</li>
+			<li>1.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicToe</li>
+			<li>YAPEAdvancedBionicToe</li>
+			<li>Adv. Bionic Toe</li>
+			<li>true</li>
+			<li>1.5</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_UltratechBionicArm</li>
+			<li>YAPEUltratechBionicArm</li>
+			<li>Ultratech Bionic Arm</li>
+			<li>true</li>
+			<li>28</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_UltratechBionicLeg</li>
+			<li>YAPEUltratechBionicLeg</li>
+			<li>Ultratech Bionic Leg</li>
+			<li>true</li>
+			<li>45</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_UltratechBionicSpine</li>
+			<li>YAPEUltratechBionicSpine</li>
+			<li>Ultratech Bionic Spine</li>
+			<li>true</li>
+			<li>37</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+</Patch>

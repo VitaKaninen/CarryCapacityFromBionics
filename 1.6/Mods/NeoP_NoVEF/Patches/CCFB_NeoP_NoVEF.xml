@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Neolithic Prosthetics</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<arguments>
+			<li>MuffaloSpine</li>
+			<li>NeoPMuffaloSpine</li>
+			<li>Muffalo Spine</li>
+			<li>true</li>
+			<li>50</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<arguments>
+			<li>SyntheticMuffaloSpine</li>
+			<li>NeoPSyntheticMuffaloSpine</li>
+			<li>Synthetic Muffalo Spine</li>
+			<li>true</li>
+			<li>75</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+</Patch>

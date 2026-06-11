@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Medieval Prosthetics</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodenArm</li>
+			<li>MedPWoodenArm</li>
+			<li>Wooden Arm</li>
+			<li>false</li>
+			<li>-2</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodenFinger</li>
+			<li>MedPWoodenFinger</li>
+			<li>Wooden Finger</li>
+			<li>false</li>
+			<li>-0.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodenToe</li>
+			<li>MedPWoodenToe</li>
+			<li>Wooden Toe</li>
+			<li>false</li>
+			<li>-0.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedArm</li>
+			<li>MedPArtificialArm</li>
+			<li>Artificial Arm</li>
+			<li>false</li>
+			<li>-2</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedLeg</li>
+			<li>MedPArtificialLeg</li>
+			<li>Artificial Leg</li>
+			<li>false</li>
+			<li>-6.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedHand</li>
+			<li>MedPArtificialHand</li>
+			<li>Artificial Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedFoot</li>
+			<li>MedPArtificialFoot</li>
+			<li>Artificial Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedFinger</li>
+			<li>MedPArtificialFinger</li>
+			<li>Artificial Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialMedToe</li>
+			<li>MedPArtificialToe</li>
+			<li>Artificial Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedArm</li>
+			<li>MedPMechanicalArm</li>
+			<li>Mechanical Arm</li>
+			<li>false</li>
+			<li>-4</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedLeg</li>
+			<li>MedPMechanicalLeg</li>
+			<li>Mechanical Leg</li>
+			<li>false</li>
+			<li>-7.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedHand</li>
+			<li>MedPMechanicalHand</li>
+			<li>Mechanical Hand</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedFoot</li>
+			<li>MedPMechanicalFoot</li>
+			<li>Mechanical Foot</li>
+			<li>false</li>
+			<li>-3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedFinger</li>
+			<li>MedPMechanicalFinger</li>
+			<li>Mechanical Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MechanicalMedToe</li>
+			<li>MedPMechanicalToe</li>
+			<li>Mechanical Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedArm</li>
+			<li>MedPAmbroisenArm</li>
+			<li>Ambroisen Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedLeg</li>
+			<li>MedPAmbroisenLeg</li>
+			<li>Ambroisen Leg</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedHand</li>
+			<li>MedPAmbroisenHand</li>
+			<li>Ambroisen Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedFoot</li>
+			<li>MedPAmbroisenFoot</li>
+			<li>Ambroisen Foot</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedFinger</li>
+			<li>MedPAmbroisenFinger</li>
+			<li>Ambroisen Finger</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AmbroisenMedToe</li>
+			<li>MedPAmbroisenToe</li>
+			<li>Ambroisen Toe</li>
+			<li>false</li>
+			<li>0</li>
+			<li>MedP</li>
+		</arguments>
+	</Operation>
+</Patch>

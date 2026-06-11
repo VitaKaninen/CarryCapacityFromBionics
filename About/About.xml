@@ -38,6 +38,11 @@ This is intended to be used with mods such as "Pick Up and Haul" and "While You'
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2883208829]V.O.I.D Faction[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SoS2[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3223443793]Integrated Implants[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2808872704]Yet another prosthetic expansion mod - Core[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2101545242]Medieval Prosthetics[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3337372073]Astraltech Bionic Implants[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3338191290]Neolithic Prosthetics[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3420999158]Industrial Prosthetics[/url]
 
 
 If you find any bugs, have some suggestions, or would like to see other mods supported, please let me know.
@@ -73,5 +78,11 @@ If you find any bugs, have some suggestions, or would like to see other mods sup
 		<li>RH2.Faction.VOID</li>
 		<li>kentington.saveourship2</li>
 		<li>lts.I</li>
+		<li>Ludeon.RimWorld.Odyssey</li>
+		<li>MrKociak.YetAnotherProstheticExpansionModCore</li>
+		<li>NunahurAlShamikh.MedP</li>
+		<li>AnthonyTherrien.AstraltechBionics</li>
+		<li>Uga.Booga</li>
+		<li>Mey.Prosthetics</li>
 	</loadAfter>
 </ModMetaData>

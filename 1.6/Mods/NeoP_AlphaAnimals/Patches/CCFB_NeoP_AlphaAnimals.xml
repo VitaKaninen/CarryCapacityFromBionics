@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Neolithic Prosthetics</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>GroundrunnerArm</li>
+			<li>NeoPGroundrunnerArm</li>
+			<li>Groundrunner Arm</li>
+			<li>false</li>
+			<li>-4.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+</Patch>

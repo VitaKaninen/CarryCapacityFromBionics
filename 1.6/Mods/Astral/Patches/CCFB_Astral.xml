@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Astraltech Bionic Implants</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Arm_hediff</li>
+			<li>AstralArm</li>
+			<li>Astraltech Arm</li>
+			<li>true</li>
+			<li>40</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Leg_hediff</li>
+			<li>AstralLeg</li>
+			<li>Astraltech Leg</li>
+			<li>true</li>
+			<li>65</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Spine_hediff</li>
+			<li>AstralSpine</li>
+			<li>Astraltech Spine</li>
+			<li>true</li>
+			<li>50</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Pelvis_hediff</li>
+			<li>AstralPelvis</li>
+			<li>Astraltech Pelvis</li>
+			<li>true</li>
+			<li>50</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Torso_hediff</li>
+			<li>AstralTorso</li>
+			<li>Astraltech Torso</li>
+			<li>true</li>
+			<li>40</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AstraltechAgilityBooster_hediff</li>
+			<li>AstralAgilityBooster</li>
+			<li>Agility Booster</li>
+			<li>true</li>
+			<li>20</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AstraltechPostureEnhancer_hediff</li>
+			<li>AstralPostureEnhancer</li>
+			<li>Posture Enhancer</li>
+			<li>true</li>
+			<li>10</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AstraltechStabilityModule_hediff</li>
+			<li>AstralStabilityModule</li>
+			<li>Stability Module</li>
+			<li>true</li>
+			<li>10</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AstraltechCoreStabilizer_hediff</li>
+			<li>AstralCoreStabilizer</li>
+			<li>Core Stabilizer</li>
+			<li>true</li>
+			<li>25</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AstraltechMetabolicRegulator_hediff</li>
+			<li>AstralMetabolicRegulator</li>
+			<li>Metabolic Regulator</li>
+			<li>true</li>
+			<li>20</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Knee_Enhancement_hediff</li>
+			<li>AstralKneeEnhancement</li>
+			<li>Knee Enhancement</li>
+			<li>true</li>
+			<li>20</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Astraltech_Shoulder_Reinforcement_hediff</li>
+			<li>AstralShoulderReinforcement</li>
+			<li>Shoulder Reinforcement</li>
+			<li>true</li>
+			<li>15</li>
+			<li>Astral</li>
+		</arguments>
+	</Operation>
+</Patch>

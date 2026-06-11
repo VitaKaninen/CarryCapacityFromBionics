@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Yet Another Prosthetic Expansion</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SoSArchotechSpine</li>
+			<li>SoSArchotechSpine</li>
+			<li>Archotech Spine</li>
+			<li>true</li>
+			<li>25</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SoSArchotechSkin</li>
+			<li>SoSArchotechSkin</li>
+			<li>Archotech Skin</li>
+			<li>true</li>
+			<li>0</li>
+			<li>YAPE</li>
+		</arguments>
+	</Operation>
+</Patch>

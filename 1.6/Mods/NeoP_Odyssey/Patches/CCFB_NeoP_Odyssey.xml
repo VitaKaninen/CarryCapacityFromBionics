@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Neolithic Prosthetics</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>OD_GorillaArm</li>
+			<li>NeoPGorillaArm</li>
+			<li>Gorilla Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>OD_ArmGorilla</li>
+			<li>NeoPGorillaArm</li>
+			<li>Gorilla Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>OD_CharmOfPanda</li>
+			<li>NeoPCharmOfPanda</li>
+			<li>Charm of Panda</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+</Patch>

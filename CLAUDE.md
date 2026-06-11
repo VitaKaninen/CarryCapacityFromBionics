@@ -193,17 +193,36 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   the **standalone catch-up** via `CCFB_ImplantStandaloneOnly` in `II_NoVEF` /
   `II_NoVEF_Anomaly` (gated lts.I + VEF absent) at the author's own values 25/25/25/50.
   Fully skipped: ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
+- YAPE (Yet Another Prosthetic Expansion - Core) — `MrKociak.YetAnotherProstheticExpansionModCore`.
+  YAPE ships its own copies of SoS2's archotech parts (same defNames `SoSArchotechSpine`/`Skin`);
+  `YAPE_NoSoS2` (gated YAPE + SoS2 ABSENT) patches those with the keys **shared** with the SoS2
+  section, so exactly one folder ever patches them and one menu row renders.
+- MedP (Medieval Prosthetics) — `NunahurAlShamikh.MedP`. Ambroisen tier is eff 1.0
+  (natural-equivalent) → 0-value rows, default off.
+- Astral (Astraltech Bionic Implants) — `AnthonyTherrien.AstraltechBionics`. Replacement parts
+  (arm/leg/spine/pelvis/torso, eff 2.0–2.5) plus eff-1.0 booster implants valued from their
+  Moving/Manipulation capMods (muscle-stimulator precedent). Organs/senses skipped.
+- NeoP (Neolithic Prosthetics) — `Uga.Booga`, plus suffixed folders mirroring its conditional
+  loading: `NeoP_Odyssey` (Odyssey DLC), `NeoP_VAE` (Vanilla Animals Expanded),
+  `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys
+  (BeaverTail/O_BeaverTail/AlphaBeaverTail; GorillaArm/OD_GorillaArm/OD_ArmGorilla;
+  CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). MuffaloSpine (50) and
+  SyntheticMuffaloSpine (75) are native-VEF → standalone catch-up in `NeoP_NoVEF`.
+  SewnInBag's native bonus is vanilla CarryingCapacity (in-hands stat, not mass) → patched
+  normally; same reasoning applies to any future implant with an in-hands-only native bonus.
+- IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the
+  Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 
 ## Planned future support (per VitaKaninen, 2026-06)
-- Yet Another Prosthetic Expansion - Core (ws 2808872704) and - Animals (ws 2808876573)
-- Medieval Prosthetics (ws 2101545242)
-- Astraltech Bionic Implants (ws 3337372073)
-- Vanilla Archotech Implants (ws 2715093425)
-- [SMP] Simple Archotech Implants (ws 2462646185)
-- Neolithic Prosthetics (ws 3338191290)
-- Industrial Prosthetics (ws 3420999158)
-- A Dog Said... Animal Prosthetics 2 (ws 3238353862)
-- Cybernetic Organism and Neural Network (ws 2045064990)
+- YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
+  deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
+  weight convention for quadrupeds first).
+- EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
+  Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
+  Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,
+  candidate hediffs + proposed values are in `.claude/new_mods_proposal.md`. Note for VAI:
+  it defines `ArchotechSpine` — the same defName Archotech Expanded already patches — so its
+  folder would need `IfModNotActive` on both teok25 packageIds.
 
 ## Conventions / gotchas
 - **THE BIG ONE — patch files in different load folders MUST have unique filenames.**

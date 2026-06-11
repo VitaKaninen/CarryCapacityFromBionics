@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		One ApplyPatch block per implant. Arguments, in order:
+		defName | settings key | menu label | toggle default | kg default | menu section tag
+	-->
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Neolithic Prosthetics</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SewnInBag</li>
+			<li>NeoPSewnInBag</li>
+			<li>Sewn-In Bag</li>
+			<li>true</li>
+			<li>10</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>InsectoidLimbs</li>
+			<li>NeoPInsectoidLimbs</li>
+			<li>Insectoid Limbs</li>
+			<li>true</li>
+			<li>7</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicArm</li>
+			<li>NeoPTotemicArm</li>
+			<li>Totemic Arm</li>
+			<li>false</li>
+			<li>-4</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicLeg</li>
+			<li>NeoPTotemicLeg</li>
+			<li>Totemic Leg</li>
+			<li>false</li>
+			<li>-6.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicTyrannoArm</li>
+			<li>NeoPTotemicTyrannoArm</li>
+			<li>Totemic Tyranno Arm</li>
+			<li>false</li>
+			<li>-4.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SilverArm</li>
+			<li>NeoPSilverArm</li>
+			<li>Silver Arm</li>
+			<li>false</li>
+			<li>-2.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SteelHand</li>
+			<li>NeoPSteelHand</li>
+			<li>Steel Hand</li>
+			<li>false</li>
+			<li>-1</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SteelFinger</li>
+			<li>NeoPSteelFinger</li>
+			<li>Steel Finger</li>
+			<li>false</li>
+			<li>-0.2</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>SteelToe</li>
+			<li>NeoPSteelToe</li>
+			<li>Steel Toe</li>
+			<li>false</li>
+			<li>-0.2</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodFinger</li>
+			<li>NeoPWoodFinger</li>
+			<li>Wood Finger</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>WoodToe</li>
+			<li>NeoPWoodToe</li>
+			<li>Wood Toe</li>
+			<li>false</li>
+			<li>-0.3</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>NP_BearPaw</li>
+			<li>NeoPBearPaw</li>
+			<li>Bear Paw</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>NP_CatPaw</li>
+			<li>NeoPCatPaw</li>
+			<li>Cat Paw</li>
+			<li>false</li>
+			<li>-1.5</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArtificialHoof</li>
+			<li>NeoPArtificialHoof</li>
+			<li>Artificial Hoof</li>
+			<li>false</li>
+			<li>-2</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ClubLeg</li>
+			<li>NeoPClubLeg</li>
+			<li>Club Leg</li>
+			<li>false</li>
+			<li>-9</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ClubArm</li>
+			<li>NeoPClubArm</li>
+			<li>Club Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ClubHand</li>
+			<li>NeoPClubHand</li>
+			<li>Club Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>IkwaHand</li>
+			<li>NeoPIkwaHand</li>
+			<li>Ikwa Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ScytherBladeHand</li>
+			<li>NeoPScytherBladeHand</li>
+			<li>Scyther Blade Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicArmBow</li>
+			<li>NeoPTotemicArmBow</li>
+			<li>Totemic Arm (Bow)</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TotemicArmClaw</li>
+			<li>NeoPTotemicArmClaw</li>
+			<li>Totemic Arm (Claw)</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>CrystalMantisHand</li>
+			<li>NeoPCrystalMantisHand</li>
+			<li>Crystal Mantis Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>FungalMantisHand</li>
+			<li>NeoPFungalMantisHand</li>
+			<li>Fungal Mantis Hand</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>HorseLeg</li>
+			<li>NeoPHorseLeg</li>
+			<li>Horse Leg</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>GallimimusLeg</li>
+			<li>NeoPGallimimusLeg</li>
+			<li>Gallimimus Leg</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>MonkeyLeg</li>
+			<li>NeoPMonkeyLeg</li>
+			<li>Monkey Leg</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>TortoiseShell</li>
+			<li>NeoPTortoiseShell</li>
+			<li>Tortoise Shell</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>ArmMonkey</li>
+			<li>NeoPArmMonkey</li>
+			<li>Monkey Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>NP_HungryArm</li>
+			<li>NeoPHungryArm</li>
+			<li>Hungry Arm</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>AlphaBeaverTail</li>
+			<li>NeoPBeaverTail</li>
+			<li>Beaver Tail</li>
+			<li>false</li>
+			<li>0</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+</Patch>

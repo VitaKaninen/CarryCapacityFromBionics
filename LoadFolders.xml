@@ -11,6 +11,30 @@
 	<v1.6>
 		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC) -->
 
+		<!-- Industrial Prosthetics -->
+		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
+
+		<!-- Neolithic Prosthetics. Suffixed folders mirror the mod's own conditional loading
+		     (Odyssey / Vanilla Animals Expanded / Alpha Animals donor parts); _NoVEF is the
+		     native-VEF catch-up for its muffalo spines (author grants VEF_MassCarryCapacity). -->
+		<li IfModActive="Uga.Booga" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/NeoP_NoVEF</li>
+		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
+		<li IfModActiveAll="Uga.Booga,Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_Odyssey</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
+
+		<!-- Astraltech Bionic Implants -->
+		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
+
+		<!-- Medieval Prosthetics -->
+		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
+
+		<!-- Yet Another Prosthetic Expansion - Core. _NoSoS2 covers YAPE's own copies of SoS2's
+		     archotech parts (same defNames, shared settings keys with the SoS2 section). -->
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
+
 		<!-- Integrated Implants (lts.I). Suffixed folders mirror the mod's own conditional
 		     loading: _NoMSE2 content only exists without Medical System Expansion 2, _NoAEP
 		     only without Archotech Expanded Prosthetics; the donor-mod folders hold its

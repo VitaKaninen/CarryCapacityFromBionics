@@ -226,6 +226,10 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 
 ## Planned future support (per VitaKaninen, 2026-06)
+- **Missing body part penalty** (next up): reduce mass carry capacity for missing/damaged
+  body parts, HP-scaled, off by default, in a separate always-loaded DLL. Design fully
+  settled with VitaKaninen — read `.claude/missing_parts_roadmap.md` (local, gitignored)
+  before starting any work on it.
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
   deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
   weight convention for quadrupeds first).

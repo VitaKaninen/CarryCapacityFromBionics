@@ -15,9 +15,10 @@
 		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
 
 		<!-- Neolithic Prosthetics. Suffixed folders mirror the mod's own conditional loading
-		     (Odyssey / Vanilla Animals Expanded / Alpha Animals donor parts); _NoVEF is the
-		     native-VEF catch-up for its muffalo spines (author grants VEF_MassCarryCapacity). -->
-		<li IfModActive="Uga.Booga" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/NeoP_NoVEF</li>
+		     (Odyssey / Vanilla Animals Expanded / Alpha Animals donor parts); _NativeVEF is the
+		     native-VEF override for its muffalo spines (author grants VEF_MassCarryCapacity;
+		     with VEF our setting replaces that value, without VEF we add our own stat). -->
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_NativeVEF</li>
 		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
 		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
 		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
@@ -39,8 +40,8 @@
 		     loading: _NoMSE2 content only exists without Medical System Expansion 2, _NoAEP
 		     only without Archotech Expanded Prosthetics; the donor-mod folders hold its
 		     extra-arm versions of other bionics mods' arms (these also need MSE2 absent). -->
-		<li IfModActiveAll="lts.I,Ludeon.RimWorld.Anomaly" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/II_NoVEF_Anomaly</li>
-		<li IfModActive="lts.I" IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">1.6/Mods/II_NoVEF</li>
+		<li IfModActiveAll="lts.I,Ludeon.RimWorld.Anomaly">1.6/Mods/II_NativeVEF_Anomaly</li>
+		<li IfModActive="lts.I">1.6/Mods/II_NativeVEF</li>
 		<li IfModActiveAll="lts.I,rah.rbsehc" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
 		<li IfModActiveAll="lts.I,rah.rbse" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
 		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>

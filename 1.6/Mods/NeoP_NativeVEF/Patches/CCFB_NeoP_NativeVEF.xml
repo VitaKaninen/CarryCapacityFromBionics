@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<!--
-		One ApplyPatch block per implant. Arguments, in order:
-		defName | settings key | menu label | toggle default | kg default | menu section tag
+		Native-VEF override (see CCFB_ImplantNativeVEF in Common/Defs/PatchDefs.xml).
+		These implants grant VEF_MassCarryCapacity natively. In VEF games the setting REPLACES the
+		author's native value (toggle off = leave the author's value); without VEF we add our own
+		CarryCapacityBonus instead. Defaults are the author's own values, so out of the box every
+		player gets the author's bonus. The folder loads with or without VEF.
+		Arguments: defName | settings key | menu label | toggle default | kg default | section tag
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Section</patchName>
@@ -12,7 +16,7 @@
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>MuffaloSpine</li>
 			<li>NeoPMuffaloSpine</li>
@@ -23,7 +27,7 @@
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>SyntheticMuffaloSpine</li>
 			<li>NeoPSyntheticMuffaloSpine</li>

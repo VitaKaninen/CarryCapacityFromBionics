@@ -190,16 +190,20 @@
 	</XmlExtensions.PatchDef>
 
 	<!--
-		CCFB_ImplantStandaloneOnly: same as CCFB_Implant, but ALWAYS writes our own
-		<CarryCapacityBonus> stat and NEVER the VEF one. Used for the "native-VEF catch-up":
-		implants whose source mod already grants VEF_MassCarryCapacity natively (so in VEF games
-		the author's own bonus applies and we must stay out), but which give no inventory/caravan
-		mass at all in non-VEF games. Call this ONLY from folders gated
-		IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core", with the author's own values,
-		so every player ends up with the same bonus and nobody double-dips.
+		CCFB_ImplantNativeVEF: for implants whose source mod already grants VEF_MassCarryCapacity
+		natively (which is a dead stat in non-VEF games). Same menu row as CCFB_Implant, but the
+		hediff patch differs per game:
+		- VEF active: REPLACES the author's native VEF_MassCarryCapacity offset with the setting
+		  value (PatchOperationAddOrReplace), so the player can override it. Toggle OFF leaves the
+		  author's native value untouched.
+		- VEF absent: adds our own <CarryCapacityBonus> like CCFB_Implant would (the native VEF
+		  offset is dead there, so there is nothing to double-dip).
+		Call it with the author's own values as defaults, so out of the box every player gets
+		exactly the author's bonus; the folder needs NO VEF gating. NEVER call CCFB_Implant on
+		these implants - in VEF games it would ADD on top of the native offset (double-dip).
 		Args (in order): defName | settings key | menu label | toggle default | kg default | section tag.
 	-->
-	<XmlExtensions.PatchDef Name="CCFB_ImplantStandaloneOnly" Abstract="True">
+	<XmlExtensions.PatchDef Name="CCFB_ImplantNativeVEF" Abstract="True">
 		<parameters>
 			<li>defName</li>
 			<li>key</li>
@@ -256,7 +260,7 @@
 					</caseFalse>
 				</Operation>
 
-				<!-- 2. Hediff statOffsets patch (always our own stat - no VEF branch) -->
+				<!-- 2. Hediff statOffsets patch: VEF -> override the native offset, no VEF -> add ours -->
 				<Operation Class="XmlExtensions.OptionalPatch">
 					<modId>Vita.CarryCapacityFromBionics</modId>
 					<key>Toggle{key}</key>
@@ -291,11 +295,27 @@
 										</Operation>
 									</caseFalse>
 								</Operation>
-								<Operation Class="XmlExtensions.PatchOperationAdd">
-									<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-									<value>
-										<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
-									</value>
+								<Operation Class="XmlExtensions.FindMod">
+									<mods>
+										<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+									</mods>
+									<packageId>true</packageId>
+									<caseTrue>
+										<Operation Class="XmlExtensions.PatchOperationAddOrReplace">
+											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+											<value>
+												<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
+											</value>
+										</Operation>
+									</caseTrue>
+									<caseFalse>
+										<Operation Class="XmlExtensions.PatchOperationAdd">
+											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+											<value>
+												<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
+											</value>
+										</Operation>
+									</caseFalse>
 								</Operation>
 							</apply>
 						</Operation>

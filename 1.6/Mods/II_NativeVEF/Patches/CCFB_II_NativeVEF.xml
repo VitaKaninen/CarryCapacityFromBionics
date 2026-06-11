@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<!--
-		Native-VEF catch-up (see CCFB_ImplantStandaloneOnly in Common/Defs/PatchDefs.xml).
-		These Integrated Implants grant VEF_MassCarryCapacity natively, so in VEF games the
-		author's own bonus applies and we stay out. This folder only loads WITHOUT VEF and adds
-		our CarryCapacityBonus at the author's own values, so all players get the same bonus.
+		Native-VEF override (see CCFB_ImplantNativeVEF in Common/Defs/PatchDefs.xml).
+		These implants grant VEF_MassCarryCapacity natively. In VEF games the setting REPLACES the
+		author's native value (toggle off = leave the author's value); without VEF we add our own
+		CarryCapacityBonus instead. Defaults are the author's own values, so out of the box every
+		player gets the author's bonus. The folder loads with or without VEF.
 		Arguments: defName | settings key | menu label | toggle default | kg default | section tag
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -15,7 +16,7 @@
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>StrengthEnhancer</li>
 			<li>IIStrengthEnhancer</li>
@@ -26,7 +27,7 @@
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>SkeletalBracing</li>
 			<li>IISkeletalBracing</li>
@@ -37,7 +38,7 @@
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_ImplantStandaloneOnly</patchName>
+		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>LTS_ManipulationTail</li>
 			<li>IILTS_ManipulationTail</li>

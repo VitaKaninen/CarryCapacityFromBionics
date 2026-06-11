@@ -39,8 +39,11 @@ RimWorld has **two separate carrying systems** — keep them straight:
   one, e.g. muscle stimulators, estimate from its capMods).
 - **Defaults convention**: positive values default ON; zero-value utility parts and all
   negative (prosthetic-penalty) entries default OFF.
-- **Skip implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several
-  Integrated Implants ones) — patching them would double-dip in VEF games.
+- **Implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several Integrated
+  Implants ones) must never go through `CCFB_Implant` (double-dip in VEF games) — they get
+  `CCFB_ImplantNativeVEF` instead (override/add, see architecture), defaults = author's values.
+- Implants whose native bonus is only vanilla `CarryingCapacity` (the **in-hands** stat) are
+  patched normally — that stat never touches mass capacity, so there is no double-dip.
 
 ## Roadmap: adding support for a new mod
 
@@ -55,8 +58,8 @@ RimWorld has **two separate carrying systems** — keep them straight:
    (Manipulation/Moving), and any **native** `CarryingCapacity`/`VEF_MassCarryCapacity`
    statOffsets. Recipes' `appliedOnFixedBodyParts` tell you the body part. Implants with a
    native `VEF_MassCarryCapacity` must NOT go through `CCFB_Implant` (double-dip in VEF
-   games); give them the standalone catch-up instead: `CCFB_ImplantStandaloneOnly` calls in a
-   `<ModShortName>_NoVEF` folder gated `IfModNotActive` VEF, at the author's own values.
+   games); use `CCFB_ImplantNativeVEF` in a `<ModShortName>_NativeVEF` folder (no VEF gating
+   needed), with the author's own values as defaults.
 3. **Compute values** with the formula above; present the table (math vs proposed) for approval;
    update the Google Sheet.
 4. **Keys**: `<ModShortName><defName>` (strip `Left`/`Right` — L/R pairs share one key, the
@@ -105,14 +108,16 @@ RimWorld has **two separate carrying systems** — keep them straight:
      **The VEF-vs-standalone choice happens here at patch time**: `XmlExtensions.FindMod`
      (packageId) on `OskarPotocki.VanillaFactionsExpanded.Core` —
      active → `<VEF_MassCarryCapacity>`, not active → `<CarryCapacityBonus>` (our own stat).
-- **`CCFB_ImplantStandaloneOnly`** — same as `CCFB_Implant` but ALWAYS writes our
-  `CarryCapacityBonus`, never the VEF stat. For the **native-VEF catch-up**: implants whose
-  source mod already grants `VEF_MassCarryCapacity` natively get the author's bonus in VEF
-  games (we stay out — patching would double-dip), but nothing in non-VEF games. A folder
-  gated `IfModNotActive` VEF calls this variant with the author's own values, so every player
-  gets the same bonus. Used by `II_NoVEF` / `II_NoVEF_Anomaly` (Strength Enhancer 25,
-  Skeletal Bracing 25, Claw Tail 25, Hulkification 50). These menu rows only appear in
-  non-VEF games (in VEF games the bonus is the author's, not ours — nothing to toggle).
+- **`CCFB_ImplantNativeVEF`** — for implants whose source mod already grants
+  `VEF_MassCarryCapacity` natively (a dead stat in non-VEF games). Same menu row as
+  `CCFB_Implant`, but the hediff patch differs: with VEF the setting **replaces** the author's
+  native offset (`PatchOperationAddOrReplace`) so the player can override it — toggle OFF
+  leaves the author's value untouched; without VEF it adds our `CarryCapacityBonus` like
+  `CCFB_Implant` would. Defaults are the author's own values, so out of the box everyone gets
+  the author's bonus; the folders need no VEF gating and the rows show in every game. Used by
+  `II_NativeVEF` / `II_NativeVEF_Anomaly` (Strength Enhancer 25, Skeletal Bracing 25, Claw
+  Tail 25, Hulkification 50) and `NeoP_NativeVEF` (see below). Replaced the older
+  `CCFB_ImplantStandaloneOnly` design (VEF-absent-only catch-up, no override) in June 2026.
 - **`CCFB_Section`** — creates a labeled menu section (header + `SplitColumn` tagged
   `CCFB_<section>`). **Idempotent** (guarded by an existence check), so every patch file calls it
   for the section it needs and file/folder ordering doesn't matter.
@@ -189,9 +194,9 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   donor mod (+DLC) + MSE2 absent). All inject into the single "Integrated Implants" section.
   Left/right extra-arm hediffs are separate defs sharing one settings key (menu shows one row).
   Implants the mod buffs natively via VEF_MassCarryCapacity (StrengthEnhancer, SkeletalBracing,
-  LTS_ManipulationTail, HulkificationSurgery) are NOT patched normally (double-dip), but get
-  the **standalone catch-up** via `CCFB_ImplantStandaloneOnly` in `II_NoVEF` /
-  `II_NoVEF_Anomaly` (gated lts.I + VEF absent) at the author's own values 25/25/25/50.
+  LTS_ManipulationTail, HulkificationSurgery) are NOT patched normally (double-dip), but go
+  through the **native-VEF override** `CCFB_ImplantNativeVEF` in `II_NativeVEF` /
+  `II_NativeVEF_Anomaly` (gated lts.I (+Anomaly), no VEF gate) at the author's values 25/25/25/50.
   Fully skipped: ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
 - YAPE (Yet Another Prosthetic Expansion - Core) — `MrKociak.YetAnotherProstheticExpansionModCore`.
   YAPE ships its own copies of SoS2's archotech parts (same defNames `SoSArchotechSpine`/`Skin`);
@@ -207,7 +212,7 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys
   (BeaverTail/O_BeaverTail/AlphaBeaverTail; GorillaArm/OD_GorillaArm/OD_ArmGorilla;
   CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). MuffaloSpine (50) and
-  SyntheticMuffaloSpine (75) are native-VEF → standalone catch-up in `NeoP_NoVEF`.
+  SyntheticMuffaloSpine (75) are native-VEF → `CCFB_ImplantNativeVEF` override in `NeoP_NativeVEF`.
   SewnInBag's native bonus is vanilla CarryingCapacity (in-hands stat, not mass) → patched
   normally; same reasoning applies to any future implant with an in-hands-only native bonus.
 - IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the

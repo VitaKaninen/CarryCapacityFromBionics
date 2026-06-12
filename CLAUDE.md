@@ -148,6 +148,42 @@ the parent mod's menu section:
 - `FSFABE_Royalty` (4 implants), `FSFABE_Anomaly` (1), `FSFVBE_Royalty` (2)
 - `EPOEForkedRoyalty` (whole mod needs Royalty; has its own section)
 
+## Missing body part penalty (C# feature, June 2026)
+
+Optional penalty (OFF by default, master toggle): pawns lose mass carry capacity for missing
+body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missing_parts_roadmap.md`.
+
+- **`Common/Assemblies/CarryCapacityMissingParts.dll`** — always loads (Common folder). Source:
+  `Standalone/Source/CarryCapacityMissingParts/` (SDK-style csproj, net472, build with
+  `dotnet build -c Release`; references game DLLs + XmlExtensions.dll by absolute Steam paths;
+  output goes straight to Common/Assemblies). **No Harmony** — pure StatPart injection.
+- `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
+  `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
+  (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
+  after the user saves the menu). If the master toggle is on, appends `StatPart_MissingBodyParts`
+  to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus` (GetNamedSilentFail — whichever exists).
+  Master off = StatPart never injected = provably zero behavior change.
+- Why StatPart works for both games: VEF and our Standalone assembly both transpile
+  `MassUtility.Capacity` to return `GetStatValue(<their stat>)`, and StatParts run in
+  `StatWorker.FinalizeValue` — after base + all implant statOffsets, before the minValue clamp.
+  (A Capacity postfix was rejected: it would run twice — inside the StatWorker base-value call
+  AND the outer call — double-dipping the penalty.)
+- Rules implemented in `StatPart_MissingBodyParts`: topmost visible missing part only
+  (`GetMissingPartsCommonAncestors`, verified: BFS from core, skips subtrees under added parts —
+  bionics/prosthetics count as present); damaged attached part contributes
+  `kg × (1 − HP/maxHP)`; contributions grouped by limb root (highest weighted ancestor or self)
+  and each group capped at the root's kg (mangled leg never worse than amputation); result
+  clamped to the floor setting, where the floor never raises a pawn above its unpenalized value.
+  Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
+  stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
+- Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
+  ungated LoadFolders entry at its alphabetical slot). Master key `ToggleMissingPartPenalty`
+  (default false), floor `MissingPartFloor` (default 0 kg), per-part `ToggleMissingPart<DefName>`
+  (default true) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
+  (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
+  feature is C#-only). Weights (kg = % × 35): Leg 8.75, Spine/Pelvis 7, Shoulder 6.3, Arm 5.25,
+  Femur 4.55, Foot 3.5, Humerus/Tibia 2.1, Hand 1.75, Radius/Clavicle 1.05, Finger/Toe 0.35.
+
 ## The Standalone C# half (unchanged by the refactor)
 
 When VEF is active, VEF's own `VEF_MassCarryCapacity` stat machinery applies the bonus — no
@@ -226,10 +262,6 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 
 ## Planned future support (per VitaKaninen, 2026-06)
-- **Missing body part penalty** (next up): reduce mass carry capacity for missing/damaged
-  body parts, HP-scaled, off by default, in a separate always-loaded DLL. Design fully
-  settled with VitaKaninen — read `.claude/missing_parts_roadmap.md` (local, gitignored)
-  before starting any work on it.
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
   deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
   weight convention for quadrupeds first).

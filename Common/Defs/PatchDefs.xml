@@ -357,4 +357,73 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<!--
+		CCFB_PartRow: settings-menu row ONLY (no hediff patch) - used by the missing-body-part
+		penalty feature, whose values are read by C# (CarryCapacityMissingParts.dll) instead of
+		feeding XML patches (all missing parts share one MissingBodyPart hediff def, which is why
+		the feature is C#-only). Same row layout as CCFB_Implant's menu half.
+		Args (in order): settings key | menu label | toggle default | kg default | section tag.
+	-->
+	<XmlExtensions.PatchDef Name="CCFB_PartRow" Abstract="True">
+		<parameters>
+			<li>key</li>
+			<li>label</li>
+			<li>toggleDefault</li>
+			<li>valueDefault</li>
+			<li>section</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+						<value>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<width>24</width>
+								<gapSize>6</gapSize>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Checkbox">
+										<label></label>
+										<key>Toggle{key}</key>
+										<defaultValue>{toggleDefault}</defaultValue>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>{label}</text>
+									</li>
+								</rightCol>
+							</li>
+						</value>
+					</Operation>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+						<value>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>Toggle{key}</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>2</decimals>
+										<padLeft>85</padLeft>
+										<key>{key}</key>
+										<label>Carry capacity penalty in kg</label>
+										<defaultValue>{valueDefault}</defaultValue>
+									</li>
+								</caseTrue>
+								<caseFalse>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Disabled</text>
+										<anchor>Right</anchor>
+									</li>
+								</caseFalse>
+							</li>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
 </Defs>

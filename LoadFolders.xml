@@ -35,6 +35,10 @@
 		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
 
+		<!-- Missing body part penalty (built-in feature, always loaded; rows feed the C# half
+		     in Common/Assemblies, not XML patches) -->
+		<li>1.6/MissingParts</li>
+
 		<!-- Medieval Prosthetics -->
 		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
 

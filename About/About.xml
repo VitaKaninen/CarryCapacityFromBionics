@@ -12,6 +12,8 @@ Adds Extra pawn inventory and caravan carrying capacity from Bionics.
 	
 This is intended to be used with mods such as "Pick Up and Haul" and "While You're Up", that utilize the player's inventory for hauling around the map.
 
+Optionally (off by default), the mod can also apply carry capacity [b]penalties[/b] for missing or damaged body parts: a pawn missing a leg carries less until you replace it. Bionics and prosthetics count as present, damaged parts scale with lost HP, and a configurable minimum keeps pawns from being crippled as colonists. Every part's penalty is adjustable in the settings.
+
 [h2]FAQ[/h2]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] What are the values you used for each bionic, and how did you arrive at that number?
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] Here is a spreadsheet with all the bionics and their values, and the method I used.

@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Missing body part penalty assembly. Always loaded (lives in Common/Assemblies, the
+       Common folder has no gating), unlike its sibling CarryCapacityStandalone which only
+       loads when VEF is absent. Build with: dotnet build -c Release
+       (needs no Visual Studio; reference assemblies come from the NuGet package). -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <RootNamespace>Vita.CarryCapacityFromBionics.MissingParts</RootNamespace>
+    <AssemblyName>CarryCapacityMissingParts</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <DebugType>none</DebugType>
+    <OutputPath>..\..\..\Common\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <!-- XML Extensions (hard dependency of the mod) for SettingsManager.TryGetSetting -->
+    <Reference Include="XmlExtensions">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\2574315206\1.6\Assemblies\XmlExtensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

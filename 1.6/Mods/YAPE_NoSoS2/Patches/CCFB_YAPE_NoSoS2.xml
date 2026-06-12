@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Yet Another Prosthetic Expansion</li>
 			<li>YAPE</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

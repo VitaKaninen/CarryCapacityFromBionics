@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Advanced Archotech Arm</li>
 			<li>AdvancedArchotechArm</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

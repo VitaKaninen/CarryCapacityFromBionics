@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Expanded Prosthetics and Organ Engineering</li>
 			<li>EPOE</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

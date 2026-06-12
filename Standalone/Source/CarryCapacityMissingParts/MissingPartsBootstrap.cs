@@ -6,10 +6,12 @@ using Verse;
 namespace Vita.CarryCapacityFromBionics.MissingParts
 {
     // Reads the XML Extensions settings once at startup (settings changes require a restart,
-    // stated in the menu) and, only if the master toggle is on, appends the penalty StatPart
-    // to whichever mass-carry-capacity stat exists in this game:
+    // stated in the menu) and, only if the section's master checkbox is on, appends the penalty
+    // StatPart to whichever mass-carry-capacity stat exists in this game:
     // VEF_MassCarryCapacity (VEF active) or CarryCapacityBonus (our Standalone folder, VEF absent).
-    // Master toggle off (the default) = the StatPart is never injected, zero behavior change.
+    // The master is the "Missing body parts" section checkbox created by CCFB_Section
+    // (key ToggleSectionMissingParts, default OFF) = the StatPart is never injected by default,
+    // zero behavior change.
     [StaticConstructorOnStartup]
     public static class MissingPartsBootstrap
     {
@@ -21,17 +23,18 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         public static readonly Dictionary<BodyPartDef, float> weights = new Dictionary<BodyPartDef, float>();
 
         // Defaults MUST stay in sync with 1.6/MissingParts/Patches/CCFB_MissingParts.xml
-        // (XE only stores a value once the user saves the settings menu).
+        // (XE only stores a value once the user saves the settings menu). The menu shows the
+        // values as NEGATIVE kg (they remove capacity); the magnitude is what we work with.
         private static readonly (string defName, float kg)[] defaultTable =
         {
-            ("Leg", 8.75f), ("Spine", 7f), ("Pelvis", 7f), ("Shoulder", 6.3f), ("Arm", 5.25f),
-            ("Femur", 4.55f), ("Foot", 3.5f), ("Humerus", 2.1f), ("Tibia", 2.1f), ("Hand", 1.75f),
-            ("Radius", 1.05f), ("Clavicle", 1.05f), ("Finger", 0.35f), ("Toe", 0.35f),
+            ("Leg", -8.75f), ("Spine", -7f), ("Pelvis", -7f), ("Shoulder", -6.3f), ("Arm", -5.25f),
+            ("Femur", -4.55f), ("Foot", -3.5f), ("Humerus", -2.1f), ("Tibia", -2.1f), ("Hand", -1.75f),
+            ("Radius", -1.05f), ("Clavicle", -1.05f), ("Finger", -0.35f), ("Toe", -0.35f),
         };
 
         static MissingPartsBootstrap()
         {
-            if (!GetBool("ToggleMissingPartPenalty", false))
+            if (!GetBool("ToggleSectionMissingParts", false))
             {
                 return;
             }
@@ -39,11 +42,11 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
             foreach ((string defName, float kg) in defaultTable)
             {
-                if (!GetBool("ToggleMissingPart" + defName, true))
+                if (!GetBool("ToggleMissingPart" + defName, false))
                 {
                     continue;
                 }
-                float value = GetFloat("MissingPart" + defName, kg);
+                float value = System.Math.Abs(GetFloat("MissingPart" + defName, kg));
                 BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
                 if (def != null && value > 0f)
                 {

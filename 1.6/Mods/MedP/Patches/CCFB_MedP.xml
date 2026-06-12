@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Medieval Prosthetics</li>
 			<li>MedP</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

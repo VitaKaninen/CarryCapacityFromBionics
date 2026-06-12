@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Rah's Bionics and Surgery Expansion</li>
 			<li>RBSE</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

@@ -9,6 +9,7 @@
 		<arguments>
 			<li>Astraltech Bionic Implants</li>
 			<li>Astral</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

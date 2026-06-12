@@ -9,6 +9,7 @@
 		<arguments>
 			<li>EPOE-Forked: Royalty DLC expansion</li>
 			<li>EPOEForkedRoyalty</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

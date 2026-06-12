@@ -69,7 +69,8 @@ RimWorld has **two separate carrying systems** — keep them straight:
    `ApplyPatch → CCFB_Section` (label, tag) + one `ApplyPatch → CCFB_Implant` per hediff:
    args `defName | key | label | toggleDefault | kgDefault | sectionTag`.
 6. **LoadFolders.xml**: add gated entries. The settings-menu sections are kept in
-   ALPHABETICAL order by section label (Core/DLC section first); since the list applies
+   ALPHABETICAL order by section label ("Missing body parts" first by design, then the
+   Core/DLC sections); since the list applies
    bottom-up, the 3rd-party block is sorted reverse-alphabetically — insert the new mod at
    its alphabetical slot, base folder LAST within its folder group (so its rows show first
    in the section). Combine `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely.
@@ -125,9 +126,18 @@ RimWorld has **two separate carrying systems** — keep them straight:
   `II_NativeVEF` / `II_NativeVEF_Anomaly` (Strength Enhancer 25, Skeletal Bracing 25, Claw
   Tail 25, Hulkification 50) and `NeoP_NativeVEF` (see below). Replaced the older
   `CCFB_ImplantStandaloneOnly` design (VEF-absent-only catch-up, no override) in June 2026.
-- **`CCFB_Section`** — creates a labeled menu section (header + `SplitColumn` tagged
-  `CCFB_<section>`). **Idempotent** (guarded by an existence check), so every patch file calls it
-  for the section it needs and file/folder ordering doesn't matter.
+- **`CCFB_Section`** — creates a labeled menu section: header row = the section's **master
+  checkbox** (key `ToggleSection<tag>`, third arg = its default; true everywhere except
+  MissingParts) + title, then a collapsible body (`ToggleableSettings`) holding the
+  `SplitColumn` tagged `CCFB_<section>`. Master unticked → section collapses to just the
+  title (live, no restart) AND `CCFB_Implant`/`CCFB_ImplantNativeVEF` skip every hediff patch
+  in that section (an `OptionalPatch` on the master wraps the per-implant one; restart applies).
+  Args: `label | tag | master default`. **Idempotent** (guarded by an existence check), so every
+  patch file calls it for the section it needs and file/folder ordering doesn't matter.
+  Known edge case: deliberately-shared keys (EPOE/EPOE-Forked, FSF ABE/VBE, YAPE/SoS2) render
+  their one row in whichever section's file patches first, but each mod's hediff patches are
+  gated by its OWN file's section master — unticking the section that shows the row does not
+  disable the other mod's bonuses.
 
 `Common/Defs/SettingsMenu.xml` is just a skeleton (title + restart warning). All sections and rows
 are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
@@ -160,9 +170,11 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
 - `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
   `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
   (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
-  after the user saves the menu). If the master toggle is on, appends `StatPart_MissingBodyParts`
-  to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus` (GetNamedSilentFail — whichever exists).
-  Master off = StatPart never injected = provably zero behavior change.
+  after the user saves the menu). The feature master = the section's checkbox
+  `ToggleSectionMissingParts` (created by CCFB_Section, default false). If it's on, appends
+  `StatPart_MissingBodyParts` to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus`
+  (GetNamedSilentFail — whichever exists). Master off = StatPart never injected = provably
+  zero behavior change.
 - Why StatPart works for both games: VEF and our Standalone assembly both transpile
   `MassUtility.Capacity` to return `GetStatValue(<their stat>)`, and StatParts run in
   `StatWorker.FinalizeValue` — after base + all implant statOffsets, before the minValue clamp.
@@ -177,12 +189,16 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
   stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
 - Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
-  ungated LoadFolders entry at its alphabetical slot). Master key `ToggleMissingPartPenalty`
-  (default false), floor `MissingPartFloor` (default 0 kg), per-part `ToggleMissingPart<DefName>`
-  (default true) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
+  ungated LoadFolders entry placed BELOW `1.6/Ludeon/Core` so it is the **top menu section**,
+  above Core Implants — deliberate exception to the alphabetical rule). First row = floor
+  `MissingPartFloor` (default 0 kg, positive, no checkbox); then per-part
+  `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
+  the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only). Weights (kg = % × 35): Leg 8.75, Spine/Pelvis 7, Shoulder 6.3, Arm 5.25,
-  Femur 4.55, Foot 3.5, Humerus/Tibia 2.1, Hand 1.75, Radius/Clavicle 1.05, Finger/Toe 0.35.
+  feature is C#-only). The kg values are stored/displayed **negative** (they remove capacity);
+  the C# takes the absolute value. Defaults (kg = −% × 35): Leg −8.75, Spine/Pelvis −7,
+  Shoulder −6.3, Arm −5.25, Femur −4.55, Foot −3.5, Humerus/Tibia −2.1, Hand −1.75,
+  Radius/Clavicle −1.05, Finger/Toe −0.35.
 
 ## The Standalone C# half (unchanged by the refactor)
 
@@ -284,7 +300,8 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   two of those mods were active together.
 - **RimWorld processes `loadFolders` bottom-up** (last entry applies first), so patch-file
   application order — and therefore settings-menu section order — follows the reversed list.
-  LoadFolders.xml is deliberately listed in reverse (Core last). Correctness never depends on
+  LoadFolders.xml is deliberately listed in reverse (MissingParts below Core, Common last).
+  Correctness never depends on
   this (CCFB_Section is idempotent); only the menu's section order does.
 - The `CreateDocument`/`MergeDocument` side-document speed pattern was first blamed for the
   shadowing symptom and removed (see git history). It was exonerated — the patch files never

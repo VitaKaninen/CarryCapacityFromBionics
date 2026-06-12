@@ -35,10 +35,6 @@
 		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
 
-		<!-- Missing body part penalty (built-in feature, always loaded; rows feed the C# half
-		     in Common/Assemblies, not XML patches) -->
-		<li>1.6/MissingParts</li>
-
 		<!-- Medieval Prosthetics -->
 		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
 
@@ -78,10 +74,15 @@
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
 
-		<!-- Core + DLC patches (applied first overall, so Core Implants is the top menu section) -->
+		<!-- Core + DLC patches -->
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
 		<li>1.6/Ludeon/Core</li>
+
+		<!-- Missing body part penalty (built-in feature, always loaded; rows feed the C# half
+		     in Common/Assemblies, not XML patches). Below Core so it applies first overall:
+		     "Missing body parts" is the TOP menu section, above Core Implants. -->
+		<li>1.6/MissingParts</li>
 
 		<!-- Standalone stat machinery (assembly + StatDef), only when VEF is NOT active.
 		     When VEF is active the patches write to VEF's own VEF_MassCarryCapacity stat instead;

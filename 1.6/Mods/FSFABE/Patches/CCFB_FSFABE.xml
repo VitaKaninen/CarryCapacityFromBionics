@@ -9,6 +9,7 @@
 		<arguments>
 			<li>[FSF] Advanced Bionics Expansion</li>
 			<li>FSFABE</li>
+			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

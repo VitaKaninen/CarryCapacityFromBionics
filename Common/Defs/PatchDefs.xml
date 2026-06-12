@@ -2,7 +2,12 @@
 <Defs>
 
 	<!--
-		CCFB_Section: creates one labeled section (header + SplitColumn) in the settings menu.
+		CCFB_Section: creates one labeled section in the settings menu - a header row with the
+		section's MASTER CHECKBOX (key ToggleSection{section}) next to the title, and a
+		collapsible body (ToggleableSettings): master unticked = only the title shows, and
+		CCFB_Implant/CCFB_ImplantNativeVEF skip every hediff patch in the section (the master
+		gates them via OptionalPatch). The collapse is live; the patches need a restart as usual.
+		Args (in order): section label | section tag | master checkbox default (true/false).
 		Idempotent: if a SplitColumn tagged CCFB_{section} already exists, does nothing, so any
 		patch file may call it for the section it needs and patch-file order does not matter.
 	-->
@@ -10,10 +15,11 @@
 		<parameters>
 			<li>sectionLabel</li>
 			<li>section</li>
+			<li>masterDefault</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
@@ -21,20 +27,41 @@
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>24</spacing>
 							</li>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>{sectionLabel}</text>
-								<font>Medium</font>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<width>24</width>
+								<gapSize>6</gapSize>
 								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Checkbox">
+										<label></label>
+										<key>ToggleSection{section}</key>
+										<defaultValue>{masterDefault}</defaultValue>
+										<tooltip>Enable or disable this entire section. Disabled: the section collapses and none of its rows apply (restart required for the bonuses themselves).</tooltip>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>{sectionLabel}</text>
+										<font>Medium</font>
+										<anchor>Middle</anchor>
+									</li>
+								</rightCol>
 							</li>
 							<li Class="XmlExtensions.Setting.GapLine"/>
-							<li Class="XmlExtensions.Setting.Section">
-								<settings>
-									<li Class="XmlExtensions.Setting.SplitColumn">
-										<tag>CCFB_{section}</tag>
-										<leftCol/>
-										<rightCol/>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSection{section}</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Section">
+										<settings>
+											<li Class="XmlExtensions.Setting.SplitColumn">
+												<tag>CCFB_{section}</tag>
+												<leftCol/>
+												<rightCol/>
+											</li>
+										</settings>
 									</li>
-								</settings>
+								</caseTrue>
+								<caseFalse/>
 							</li>
 						</value>
 					</Operation>
@@ -86,7 +113,7 @@
 					<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
 					<caseFalse>
 						<Operation Class="XmlExtensions.PatchOperationAdd">
-							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/leftCol</xpath>
 							<value>
 								<!-- Checkbox first, then the name. CheckboxLabeled pins the box to the RIGHT
 								     edge of its rect, so a 24px-wide label-less checkbox puts the box flush
@@ -112,7 +139,7 @@
 							</value>
 						</Operation>
 						<Operation Class="XmlExtensions.PatchOperationAdd">
-							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/rightCol</xpath>
 							<value>
 								<li Class="XmlExtensions.Setting.ToggleableSettings">
 									<key>Toggle{key}</key>
@@ -137,7 +164,13 @@
 					</caseFalse>
 				</Operation>
 
-				<!-- 2. Hediff statOffsets patch -->
+				<!-- 2. Hediff statOffsets patch. The section's master checkbox gates the whole
+				     thing: master off = no bonus from this section, individual toggles ignored. -->
+				<Operation Class="XmlExtensions.OptionalPatch">
+					<modId>Vita.CarryCapacityFromBionics</modId>
+					<key>ToggleSection{section}</key>
+					<defaultValue>true</defaultValue>
+					<caseTrue>
 				<Operation Class="XmlExtensions.OptionalPatch">
 					<modId>Vita.CarryCapacityFromBionics</modId>
 					<key>Toggle{key}</key>
@@ -198,6 +231,8 @@
 						</Operation>
 					</caseTrue>
 				</Operation>
+					</caseTrue>
+				</Operation>
 				</caseTrue>
 			</Operation>
 
@@ -239,7 +274,7 @@
 					<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
 					<caseFalse>
 						<Operation Class="XmlExtensions.PatchOperationAdd">
-							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/leftCol</xpath>
 							<value>
 								<!-- Checkbox first, then the name. CheckboxLabeled pins the box to the RIGHT
 								     edge of its rect, so a 24px-wide label-less checkbox puts the box flush
@@ -265,7 +300,7 @@
 							</value>
 						</Operation>
 						<Operation Class="XmlExtensions.PatchOperationAdd">
-							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/rightCol</xpath>
 							<value>
 								<li Class="XmlExtensions.Setting.ToggleableSettings">
 									<key>Toggle{key}</key>
@@ -290,7 +325,13 @@
 					</caseFalse>
 				</Operation>
 
-				<!-- 2. Hediff statOffsets patch: VEF -> override the native offset, no VEF -> add ours -->
+				<!-- 2. Hediff statOffsets patch: VEF -> override the native offset, no VEF -> add ours.
+				     The section's master checkbox gates the whole thing, like in CCFB_Implant. -->
+				<Operation Class="XmlExtensions.OptionalPatch">
+					<modId>Vita.CarryCapacityFromBionics</modId>
+					<key>ToggleSection{section}</key>
+					<defaultValue>true</defaultValue>
+					<caseTrue>
 				<Operation Class="XmlExtensions.OptionalPatch">
 					<modId>Vita.CarryCapacityFromBionics</modId>
 					<key>Toggle{key}</key>
@@ -351,6 +392,8 @@
 						</Operation>
 					</caseTrue>
 				</Operation>
+					</caseTrue>
+				</Operation>
 				</caseTrue>
 			</Operation>
 
@@ -377,7 +420,7 @@
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/leftCol</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/leftCol</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.SplitColumn">
 								<width>24</width>
@@ -399,7 +442,7 @@
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_{section}"]/rightCol</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/rightCol</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
 								<key>Toggle{key}</key>
@@ -408,7 +451,7 @@
 										<decimals>2</decimals>
 										<padLeft>85</padLeft>
 										<key>{key}</key>
-										<label>Carry capacity penalty in kg</label>
+										<label>Reduced carry capacity in kg</label>
 										<defaultValue>{valueDefault}</defaultValue>
 									</li>
 								</caseTrue>

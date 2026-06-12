@@ -4,8 +4,10 @@
 		Missing body part penalty - settings section. These rows feed the C# half
 		(CarryCapacityMissingParts.dll in Common/Assemblies); they do NOT patch any defs.
 		The DLL reads the values once at startup via XmlExtensions.SettingsManager and only
-		acts when the master toggle is on. Defaults here MUST stay in sync with the compiled
-		defaults in MissingPartsBootstrap.cs (kg = roadmap weight % x 35).
+		acts when the section's master checkbox (ToggleSectionMissingParts, created by
+		CCFB_Section, default OFF) is ticked. Defaults here MUST stay in sync with the
+		compiled defaults in MissingPartsBootstrap.cs. Values are NEGATIVE (they remove
+		carry capacity); kg = -(roadmap weight % x 35); the C# uses the absolute value.
 		Row args for CCFB_PartRow: key | label | toggle default | kg default | section tag.
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -13,72 +15,47 @@
 		<arguments>
 			<li>Missing body parts</li>
 			<li>MissingParts</li>
+			<li>false</li>
 		</arguments>
 	</Operation>
 
-	<!-- Intro text + master toggle row (checkbox left, minimum-capacity field right).
-	     Added directly (one-off layout, not worth a PatchDef). Idempotence comes from the
-	     same key-exists guard CCFB_PartRow uses. -->
+	<!-- First row: the floor - penalties never reduce a pawn below this capacity.
+	     Added directly (no checkbox, not worth a PatchDef); guarded on its own key. -->
 	<Operation Class="XmlExtensions.Conditional">
-		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="ToggleMissingPartPenalty"]</xpath>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[key="MissingPartFloor"]</xpath>
 		<caseFalse>
 			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_MissingParts"]/leftCol</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/leftCol</xpath>
 				<value>
-					<li Class="XmlExtensions.Setting.SplitColumn">
-						<width>24</width>
-						<gapSize>6</gapSize>
-						<anchor>Middle</anchor>
-						<leftCol>
-							<li Class="XmlExtensions.Setting.Checkbox">
-								<label></label>
-								<key>ToggleMissingPartPenalty</key>
-								<defaultValue>false</defaultValue>
-							</li>
-						</leftCol>
-						<rightCol>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>Enable missing body part penalties (hover for details)</text>
-								<tooltip>Missing parts subtract their full value; damaged parts subtract a fraction scaled by lost HP. Per limb, a damaged limb is never penalized worse than its amputation. Bionics and prosthetics count as present. The minimum field stops penalties from dropping a pawn below that capacity.</tooltip>
-							</li>
-						</rightCol>
+					<li Class="XmlExtensions.Setting.Text">
+						<text>Minimum carry capacity (hover for details)</text>
+						<tooltip>Penalties never reduce a pawn below this many kg. At 0, a badly mangled pawn can carry nothing in inventory but still wears gear, wields weapons and eats normally. Raise it (e.g. 10) if you do not want crippled pawns to weigh down caravans. Missing parts subtract their full value, damaged parts a fraction scaled by lost HP; per limb, damage is never penalized worse than amputation; bionics and prosthetics count as present.</tooltip>
 					</li>
 				</value>
 			</Operation>
 			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li/settings/li[tag="CCFB_MissingParts"]/rightCol</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/rightCol</xpath>
 				<value>
-					<li Class="XmlExtensions.Setting.ToggleableSettings">
-						<key>ToggleMissingPartPenalty</key>
-						<caseTrue>
-							<li Class="XmlExtensions.Setting.Numeric">
-								<decimals>2</decimals>
-								<padLeft>85</padLeft>
-								<key>MissingPartFloor</key>
-								<label>Minimum carry capacity in kg</label>
-								<defaultValue>0</defaultValue>
-							</li>
-						</caseTrue>
-						<caseFalse>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>Disabled</text>
-								<anchor>Right</anchor>
-							</li>
-						</caseFalse>
+					<li Class="XmlExtensions.Setting.Numeric">
+						<decimals>2</decimals>
+						<padLeft>85</padLeft>
+						<key>MissingPartFloor</key>
+						<label>Minimum capacity in kg</label>
+						<defaultValue>0</defaultValue>
 					</li>
 				</value>
 			</Operation>
 		</caseFalse>
 	</Operation>
 
-	<!-- Per-part rows, large to small (roadmap weight table; kg = % x 35) -->
+	<!-- Per-part rows, large to small (roadmap weight table; kg = -(% x 35)) -->
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_PartRow</patchName>
 		<arguments>
 			<li>MissingPartLeg</li>
 			<li>Leg (each)</li>
-			<li>true</li>
-			<li>8.75</li>
+			<li>false</li>
+			<li>-8.75</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -87,8 +64,8 @@
 		<arguments>
 			<li>MissingPartSpine</li>
 			<li>Spine</li>
-			<li>true</li>
-			<li>7</li>
+			<li>false</li>
+			<li>-7</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -97,8 +74,8 @@
 		<arguments>
 			<li>MissingPartPelvis</li>
 			<li>Pelvis</li>
-			<li>true</li>
-			<li>7</li>
+			<li>false</li>
+			<li>-7</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -107,8 +84,8 @@
 		<arguments>
 			<li>MissingPartShoulder</li>
 			<li>Shoulder (each)</li>
-			<li>true</li>
-			<li>6.3</li>
+			<li>false</li>
+			<li>-6.3</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -117,8 +94,8 @@
 		<arguments>
 			<li>MissingPartArm</li>
 			<li>Arm (each)</li>
-			<li>true</li>
-			<li>5.25</li>
+			<li>false</li>
+			<li>-5.25</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -127,8 +104,8 @@
 		<arguments>
 			<li>MissingPartFemur</li>
 			<li>Femur (each)</li>
-			<li>true</li>
-			<li>4.55</li>
+			<li>false</li>
+			<li>-4.55</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -137,8 +114,8 @@
 		<arguments>
 			<li>MissingPartFoot</li>
 			<li>Foot (each)</li>
-			<li>true</li>
-			<li>3.5</li>
+			<li>false</li>
+			<li>-3.5</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -147,8 +124,8 @@
 		<arguments>
 			<li>MissingPartHumerus</li>
 			<li>Humerus (each)</li>
-			<li>true</li>
-			<li>2.1</li>
+			<li>false</li>
+			<li>-2.1</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -157,8 +134,8 @@
 		<arguments>
 			<li>MissingPartTibia</li>
 			<li>Tibia (each)</li>
-			<li>true</li>
-			<li>2.1</li>
+			<li>false</li>
+			<li>-2.1</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -167,8 +144,8 @@
 		<arguments>
 			<li>MissingPartHand</li>
 			<li>Hand (each)</li>
-			<li>true</li>
-			<li>1.75</li>
+			<li>false</li>
+			<li>-1.75</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -177,8 +154,8 @@
 		<arguments>
 			<li>MissingPartRadius</li>
 			<li>Radius (each)</li>
-			<li>true</li>
-			<li>1.05</li>
+			<li>false</li>
+			<li>-1.05</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -187,8 +164,8 @@
 		<arguments>
 			<li>MissingPartClavicle</li>
 			<li>Clavicle (each)</li>
-			<li>true</li>
-			<li>1.05</li>
+			<li>false</li>
+			<li>-1.05</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -197,8 +174,8 @@
 		<arguments>
 			<li>MissingPartFinger</li>
 			<li>Finger (each)</li>
-			<li>true</li>
-			<li>0.35</li>
+			<li>false</li>
+			<li>-0.35</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>
@@ -207,8 +184,8 @@
 		<arguments>
 			<li>MissingPartToe</li>
 			<li>Toe (each)</li>
-			<li>true</li>
-			<li>0.35</li>
+			<li>false</li>
+			<li>-0.35</li>
 			<li>MissingParts</li>
 		</arguments>
 	</Operation>

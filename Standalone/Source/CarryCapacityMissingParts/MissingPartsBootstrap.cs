@@ -38,16 +38,17 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         // Defaults MUST stay in sync with 1.6/MissingParts/Patches/CCFB_MissingParts.xml
         // (XE only stores a value once the user saves the settings menu). Values are percent
-        // numbers exactly as shown in the menu. Children of each limb sum exactly to their
-        // parent (femur 15 + tibia 5 + foot 5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
-        // humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers/toes = hand/foot 5).
+        // numbers exactly as shown in the menu. Children of each limb sum to their parent
+        // (femur 12.5 + tibia 5 + foot 7.5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
+        // humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers = hand 5). Known exception:
+        // foot 7.5 vs 5 toes x 1 = 5 (June 2026 sheet update; the foot cap still bounds them).
         private static readonly (string key, string[] defNames, float pct)[] defaultTable =
         {
             ("SpinePelvis", new[] { "Spine", "Pelvis" }, 20f),
             ("Leg", new[] { "Leg" }, 25f),
-            ("Femur", new[] { "Femur" }, 15f),
+            ("Femur", new[] { "Femur" }, 12.5f),
             ("Tibia", new[] { "Tibia" }, 5f),
-            ("Foot", new[] { "Foot" }, 5f),
+            ("Foot", new[] { "Foot" }, 7.5f),
             ("Toe", new[] { "Toe" }, 1f),
             ("Shoulder", new[] { "Shoulder" }, 15f),
             ("Clavicle", new[] { "Clavicle" }, 5f),

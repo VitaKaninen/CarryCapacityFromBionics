@@ -31,8 +31,9 @@ RimWorld has **two separate carrying systems** — keep them straight:
 
 `value ≈ partEfficiency × importanceWeight × techMultiplier × 35 kg`, then hand-rounded.
 
-- **Weights**: arm 15%, leg 25%, spine/pelvis/exoskeleton/membrane 20%, foot 10%, hand 5%,
-  femur ~13%, humerus/tibia 6%, radius/clavicle 3%, finger/toe 1%.
+- **Weights** (June 2026 revision: foot 10→7.5, bones aligned to the missing-part percents):
+  arm 15%, leg 25%, spine/pelvis/exoskeleton/membrane 20%, foot 7.5%, hand 5%, femur 12.5%,
+  tibia 5%, humerus/radius 2.5%, clavicle 3%, finger/toe 1%.
 - **Tech multiplier**: industrial bionic 2, spacer/archotech 3, below-natural prosthetic −1,
   crude (peg leg/hook/wooden) −2, pure utility arms (drill/field/claw) → weight 0% → value 0.
 - partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
@@ -224,11 +225,12 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `DualUnitNumeric` with `storedUnit` Percent — the STORED value is the plain percent number,
   e.g. "25", with the adult-kg box derived/editable beside it. The old stock-Numeric-label
   width gotcha is moot: the widget draws its own full-row layout). Values are positive percents.
-  Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent,
-  and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
-  `MissingPartSpinePelvis`), Leg 25 = Femur 15 + Tibia 5 + Foot 5; Foot = 5 × Toe 1;
+  Defaults (VitaKaninen's June 2026 table, revised mid-June; limb children sum to their
+  parent and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
+  `MissingPartSpinePelvis`), Leg 25 = Femur 12.5 + Tibia 5 + Foot 7.5;
   Shoulder 15 = Clavicle 5 + Arm 10; Arm = Humerus 2.5 + Radius 2.5 + Hand 5;
-  Hand = 5 × Finger 1. First row = `MissingPartMaxReduction` ("Cap reduction to this
+  Hand = 5 × Finger 1. Known exception: Foot 7.5 vs its 5 toes × 1 = 5 (accepted June 2026;
+  the foot cap still bounds them). First row = `MissingPartMaxReduction` ("Cap reduction to this
   amount", default 100%). NOTE: keys `MissingPartFloor` and the old kg-value semantics are
   RETIRED — never reuse a key when its meaning changes (stale saved values would misparse).
   The section body opens with an explainer Text (inserted before the SplitColumn via

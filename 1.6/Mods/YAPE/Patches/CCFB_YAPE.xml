@@ -52,7 +52,7 @@
 			<li>YAPESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
 			<li>false</li>
-			<li>-3</li>
+			<li>-2.5</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -96,7 +96,7 @@
 			<li>YAPEBionicFoot</li>
 			<li>Bionic Foot</li>
 			<li>true</li>
-			<li>8</li>
+			<li>6</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -140,7 +140,7 @@
 			<li>YAPEAdvancedBionicFoot</li>
 			<li>Adv. Bionic Foot</li>
 			<li>true</li>
-			<li>15</li>
+			<li>10</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>

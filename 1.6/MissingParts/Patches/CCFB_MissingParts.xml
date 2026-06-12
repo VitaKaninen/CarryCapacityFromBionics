@@ -9,10 +9,12 @@
 		compiled defaults in MissingPartsBootstrap.cs.
 		Values are PERCENTAGES of the pawn's base capacity (body size x 35 kg), positive,
 		stored as plain percent numbers (XE percent fields save the percent number, e.g. "25").
-		Value design (June 2026, VitaKaninen's table): children of each limb sum EXACTLY to
-		their parent (femur 15 + tibia 5 + foot 5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
-		humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers/toes = hand/foot 5), so with
-		default values the per-limb cap is a safety net, not a daily occurrence.
+		Value design (June 2026, VitaKaninen's table): children of each limb sum to their
+		parent (femur 12.5 + tibia 5 + foot 7.5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
+		humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers = hand 5), so with default
+		values the per-limb cap is a safety net, not a daily occurrence. Known exception
+		(June 2026 sheet update): foot is 7.5 but its 5 toes sum to 5 - accepted, the foot
+		cap still bounds them.
 		Spine and Pelvis share ONE row/key (MissingPartSpinePelvis): each needs the other, so
 		the worse of the two counts and it is not doubled if both are gone.
 		Row args for CCFB_PartRow: key | label | toggle default | percent default | section tag | tooltip.
@@ -101,7 +103,7 @@
 			<li>MissingPartFemur</li>
 			<li>Femur (each)</li>
 			<li>false</li>
-			<li>15</li>
+			<li>12.5</li>
 			<li>MissingParts</li>
 			<li>Inner thigh bone - can be destroyed while the leg itself survives.</li>
 		</arguments>
@@ -123,7 +125,7 @@
 			<li>MissingPartFoot</li>
 			<li>Foot (each)</li>
 			<li>false</li>
-			<li>5</li>
+			<li>7.5</li>
 			<li>MissingParts</li>
 			<li>If the whole leg is gone, only the leg value applies - the foot is not charged again.</li>
 		</arguments>

@@ -17,39 +17,45 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
     {
         public const string ModId = "Vita.CarryCapacityFromBionics";
 
-        public static float floorKg;
+        // All values are PERCENTAGES of the pawn's base capacity (body size x 35 kg), stored
+        // here as fractions - so penalties scale with body size (children lose less in kg).
 
-        // Weight in kg per body part def. ALL weighted defs get an entry; a part that is
+        // Maximum total reduction as a fraction of base capacity (setting default 100%).
+        public static float maxReductionFrac = 1f;
+
+        // Reduction fraction per body part def. ALL weighted defs get an entry; a part that is
         // toggled off or set to 0 stays in the map with weight 0, because limb roots cap
         // their whole subtree: a Leg at 0 must zero out foot/bone/toe penalties too.
         public static readonly Dictionary<BodyPartDef, float> weights = new Dictionary<BodyPartDef, float>();
 
-        // Spine and Pelvis share one setting and one penalty group: the penalty applies if
-        // either is missing/damaged and is NOT doubled when both are gone.
-        public static readonly HashSet<BodyPartDef> sharedGroupDefs = new HashSet<BodyPartDef>();
-        public static float sharedGroupKg;
+        // Spine and Pelvis share one setting and one penalty: each needs the other to work, so
+        // the worse of the two counts and it is NOT doubled when both are gone. They are kept
+        // OUT of the weights map (they are leaves, never anyone's limb root) and handled as a
+        // pair in StatPart_MissingBodyParts.
+        public static BodyPartDef spineDef;
+        public static BodyPartDef pelvisDef;
+        public static float spinePelvisFrac;
 
         // Defaults MUST stay in sync with 1.6/MissingParts/Patches/CCFB_MissingParts.xml
-        // (XE only stores a value once the user saves the settings menu). The menu shows the
-        // values as NEGATIVE kg (they remove capacity); the magnitude is what we work with.
-        // Children of each limb sum exactly to their parent (femur 5.25 + tibia 1.75 +
-        // foot 1.75 = leg 8.75; clavicle 1.75 + arm 3.5 = shoulder 5.25; humerus 0.875 +
-        // radius 0.875 + hand 1.75 = arm 3.5; 5 fingers/toes = hand/foot 1.75).
-        private static readonly (string key, string[] defNames, float kg)[] defaultTable =
+        // (XE only stores a value once the user saves the settings menu). Values are percent
+        // numbers exactly as shown in the menu. Children of each limb sum exactly to their
+        // parent (femur 15 + tibia 5 + foot 5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
+        // humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers/toes = hand/foot 5).
+        private static readonly (string key, string[] defNames, float pct)[] defaultTable =
         {
-            ("SpinePelvis", new[] { "Spine", "Pelvis" }, -7f),
-            ("Leg", new[] { "Leg" }, -8.75f),
-            ("Femur", new[] { "Femur" }, -5.25f),
-            ("Tibia", new[] { "Tibia" }, -1.75f),
-            ("Foot", new[] { "Foot" }, -1.75f),
-            ("Toe", new[] { "Toe" }, -0.35f),
-            ("Shoulder", new[] { "Shoulder" }, -5.25f),
-            ("Clavicle", new[] { "Clavicle" }, -1.75f),
-            ("Arm", new[] { "Arm" }, -3.5f),
-            ("Humerus", new[] { "Humerus" }, -0.875f),
-            ("Radius", new[] { "Radius" }, -0.875f),
-            ("Hand", new[] { "Hand" }, -1.75f),
-            ("Finger", new[] { "Finger" }, -0.35f),
+            ("SpinePelvis", new[] { "Spine", "Pelvis" }, 20f),
+            ("Leg", new[] { "Leg" }, 25f),
+            ("Femur", new[] { "Femur" }, 15f),
+            ("Tibia", new[] { "Tibia" }, 5f),
+            ("Foot", new[] { "Foot" }, 5f),
+            ("Toe", new[] { "Toe" }, 1f),
+            ("Shoulder", new[] { "Shoulder" }, 15f),
+            ("Clavicle", new[] { "Clavicle" }, 5f),
+            ("Arm", new[] { "Arm" }, 10f),
+            ("Humerus", new[] { "Humerus" }, 2.5f),
+            ("Radius", new[] { "Radius" }, 2.5f),
+            ("Hand", new[] { "Hand" }, 5f),
+            ("Finger", new[] { "Finger" }, 1f),
         };
 
         static MissingPartsBootstrap()
@@ -58,34 +64,34 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             {
                 return;
             }
-            floorKg = GetFloat("MissingPartFloor", 0f);
+            maxReductionFrac = System.Math.Abs(GetFloat("MissingPartMaxReduction", 100f)) / 100f;
 
             bool anyPositive = false;
-            foreach ((string key, string[] defNames, float kg) in defaultTable)
+            foreach ((string key, string[] defNames, float pct) in defaultTable)
             {
-                float value = 0f;
+                float frac = 0f;
                 if (GetBool("ToggleMissingPart" + key, false))
                 {
-                    value = System.Math.Abs(GetFloat("MissingPart" + key, kg));
+                    frac = System.Math.Abs(GetFloat("MissingPart" + key, pct)) / 100f;
                 }
-                foreach (string defName in defNames)
+                if (key == "SpinePelvis")
                 {
-                    BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
-                    if (def == null)
-                    {
-                        continue;
-                    }
-                    weights[def] = value;
-                    if (defNames.Length > 1)
-                    {
-                        sharedGroupDefs.Add(def);
-                    }
+                    spineDef = DefDatabase<BodyPartDef>.GetNamedSilentFail("Spine");
+                    pelvisDef = DefDatabase<BodyPartDef>.GetNamedSilentFail("Pelvis");
+                    spinePelvisFrac = frac;
                 }
-                if (defNames.Length > 1)
+                else
                 {
-                    sharedGroupKg = value;
+                    foreach (string defName in defNames)
+                    {
+                        BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
+                        if (def != null)
+                        {
+                            weights[def] = frac;
+                        }
+                    }
                 }
-                anyPositive |= value > 0f;
+                anyPositive |= frac > 0f;
             }
             if (!anyPositive)
             {

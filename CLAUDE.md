@@ -186,15 +186,20 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `StatWorker.FinalizeValue` — after base + all implant statOffsets, before the minValue clamp.
   (A Capacity postfix was rejected: it would run twice — inside the StatWorker base-value call
   AND the outer call — double-dipping the penalty.)
-- Rules implemented in `StatPart_MissingBodyParts`: topmost visible missing part only
+- Rules implemented in `StatPart_MissingBodyParts`: all values are **percentages of the
+  pawn's base capacity** (`BodySize × 35` kg — penalties scale with body size, i.e. children
+  lose less in kg; user decision June 2026). Topmost visible missing part only
   (`GetMissingPartsCommonAncestors`, verified: BFS from core, skips subtrees under added parts —
   bionics/prosthetics count as present); damaged attached part contributes
-  `kg × (1 − HP/maxHP)`; contributions grouped by limb root (highest TABLE ancestor or self)
-  and each group capped at the root's kg (mangled leg never worse than amputation); result
-  clamped to the floor setting, where the floor never raises a pawn above its unpenalized value.
-  **All 14 part defs stay in the weights map even at 0** (unticked or zeroed): a limb root at 0
-  caps its whole subtree at 0, so "Leg = 0" really disables the entire leg (user requirement,
-  June 2026); the StatPart is only injected if at least one part has a positive value.
+  `pct × base × (1 − HP/maxHP)`; contributions grouped by limb root (highest TABLE ancestor
+  or self) and each group capped at the root's value (mangled leg never worse than amputation).
+  **Spine/Pelvis are one pair**: kept OUT of the weights map, handled separately — the WORSE
+  of the two counts (max, not sum), one explanation line (`Missing spine+pelvis` when both).
+  **Total reduction is capped** by the `MissingPartMaxReduction` setting (default 100% of
+  base); negative finals are impossible (both stats have `minValue 0` — ours got it for this).
+  **Part defs stay in the weights map even at 0** (unticked or zeroed): a limb root at 0
+  caps its whole subtree at 0, so "Leg = 0" really disables the entire leg; the StatPart is
+  only injected if at least one value is positive.
   Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
   stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
 - Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
@@ -204,15 +209,17 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
   the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip, numeric label
-  "Reduction in kg" — keep numeric labels ≤ ~22 chars, XE gives the label exactly half the
-  column and longer ones wrap). The kg values are stored/displayed **negative** (they remove
-  capacity); the C# takes the absolute value.
-  Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent):
-  Spine/Pelvis −7 (ONE row/key `MissingPartSpinePelvis`, one shared penalty group in C# —
-  applies if either is gone, not doubled when both are), Leg −8.75 = Femur −5.25 + Tibia −1.75
-  + Foot −1.75; Foot = 5 × Toe −0.35; Shoulder −5.25 = Clavicle −1.75 + Arm −3.5;
-  Arm = Humerus −0.875 + Radius −0.875 + Hand −1.75; Hand = 5 × Finger −0.35.
+  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; numeric uses XE
+  `percent=true` — the STORED value is the plain percent number, e.g. "25", the field shows
+  "25%". Numeric-label gotcha: XE gives the label exactly half the (width − padLeft) box;
+  dropping padLeft bought room for "Reduce carry capacity by"). Values are positive percents.
+  Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent,
+  and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
+  `MissingPartSpinePelvis`), Leg 25 = Femur 15 + Tibia 5 + Foot 5; Foot = 5 × Toe 1;
+  Shoulder 15 = Clavicle 5 + Arm 10; Arm = Humerus 2.5 + Radius 2.5 + Hand 5;
+  Hand = 5 × Finger 1. First row = `MissingPartMaxReduction` ("Cap reduction to this
+  amount", default 100%). NOTE: keys `MissingPartFloor` and the old kg-value semantics are
+  RETIRED — never reuse a key when its meaning changes (stale saved values would misparse).
   The section body opens with an explainer Text (inserted before the SplitColumn via
   `PatchOperationInsert`); every row has a tooltip (spine/pelvis explain why they matter
   for non-walking pawns: inventory + caravan weight pool).

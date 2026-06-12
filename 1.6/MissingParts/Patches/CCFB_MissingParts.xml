@@ -6,15 +6,16 @@
 		The DLL reads the values once at startup via XmlExtensions.SettingsManager and only
 		acts when the section's master checkbox (ToggleSectionMissingParts, created by
 		CCFB_Section, default OFF) is ticked. Defaults here MUST stay in sync with the
-		compiled defaults in MissingPartsBootstrap.cs. Values are NEGATIVE (they remove
-		carry capacity); the C# uses the absolute value.
+		compiled defaults in MissingPartsBootstrap.cs.
+		Values are PERCENTAGES of the pawn's base capacity (body size x 35 kg), positive,
+		stored as plain percent numbers (XE percent fields save the percent number, e.g. "25").
 		Value design (June 2026, VitaKaninen's table): children of each limb sum EXACTLY to
-		their parent (femur 15 + tibia 5 + foot 5 = leg 25%; clavicle 5 + arm 10 = shoulder 15%;
-		humerus 2.5 + radius 2.5 + hand 5 = arm 10%; 5 fingers/toes = hand/foot 5%), so with
+		their parent (femur 15 + tibia 5 + foot 5 = leg 25; clavicle 5 + arm 10 = shoulder 15;
+		humerus 2.5 + radius 2.5 + hand 5 = arm 10; 5 fingers/toes = hand/foot 5), so with
 		default values the per-limb cap is a safety net, not a daily occurrence.
-		Spine and Pelvis share ONE row/key (MissingPartSpinePelvis): each needs the other to
-		work, so the penalty applies if either is gone and is not doubled if both are.
-		Row args for CCFB_PartRow: key | label | toggle default | kg default | section tag | tooltip.
+		Spine and Pelvis share ONE row/key (MissingPartSpinePelvis): each needs the other, so
+		the worse of the two counts and it is not doubled if both are gone.
+		Row args for CCFB_PartRow: key | label | toggle default | percent default | section tag | tooltip.
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Section</patchName>
@@ -26,15 +27,15 @@
 	</Operation>
 
 	<!-- Explainer text at the top of the section body (inserted BEFORE the SplitColumn),
-	     then the floor row as the first actual setting. Guarded on the floor key. -->
+	     then the total-reduction cap as the first setting. Guarded on the cap key. -->
 	<Operation Class="XmlExtensions.Conditional">
-		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[key="MissingPartFloor"]</xpath>
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[key="MissingPartMaxReduction"]</xpath>
 		<caseFalse>
 			<Operation Class="XmlExtensions.PatchOperationInsert">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]</xpath>
 				<value>
 					<li Class="XmlExtensions.Setting.Text">
-						<text>Each enabled part below subtracts its value from a pawn's mass carry capacity (inventory and caravan weight) while that part is missing; damaged parts subtract in proportion to lost HP. Bionics, prosthetics and other replacements count as present. A safety net keeps the math sane: only the topmost missing part is counted, and a limb's combined penalties can never exceed the value of its topmost part - losing pieces of a limb never costs more than losing the whole limb. Penalties never reduce a pawn below the minimum set here. Hover any row for details.</text>
+						<text>Each enabled part below reduces a pawn's mass carry capacity (inventory and caravan weight) by a percentage of their base capacity while that part is missing. Base capacity is body size x 35 kg - 35 kg for an adult human, less for children - so the penalties scale with age and size. Damaged parts count in proportion to lost HP, and bionics, prosthetics and other replacements count as present. A safety net keeps the math sane: only the topmost missing part is counted, and a limb's combined reductions can never exceed the value of its topmost part - losing pieces of a limb never costs more than losing the whole limb. Hover any row for details.</text>
 					</li>
 					<li Class="XmlExtensions.Setting.Gap">
 						<spacing>12</spacing>
@@ -45,8 +46,8 @@
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/leftCol</xpath>
 				<value>
 					<li Class="XmlExtensions.Setting.Text">
-						<text>Minimum carry capacity</text>
-						<tooltip>Combined penalties never reduce a pawn below this many kg. At 0, a badly mangled pawn can carry nothing in inventory but still wears gear, wields weapons and eats normally. Raise it (e.g. 10) if you do not want crippled pawns to weigh down caravans.</tooltip>
+						<text>Cap reduction to this amount</text>
+						<tooltip>The combined reduction can never exceed this share of the pawn's base capacity. At 100%, a completely mangled pawn can lose all of it (0 kg left) - they still wear gear, wield weapons and eat normally. Lower it to guarantee every pawn keeps some carrying capacity.</tooltip>
 					</li>
 				</value>
 			</Operation>
@@ -54,18 +55,18 @@
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/rightCol</xpath>
 				<value>
 					<li Class="XmlExtensions.Setting.Numeric">
-						<decimals>2</decimals>
-						<padLeft>85</padLeft>
-						<key>MissingPartFloor</key>
-						<label>Minimum in kg</label>
-						<defaultValue>0</defaultValue>
+						<decimals>1</decimals>
+						<percent>true</percent>
+						<key>MissingPartMaxReduction</key>
+						<label>Maximum reduction</label>
+						<defaultValue>100</defaultValue>
 					</li>
 				</value>
 			</Operation>
 			<Operation Class="XmlExtensions.PatchOperationAdd">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSectionMissingParts"]/actions/li/keys</xpath>
 				<value>
-					<li>MissingPartFloor</li>
+					<li>MissingPartMaxReduction</li>
 				</value>
 			</Operation>
 		</caseFalse>
@@ -78,9 +79,9 @@
 			<li>MissingPartSpinePelvis</li>
 			<li>Spine/Pelvis</li>
 			<li>false</li>
-			<li>-7</li>
+			<li>20</li>
 			<li>MissingParts</li>
-			<li>One penalty for the pair: it applies while the spine or the pelvis is missing or damaged, and is not doubled if both are gone. A pawn missing either cannot walk, but the value still cuts their inventory space and their share of a caravan's weight pool.</li>
+			<li>One penalty for the pair: each needs the other to work, so the worse of the two counts and it is not doubled if both are gone. A pawn missing either cannot walk, but the value still cuts their inventory space and their share of a caravan's weight pool.</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -89,7 +90,7 @@
 			<li>MissingPartLeg</li>
 			<li>Leg (each)</li>
 			<li>false</li>
-			<li>-8.75</li>
+			<li>25</li>
 			<li>MissingParts</li>
 			<li>Top of the leg. Caps the whole leg: femur, tibia, foot and toes together can never subtract more than this value.</li>
 		</arguments>
@@ -100,7 +101,7 @@
 			<li>MissingPartFemur</li>
 			<li>Femur (each)</li>
 			<li>false</li>
-			<li>-5.25</li>
+			<li>15</li>
 			<li>MissingParts</li>
 			<li>Inner thigh bone - can be destroyed while the leg itself survives.</li>
 		</arguments>
@@ -111,7 +112,7 @@
 			<li>MissingPartTibia</li>
 			<li>Tibia (each)</li>
 			<li>false</li>
-			<li>-1.75</li>
+			<li>5</li>
 			<li>MissingParts</li>
 			<li>Inner shin bone - can be destroyed while the leg itself survives.</li>
 		</arguments>
@@ -122,7 +123,7 @@
 			<li>MissingPartFoot</li>
 			<li>Foot (each)</li>
 			<li>false</li>
-			<li>-1.75</li>
+			<li>5</li>
 			<li>MissingParts</li>
 			<li>If the whole leg is gone, only the leg value applies - the foot is not charged again.</li>
 		</arguments>
@@ -133,7 +134,7 @@
 			<li>MissingPartToe</li>
 			<li>Toe (each)</li>
 			<li>false</li>
-			<li>-0.35</li>
+			<li>1</li>
 			<li>MissingParts</li>
 			<li>Per missing toe (5 per foot).</li>
 		</arguments>
@@ -144,7 +145,7 @@
 			<li>MissingPartShoulder</li>
 			<li>Shoulder (each)</li>
 			<li>false</li>
-			<li>-5.25</li>
+			<li>15</li>
 			<li>MissingParts</li>
 			<li>Top of the arm. Caps the whole arm: clavicle, arm, bones, hand and fingers together can never subtract more than this value. Bionic and prosthetic arms install here - a replaced shoulder has no penalty.</li>
 		</arguments>
@@ -155,7 +156,7 @@
 			<li>MissingPartClavicle</li>
 			<li>Clavicle (each)</li>
 			<li>false</li>
-			<li>-1.75</li>
+			<li>5</li>
 			<li>MissingParts</li>
 			<li>Collarbone - can be destroyed while the shoulder itself survives.</li>
 		</arguments>
@@ -166,7 +167,7 @@
 			<li>MissingPartArm</li>
 			<li>Arm (each)</li>
 			<li>false</li>
-			<li>-3.5</li>
+			<li>10</li>
 			<li>MissingParts</li>
 			<li>Arm severed below the shoulder.</li>
 		</arguments>
@@ -177,7 +178,7 @@
 			<li>MissingPartHumerus</li>
 			<li>Humerus (each)</li>
 			<li>false</li>
-			<li>-0.875</li>
+			<li>2.5</li>
 			<li>MissingParts</li>
 			<li>Inner upper-arm bone - can be destroyed while the arm itself survives.</li>
 		</arguments>
@@ -188,7 +189,7 @@
 			<li>MissingPartRadius</li>
 			<li>Radius (each)</li>
 			<li>false</li>
-			<li>-0.875</li>
+			<li>2.5</li>
 			<li>MissingParts</li>
 			<li>Inner forearm bone - can be destroyed while the arm itself survives.</li>
 		</arguments>
@@ -199,7 +200,7 @@
 			<li>MissingPartHand</li>
 			<li>Hand (each)</li>
 			<li>false</li>
-			<li>-1.75</li>
+			<li>5</li>
 			<li>MissingParts</li>
 			<li>If the whole arm is gone, only the arm or shoulder value applies - the hand is not charged again.</li>
 		</arguments>
@@ -210,7 +211,7 @@
 			<li>MissingPartFinger</li>
 			<li>Finger (each)</li>
 			<li>false</li>
-			<li>-0.35</li>
+			<li>1</li>
 			<li>MissingParts</li>
 			<li>Per missing finger (5 per hand).</li>
 		</arguments>

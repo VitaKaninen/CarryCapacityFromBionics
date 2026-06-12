@@ -485,10 +485,10 @@
 								<key>Toggle{key}</key>
 								<caseTrue>
 									<li Class="XmlExtensions.Setting.Numeric">
-										<decimals>2</decimals>
+										<decimals>3</decimals>
 										<padLeft>85</padLeft>
 										<key>{key}</key>
-										<label>Reduced carry capacity in kg</label>
+										<label>Reduction in kg</label>
 										<defaultValue>{valueDefault}</defaultValue>
 									</li>
 								</caseTrue>

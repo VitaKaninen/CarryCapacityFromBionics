@@ -18,9 +18,12 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         // value: a mangled attached leg is never worse than a clean amputation. Group key is
         // the limb root (the highest TABLE ancestor, or the part itself) - roots stay in the
         // weights map even at 0, so a Leg set to 0 (or unticked) caps its whole subtree at 0.
+        // Spine and Pelvis are folded into one shared group (sentinel key): one penalty if
+        // either is gone, not doubled when both are.
         // Static scratch dict to avoid allocating on the hot path (stats are computed on the
         // main thread, same convention as vanilla's scratch collections in HediffSet).
-        private static readonly Dictionary<BodyPartRecord, float> groupSums = new Dictionary<BodyPartRecord, float>();
+        private static readonly Dictionary<object, float> groupSums = new Dictionary<object, float>();
+        private static readonly object sharedGroupKey = new object();
 
         public override void TransformValue(StatRequest req, ref float val)
         {
@@ -124,13 +127,15 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             }
 
             float total = 0f;
-            foreach (KeyValuePair<BodyPartRecord, float> group in groupSums)
+            foreach (KeyValuePair<object, float> group in groupSums)
             {
-                float cap = weights[group.Key.def];
+                bool shared = group.Key == sharedGroupKey;
+                float cap = shared ? MissingPartsBootstrap.sharedGroupKg : weights[((BodyPartRecord)group.Key).def];
                 if (group.Value > cap)
                 {
                     total += cap;
-                    sb?.AppendLine($"{group.Key.LabelCap} penalties capped at amputation (-{Fmt(cap)} kg): +{Fmt(group.Value - cap)} kg");
+                    string label = shared ? "Spine/pelvis" : ((BodyPartRecord)group.Key).LabelCap.ToString();
+                    sb?.AppendLine($"{label} penalties capped at -{Fmt(cap)} kg: +{Fmt(group.Value - cap)} kg");
                 }
                 else
                 {
@@ -150,8 +155,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     root = cur;
                 }
             }
-            groupSums.TryGetValue(root, out float sum);
-            groupSums[root] = sum + amount;
+            object key = MissingPartsBootstrap.sharedGroupDefs.Contains(root.def) ? sharedGroupKey : root;
+            groupSums.TryGetValue(key, out float sum);
+            groupSums[key] = sum + amount;
         }
 
         private static string Fmt(float value)

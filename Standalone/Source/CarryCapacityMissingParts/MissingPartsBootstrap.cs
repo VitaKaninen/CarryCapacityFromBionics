@@ -19,19 +19,37 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         public static float floorKg;
 
-        // Weight in kg per body part def. ALL 14 weighted defs get an entry; a part that is
+        // Weight in kg per body part def. ALL weighted defs get an entry; a part that is
         // toggled off or set to 0 stays in the map with weight 0, because limb roots cap
         // their whole subtree: a Leg at 0 must zero out foot/bone/toe penalties too.
         public static readonly Dictionary<BodyPartDef, float> weights = new Dictionary<BodyPartDef, float>();
 
+        // Spine and Pelvis share one setting and one penalty group: the penalty applies if
+        // either is missing/damaged and is NOT doubled when both are gone.
+        public static readonly HashSet<BodyPartDef> sharedGroupDefs = new HashSet<BodyPartDef>();
+        public static float sharedGroupKg;
+
         // Defaults MUST stay in sync with 1.6/MissingParts/Patches/CCFB_MissingParts.xml
         // (XE only stores a value once the user saves the settings menu). The menu shows the
         // values as NEGATIVE kg (they remove capacity); the magnitude is what we work with.
-        private static readonly (string defName, float kg)[] defaultTable =
+        // Children of each limb sum exactly to their parent (femur 5.25 + tibia 1.75 +
+        // foot 1.75 = leg 8.75; clavicle 1.75 + arm 3.5 = shoulder 5.25; humerus 0.875 +
+        // radius 0.875 + hand 1.75 = arm 3.5; 5 fingers/toes = hand/foot 1.75).
+        private static readonly (string key, string[] defNames, float kg)[] defaultTable =
         {
-            ("Leg", -8.75f), ("Spine", -7f), ("Pelvis", -7f), ("Shoulder", -6.3f), ("Arm", -5.25f),
-            ("Femur", -4.55f), ("Foot", -3.5f), ("Humerus", -2.1f), ("Tibia", -2.1f), ("Hand", -1.75f),
-            ("Radius", -1.05f), ("Clavicle", -1.05f), ("Finger", -0.35f), ("Toe", -0.35f),
+            ("SpinePelvis", new[] { "Spine", "Pelvis" }, -7f),
+            ("Leg", new[] { "Leg" }, -8.75f),
+            ("Femur", new[] { "Femur" }, -5.25f),
+            ("Tibia", new[] { "Tibia" }, -1.75f),
+            ("Foot", new[] { "Foot" }, -1.75f),
+            ("Toe", new[] { "Toe" }, -0.35f),
+            ("Shoulder", new[] { "Shoulder" }, -5.25f),
+            ("Clavicle", new[] { "Clavicle" }, -1.75f),
+            ("Arm", new[] { "Arm" }, -3.5f),
+            ("Humerus", new[] { "Humerus" }, -0.875f),
+            ("Radius", new[] { "Radius" }, -0.875f),
+            ("Hand", new[] { "Hand" }, -1.75f),
+            ("Finger", new[] { "Finger" }, -0.35f),
         };
 
         static MissingPartsBootstrap()
@@ -43,19 +61,30 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             floorKg = GetFloat("MissingPartFloor", 0f);
 
             bool anyPositive = false;
-            foreach ((string defName, float kg) in defaultTable)
+            foreach ((string key, string[] defNames, float kg) in defaultTable)
             {
-                BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
-                if (def == null)
-                {
-                    continue;
-                }
                 float value = 0f;
-                if (GetBool("ToggleMissingPart" + defName, false))
+                if (GetBool("ToggleMissingPart" + key, false))
                 {
-                    value = System.Math.Abs(GetFloat("MissingPart" + defName, kg));
+                    value = System.Math.Abs(GetFloat("MissingPart" + key, kg));
                 }
-                weights[def] = value;
+                foreach (string defName in defNames)
+                {
+                    BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
+                    if (def == null)
+                    {
+                        continue;
+                    }
+                    weights[def] = value;
+                    if (defNames.Length > 1)
+                    {
+                        sharedGroupDefs.Add(def);
+                    }
+                }
+                if (defNames.Length > 1)
+                {
+                    sharedGroupKg = value;
+                }
                 anyPositive |= value > 0f;
             }
             if (!anyPositive)

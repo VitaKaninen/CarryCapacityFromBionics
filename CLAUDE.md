@@ -204,13 +204,17 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
   the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip). The kg values are
-  stored/displayed **negative** (they remove capacity); the C# takes the absolute value.
-  Defaults (kg = −% × 35): Leg −8.75, Spine/Pelvis −7, Shoulder −6.3, Arm −5.25, Femur −4.55,
-  Foot −3.5, Humerus/Tibia −2.1, Hand −1.75, Radius/Clavicle −1.05, Finger/Toe −0.35.
+  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip, numeric label
+  "Reduction in kg" — keep numeric labels ≤ ~22 chars, XE gives the label exactly half the
+  column and longer ones wrap). The kg values are stored/displayed **negative** (they remove
+  capacity); the C# takes the absolute value.
+  Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent):
+  Spine/Pelvis −7 (ONE row/key `MissingPartSpinePelvis`, one shared penalty group in C# —
+  applies if either is gone, not doubled when both are), Leg −8.75 = Femur −5.25 + Tibia −1.75
+  + Foot −1.75; Foot = 5 × Toe −0.35; Shoulder −5.25 = Clavicle −1.75 + Arm −3.5;
+  Arm = Humerus −0.875 + Radius −0.875 + Hand −1.75; Hand = 5 × Finger −0.35.
   The section body opens with an explainer Text (inserted before the SplitColumn via
-  `PatchOperationInsert`) covering topmost-only counting, HP scaling, the per-limb cap and
-  the 0-disables-the-limb rule; every row has a tooltip (spine/pelvis explain why they matter
+  `PatchOperationInsert`); every row has a tooltip (spine/pelvis explain why they matter
   for non-walking pawns: inventory + caravan weight pool).
 
 ## The Standalone C# half (unchanged by the refactor)

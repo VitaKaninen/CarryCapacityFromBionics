@@ -16,9 +16,10 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
     {
         // Per top-level limb, the summed penalty of its subtree is capped at the limb's own
         // value: a mangled attached leg is never worse than a clean amputation. Group key is
-        // the limb root (the highest weighted ancestor, or the part itself). Static scratch
-        // dict to avoid allocating on the hot path (stats are computed on the main thread,
-        // same convention as vanilla's scratch collections in HediffSet).
+        // the limb root (the highest TABLE ancestor, or the part itself) - roots stay in the
+        // weights map even at 0, so a Leg set to 0 (or unticked) caps its whole subtree at 0.
+        // Static scratch dict to avoid allocating on the hot path (stats are computed on the
+        // main thread, same convention as vanilla's scratch collections in HediffSet).
         private static readonly Dictionary<BodyPartRecord, float> groupSums = new Dictionary<BodyPartRecord, float>();
 
         public override void TransformValue(StatRequest req, ref float val)
@@ -90,7 +91,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             for (int i = 0; i < missing.Count; i++)
             {
                 BodyPartRecord part = missing[i].Part;
-                if (weights.TryGetValue(part.def, out float kg))
+                if (weights.TryGetValue(part.def, out float kg) && kg > 0f)
                 {
                     AddContribution(part, kg, weights);
                     sb?.AppendLine($"Missing {part.Label}: -{Fmt(kg)} kg");
@@ -103,7 +104,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             for (int i = 0; i < allParts.Count; i++)
             {
                 BodyPartRecord part = allParts[i];
-                if (!weights.TryGetValue(part.def, out float kg) || hediffSet.PartIsMissing(part))
+                if (!weights.TryGetValue(part.def, out float kg) || kg <= 0f || hediffSet.PartIsMissing(part))
                 {
                     continue;
                 }

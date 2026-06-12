@@ -9,6 +9,10 @@
 		one of them loads. This bit us badly - see CLAUDE.md gotchas.
 	-->
 	<v1.6>
+		<!-- Menu footer (Reset-all button): must stay the FIRST entry so it applies LAST,
+		     after every section exists, and lands at the bottom of the settings menu. -->
+		<li>1.6/MenuFooter</li>
+
 		<!-- 3rd-party mod patches (folders with a DLC suffix need the mod AND that DLC).
 		     The settings-menu sections show in ALPHABETICAL order (by section label); since this
 		     list applies bottom-up, the block below is sorted REVERSE-alphabetically. Within one

@@ -19,7 +19,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         public static float floorKg;
 
-        // Weight in kg per body part def; parts toggled off (or set to 0) are absent.
+        // Weight in kg per body part def. ALL 14 weighted defs get an entry; a part that is
+        // toggled off or set to 0 stays in the map with weight 0, because limb roots cap
+        // their whole subtree: a Leg at 0 must zero out foot/bone/toe penalties too.
         public static readonly Dictionary<BodyPartDef, float> weights = new Dictionary<BodyPartDef, float>();
 
         // Defaults MUST stay in sync with 1.6/MissingParts/Patches/CCFB_MissingParts.xml
@@ -40,18 +42,25 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             }
             floorKg = GetFloat("MissingPartFloor", 0f);
 
+            bool anyPositive = false;
             foreach ((string defName, float kg) in defaultTable)
             {
-                if (!GetBool("ToggleMissingPart" + defName, false))
+                BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
+                if (def == null)
                 {
                     continue;
                 }
-                float value = System.Math.Abs(GetFloat("MissingPart" + defName, kg));
-                BodyPartDef def = DefDatabase<BodyPartDef>.GetNamedSilentFail(defName);
-                if (def != null && value > 0f)
+                float value = 0f;
+                if (GetBool("ToggleMissingPart" + defName, false))
                 {
-                    weights[def] = value;
+                    value = System.Math.Abs(GetFloat("MissingPart" + defName, kg));
                 }
+                weights[def] = value;
+                anyPositive |= value > 0f;
+            }
+            if (!anyPositive)
+            {
+                return;
             }
 
             InjectStatPart("VEF_MassCarryCapacity");

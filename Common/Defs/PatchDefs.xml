@@ -58,6 +58,27 @@
 												<leftCol/>
 												<rightCol/>
 											</li>
+											<li Class="XmlExtensions.Setting.Gap">
+												<spacing>12</spacing>
+											</li>
+											<!-- Per-section reset. Every row PatchDef registers its keys into this
+											     button's ResetSettings list as it adds its row, so the button only
+											     ever touches THIS section's settings. -->
+											<li Class="XmlExtensions.Setting.Button">
+												<label>Reset this section</label>
+												<key>ToggleSection{section}</key>
+												<height>24</height>
+												<confirm>true</confirm>
+												<message>Reset every setting in this section to its default?</message>
+												<tooltip>Resets this section's checkboxes and values to their defaults. Other sections are not touched.</tooltip>
+												<actions>
+													<li Class="XmlExtensions.Action.ResetSettings">
+														<keys>
+															<li>ToggleSection{section}</li>
+														</keys>
+													</li>
+												</actions>
+											</li>
 										</settings>
 									</li>
 								</caseTrue>
@@ -159,6 +180,13 @@
 										</li>
 									</caseFalse>
 								</li>
+							</value>
+						</Operation>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
+							<value>
+								<li>Toggle{key}</li>
+								<li>{key}</li>
 							</value>
 						</Operation>
 					</caseFalse>
@@ -322,6 +350,13 @@
 								</li>
 							</value>
 						</Operation>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
+							<value>
+								<li>Toggle{key}</li>
+								<li>{key}</li>
+							</value>
+						</Operation>
 					</caseFalse>
 				</Operation>
 
@@ -414,6 +449,7 @@
 			<li>toggleDefault</li>
 			<li>valueDefault</li>
 			<li>section</li>
+			<li>tooltip</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
@@ -436,6 +472,7 @@
 								<rightCol>
 									<li Class="XmlExtensions.Setting.Text">
 										<text>{label}</text>
+										<tooltip>{tooltip}</tooltip>
 									</li>
 								</rightCol>
 							</li>
@@ -462,6 +499,13 @@
 									</li>
 								</caseFalse>
 							</li>
+						</value>
+					</Operation>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
+						<value>
+							<li>Toggle{key}</li>
+							<li>{key}</li>
 						</value>
 					</Operation>
 				</caseFalse>

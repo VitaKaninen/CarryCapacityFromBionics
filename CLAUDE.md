@@ -138,6 +138,12 @@ RimWorld has **two separate carrying systems** — keep them straight:
   their one row in whichever section's file patches first, but each mod's hediff patches are
   gated by its OWN file's section master — unticking the section that shows the row does not
   disable the other mod's bonuses.
+  Each section body also ends with a **"Reset this section" button**: CCFB_Section creates it
+  with an `XmlExtensions.Action.ResetSettings` whose `keys` list starts with the master key,
+  and every row PatchDef appends its `Toggle<key>`/`<key>` pair (inside the dedup guard, so
+  shared keys register with the section that shows the row). A **"Reset all settings"** button
+  (ResetSettings with no keys = whole mod) lives in `1.6/MenuFooter/` — its LoadFolders entry
+  must stay FIRST in the list so it applies last and lands at the bottom of the menu.
 
 `Common/Defs/SettingsMenu.xml` is just a skeleton (title + restart warning). All sections and rows
 are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
@@ -183,9 +189,12 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
 - Rules implemented in `StatPart_MissingBodyParts`: topmost visible missing part only
   (`GetMissingPartsCommonAncestors`, verified: BFS from core, skips subtrees under added parts —
   bionics/prosthetics count as present); damaged attached part contributes
-  `kg × (1 − HP/maxHP)`; contributions grouped by limb root (highest weighted ancestor or self)
+  `kg × (1 − HP/maxHP)`; contributions grouped by limb root (highest TABLE ancestor or self)
   and each group capped at the root's kg (mangled leg never worse than amputation); result
   clamped to the floor setting, where the floor never raises a pawn above its unpenalized value.
+  **All 14 part defs stay in the weights map even at 0** (unticked or zeroed): a limb root at 0
+  caps its whole subtree at 0, so "Leg = 0" really disables the entire leg (user requirement,
+  June 2026); the StatPart is only injected if at least one part has a positive value.
   Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
   stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
 - Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
@@ -195,10 +204,14 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
   the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only). The kg values are stored/displayed **negative** (they remove capacity);
-  the C# takes the absolute value. Defaults (kg = −% × 35): Leg −8.75, Spine/Pelvis −7,
-  Shoulder −6.3, Arm −5.25, Femur −4.55, Foot −3.5, Humerus/Tibia −2.1, Hand −1.75,
-  Radius/Clavicle −1.05, Finger/Toe −0.35.
+  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip). The kg values are
+  stored/displayed **negative** (they remove capacity); the C# takes the absolute value.
+  Defaults (kg = −% × 35): Leg −8.75, Spine/Pelvis −7, Shoulder −6.3, Arm −5.25, Femur −4.55,
+  Foot −3.5, Humerus/Tibia −2.1, Hand −1.75, Radius/Clavicle −1.05, Finger/Toe −0.35.
+  The section body opens with an explainer Text (inserted before the SplitColumn via
+  `PatchOperationInsert`) covering topmost-only counting, HP scaling, the per-limb cap and
+  the 0-disables-the-limb rule; every row has a tooltip (spine/pelvis explain why they matter
+  for non-walking pawns: inventory + caravan weight pool).
 
 ## The Standalone C# half (unchanged by the refactor)
 

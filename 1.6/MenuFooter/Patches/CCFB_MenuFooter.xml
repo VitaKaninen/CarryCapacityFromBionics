@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<!--
+		Menu footer: the "Reset all settings" button. Lives in its own always-loaded folder
+		whose LoadFolders entry is at the very TOP of the list - RimWorld applies loadFolders
+		bottom-up, so this patch runs after every section has been injected and the button
+		lands at the very bottom of the settings menu.
+		ResetSettings without a keys list resets every registered key of this mod.
+	-->
+	<Operation Class="XmlExtensions.PatchOperationAdd">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
+		<value>
+			<li Class="XmlExtensions.Setting.Gap">
+				<spacing>24</spacing>
+			</li>
+			<li Class="XmlExtensions.Setting.GapLine"/>
+			<li Class="XmlExtensions.Setting.Button">
+				<label>Reset all settings</label>
+				<height>30</height>
+				<confirm>true</confirm>
+				<message>Reset ALL of this mod's settings - every section - to their defaults?</message>
+				<tooltip>Resets every section's checkboxes and values to their defaults.</tooltip>
+				<actions>
+					<li Class="XmlExtensions.Action.ResetSettings"/>
+				</actions>
+			</li>
+		</value>
+	</Operation>
+</Patch>

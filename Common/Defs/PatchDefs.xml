@@ -439,8 +439,11 @@
 		CCFB_PartRow: settings-menu row ONLY (no hediff patch) - used by the missing-body-part
 		penalty feature, whose values are read by C# (CarryCapacityMissingParts.dll) instead of
 		feeding XML patches (all missing parts share one MissingBodyPart hediff def, which is why
-		the feature is C#-only). Same row layout as CCFB_Implant's menu half.
-		Args (in order): settings key | menu label | toggle default | kg default | section tag.
+		the feature is C#-only). Same row layout as CCFB_Implant's menu half, plus a static
+		"= X kg" preview right of the percent field showing the adult-human equivalent
+		(percent default x 35 kg; display-only, does NOT track edits to the field - placeholder
+		until a live C# preview setting replaces it). Keep kgText in sync with valueDefault.
+		Args (in order): settings key | menu label | toggle default | percent default | section tag | tooltip | adult kg text.
 	-->
 	<XmlExtensions.PatchDef Name="CCFB_PartRow" Abstract="True">
 		<parameters>
@@ -450,6 +453,7 @@
 			<li>valueDefault</li>
 			<li>section</li>
 			<li>tooltip</li>
+			<li>kgText</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
@@ -484,12 +488,25 @@
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
 								<key>Toggle{key}</key>
 								<caseTrue>
-									<li Class="XmlExtensions.Setting.Numeric">
-										<decimals>1</decimals>
-										<percent>true</percent>
-										<key>{key}</key>
-										<label>Reduce carry capacity by</label>
-										<defaultValue>{valueDefault}</defaultValue>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<split>0.75</split>
+										<gapSize>6</gapSize>
+										<anchor>Middle</anchor>
+										<leftCol>
+											<li Class="XmlExtensions.Setting.Numeric">
+												<decimals>1</decimals>
+												<percent>true</percent>
+												<key>{key}</key>
+												<label>Reduce carry capacity by</label>
+												<defaultValue>{valueDefault}</defaultValue>
+											</li>
+										</leftCol>
+										<rightCol>
+											<li Class="XmlExtensions.Setting.Text">
+												<text>= {kgText} kg</text>
+												<tooltip>Equivalent for an adult human (base capacity 35 kg). Scales with body size.</tooltip>
+											</li>
+										</rightCol>
 									</li>
 								</caseTrue>
 								<caseFalse>

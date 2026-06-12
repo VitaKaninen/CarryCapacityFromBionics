@@ -15,8 +15,8 @@
 		default values the per-limb cap is a safety net, not a daily occurrence.
 		Spine and Pelvis share ONE row/key (MissingPartSpinePelvis): each needs the other, so
 		the worse of the two counts and it is not doubled if both are gone.
-		Row args for CCFB_PartRow: key | label | toggle default | percent default | section tag | tooltip | adult kg text.
-		The kg text is a STATIC display of percent default x 0.35 (adult human) - keep in sync.
+		Row args for CCFB_PartRow: key | label | toggle default | percent default | section tag | tooltip.
+		The value control is DualUnitNumeric: percent stored, adult-kg derived, both editable.
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_Section</patchName>
@@ -55,25 +55,11 @@
 			<Operation Class="XmlExtensions.PatchOperationAdd">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/rightCol</xpath>
 				<value>
-					<li Class="XmlExtensions.Setting.SplitColumn">
-						<split>0.75</split>
-						<gapSize>6</gapSize>
-						<anchor>Middle</anchor>
-						<leftCol>
-							<li Class="XmlExtensions.Setting.Numeric">
-								<decimals>1</decimals>
-								<percent>true</percent>
-								<key>MissingPartMaxReduction</key>
-								<label>Maximum reduction</label>
-								<defaultValue>100</defaultValue>
-							</li>
-						</leftCol>
-						<rightCol>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>= 35 kg</text>
-								<tooltip>Equivalent for an adult human (base capacity 35 kg). Scales with body size.</tooltip>
-							</li>
-						</rightCol>
+					<li Class="Vita.CarryCapacityFromBionics.UI.DualUnitNumeric">
+						<key>MissingPartMaxReduction</key>
+						<label>Maximum reduction</label>
+						<defaultValue>100</defaultValue>
+						<storedUnit>Percent</storedUnit>
 					</li>
 				</value>
 			</Operation>
@@ -96,7 +82,6 @@
 			<li>20</li>
 			<li>MissingParts</li>
 			<li>One penalty for the pair: each needs the other to work, so the worse of the two counts and it is not doubled if both are gone. A pawn missing either cannot walk, but the value still cuts their inventory space and their share of a caravan's weight pool.</li>
-			<li>7</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -108,7 +93,6 @@
 			<li>25</li>
 			<li>MissingParts</li>
 			<li>Top of the leg. Caps the whole leg: femur, tibia, foot and toes together can never subtract more than this value.</li>
-			<li>8.75</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -120,7 +104,6 @@
 			<li>15</li>
 			<li>MissingParts</li>
 			<li>Inner thigh bone - can be destroyed while the leg itself survives.</li>
-			<li>5.25</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -132,7 +115,6 @@
 			<li>5</li>
 			<li>MissingParts</li>
 			<li>Inner shin bone - can be destroyed while the leg itself survives.</li>
-			<li>1.75</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -144,7 +126,6 @@
 			<li>5</li>
 			<li>MissingParts</li>
 			<li>If the whole leg is gone, only the leg value applies - the foot is not charged again.</li>
-			<li>1.75</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -156,7 +137,6 @@
 			<li>1</li>
 			<li>MissingParts</li>
 			<li>Per missing toe (5 per foot).</li>
-			<li>0.35</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -168,7 +148,6 @@
 			<li>15</li>
 			<li>MissingParts</li>
 			<li>Top of the arm. Caps the whole arm: clavicle, arm, bones, hand and fingers together can never subtract more than this value. Bionic and prosthetic arms install here - a replaced shoulder has no penalty.</li>
-			<li>5.25</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -180,7 +159,6 @@
 			<li>5</li>
 			<li>MissingParts</li>
 			<li>Collarbone - can be destroyed while the shoulder itself survives.</li>
-			<li>1.75</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -192,7 +170,6 @@
 			<li>10</li>
 			<li>MissingParts</li>
 			<li>Arm severed below the shoulder.</li>
-			<li>3.5</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -204,7 +181,6 @@
 			<li>2.5</li>
 			<li>MissingParts</li>
 			<li>Inner upper-arm bone - can be destroyed while the arm itself survives.</li>
-			<li>0.875</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -216,7 +192,6 @@
 			<li>2.5</li>
 			<li>MissingParts</li>
 			<li>Inner forearm bone - can be destroyed while the arm itself survives.</li>
-			<li>0.875</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -228,7 +203,6 @@
 			<li>5</li>
 			<li>MissingParts</li>
 			<li>If the whole arm is gone, only the arm or shoulder value applies - the hand is not charged again.</li>
-			<li>1.75</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
@@ -240,7 +214,6 @@
 			<li>1</li>
 			<li>MissingParts</li>
 			<li>Per missing finger (5 per hand).</li>
-			<li>0.35</li>
 		</arguments>
 	</Operation>
 </Patch>

@@ -173,6 +173,17 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `Standalone/Source/CarryCapacityMissingParts/` (SDK-style csproj, net472, build with
   `dotnet build -c Release`; references game DLLs + XmlExtensions.dll by absolute Steam paths;
   output goes straight to Common/Assemblies). **No Harmony** — pure StatPart injection.
+  Also hosts the menu widget **`DualUnitNumeric`** (namespace `Vita.CarryCapacityFromBionics.UI`,
+  June 2026): a custom XE `KeyedSettingContainer` drawing label + TWO linked numeric boxes —
+  percent of adult base (35 kg) and the kg equivalent — editing either writes the other. Only
+  the canonical unit (`storedUnit` = `Percent` or `Kg`) is saved, so existing keys keep their
+  stored meaning; the other box is a derived view (rounding granularity = stored value at
+  `decimals`+1, so kg snaps by ~0.0035 kg steps). Used by ALL value rows: CCFB_PartRow + the
+  MaxReduction cap row (Percent stored) and CCFB_Implant/CCFB_ImplantNativeVEF (Kg stored).
+  It lives in THIS dll because the menu renders in every game and this is the always-loaded
+  assembly referencing XmlExtensions.dll — the Standalone dll stays VEF-gated and untouched.
+  Gotcha: widgets using `TextAnchor`/GUI text fields need csproj references to
+  `UnityEngine.TextRenderingModule` + `UnityEngine.IMGUIModule`, not just CoreModule.
 - `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
   `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
   (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
@@ -209,10 +220,10 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
   the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; numeric uses XE
-  `percent=true` — the STORED value is the plain percent number, e.g. "25", the field shows
-  "25%". Numeric-label gotcha: XE gives the label exactly half the (width − padLeft) box;
-  dropping padLeft bought room for "Reduce carry capacity by"). Values are positive percents.
+  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; the value control is
+  `DualUnitNumeric` with `storedUnit` Percent — the STORED value is the plain percent number,
+  e.g. "25", with the adult-kg box derived/editable beside it. The old stock-Numeric-label
+  width gotcha is moot: the widget draws its own full-row layout). Values are positive percents.
   Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent,
   and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
   `MissingPartSpinePelvis`), Leg 25 = Femur 15 + Tibia 5 + Foot 5; Foot = 5 × Toe 1;

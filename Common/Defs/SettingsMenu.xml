@@ -11,10 +11,11 @@
 		<label>Carry Capacity from Bionics</label>
 		<defaultSpacing>3</defaultSpacing>
 		<settings>
+			<!-- Red via inline rich text, not XE's <color> field: that field only exists in
+			     XML Extensions' 1.6 assembly and throws an XML error on 1.5. -->
 			<li Class="XmlExtensions.Setting.Text">
-				<text>Game must be restarted for any changes to take effect!</text>
+				<text>&lt;color=red&gt;Game must be restarted for any changes to take effect!&lt;/color&gt;</text>
 				<anchor>Middle</anchor>
-				<color>(255,0,0)</color>
 			</li>
 		</settings>
 	</XmlExtensions.SettingsMenuDef>

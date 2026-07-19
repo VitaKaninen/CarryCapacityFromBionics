@@ -10,9 +10,14 @@
 	-->
 	<!--
 		v1.5 support: the "1.6" folder name is just a path, not a version gate, so 1.5 loads the
-		SAME folders - no duplicated files. This block must stay an EXACT mirror of <v1.6> below
-		(any edit there must be copied here). Odyssey-gated entries are harmless in 1.5: the DLC
-		can't be active, so IfModActiveAll never matches and IfModNotActive always does.
+		SAME folders - no duplicated files. NOT a mirror of <v1.6>: RimWorld 1.5 does not know
+		the IfModActiveAll attribute (added in 1.6) and silently IGNORES it, loading the folder
+		unconditionally (empty settings sections for inactive mods). So here every multi-mod
+		folder is gated with plain IfModActive on the ONE mod whose menu section it feeds; the
+		other condition (DLC / donor mod / VAE etc.) is enforced by the PatchDefs' HediffDef
+		existence guard - absent defs produce no rows and no patches. NeoP_Odyssey is omitted:
+		the Odyssey DLC cannot exist on 1.5. When editing <v1.6>, apply the same change here
+		with this translation.
 	-->
 	<v1.5>
 		<li>1.6/MenuFooter</li>
@@ -23,33 +28,33 @@
 		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
 		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_NativeVEF</li>
-		<li IfModActiveAll="Uga.Booga,Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_Odyssey</li>
-		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
-		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
-		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_VAE</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_VAE_NoOdyssey</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_AlphaAnimals</li>
 		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
 		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
-		<li IfModActiveAll="lts.I,Ludeon.RimWorld.Anomaly">1.6/Mods/II_NativeVEF_Anomaly</li>
+		<li IfModActive="lts.I">1.6/Mods/II_NativeVEF_Anomaly</li>
 		<li IfModActive="lts.I">1.6/Mods/II_NativeVEF</li>
-		<li IfModActiveAll="lts.I,rah.rbsehc" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
-		<li IfModActiveAll="lts.I,rah.rbse" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
-		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>
-		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE</li>
-		<li IfModActiveAll="lts.I,vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForkedRoyalty</li>
-		<li IfModActiveAll="lts.I,vat.epoeforked" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForked</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
+		<!-- (II_RBSE appears once here, vs twice in v1.6: identical 1.5 gating would load the
+		     folder twice and double-apply its hediff patches.) -->
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForkedRoyalty</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForked</li>
 		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_NoMSE2</li>
 		<li IfModActive="lts.I" IfModNotActive="Teok25.ArchotechExpanded.Prosthetics">1.6/Mods/II_NoAEP</li>
 		<li IfModActive="lts.I">1.6/Mods/II</li>
 		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
-		<li IfModActiveAll="FrozenSnowFox.VanillaBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFVBE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE</li>
-		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
-		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE_Anomaly</li>
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
 		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
 		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
 		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
-		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActive="vat.epoeforkedroyalty">1.6/Mods/EPOEForkedRoyalty</li>
 		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>

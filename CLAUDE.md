@@ -231,14 +231,30 @@ assembly needed. Otherwise the `Standalone` folder loads (`IfModNotActive` in Lo
 
 - `Standalone/Defs/Stats/CarryCapacityBonus.xml` — our `CarryCapacityBonus` StatDef
   (label "Mass carry capacity", `hideAtValue` 35, custom `workerClass`).
-- `StatWorker_CarryCapacityBonus.cs` — base value = vanilla `MassUtility.Capacity(pawn)`
-  (computed with the transpiler's injection suppressed to avoid recursion).
+- `StatWorker_CarryCapacityBonus.cs` — adds vanilla `MassUtility.Capacity(pawn)` (computed
+  with the transpiler's injection suppressed to avoid recursion) in **`GetValueUnfinalized`**,
+  NOT `GetBaseValueFor`: that method is only virtual since RimWorld 1.6, so a GetBaseValueFor
+  override silently never runs on 1.5 — base stays `defaultBaseValue` 0 and every pawn shows
+  0/0 kg with an empty breakdown (July 2026 1.5-support bug). `GetExplanationUnfinalized`
+  override prepends the "Base value" line the vanilla explanation no longer produces.
 - `CarryCapacityFromBionics.cs` — Harmony **transpiler** on `MassUtility.Capacity`; overwrites the
   result with `pawn.GetStatValue(CarryCapacityBonus)`; `includeStatWorkerResult` guards re-entry.
 - `CarryCapacityDefOf.cs` / `HarmonyPatches.cs` — DefOf handle, `PatchAll()` on startup.
 
-C# targets .NET Framework 4.7.2; solution at `Standalone/Source/CarryCapacityStandalone/`.
-Built DLL is committed under `Standalone/Assemblies/`.
+C# targets .NET Framework 4.7.2; solution at `Standalone/Source/CarryCapacityStandalone/`
+(SDK-style csproj since July 2026, `dotnet build -c Release` outputs straight to
+`Standalone/Assemblies/`; references game DLLs by absolute Steam path, so it compiles against
+whatever version the Steam install currently is — fine either way, the code only uses members
+that exist in both 1.5 and 1.6). Built DLL is committed under `Standalone/Assemblies/`.
+
+## RimWorld 1.5 support (July 2026)
+
+`About.xml` lists 1.5+1.6; the `<v1.5>` LoadFolders block reuses the same `1.6/...` folders
+(the folder name is just a path). It is NOT a mirror of `<v1.6>` — 1.5 lacks the
+`IfModActiveAll` attribute (see gotchas), so multi-mod folders are gated on the single
+section-owning mod and the PatchDefs' HediffDef existence guard enforces the rest;
+`NeoP_Odyssey` is omitted (Odyssey can't exist on 1.5). Any `<v1.6>` edit must be translated
+into `<v1.5>` accordingly (comment above the block explains the translation).
 
 ## Settings keys — naming convention (matters for collisions)
 
@@ -313,6 +329,16 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   folder would need `IfModNotActive` on both teok25 packageIds.
 
 ## Conventions / gotchas
+- **RimWorld 1.5 vs 1.6 differences that bit us (July 2026):**
+  - `IfModActiveAll`/unknown loadFolders attributes are silently IGNORED by 1.5 → the folder
+    loads unconditionally (symptom: empty settings sections for inactive mods). 1.5 only knows
+    `IfModActive` / `IfModNotActive` (comma list = ANY-of; both attrs on one li = AND).
+  - `StatWorker.GetBaseValueFor` is non-virtual in 1.5 (virtual since 1.6) — overrides compile
+    fine and are silently dead. Override `GetValueUnfinalized` instead (virtual in both).
+  - XML Extensions' 1.5 assembly lacks the `Setting.Text` `<color>` field → red XML error +
+    Def Error on load. Use inline Unity rich text (`&lt;color=red&gt;...`) in `<text>` instead.
+  - Verify a 1.5 game-API assumption by IL dump: Mono.Cecil script pattern in scratchpad
+    (`ildump`) — `strings` on Assembly-CSharp works for attribute names.
 - **THE BIG ONE — patch files in different load folders MUST have unique filenames.**
   RimWorld treats `loadFolders` entries as override layers: files at the same mod-relative path
   (e.g. two folders each containing `Patches/CarryCapacity.xml`) shadow each other and only one

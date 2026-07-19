@@ -12,6 +12,7 @@
 .vs
 CLAUDE.md
 Thumbs.db
+bin
 obj
 
 *.bak

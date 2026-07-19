@@ -8,6 +8,59 @@
 		(e.g. two folders both containing Patches/CarryCapacity.xml) shadow each other and only
 		one of them loads. This bit us badly - see CLAUDE.md gotchas.
 	-->
+	<!--
+		v1.5 support: the "1.6" folder name is just a path, not a version gate, so 1.5 loads the
+		SAME folders - no duplicated files. This block must stay an EXACT mirror of <v1.6> below
+		(any edit there must be copied here). Odyssey-gated entries are harmless in 1.5: the DLC
+		can't be active, so IfModActiveAll never matches and IfModNotActive always does.
+	-->
+	<v1.5>
+		<li>1.6/MenuFooter</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
+		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
+		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
+		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
+		<li IfModActive="rah.rbse">1.6/Mods/RBSE</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP_NativeVEF</li>
+		<li IfModActiveAll="Uga.Booga,Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_Odyssey</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded">1.6/Mods/NeoP_VAE</li>
+		<li IfModActiveAll="Uga.Booga,VanillaExpanded.VanillaAnimalsExpanded" IfModNotActive="Ludeon.RimWorld.Odyssey">1.6/Mods/NeoP_VAE_NoOdyssey</li>
+		<li IfModActiveAll="Uga.Booga,sarg.alphaanimals">1.6/Mods/NeoP_AlphaAnimals</li>
+		<li IfModActive="Uga.Booga">1.6/Mods/NeoP</li>
+		<li IfModActive="NunahurAlShamikh.MedP">1.6/Mods/MedP</li>
+		<li IfModActiveAll="lts.I,Ludeon.RimWorld.Anomaly">1.6/Mods/II_NativeVEF_Anomaly</li>
+		<li IfModActive="lts.I">1.6/Mods/II_NativeVEF</li>
+		<li IfModActiveAll="lts.I,rah.rbsehc" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
+		<li IfModActiveAll="lts.I,rah.rbse" IfModNotActive="MSE2.Core">1.6/Mods/II_RBSE</li>
+		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE_Royalty</li>
+		<li IfModActiveAll="lts.I,FrozenSnowFox.AdvancedBionicsExpansion" IfModNotActive="MSE2.Core">1.6/Mods/II_FSFABE</li>
+		<li IfModActiveAll="lts.I,vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForkedRoyalty</li>
+		<li IfModActiveAll="lts.I,vat.epoeforked" IfModNotActive="MSE2.Core">1.6/Mods/II_EPOEForked</li>
+		<li IfModActive="lts.I" IfModNotActive="MSE2.Core">1.6/Mods/II_NoMSE2</li>
+		<li IfModActive="lts.I" IfModNotActive="Teok25.ArchotechExpanded.Prosthetics">1.6/Mods/II_NoAEP</li>
+		<li IfModActive="lts.I">1.6/Mods/II</li>
+		<li IfModActive="Mey.Prosthetics">1.6/Mods/IP</li>
+		<li IfModActiveAll="FrozenSnowFox.VanillaBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFVBE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.VanillaBionicsExpansion">1.6/Mods/FSFVBE</li>
+		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
+		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
+		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
+		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
+		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
+		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
+		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
+		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
+		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
+		<li>1.6/Ludeon/Core</li>
+		<li>1.6/MissingParts</li>
+		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
+		<li>Common</li>
+	</v1.5>
 	<v1.6>
 		<!-- Menu footer (Reset-all button): must stay the FIRST entry so it applies LAST,
 		     after every section exists, and lands at the bottom of the settings menu. -->

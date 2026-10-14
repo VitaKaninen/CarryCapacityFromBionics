@@ -85,8 +85,8 @@ RimWorld has **two separate carrying systems** — keep them straight:
 8. **Validate by script before testing**: all XML parses; every patched defName exists in the
    source mod's def XML (catches typos AND naming-order surprises like `RBSE_LeftExtra...`);
    no settings-key collisions; patch filenames unique. Then update this file's supported list.
-9. **Commit + push** (folder rule), **deploy** with:
-   `robocopy <repo> "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\CarryCapacityFromBionics" /MIR /XD .git .claude`
+9. **Commit + push** (folder rule), **deploy** with the parent folder's
+   `python -I Tools/deploy/deploy.py . CarryCapacityFromBionics` (never `/MIR`: it deletes).
 10. **In-game test** (user does this): settings rows appear only when the mod is active; a pawn
     with the implant shows base 35 + value in Gear tab / "Mass carry capacity" stat breakdown;
     re-test with VEF active if time permits. NOTE: thanks to the missing-def guard, absent

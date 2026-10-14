@@ -9,10 +9,9 @@
 		<li>1.7</li>
 	</supportedVersions>
 	<description>
-[h2]Description[/h2]
 Adds Extra pawn inventory and caravan carrying capacity from Bionics.  
-	
-This is intended to be used with mods such as "Pick Up and Haul" and "While You're Up", that utilize the player's inventory for hauling around the map.
+
+This is intended to be used with mods such as [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1279012058]Pick Up And Haul[/url] or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3742459652]Hauler's Dream[/url], that utilize the player's inventory for hauling around the map.
 
 Also includes optional settings to reduce carry capacity if a pawn has missing or injured body parts.
 

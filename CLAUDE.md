@@ -91,8 +91,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
     with the implant shows base 35 + value in Gear tab / "Mass carry capacity" stat breakdown;
     re-test with VEF active if time permits. NOTE: thanks to the missing-def guard, absent
     hediffs are skipped *silently* — a clean log does NOT prove the patch landed; check the
-    in-game number. The log can be read directly at
-    `%USERPROFILE%\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`.
+    in-game number. Log location: see the parent `CLAUDE.md` (it moved in 1.7).
 
 ## Architecture (PatchDef-based, single tree)
 
@@ -171,7 +170,7 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
 
 - **`Common/Assemblies/CarryCapacityMissingParts.dll`** — always loads (Common folder). Source:
   `Standalone/Source/CarryCapacityMissingParts/` (SDK-style csproj, net472, build with
-  `dotnet build -c Release`; references game DLLs + XmlExtensions.dll by absolute Steam paths;
+  `dotnet build -c Release`; references `Krafs.Rimworld.Ref` + XmlExtensions.dll by absolute Workshop path;
   output goes straight to Common/Assemblies). **No Harmony** — pure StatPart injection.
 - `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
   `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
@@ -239,17 +238,17 @@ assembly needed. Otherwise the `Standalone` folder loads (`IfModNotActive` in Lo
   override prepends the "Base value" line the vanilla explanation no longer produces.
 - `CarryCapacityFromBionics.cs` — Harmony **transpiler** on `MassUtility.Capacity`; overwrites the
   result with `pawn.GetStatValue(CarryCapacityBonus)`; `includeStatWorkerResult` guards re-entry.
-- `CarryCapacityDefOf.cs` / `HarmonyPatches.cs` — DefOf handle, `PatchAll()` on startup.
+- `CarryCapacityDefOf.cs` / `HarmonyPatches.cs` — DefOf handle, `PatchAll(typeof(HarmonyPatches).Assembly)` on startup.
 
 C# targets .NET Framework 4.7.2; solution at `Standalone/Source/CarryCapacityStandalone/`
 (SDK-style csproj since July 2026, `dotnet build -c Release` outputs straight to
-`Standalone/Assemblies/`; references game DLLs by absolute Steam path, so it compiles against
-whatever version the Steam install currently is — fine either way, the code only uses members
-that exist in both 1.5 and 1.6). Built DLL is committed under `Standalone/Assemblies/`.
+`Standalone/Assemblies/`; references `Krafs.Rimworld.Ref` 1.6.4871 + `Lib.Harmony` 2.4.1 from NuGet,
+not the install — one net472 DLL serves 1.5, 1.6 and 1.7; the code only uses members that exist
+in all three). Built DLL is committed under `Standalone/Assemblies/`.
 
 ## RimWorld 1.5 support (July 2026)
 
-`About.xml` lists 1.5+1.6; the `<v1.5>` LoadFolders block reuses the same `1.6/...` folders
+`About.xml` lists 1.5–1.7; the `<v1.5>` LoadFolders block reuses the same `1.6/...` folders
 (the folder name is just a path). It is NOT a mirror of `<v1.6>` — 1.5 lacks the
 `IfModActiveAll` attribute (see gotchas), so multi-mod folders are gated on the single
 section-owning mod and the PatchDefs' HediffDef existence guard enforces the rest;

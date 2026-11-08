@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml;
 using UnityEngine;
 using Verse;
@@ -79,6 +80,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         }
     }
 
+    // Picks Easy or Advanced on first run: saved values that differ from the defaults mean Advanced.
     public class PatchOperation_DecideMode : PatchOperation
     {
         private const string ModeKey = "ToggleSectionSimple";
@@ -86,6 +88,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         protected override bool ApplyWorker(XmlDocument xml)
         {
             string modId = MissingPartsBootstrap.ModId;
+            typeof(SettingsManager)
+                .GetMethod("AddMod", BindingFlags.Static | BindingFlags.NonPublic, null, new[] { typeof(string) }, null)
+                .Invoke(null, new object[] { modId });
             if (SettingsManager.TryGetSetting(modId, ModeKey, out string stored) && bool.TryParse(stored, out bool easy))
             {
                 SettingsManager.SetSetting(modId, ModeKey, easy ? "true" : "false");
@@ -175,6 +180,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         }
     }
 
+    // Hover tooltip as a table: name left, numbers right-aligned, extra columns when it is too tall.
     public static class TableTip
     {
         private const float RowHeight = 20f;

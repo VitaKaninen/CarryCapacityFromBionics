@@ -17,6 +17,10 @@
 - No missing-part penalty for animals.
 - The Google Sheet is the source of truth for values (mod re-synced 2026-11-08, commit 5862883).
 - Negative tech levels (−1/−2) are the user's own choice; keep the formula.
+- **No auto-scan of mod files** (user 2026-11-08): support stays a hand-curated list of mods. Simple
+  mode computes from per-row data we write ourselves (body part / efficiency / tech tier, as in the
+  sheet), not from the hediff defs at runtime. The scan's "blockers" (no efficiency, torso, II modular
+  parts, multi-part, no tech level) are just values we choose once per row; efficiency fallback 1.
 - Standing read permission for the RimWorld install and workshop 294100 (in folder `CLAUDE.md`).
 
 ## Done this session
@@ -35,10 +39,12 @@
   → double-dip with our 10 in VEF games. Move to `NeoP_NativeVEF`; default = author's 15 or our 10?
 - Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
   parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
-- Artificial clavicle: sheet weight now 5% but "Value used" still −1 (math −1.58); mod has −1.
+- Artificial clavicle (EPOE): sheet (2026-11-08) has efficiency 1.5, Value used −1, math −2.63; EPOE def
+  efficiency is 0.8 (math −1.4). User said "changed to 1.5" — likely meant Value used −1.5. Mod has −1.
 
 ## Next steps
 1. Fix Sewn-In Bag once answered.
 2. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
-   as one plan for user approval before code; settle how simple mode treats the blocker categories.
+   as one plan for user approval before code. Rows gain part/efficiency/tier args; open: whether
+   the kg math runs in XML Extensions (no arithmetic op found in `XmlExtensionsReference`) or C#.
 3. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

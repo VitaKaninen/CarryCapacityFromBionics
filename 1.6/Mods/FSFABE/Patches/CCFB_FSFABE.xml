@@ -19,7 +19,7 @@
 			<li>FSFProstheticHand</li>
 			<li>Prosthetic Hand</li>
 			<li>false</li>
-			<li>-1.5</li>
+			<li>-0.4</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -30,7 +30,7 @@
 			<li>FSFProstheticFoot</li>
 			<li>Prosthetic Foot</li>
 			<li>false</li>
-			<li>-2.5</li>
+			<li>-0.1</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -41,7 +41,7 @@
 			<li>FSFProstheticSpine</li>
 			<li>Prosthetic Spine</li>
 			<li>false</li>
-			<li>-5</li>
+			<li>-1.5</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -107,7 +107,7 @@
 			<li>FSFBionicCleanerLeg</li>
 			<li>Bionic Cleaning Leg</li>
 			<li>true</li>
-			<li>22.5</li>
+			<li>20</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -239,7 +239,7 @@
 			<li>FSFAdvBionicSpine</li>
 			<li>Adv. Bionic Spine</li>
 			<li>true</li>
-			<li>32</li>
+			<li>30</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -250,7 +250,7 @@
 			<li>FSFArchotechPowerArm</li>
 			<li>Archotech Power Arm</li>
 			<li>true</li>
-			<li>32</li>
+			<li>30</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -261,7 +261,7 @@
 			<li>FSFArchotechMedicArm</li>
 			<li>Archotech Medic Arm</li>
 			<li>true</li>
-			<li>32</li>
+			<li>30</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>
@@ -272,7 +272,7 @@
 			<li>FSFArchotechSpine</li>
 			<li>Archotech Spine</li>
 			<li>true</li>
-			<li>42</li>
+			<li>40</li>
 			<li>FSFABE</li>
 		</arguments>
 	</Operation>

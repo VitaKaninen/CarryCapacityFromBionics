@@ -96,7 +96,7 @@
 			<li>IPPoweredArmUtility</li>
 			<li>Powered Arm (Utility)</li>
 			<li>true</li>
-			<li>9.5</li>
+			<li>9</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -107,7 +107,7 @@
 			<li>IPPoweredArmUtility</li>
 			<li>Powered Arm (Utility)</li>
 			<li>true</li>
-			<li>9.5</li>
+			<li>9</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -118,7 +118,7 @@
 			<li>IPPoweredArmUtility</li>
 			<li>Powered Arm (Utility)</li>
 			<li>true</li>
-			<li>9.5</li>
+			<li>9</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -129,7 +129,7 @@
 			<li>IPPoweredArmUtility</li>
 			<li>Powered Arm (Utility)</li>
 			<li>true</li>
-			<li>9.5</li>
+			<li>9</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -140,7 +140,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -151,7 +151,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -162,7 +162,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -173,7 +173,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -184,7 +184,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -195,7 +195,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -206,7 +206,7 @@
 			<li>IPPoweredArm</li>
 			<li>Powered Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -217,7 +217,7 @@
 			<li>IPMechtechArm</li>
 			<li>Mechtech Arm</li>
 			<li>true</li>
-			<li>10.5</li>
+			<li>10</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -228,7 +228,7 @@
 			<li>IPPoweredArmNoble</li>
 			<li>Powered Arm (Noble)</li>
 			<li>true</li>
-			<li>11.5</li>
+			<li>12.5</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -239,7 +239,7 @@
 			<li>IPPoweredArmNoble</li>
 			<li>Powered Arm (Noble)</li>
 			<li>true</li>
-			<li>11.5</li>
+			<li>12.5</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -250,7 +250,7 @@
 			<li>IPPoweredArmNoble</li>
 			<li>Powered Arm (Noble)</li>
 			<li>true</li>
-			<li>11.5</li>
+			<li>12.5</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -261,7 +261,7 @@
 			<li>IPPoweredArmNoble</li>
 			<li>Powered Arm (Noble)</li>
 			<li>true</li>
-			<li>11.5</li>
+			<li>12.5</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -283,7 +283,7 @@
 			<li>IPPoweredLegUtility</li>
 			<li>Powered Leg (Utility)</li>
 			<li>true</li>
-			<li>16</li>
+			<li>15</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -294,7 +294,7 @@
 			<li>IPPoweredLegUtility</li>
 			<li>Powered Leg (Utility)</li>
 			<li>true</li>
-			<li>16</li>
+			<li>15</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -305,7 +305,7 @@
 			<li>IPPoweredLegUtility</li>
 			<li>Powered Leg (Utility)</li>
 			<li>true</li>
-			<li>16</li>
+			<li>15</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -316,7 +316,7 @@
 			<li>IPPoweredLegUtility</li>
 			<li>Powered Leg (Utility)</li>
 			<li>true</li>
-			<li>16</li>
+			<li>15</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -404,7 +404,7 @@
 			<li>IPPoweredLegNoble</li>
 			<li>Powered Leg (Noble)</li>
 			<li>true</li>
-			<li>19</li>
+			<li>20</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -415,7 +415,7 @@
 			<li>IPPoweredLegNoble</li>
 			<li>Powered Leg (Noble)</li>
 			<li>true</li>
-			<li>19</li>
+			<li>20</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -426,7 +426,7 @@
 			<li>IPPoweredLegNoble</li>
 			<li>Powered Leg (Noble)</li>
 			<li>true</li>
-			<li>19</li>
+			<li>20</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -437,7 +437,7 @@
 			<li>IPPoweredLegNoble</li>
 			<li>Powered Leg (Noble)</li>
 			<li>true</li>
-			<li>19</li>
+			<li>20</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -448,7 +448,7 @@
 			<li>IPPoweredLegUnique</li>
 			<li>Powered Leg (Unique)</li>
 			<li>true</li>
-			<li>21</li>
+			<li>20</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>
@@ -459,7 +459,7 @@
 			<li>IPPoweredSpine</li>
 			<li>Powered Spine</li>
 			<li>true</li>
-			<li>14</li>
+			<li>15</li>
 			<li>IP</li>
 		</arguments>
 	</Operation>

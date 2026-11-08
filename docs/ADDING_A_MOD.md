@@ -1,14 +1,21 @@
 # Adding support for a new mod
 ## Value methodology (matches the Google Sheet)
 
-`value ≈ partEfficiency × importanceWeight × techMultiplier × 35 kg`, then hand-rounded.
+- tech > 0: `math = partEfficiency × weight × tech × 35`
+- tech < 0 (prosthetic/crude): `math = −(1 − partEfficiency) × weight × 35` — no tier multiplier
+  (old `eff × −tech` penalised better parts more and went below the missing-part value).
+- **Value = math rounded** by the sheet's ladder (Sheets, F = Math):
+  `=LET(m,F,a,ABS(m),s,IFS(a<0.5,0.1,a<3,0.25,a<5,0.5,a<10,1,a<20,2.5,TRUE,5),r,ROUND(m/s)*s,IF(AND(r=0,m<>0),SIGN(m)*s,r))`
+  (half away from zero; a non-zero math never rounds to 0). Native-VEF rows = author's value.
+- Shared keys (EPOE/EPOE-Forked, FSF ABE/VBE) get each file's OWN section value from the sheet,
+  so the defaults can differ per file; when both mods are active the saved setting covers both.
 
 - **Weights** (the Google Sheet is the source; same table as the missing-parts penalty): arm 15%,
   leg 25%, spine/pelvis/exoskeleton/membrane 20%, femur 12.5%, foot 7.5%, tibia 5%, clavicle 5%,
   hand 5%, humerus/radius 2.5%, finger/toe 1%. Quadrupeds: 20% per leg (user 2026-11-08).
   Mod defaults were re-synced to the sheet 2026-11-08 (feet had used 10%, bones the old weights).
-- **Tech multiplier**: industrial bionic 2, spacer/archotech 3, below-natural prosthetic −1,
-  crude (peg leg/hook/wooden) −2, pure utility arms (drill/field/claw) → weight 0% → value 0.
+- **Tech multiplier**: industrial bionic 2, spacer/archotech 3; prosthetic −1 and crude −2 are
+  labels only (sign selects the penalty formula); pure utility arms (drill/field/claw) → weight 0%.
 - partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
   one, e.g. muscle stimulators, estimate from its capMods).
 - **Defaults convention**: positive values default ON; zero-value utility parts and all

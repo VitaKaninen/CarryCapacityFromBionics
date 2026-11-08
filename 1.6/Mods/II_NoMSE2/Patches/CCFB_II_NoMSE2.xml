@@ -31,7 +31,7 @@
 			<li>IILTS_ModularBionicLeg</li>
 			<li>Bionic Leg (Modular)</li>
 			<li>true</li>
-			<li>22.5</li>
+			<li>20</li>
 			<li>II</li>
 		</arguments>
 	</Operation>
@@ -42,7 +42,7 @@
 			<li>IILTS_ModularBionicSpine</li>
 			<li>Bionic Spine (Modular)</li>
 			<li>true</li>
-			<li>20</li>
+			<li>15</li>
 			<li>II</li>
 		</arguments>
 	</Operation>
@@ -75,7 +75,7 @@
 			<li>IILTS_ModularArchotechSpine</li>
 			<li>Archotech Spine (Modular)</li>
 			<li>true</li>
-			<li>32</li>
+			<li>30</li>
 			<li>II</li>
 		</arguments>
 	</Operation>

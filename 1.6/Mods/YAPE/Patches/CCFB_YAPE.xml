@@ -19,7 +19,7 @@
 			<li>YAPESimpleProstheticFinger</li>
 			<li>Prosthetic Finger</li>
 			<li>false</li>
-			<li>-0.3</li>
+			<li>-0.1</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -30,7 +30,7 @@
 			<li>YAPESimpleProstheticToe</li>
 			<li>Prosthetic Toe</li>
 			<li>false</li>
-			<li>-0.3</li>
+			<li>-0.1</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -41,7 +41,7 @@
 			<li>YAPESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
 			<li>false</li>
-			<li>-1.5</li>
+			<li>-0.2</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -52,7 +52,7 @@
 			<li>YAPESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
 			<li>false</li>
-			<li>-2.5</li>
+			<li>-0.3</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -129,7 +129,7 @@
 			<li>YAPEAdvancedBionicHand</li>
 			<li>Adv. Bionic Hand</li>
 			<li>true</li>
-			<li>7.5</li>
+			<li>8</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -140,7 +140,7 @@
 			<li>YAPEAdvancedBionicFoot</li>
 			<li>Adv. Bionic Foot</li>
 			<li>true</li>
-			<li>10</li>
+			<li>12.5</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -173,7 +173,7 @@
 			<li>YAPEAdvancedBionicSpine</li>
 			<li>Adv. Bionic Spine</li>
 			<li>true</li>
-			<li>32</li>
+			<li>30</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -184,7 +184,7 @@
 			<li>YAPEUltratechBionicArm</li>
 			<li>Ultratech Bionic Arm</li>
 			<li>true</li>
-			<li>28</li>
+			<li>30</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>
@@ -206,7 +206,7 @@
 			<li>YAPEUltratechBionicSpine</li>
 			<li>Ultratech Bionic Spine</li>
 			<li>true</li>
-			<li>37</li>
+			<li>35</li>
 			<li>YAPE</li>
 		</arguments>
 	</Operation>

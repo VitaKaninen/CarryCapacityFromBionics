@@ -15,8 +15,9 @@
 - Animal bonuses = % of the animal's base capacity (body size × 35); support goes through the pack
   flag (vanilla or Caravan Packs), no capacity-granting C#. Quadrupeds: 20% per leg.
 - No missing-part penalty for animals.
-- The Google Sheet is the source of truth for values (mod re-synced 2026-11-08, commit 5862883).
-- Negative tech levels (−1/−2) are the user's own choice; keep the formula.
+- The Google Sheet is the source of truth for values. Value rules + rounding: `docs/ADDING_A_MOD.md`
+  (penalties = `−(1 − eff) × weight × 35`, user 2026-11-08; smaller penalties wanted).
+- Sheet's missing-part kg column need not sum to parents (user): the mod uses the Weight % only.
 - **No auto-scan of mod files** (user 2026-11-08): support stays a hand-curated list of mods. Simple
   mode computes from per-row data we write ourselves (body part / efficiency / tech tier, as in the
   sheet), not from the hediff defs at runtime. The scan's "blockers" (no efficiency, torso, II modular
@@ -26,8 +27,10 @@
 ## Done this session
 - ADSAP2 + Caravan Packs research; game IL verified (`MassUtility.Capacity` returns 0 for non-pack
   animals; `Pawn.BodySize` = life-stage factor × race base size, no cap).
-- 24 implant defaults + missing-part femur 12.5 / foot 7.5 matched to the sheet; DLL rebuilt; deployed.
-  **Not yet tested in game.**
+- Sheet audited against every source def's `partEfficiency` (user fixed it), then 143 defaults in
+  25 patch files synced to it; Sewn-In Bag → `NeoP_NativeVEF` (author's 15). Deployed.
+  **Not yet tested in game.** Shared keys now have per-file defaults (EPOE vs EPOE-Forked, FSF ABE 40
+  vs VBE 25 Archotech Spine).
 - CLAUDE.md split into `docs/`.
 - Scan of all 320 patched hediffs vs source defs (simple-mode blockers): 64 non-replacement implants
   (no efficiency, torso), 6 replacement parts with default efficiency 1.0, 6 II modular parts with no
@@ -35,23 +38,11 @@
   installed, so unchecked. Rerun: scratch scripts are gone; re-derive from `docs/ADDING_A_MOD.md` step 8.
 
 ## Open questions
-- Sheet efficiency audit (2026-11-08; sheet vs source `partEfficiency`): mod values all match the
-  sheet's "Value used". Efficiency mismatches reported to user, awaiting their sheet decisions:
-  vanilla Prosthetic Arm 0.85→0.50; AE Archotech Spine 2.0→1.7; EPOE Prosthetic Hand 0.8→0.7;
-  EPOE-F Prosthetic Foot 0.9→0.8, Hook Hand 0.3→0.6, Steel Arm 0.35→0.6, Adv Power Claw 1.25→1.0,
-  Adv Bionic Spine 1.35→1.25; FSF VBE Archotech Spine 1.25 (ABE's same defName 2.0, shared key);
-  RBSE Adv Bionic Arm/Leg 1.3→1.5, Spine 1.2→1.0, Exoskeleton 1.15→1.0; YAPE SoSArchotechSpine
-  1.25→2. Sheet-internal: RBSE humerus weight 3% (table 2.5%), Ambroisen Foot weight 7.5% (others
-  0%), Artificial Hoof 10% (no hoof weight), EPOE-F toe −0.5 vs finger −0.3, intro text says feet 10%.
-- **Penalty formula (user 2026-11-08):** tech < 0 → `−(1 − eff) × weight × 35`, no tier multiplier,
-  no extra scale (user finds the smaller penalties fine). Tech ≥ 0 unchanged (`eff × weight × tech × 35`).
-  Sheet: `=IF(E<0, -D*(1-C)*35, E*D*C*35)`. Old `eff × −tech` penalised better parts more and put
-  Wooden Foot / Peg Leg below the missing-part value. User will recompute the sheet; then sync the mod.
 - Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
   parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
 
 ## Next steps
-1. Apply whatever the user changes in the sheet after the efficiency audit.
+1. User tests the synced defaults in game.
 2. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
    as one plan for user approval before code. Rows gain part/efficiency/tier args; open: whether
    the kg math runs in XML Extensions (no arithmetic op found in `XmlExtensionsReference`) or C#.

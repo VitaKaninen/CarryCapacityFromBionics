@@ -166,7 +166,7 @@
 									<key>Toggle{key}</key>
 									<caseTrue>
 										<li Class="XmlExtensions.Setting.Numeric">
-											<decimals>1</decimals>
+											<decimals>2</decimals>
 											<padLeft>85</padLeft>
 											<key>{key}</key>
 											<label>Extra carry capacity in kg</label>
@@ -334,7 +334,7 @@
 									<key>Toggle{key}</key>
 									<caseTrue>
 										<li Class="XmlExtensions.Setting.Numeric">
-											<decimals>1</decimals>
+											<decimals>2</decimals>
 											<padLeft>85</padLeft>
 											<key>{key}</key>
 											<label>Extra carry capacity in kg</label>

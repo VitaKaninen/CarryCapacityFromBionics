@@ -174,6 +174,9 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - Only XmlExtensions operations accept `<xmlDoc>`; that's why the PatchDef uses
   `XmlExtensions.Conditional` / `XmlExtensions.PatchOperationAdd` instead of the vanilla ops.
 - Settings changes require a **game restart** (stated in the menu UI).
+- XE `Setting.Numeric` **saves** its value rounded (half-to-even) to `<decimals>` every time the
+  menu draws it (`Numeric.cs:92-95`), so `<decimals>` must cover the finest default (kg rows: 2,
+  for −2.75 etc.; at 1 they silently became −2.8).
 - The mod only ever adds `statOffsets` to the implant's `HediffDef` stage — never touches body
   parts or recipes.
 - Historic quirk kept for behavior parity: if a hediff has multiple `stages/li` with

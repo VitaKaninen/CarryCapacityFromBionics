@@ -53,6 +53,7 @@
 								<percentKey>ExtraCapacityHuman</percentKey>
 								<examples>
 									<li>
+										<label>Colonist</label>
 										<race>Human</race>
 									</li>
 								</examples>

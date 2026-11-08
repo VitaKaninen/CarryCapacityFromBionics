@@ -16,15 +16,20 @@ writes them to the HediffDef as a DefModExtension (`CCFB.ImplantData`). Source =
 add a Part column (scripted guess from weight + label, user checks), then script the arg edit
 across all patch files. Native-VEF rows get data but simple mode leaves the author's value alone.
 
-## 1. Extra capacity % — BUILT 2026-11-08, awaiting in-game test
+## 1. Extra capacity % — BUILT; % math passed in game 2026-11-08 (+3.5 kg at 10%)
 - `1.6/ExtraCapacity` (LoadFolders entry right after MissingParts = top menu section).
   Keys `ExtraCapacityHuman`, `ExtraCapacityAnimal` (percent numbers, default 0), master
-  `ToggleSectionExtraCapacity` (default true).
+  `ToggleSectionExtraCapacity` (default **false**, user; C# fallback must match).
+- Layout (user): description first, then per group a row (label | narrow % box) with its examples
+  right under the box, right-aligned, numbers red (= they update live). Built by replacing the
+  section's tagged SplitColumn (tag kept on the Humans row for CCFB_Section's idempotency guard).
 - C# in `CarryCapacityMissingParts.dll` (`ExtraCapacity.cs`): `StatPart_ExtraCapacity` adds
   pct × body size × 35 (humanlike non-babies; animals only if `packAnimal`), injected only if a
-  value ≠ 0. `Setting_CapacityExamples` (custom XE setting, field `percentKey` — NOT `key`, which
-  SettingContainer already has) draws live adult examples: Human; Husky, Muffalo, Thrumbo.
-- Percent storage verified by decompile (see CLAUDE.md conventions).
+  value ≠ 0. `Setting_CapacityExamples` (field `percentKey` — NOT `key`, which SettingContainer
+  already has; list of `CapacityExample`: label, race, section, implant keys) shows
+  adult base + enabled implant kg (read live from that section's settings) → + pct × base.
+  Human examples: no implants; 2 archotech arms + 2 archotech legs + bionic spine (vanilla has
+  no archotech spine). Animals: Husky, Muffalo, Thrumbo.
 
 ## 2. Simple mode
 - `UseSimpleSettings` checkbox at the top. Ticked: per-mod sections hidden (CCFB_Section body wrapped

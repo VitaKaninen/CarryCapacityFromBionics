@@ -54,12 +54,23 @@
 			<Operation Class="XmlExtensions.PatchOperationAdd">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/rightCol</xpath>
 				<value>
-					<li Class="XmlExtensions.Setting.Numeric">
-						<decimals>1</decimals>
-						<percent>true</percent>
-						<key>MissingPartMaxReduction</key>
-						<label>Maximum reduction</label>
-						<defaultValue>100</defaultValue>
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<split>0.79</split>
+						<anchor>Middle</anchor>
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Text">
+								<text>Maximum reduction</text>
+								<anchor>Right</anchor>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.Numeric">
+								<decimals>1</decimals>
+								<percent>true</percent>
+								<key>MissingPartMaxReduction</key>
+								<defaultValue>100</defaultValue>
+							</li>
+						</rightCol>
 					</li>
 				</value>
 			</Operation>

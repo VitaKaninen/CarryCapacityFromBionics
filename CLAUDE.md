@@ -181,6 +181,12 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   typed percent number ("10" = 10%; vanilla's TextFieldPercent fraction is overwritten from the
   text buffer), default min/max ±1e9; RimWorld forces en-US culture, so parse with Invariant.
   (Decompiled 2026-11-08, XE 1.5 + 1.6 DLLs.)
+- **Every number box is the same narrow width** (user): a label-less `Numeric` in the right
+  column of a `SplitColumn` with `<split>0.79</split>` (label = right-anchored Text on the left),
+  inside a row's 0.5 right column; kg fields add `<padRight>25</padRight>` to line up with
+  percent fields (TextFieldPercent reserves 25 px for "%"). XE's `Numeric` is `internal`, so it
+  can't be subclassed. XE `PatchOperationInsert` (Prepend) reverses multi-node values;
+  `PatchOperationReplace` keeps their order.
 - The mod only ever adds `statOffsets` to the implant's `HediffDef` stage — never touches body
   parts or recipes.
 - Historic quirk kept for behavior parity: if a hediff has multiple `stages/li` with

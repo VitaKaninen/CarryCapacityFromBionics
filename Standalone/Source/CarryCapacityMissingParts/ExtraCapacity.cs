@@ -20,7 +20,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         static ExtraCapacityBootstrap()
         {
-            if (!MissingPartsBootstrap.GetBool("ToggleSectionExtraCapacity", true))
+            if (!MissingPartsBootstrap.GetBool("ToggleSectionExtraCapacity", false))
             {
                 return;
             }
@@ -89,10 +89,18 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         }
     }
 
+    public class CapacityExample
+    {
+        public string label;
+        public string race;
+        public string section;
+        public List<string> implants = new List<string>();
+    }
+
     public class Setting_CapacityExamples : SettingContainer
     {
         public string percentKey;
-        public List<string> races = new List<string>();
+        public List<CapacityExample> examples = new List<CapacityExample>();
 
         protected override float CalculateHeight(float width)
         {
@@ -106,22 +114,42 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         protected override void DrawSettingContents(Rect inRect)
         {
             GameFont font = Text.Font;
+            TextAnchor anchor = Text.Anchor;
             Text.Font = GameFont.Small;
+            Text.Anchor = TextAnchor.UpperRight;
             Widgets.Label(inRect, BuildText());
+            Text.Anchor = anchor;
             Text.Font = font;
+        }
+
+        private static float GetFloat(string key)
+        {
+            if (XmlExtensions.SettingsManager.TryGetSetting(MissingPartsBootstrap.ModId, key, out string value)
+                && float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float parsed))
+            {
+                return parsed;
+            }
+            return 0f;
+        }
+
+        private static bool GetBool(string key)
+        {
+            return XmlExtensions.SettingsManager.TryGetSetting(MissingPartsBootstrap.ModId, key, out string value)
+                && bool.TryParse(value, out bool parsed) && parsed;
+        }
+
+        private static string Red(float kg)
+        {
+            return "<color=#ff5050>" + kg.ToString("0.##", CultureInfo.InvariantCulture) + " kg</color>";
         }
 
         private string BuildText()
         {
-            float pct = 0f;
-            if (XmlExtensions.SettingsManager.TryGetSetting(MissingPartsBootstrap.ModId, percentKey, out string value))
-            {
-                float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out pct);
-            }
+            float pct = GetFloat(percentKey);
             StringBuilder sb = new StringBuilder();
-            foreach (string defName in races)
+            foreach (CapacityExample example in examples)
             {
-                ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+                ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(example.race);
                 if (def?.race == null)
                 {
                     continue;
@@ -133,15 +161,27 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     bodySize *= adult.def.bodySizeFactor;
                 }
                 float baseKg = bodySize * MassUtility.MassCapacityPerBodySize;
-                float totalKg = baseKg * (1f + pct / 100f);
+                float implantKg = 0f;
+                if (example.section == null || GetBool("ToggleSection" + example.section))
+                {
+                    foreach (string key in example.implants)
+                    {
+                        if (GetBool("Toggle" + key))
+                        {
+                            implantKg += GetFloat(key);
+                        }
+                    }
+                }
+                float beforeKg = Mathf.Max(0f, baseKg + implantKg);
+                float afterKg = Mathf.Max(0f, beforeKg + baseKg * pct / 100f);
                 if (sb.Length > 0)
                 {
                     sb.AppendLine();
                 }
-                sb.Append(def.LabelCap + ": " + baseKg.ToString("0.#") + " kg -> " + totalKg.ToString("0.#") + " kg");
+                sb.Append((example.label ?? def.LabelCap.ToString()) + ": " + Red(beforeKg) + " -> " + Red(afterKg));
                 if (!def.race.Humanlike && !def.race.packAnimal)
                 {
-                    sb.Append(" (not a pack animal; needs Caravan Packs)");
+                    sb.Append(" (needs Caravan Packs)");
                 }
             }
             return sb.ToString();

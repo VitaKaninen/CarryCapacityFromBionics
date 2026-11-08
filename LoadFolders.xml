@@ -59,6 +59,7 @@
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/Mods/ADSAP2</li>
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
 		<li>1.6/Ludeon/Core</li>
@@ -137,6 +138,7 @@
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
+		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/Mods/ADSAP2</li>
 
 		<!-- Core + DLC patches -->
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>

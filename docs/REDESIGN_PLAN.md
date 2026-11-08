@@ -77,8 +77,9 @@ only when on, identical lines deduped).
 
 ## 3. Animals
 - Pack animals only (vanilla or Caravan Packs; non-pack animals have capacity 0 — IL-verified).
-- New `CCFB_AnimalImplant` PatchDef: row value is a % of the animal's base, applied by a StatPart;
-  simple mode scales it too. No missing-part penalty for animals.
+- `CCFB_AnimalImplant` (built): row value is a % of the animal's base; `CCFB_AddOffset_pct` puts it
+  on the hediff as `AnimalCapacityExtension`, `StatPart_AnimalImplants` applies it to non-humanlike
+  pawns. Simple mode scales it too. No missing-part penalty for animals.
 - First mod: ADSAP2 (`SamBucher.ADogSaidAnimalProsthetics2`); Kenshi Fauna fork = `EL.KenshiFauna`.
 
 ## Build order

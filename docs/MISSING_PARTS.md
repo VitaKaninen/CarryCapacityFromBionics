@@ -42,8 +42,8 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   below `1.6/Ludeon/Core` in LoadFolders; it creates the Core section and inserts the block after
   the `CCFB_Core` rows; reset keys go to Core's button). First row = floor
   `MissingPartFloor` (default 0 kg, positive, no checkbox); then per-part
-  `ToggleMissingPart<DefName>` (default **true** since 2026-11-08 — the main box checkbox is
-  the off switch) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
+  `TogglePenaltyMissingPart<DefName>` (default false; renamed from `ToggleMissingPart…` so saved
+  ON values from the old default were dropped) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
   feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; numeric uses XE
   `percent=true` — the STORED value is the plain percent number, e.g. "25", the field shows

@@ -139,6 +139,7 @@
 					<li>{valueDefault}</li>
 					<li>{section}</li>
 					<li>PatchOperationAdd</li>
+					<li>kg</li>
 				</arguments>
 			</Operation>
 		</apply>
@@ -178,6 +179,33 @@
 					<li>{valueDefault}</li>
 					<li>{section}</li>
 					<li>PatchOperationAddOrReplace</li>
+					<li>kg</li>
+				</arguments>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_AnimalImplant" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>key</li>
+			<li>label</li>
+			<li>toggleDefault</li>
+			<li>valueDefault</li>
+			<li>section</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.ApplyPatch">
+				<patchName>CCFB_ImplantCore</patchName>
+				<arguments>
+					<li>{defName}</li>
+					<li>{key}</li>
+					<li>{label}</li>
+					<li>{toggleDefault}</li>
+					<li>{valueDefault}</li>
+					<li>{section}</li>
+					<li>PatchOperationAdd</li>
+					<li>pct</li>
 				</arguments>
 			</Operation>
 		</apply>
@@ -192,6 +220,7 @@
 			<li>valueDefault</li>
 			<li>section</li>
 			<li>vefOperation</li>
+			<li>unit</li>
 		</parameters>
 		<apply>
 			<!-- Skip this implant entirely (menu row AND hediff patch, no errors) if its HediffDef
@@ -250,6 +279,8 @@
 									<li>{valueDefault}</li>
 									<li>{section}</li>
 									<li>CCFB_{section}_Penalties</li>
+									<li>TogglePenalty</li>
+									<li>{unit}</li>
 								</arguments>
 							</Operation>
 							<Operation Class="XmlExtensions.OptionalPatch">
@@ -272,6 +303,8 @@
 													<li>{valueDefault}</li>
 													<li>{section}</li>
 													<li>{vefOperation}</li>
+													<li>TogglePenalty</li>
+													<li>{unit}</li>
 												</arguments>
 											</Operation>
 										</caseTrue>
@@ -288,6 +321,8 @@
 											<li>{valueDefault}</li>
 											<li>{section}</li>
 											<li>{vefOperation}</li>
+											<li>TogglePenalty</li>
+											<li>{unit}</li>
 										</arguments>
 									</Operation>
 								</caseFalse>
@@ -303,6 +338,8 @@
 									<li>{valueDefault}</li>
 									<li>{section}</li>
 									<li>CCFB_{section}</li>
+									<li>Toggle</li>
+									<li>{unit}</li>
 								</arguments>
 							</Operation>
 							<Operation Class="XmlExtensions.ApplyPatch">
@@ -315,6 +352,8 @@
 									<li>{valueDefault}</li>
 									<li>{section}</li>
 									<li>{vefOperation}</li>
+									<li>Toggle</li>
+									<li>{unit}</li>
 								</arguments>
 							</Operation>
 						</caseFalse>
@@ -332,10 +371,12 @@
 			<li>valueDefault</li>
 			<li>section</li>
 			<li>target</li>
+			<li>togglePrefix</li>
+			<li>unit</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="{togglePrefix}{key}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}"]/leftCol</xpath>
@@ -351,7 +392,7 @@
 								<leftCol>
 									<li Class="XmlExtensions.Setting.Checkbox">
 										<label></label>
-										<key>Toggle{key}</key>
+										<key>{togglePrefix}{key}</key>
 										<defaultValue>{toggleDefault}</defaultValue>
 									</li>
 								</leftCol>
@@ -363,52 +404,26 @@
 							</li>
 						</value>
 					</Operation>
-					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}"]/rightCol</xpath>
-						<value>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>Toggle{key}</key>
-								<caseTrue>
-									<li Class="XmlExtensions.Setting.SplitColumn">
-										<split>0.79</split>
-										<anchor>Middle</anchor>
-										<leftCol>
-											<li Class="XmlExtensions.Setting.Text">
-												<text>Extra carry capacity in kg</text>
-												<anchor>Right</anchor>
-											</li>
-										</leftCol>
-										<rightCol>
-											<li Class="XmlExtensions.Setting.Numeric">
-												<decimals>2</decimals>
-												<key>{key}</key>
-												<defaultValue>{valueDefault}</defaultValue>
-												<padRight>25</padRight>
-											</li>
-										</rightCol>
-									</li>
-								</caseTrue>
-								<caseFalse>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Disabled</text>
-										<padRight>25</padRight>
-										<anchor>Right</anchor>
-									</li>
-								</caseFalse>
-							</li>
-						</value>
+					<Operation Class="XmlExtensions.ApplyPatch">
+						<patchName>CCFB_RowValue_{unit}</patchName>
+						<arguments>
+							<li>{key}</li>
+							<li>{valueDefault}</li>
+							<li>{target}</li>
+							<li>{togglePrefix}</li>
+						</arguments>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
 						<value>
-							<li>Toggle{key}</li>
+							<li>{togglePrefix}{key}</li>
 							<li>{key}</li>
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}_All"]/keys</xpath>
 						<value>
-							<li>Toggle{key}</li>
+							<li>{togglePrefix}{key}</li>
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
@@ -427,6 +442,98 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<XmlExtensions.PatchDef Name="CCFB_RowValue_kg" Abstract="True">
+		<parameters>
+			<li>key</li>
+			<li>valueDefault</li>
+			<li>target</li>
+			<li>togglePrefix</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.PatchOperationAdd">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}"]/rightCol</xpath>
+				<value>
+					<li Class="XmlExtensions.Setting.ToggleableSettings">
+						<key>{togglePrefix}{key}</key>
+						<caseTrue>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<split>0.79</split>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Extra carry capacity in kg</text>
+										<anchor>Right</anchor>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>2</decimals>
+										<key>{key}</key>
+										<defaultValue>{valueDefault}</defaultValue>
+										<padRight>25</padRight>
+									</li>
+								</rightCol>
+							</li>
+						</caseTrue>
+						<caseFalse>
+							<li Class="XmlExtensions.Setting.Text">
+								<text>Disabled</text>
+								<padRight>25</padRight>
+								<anchor>Right</anchor>
+							</li>
+						</caseFalse>
+					</li>
+				</value>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_RowValue_pct" Abstract="True">
+		<parameters>
+			<li>key</li>
+			<li>valueDefault</li>
+			<li>target</li>
+			<li>togglePrefix</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.PatchOperationAdd">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}"]/rightCol</xpath>
+				<value>
+					<li Class="XmlExtensions.Setting.ToggleableSettings">
+						<key>{togglePrefix}{key}</key>
+						<caseTrue>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<split>0.79</split>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Extra carry capacity in % of base</text>
+										<anchor>Right</anchor>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>2</decimals>
+										<percent>true</percent>
+										<key>{key}</key>
+										<defaultValue>{valueDefault}</defaultValue>
+									</li>
+								</rightCol>
+							</li>
+						</caseTrue>
+						<caseFalse>
+							<li Class="XmlExtensions.Setting.Text">
+								<text>Disabled</text>
+								<padRight>25</padRight>
+								<anchor>Right</anchor>
+							</li>
+						</caseFalse>
+					</li>
+				</value>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
 	<XmlExtensions.PatchDef Name="CCFB_ModeOffset" Abstract="True">
 		<parameters>
 			<li>defName</li>
@@ -436,6 +543,8 @@
 			<li>valueDefault</li>
 			<li>section</li>
 			<li>vefOperation</li>
+			<li>togglePrefix</li>
+			<li>unit</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.OptionalPatch">
@@ -456,6 +565,7 @@
 									<li>{defName}</li>
 									<li>{valueDefault}</li>
 									<li>{vefOperation}</li>
+									<li>{unit}</li>
 								</arguments>
 							</Operation>
 						</caseTrue>
@@ -464,7 +574,7 @@
 				<caseFalse>
 					<Operation Class="XmlExtensions.OptionalPatch">
 						<modId>Vita.CarryCapacityFromBionics</modId>
-						<key>Toggle{key}</key>
+						<key>{togglePrefix}{key}</key>
 						<defaultValue>{toggleDefault}</defaultValue>
 						<caseTrue>
 							<Operation Class="XmlExtensions.UseSetting">
@@ -473,7 +583,7 @@
 								<defaultValue>{valueDefault}</defaultValue>
 								<apply>
 									<Operation Class="XmlExtensions.ApplyPatch">
-										<patchName>CCFB_AddOffset</patchName>
+										<patchName>CCFB_AddOffset_{unit}</patchName>
 										<arguments>
 											<li>{defName}</li>
 											<li>{{key}}</li>
@@ -489,7 +599,7 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
-	<XmlExtensions.PatchDef Name="CCFB_AddOffset" Abstract="True">
+	<XmlExtensions.PatchDef Name="CCFB_AddOffset_kg" Abstract="True">
 		<parameters>
 			<li>defName</li>
 			<li>value</li>
@@ -545,11 +655,41 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<XmlExtensions.PatchDef Name="CCFB_AddOffset_pct" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>value</li>
+			<li>vefOperation</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
+						<value>
+							<modExtensions/>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+			<Operation Class="XmlExtensions.PatchOperationAdd">
+				<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
+				<value>
+					<li Class="Vita.CarryCapacityFromBionics.MissingParts.AnimalCapacityExtension">
+						<percent>{value}</percent>
+					</li>
+				</value>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
 	<XmlExtensions.PatchDef Name="CCFB_ScaledOffset" Abstract="True">
 		<parameters>
 			<li>defName</li>
 			<li>valueDefault</li>
 			<li>vefOperation</li>
+			<li>unit</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.UseSetting">
@@ -570,7 +710,7 @@
 								<operation>/</operation>
 								<apply>
 									<Operation Class="XmlExtensions.ApplyPatch">
-										<patchName>CCFB_AddOffset</patchName>
+										<patchName>CCFB_AddOffset_{unit}</patchName>
 										<arguments>
 											<li>{defName}</li>
 											<li>{CCFB_Final}</li>
@@ -605,7 +745,7 @@
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="Toggle{key}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//leftCol/li[key="TogglePenalty{key}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/leftCol</xpath>
@@ -617,7 +757,7 @@
 								<leftCol>
 									<li Class="XmlExtensions.Setting.Checkbox">
 										<label></label>
-										<key>Toggle{key}</key>
+										<key>TogglePenalty{key}</key>
 										<defaultValue>{toggleDefault}</defaultValue>
 									</li>
 								</leftCol>
@@ -634,7 +774,7 @@
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]/rightCol</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>Toggle{key}</key>
+								<key>TogglePenalty{key}</key>
 								<caseTrue>
 									<li Class="XmlExtensions.Setting.SplitColumn">
 										<split>0.79</split>
@@ -668,13 +808,13 @@
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_All"]/keys</xpath>
 						<value>
-							<li>Toggle{key}</li>
+							<li>TogglePenalty{key}</li>
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSectionCore"]/actions/li/keys</xpath>
 						<value>
-							<li>Toggle{key}</li>
+							<li>TogglePenalty{key}</li>
 							<li>{key}</li>
 						</value>
 					</Operation>

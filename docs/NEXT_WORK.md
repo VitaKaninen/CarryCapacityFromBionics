@@ -69,16 +69,14 @@ rows ON.
 - Round 9: section toggle deliberately offset (+12 x, −4 y; user: lean into it); About.xml got a
   short Settings block. User asked to re-explain the key-rename question (re-explained, unanswered).
 
-## ADSAP2 draft values (shown to user round 9, not approved)
-% of the animal's base. Weights: leg/tremor leg 20, spine 20, shoulder (arm) 15, MSE2 forearm
-(`Arm`) 10, paw/hoof/foot/RG foot claw 6 (= human foot share of a leg), hand/pincer 5,
-toe/finger/claw 1, internal support 2.5 (its parts span 2.5–12.5). Bionic ×2, ladder-rounded:
-leg 50, spine 40, arm 35, forearm 25, paw/hoof/foot 15, hand/pincer 12.5, support 6,
-toe/finger/claw 2.5. Penalties −(1−eff)×w: leg −4, replacement spine −4, arm −8 (0.5; −3 with
-EPOE-Forked's 0.8), forearm −2, wooden paw −2.5, wooden hoof −1.5 (−2.5 EPOE), paw/hoof/foot
-−1.25, hand −1, toe/finger/claw −0.2. Vanilla PegLeg/WoodenFoot/WoodenHand/PowerClaw/HookHand
-also install on animals and already get the human flat-kg rows (open question to user).
+## Round 10 (2026-11-08)
+- User chose to rename: penalty + missing-part toggles are now `TogglePenalty<key>` (see CLAUDE.md).
+- ADSAP2 built (29 rows, `1.6/Mods/ADSAP2`, `CCFB_AnimalImplant`, `unit` arg kg|pct threaded
+  through ImplantCore/RowMenu/ModeOffset/ScaledOffset). Values = sheet rows given to the user
+  (user: good enough to start, may change after reviewing the sheet). Not tested in game.
+- Proposed XML comments removed pending approval: CCFB_AnimalImplant header, RowValue_kg/pct,
+  AddOffset_pct (text in the round-10 reply).
 
 ## Next steps
-1. User tests rounds 4–9 in game; fix what they report. Then the key-rename question.
-2. Then ADSAP2 rows once the table above is approved.
+1. User tests rounds 4–10 in game (incl. a pack animal with ADSAP2 parts); fix what they report.
+2. Sync ADSAP2 defaults to the sheet once the user revises it.

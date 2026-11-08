@@ -32,6 +32,7 @@ Optional: penalties for prosthetics, and for missing or injured body parts.
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]Q:[/url] What mods are supported?
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3564369362]A:[/url] The following mods are currently supported:
 
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3238353862]A Dog Said... Animal Prosthetics 2[/url] (pack animals)
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3315248786]Advanced Archotech Arm[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1442734859]Archotech Expanded[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1467604976]Archotech Expanded Prosthetics[/url]
@@ -92,5 +93,6 @@ If you find any bugs, have some suggestions, or would like to see other mods sup
 		<li>VanillaExpanded.VanillaAnimalsExpanded</li>
 		<li>sarg.alphaanimals</li>
 		<li>Mey.Prosthetics</li>
+		<li>SamBucher.ADogSaidAnimalProsthetics2</li>
 	</loadAfter>
 </ModMetaData>

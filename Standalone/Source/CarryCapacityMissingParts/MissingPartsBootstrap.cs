@@ -75,7 +75,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 {
                     frac = pct / 100f;
                 }
-                else if (GetBool("ToggleMissingPart" + key, false))
+                else if (GetBool("TogglePenaltyMissingPart" + key, false))
                 {
                     frac = System.Math.Abs(GetFloat("MissingPart" + key, pct)) / 100f;
                 }

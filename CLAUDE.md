@@ -129,7 +129,10 @@ into `<v1.5>` accordingly (comment above the block explains the translation).
 
 ## Settings keys — naming convention (matters for collisions)
 
-- Each implant: `Toggle<Key>` (checkbox bool) + `<Key>` (numeric kg). Defaults now live in
+- Each implant: `Toggle<Key>` (checkbox bool) + `<Key>` (numeric kg). Negative (penalty) rows and
+  missing-part rows use `TogglePenalty<Key>` instead (`togglePrefix` arg of `CCFB_RowMenu` /
+  `CCFB_ModeOffset`): renamed 2026-11-08 so the new default OFF reached players who had saved the
+  old ON (user accepted losing real choices). Never reuse the old `Toggle<Key>` for those rows. Defaults now live in
   exactly one place — the `ApplyPatch` arguments (PatchDef threads them into both the patch
   and the menu row, which previously had to be kept in sync by hand).
 - The xpath targets the real `defName`; the **key is prefixed with the mod's short name**

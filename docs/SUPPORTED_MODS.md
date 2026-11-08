@@ -42,6 +42,13 @@
 - IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the
   Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 
+- ADSAP2 (A Dog Said... Animal Prosthetics 2) — `SamBucher.ADogSaidAnimalProsthetics2`, folder
+  `1.6/Mods/ADSAP2`, `CCFB_AnimalImplant` rows (% of the animal's base, C# `StatPart_AnimalImplants`
+  reads `AnimalCapacityExtension.percent` off the hediff def). Its EPOE-Forked / MSE2 / Kenshi Fauna
+  parts are ADSAP2's own defs (gated by ADSAP2's LoadFolders), so the existence guard covers them.
+  Values: sheet section "A Dog Said..." (Math ×100, not ×35). Vanilla PegLeg/WoodenFoot/WoodenHand/
+  PowerClaw/HookHand also install on animals and keep the human flat-kg rows.
+
 ## Planned future support (per VitaKaninen, 2026-06)
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
   deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg

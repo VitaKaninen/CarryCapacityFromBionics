@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>A Dog Said... Animal Prosthetics 2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticToeAnimal</li>
+			<li>ADSAPSimpleProstheticToeAnimal</li>
+			<li>Prosthetic Toe</li>
+			<li>true</li>
+			<li>-0.2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticFingerAnimal</li>
+			<li>ADSAPSimpleProstheticFingerAnimal</li>
+			<li>Prosthetic Finger</li>
+			<li>true</li>
+			<li>-0.2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticClawAnimal</li>
+			<li>ADSAPSimpleProstheticClawAnimal</li>
+			<li>Prosthetic Claw</li>
+			<li>true</li>
+			<li>-0.2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticHandAnimal</li>
+			<li>ADSAPSimpleProstheticHandAnimal</li>
+			<li>Prosthetic Hand</li>
+			<li>true</li>
+			<li>-1</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticPawAnimal</li>
+			<li>ADSAPSimpleProstheticPawAnimal</li>
+			<li>Prosthetic Paw</li>
+			<li>true</li>
+			<li>-1.25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticHoofAnimal</li>
+			<li>ADSAPSimpleProstheticHoofAnimal</li>
+			<li>Prosthetic Hoof</li>
+			<li>true</li>
+			<li>-1.25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticFootAnimal</li>
+			<li>ADSAPSimpleProstheticFootAnimal</li>
+			<li>Prosthetic Foot</li>
+			<li>true</li>
+			<li>-1.25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProsthetic_RG_FootClaw</li>
+			<li>ADSAPSimpleProstheticRGFootClaw</li>
+			<li>Prosthetic Foot Claw</li>
+			<li>true</li>
+			<li>-1.25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticForearmAnimal</li>
+			<li>ADSAPSimpleProstheticForearmAnimal</li>
+			<li>Prosthetic Forearm</li>
+			<li>true</li>
+			<li>-2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticArmAnimal</li>
+			<li>ADSAPSimpleProstheticArmAnimal</li>
+			<li>Prosthetic Arm</li>
+			<li>true</li>
+			<li>-8</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleProstheticLegAnimal</li>
+			<li>ADSAPSimpleProstheticLegAnimal</li>
+			<li>Prosthetic Leg</li>
+			<li>true</li>
+			<li>-4</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SimpleSpineAnimal</li>
+			<li>ADSAPSimpleSpineAnimal</li>
+			<li>Replacement Spine</li>
+			<li>true</li>
+			<li>-4</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenPawAnimal</li>
+			<li>ADSAPWoodenPawAnimal</li>
+			<li>Wooden Paw</li>
+			<li>true</li>
+			<li>-2.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenHoofAnimal</li>
+			<li>ADSAPWoodenHoofAnimal</li>
+			<li>Wooden Hoof</li>
+			<li>true</li>
+			<li>-1.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicToeAnimal</li>
+			<li>ADSAPBionicToeAnimal</li>
+			<li>Bionic Toe</li>
+			<li>true</li>
+			<li>2.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicFingerAnimal</li>
+			<li>ADSAPBionicFingerAnimal</li>
+			<li>Bionic Finger</li>
+			<li>true</li>
+			<li>2.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicClawAnimal</li>
+			<li>ADSAPBionicClawAnimal</li>
+			<li>Bionic Claw</li>
+			<li>true</li>
+			<li>2.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicHandAnimal</li>
+			<li>ADSAPBionicHandAnimal</li>
+			<li>Bionic Hand</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicPincerAnimal</li>
+			<li>ADSAPBionicPincerAnimal</li>
+			<li>Bionic Pincer</li>
+			<li>true</li>
+			<li>12.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicPawAnimal</li>
+			<li>ADSAPBionicPawAnimal</li>
+			<li>Bionic Paw</li>
+			<li>true</li>
+			<li>15</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicHoofAnimal</li>
+			<li>ADSAPBionicHoofAnimal</li>
+			<li>Bionic Hoof</li>
+			<li>true</li>
+			<li>15</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicFootAnimal</li>
+			<li>ADSAPBionicFootAnimal</li>
+			<li>Bionic Foot</li>
+			<li>true</li>
+			<li>15</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>Bionic_RG_FootClaw</li>
+			<li>ADSAPBionicRGFootClaw</li>
+			<li>Bionic Foot Claw</li>
+			<li>true</li>
+			<li>15</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicInternalSupportAnimal</li>
+			<li>ADSAPBionicInternalSupportAnimal</li>
+			<li>Bionic Internal Support</li>
+			<li>true</li>
+			<li>6</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicForearmAnimal</li>
+			<li>ADSAPBionicForearmAnimal</li>
+			<li>Bionic Forearm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicArmAnimal</li>
+			<li>ADSAPBionicArmAnimal</li>
+			<li>Bionic Arm</li>
+			<li>true</li>
+			<li>35</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicLegAnimal</li>
+			<li>ADSAPBionicLegAnimal</li>
+			<li>Bionic Leg</li>
+			<li>true</li>
+			<li>50</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicTremorLegAnimal</li>
+			<li>ADSAPBionicTremorLegAnimal</li>
+			<li>Bionic Tremor Leg</li>
+			<li>true</li>
+			<li>50</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicSpineAnimal</li>
+			<li>ADSAPBionicSpineAnimal</li>
+			<li>Bionic Spine</li>
+			<li>true</li>
+			<li>40</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+</Patch>

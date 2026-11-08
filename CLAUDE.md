@@ -76,7 +76,8 @@ RimWorld has **two separate carrying systems** — keep them straight:
   in that section (an `OptionalPatch` on the master wraps the per-implant one; restart applies).
   Args: `label | tag | master default`. **Idempotent** (guarded by an existence check), so every
   patch file calls it for the section it needs and file/folder ordering doesn't matter.
-  Known edge case: deliberately-shared keys (EPOE/EPOE-Forked, FSF ABE/VBE, YAPE/SoS2) render
+  Known edge case (YAPE/SoS2 only; EPOE/EPOE-Forked and FSF ABE/VBE are mutually exclusive
+  in game, so their shared keys never meet): deliberately-shared keys render
   their one row in whichever section's file patches first, but each mod's hediff patches are
   gated by its OWN file's section master — unticking the section that shows the row does not
   disable the other mod's bonuses.

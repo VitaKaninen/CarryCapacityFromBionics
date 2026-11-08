@@ -8,7 +8,8 @@
   `=LET(m,F,a,ABS(m),s,IFS(a<0.5,0.1,a<3,0.25,a<5,0.5,a<10,1,a<20,2.5,TRUE,5),r,ROUND(m/s)*s,IF(AND(r=0,m<>0),SIGN(m)*s,r))`
   (half away from zero; a non-zero math never rounds to 0). Native-VEF rows = author's value.
 - Shared keys (EPOE/EPOE-Forked, FSF ABE/VBE) get each file's OWN section value from the sheet,
-  so the defaults can differ per file; when both mods are active the saved setting covers both.
+  so the defaults can differ per file. Each pair is mutually exclusive in game (user), and each
+  folder is gated on its own mod only, so a row always shows the loaded mod's default.
 
 - **Weights** (the Google Sheet is the source; same table as the missing-parts penalty): arm 15%,
   leg 25%, spine/pelvis/exoskeleton/membrane 20%, femur 12.5%, foot 7.5%, tibia 5%, clavicle 5%,

@@ -30,7 +30,7 @@
 - Sheet audited against every source def's `partEfficiency` (user fixed it), then 143 defaults in
   25 patch files synced to it; Sewn-In Bag → `NeoP_NativeVEF` (author's 15). Deployed.
   **Not yet tested in game.** Shared keys now have per-file defaults (EPOE vs EPOE-Forked, FSF ABE 40
-  vs VBE 25 Archotech Spine).
+  vs VBE 25 Archotech Spine); the pairs can't run together, so no conflict.
 - CLAUDE.md split into `docs/`.
 - Scan of all 320 patched hediffs vs source defs (simple-mode blockers): 64 non-replacement implants
   (no efficiency, torso), 6 replacement parts with default efficiency 1.0, 6 II modular parts with no

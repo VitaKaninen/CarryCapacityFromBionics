@@ -52,7 +52,13 @@
   `vat.epoeforked,mse2.core` = ANY); `ModCompat/MSE2` (forearm, internal support, RG foot claw);
   `ModCompat/EPOE-Forked` (SimpleSpineAnimal); `ModCompat/KenshiFauna` (`el.kenshifauna`: pincer,
   tremor leg). Wings folder is 1.4-only. EPOE-Forked patches lower some partEfficiency values
-  (WoodenHoof 0.75→0.6). Open design question: flat kg vs body-size scaling (muffalo base ≈84 kg).
+  (WoodenHoof 0.75→0.6). Values: body-size scaling (user decision 2026-11-08).
+  **Blocker, verified by IL dump of 1.7.4995 Assembly-CSharp:** `MassUtility.Capacity` returns 0
+  early unless `CanEverCarryAnything` (= adult non-subhuman ToolUser, else `packAnimal`). Both our
+  transpiler and VEF's (same `Stloc_0` injection) sit after that return, so hediff statOffsets
+  never reach non-pack animals (dogs). PUAH (Mehni, GitHub) then sees `WillBeOverEncumbered…` =
+  true and falls back to a vanilla single-stack haul. Animal support for non-pack haulers needs new
+  C# (e.g. a Capacity postfix for animals), not just XML.
 - EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
   Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
   Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,

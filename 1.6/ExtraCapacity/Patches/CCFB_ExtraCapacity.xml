@@ -53,20 +53,7 @@
 								<percentKey>ExtraCapacityHuman</percentKey>
 								<examples>
 									<li>
-										<label>No implants</label>
 										<race>Human</race>
-									</li>
-									<li>
-										<label>Archotech arms and legs, bionic spine</label>
-										<race>Human</race>
-										<section>Core</section>
-										<implants>
-											<li>ArchotechArm</li>
-											<li>ArchotechArm</li>
-											<li>ArchotechLeg</li>
-											<li>ArchotechLeg</li>
-											<li>BionicSpine</li>
-										</implants>
 									</li>
 								</examples>
 							</li>

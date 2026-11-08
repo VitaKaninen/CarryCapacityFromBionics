@@ -20,7 +20,9 @@ options, right = data (user):
   left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
   explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
   box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
-- Data: `Setting_SimpleExamples` (header "(hover for details)"), `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
+- Hover hint: a gray line at the top of the box (`CCFB_HoverHint`, ToggleableSettings on the
+  mode; ADSAP2 fills its Advanced case), not in the data headers (user: readers look left).
+- Data: `Setting_SimpleExamples`, `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
   numbers right) — Colonist; with ADSAP2 Husky/Muffalo/Thrumbo + hover table of every pack
   animal in DefDatabase (category Pawn — corpse defs also carry `race`; modded included). That
   is exactly the set the bonus touches (`packAnimal`); Caravan Packs only sets `packAnimal` on a

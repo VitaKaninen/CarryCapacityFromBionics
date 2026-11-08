@@ -47,8 +47,9 @@ starting mode from saved values, table tooltips, all pack animals on hover.
 clickable, click-away unfocuses text boxes, section hide checkboxes removed, per-section
 "Prosthetic penalties" box (default off) + missing-parts box in Core in Advanced, main box as
 aligned rows with right-aligned data, pack-animal hover without corpses.
+**Round 5, built + deployed, not yet seen in game:** per-section "All implants in this section"
+box (remembers which rows were on), hover hint moved to the top left of the main box.
 **Asked last, unanswered:**
-- "(hover for details) missing in adv mode": unclear which text; asked the user.
 - Right-column alignment interpreted as "data block right-aligned, as wide as its text"; confirm.
 - About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).
 

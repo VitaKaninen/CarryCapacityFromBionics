@@ -34,6 +34,17 @@
 					</li>
 					<li Class="XmlExtensions.Setting.GapLine"/>
 					<li Class="XmlExtensions.Setting.ToggleableSettings">
+						<tag>CCFB_HoverHint</tag>
+						<key>ToggleSectionSimple</key>
+						<caseTrue>
+							<li Class="XmlExtensions.Setting.Text">
+								<text>&lt;color=#9a9a9a&gt;Hover over the examples on the right for details.&lt;/color&gt;</text>
+								<padBelow>6</padBelow>
+							</li>
+						</caseTrue>
+						<caseFalse/>
+					</li>
+					<li Class="XmlExtensions.Setting.ToggleableSettings">
 						<key>ToggleSectionSimple</key>
 						<caseTrue>
 							<li Class="XmlExtensions.Setting.SplitColumn">
@@ -123,7 +134,7 @@
 								<rightCol>
 									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SimpleExamples">
 										<tag>CCFB_SimpleExamples</tag>
-										<header>Implant examples (hover for details):</header>
+										<header>Implant examples:</header>
 										<padBelow>6</padBelow>
 										<rows/>
 										<groups>

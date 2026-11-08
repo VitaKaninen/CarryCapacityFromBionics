@@ -81,6 +81,86 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         }
     }
 
+    public class Setting_SectionToggle : SettingContainer
+    {
+        private const float BoxSize = 24f;
+        private const float TextLeft = 30f;
+
+        public string memoryKey;
+        public List<string> keys = new List<string>();
+
+        private bool registered;
+
+        protected override float CalculateHeight(float width)
+        {
+            return BoxSize;
+        }
+
+        protected override void DrawSettingContents(Rect inRect)
+        {
+            string modId = MissingPartsBootstrap.ModId;
+            if (!registered)
+            {
+                registered = true;
+                if (!SettingsManager.TryGetSetting(modId, memoryKey, out _))
+                {
+                    SettingsManager.SetSetting(modId, memoryKey, "");
+                }
+            }
+            bool anyOn = keys.Any(k => IsOn(modId, k));
+            bool value = anyOn;
+            Widgets.Checkbox(new Vector2(inRect.x, inRect.y + (inRect.height - BoxSize) / 2f), ref value);
+            TextAnchor anchor = Text.Anchor;
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Rect labelRect = new Rect(inRect.x + TextLeft, inRect.y, inRect.width - TextLeft, inRect.height);
+            Widgets.Label(labelRect, label);
+            Text.Anchor = anchor;
+            if (Widgets.ButtonInvisible(labelRect))
+            {
+                value = !anyOn;
+            }
+            if (value == anyOn)
+            {
+                return;
+            }
+            if (!value)
+            {
+                SettingsManager.SetSetting(modId, memoryKey, string.Join(",", keys.Where(k => IsOn(modId, k))));
+                foreach (string key in keys)
+                {
+                    SettingsManager.SetSetting(modId, key, "False");
+                }
+                return;
+            }
+            SettingsManager.TryGetSetting(modId, memoryKey, out string memory);
+            HashSet<string> restore = new HashSet<string>((memory ?? "").Split(',').Where(k => keys.Contains(k)));
+            foreach (string key in keys)
+            {
+                bool on = restore.Count > 0 ? restore.Contains(key) : DefaultOn(modId, key);
+                SettingsManager.SetSetting(modId, key, on ? "True" : "False");
+            }
+        }
+
+        private static bool IsOn(string modId, string key)
+        {
+            return SettingsManager.TryGetSetting(modId, key, out string stored) && bool.TryParse(stored, out bool on)
+                ? on
+                : DefaultOn(modId, key);
+        }
+
+        private static bool DefaultOn(string modId, string key)
+        {
+            try
+            {
+                return !bool.TryParse(SettingsManager.GetDefaultValue(modId, key), out bool on) || on;
+            }
+            catch (KeyNotFoundException)
+            {
+                return true;
+            }
+        }
+    }
+
     public class Setting_UnfocusOnClick : SettingContainer
     {
         public Setting_UnfocusOnClick()

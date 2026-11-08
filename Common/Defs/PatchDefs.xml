@@ -35,6 +35,16 @@
 							<li Class="XmlExtensions.Setting.GapLine"/>
 							<li Class="XmlExtensions.Setting.Section">
 								<settings>
+									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
+										<tag>CCFB_{section}_All</tag>
+										<label>All implants in this section</label>
+										<tooltip>Unticking turns off every implant below and remembers which were on; ticking it again turns those back on.</tooltip>
+										<memoryKey>SectionMemory{section}</memoryKey>
+										<keys/>
+									</li>
+									<li Class="XmlExtensions.Setting.Gap">
+										<spacing>6</spacing>
+									</li>
 									<li Class="XmlExtensions.Setting.SplitColumn">
 										<tag>CCFB_{section}</tag>
 										<leftCol/>
@@ -422,6 +432,12 @@
 						<value>
 							<li>Toggle{key}</li>
 							<li>{key}</li>
+						</value>
+					</Operation>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_All"]/keys</xpath>
+						<value>
+							<li>Toggle{key}</li>
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">

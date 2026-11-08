@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.Conditional">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[key="ExtraCapacityAnimal"]</xpath>
+		<caseFalse>
+			<Operation Class="XmlExtensions.PatchOperationReplace">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_ExtraCapacityText"]/text</xpath>
+				<value>
+					<text>Optional. Adds an extra amount on top of everything in the sections below (implant bonuses and missing body part penalties). The amount is a percentage of each pawn's base capacity (body size x 35 kg), so bigger pawns get more. Humans and pack animals have separate percentages. Animals only get it if they are pack animals (vanilla, or made pack animals by a mod such as Caravan Packs). Babies are not affected. The red numbers show the result and update as you type.</text>
+				</value>
+			</Operation>
+			<Operation Class="XmlExtensions.PatchOperationInsert">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_ExtraCapacity"]</xpath>
+				<order>Append</order>
+				<value>
+				<li Class="XmlExtensions.Setting.SplitColumn">
+					<anchor>Top</anchor>
+					<padAbove>12</padAbove>
+					<leftCol>
+						<li Class="XmlExtensions.Setting.Text">
+							<text>Pack animals</text>
+							<tooltip>Extra carry capacity for pack animals, as a percentage of their base capacity.</tooltip>
+						</li>
+					</leftCol>
+					<rightCol>
+						<li Class="XmlExtensions.Setting.SplitColumn">
+							<split>0.79</split>
+							<anchor>Middle</anchor>
+							<leftCol>
+								<li Class="XmlExtensions.Setting.Text">
+									<text>Extra carry capacity</text>
+									<anchor>Right</anchor>
+								</li>
+							</leftCol>
+							<rightCol>
+								<li Class="XmlExtensions.Setting.Numeric">
+									<decimals>1</decimals>
+									<percent>true</percent>
+									<key>ExtraCapacityAnimal</key>
+									<defaultValue>0</defaultValue>
+								</li>
+							</rightCol>
+						</li>
+						<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_CapacityExamples">
+							<percentKey>ExtraCapacityAnimal</percentKey>
+							<examples>
+								<li>
+									<race>Husky</race>
+								</li>
+								<li>
+									<race>Muffalo</race>
+								</li>
+								<li>
+									<race>Thrumbo</race>
+								</li>
+							</examples>
+						</li>
+					</rightCol>
+				</li>
+				</value>
+			</Operation>
+			<Operation Class="XmlExtensions.PatchOperationAdd">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSectionExtraCapacity"]/actions/li/keys</xpath>
+				<value>
+					<li>ExtraCapacityAnimal</li>
+				</value>
+			</Operation>
+		</caseFalse>
+	</Operation>
+</Patch>

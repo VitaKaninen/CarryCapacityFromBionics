@@ -29,7 +29,13 @@ across all patch files. Native-VEF rows get data but simple mode leaves the auth
   already has; list of `CapacityExample`: label, race, section, implant keys) shows
   adult base + enabled implant kg (read live from that section's settings) → + pct × base.
   Human examples: no implants; 2 archotech arms + 2 archotech legs + bionic spine (vanilla has
-  no archotech spine). Animals: Husky, Muffalo, Thrumbo.
+  no archotech spine). Animals: Husky, Muffalo, Thrumbo — non-pack races are omitted (user), so
+  Husky/Thrumbo only show with Caravan Packs. Drawn as aligned rows: label | red before -> red after.
+- **Animal part exists only with ADSAP2** (user): `1.6/ExtraCapacity_Animals` (LoadFolders
+  `IfModActive` ADSAP2, listed above `1.6/ExtraCapacity` so it applies after it) appends the
+  Pack animals row and swaps the description (Text tagged `CCFB_ExtraCapacityText`; the base text
+  tells players to install ADSAP2). C# applies `ExtraCapacityAnimal` only if ADSAP2 is active
+  (checks the packageId and its `_steam` form; `ModsConfig.IsActive` ignores the suffix).
 
 ## 2. Simple mode
 - `UseSimpleSettings` checkbox at the top. Ticked: per-mod sections hidden (CCFB_Section body wrapped

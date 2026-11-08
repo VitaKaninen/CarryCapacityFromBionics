@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -15,6 +14,10 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         public const string HumanKey = "ExtraCapacityHuman";
         public const string AnimalKey = "ExtraCapacityAnimal";
 
+        public static bool AnimalProstheticsActive =>
+            ModsConfig.IsActive("SamBucher.ADogSaidAnimalProsthetics2")
+            || ModsConfig.IsActive("SamBucher.ADogSaidAnimalProsthetics2_steam");
+
         public static float humanFrac;
         public static float animalFrac;
 
@@ -25,7 +28,10 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 return;
             }
             humanFrac = MissingPartsBootstrap.GetFloat(HumanKey, 0f) / 100f;
-            animalFrac = MissingPartsBootstrap.GetFloat(AnimalKey, 0f) / 100f;
+            if (AnimalProstheticsActive)
+            {
+                animalFrac = MissingPartsBootstrap.GetFloat(AnimalKey, 0f) / 100f;
+            }
             if (humanFrac == 0f && animalFrac == 0f)
             {
                 return;
@@ -99,14 +105,30 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
     public class Setting_CapacityExamples : SettingContainer
     {
+        private const float NumberWidth = 64f;
+        private const float ArrowWidth = 24f;
+        private const float RowGap = 2f;
+
         public string percentKey;
         public List<CapacityExample> examples = new List<CapacityExample>();
+
+        private struct Row
+        {
+            public string label;
+            public float before;
+            public float after;
+        }
 
         protected override float CalculateHeight(float width)
         {
             GameFont font = Text.Font;
             Text.Font = GameFont.Small;
-            float height = Mathf.Ceil(Text.CalcHeight(BuildText(), width));
+            float labelWidth = LabelWidth(width);
+            float height = 0f;
+            foreach (Row row in BuildRows())
+            {
+                height += RowHeight(row, labelWidth) + RowGap;
+            }
             Text.Font = font;
             return height;
         }
@@ -115,11 +137,50 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         {
             GameFont font = Text.Font;
             TextAnchor anchor = Text.Anchor;
+            Color color = GUI.color;
             Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.UpperRight;
-            Widgets.Label(inRect, BuildText());
+            float labelWidth = LabelWidth(inRect.width);
+            float y = inRect.y;
+            foreach (Row row in BuildRows())
+            {
+                float h = RowHeight(row, labelWidth);
+                float x = inRect.xMax;
+                x -= NumberWidth;
+                Rect after = new Rect(x, y, NumberWidth, h);
+                x -= ArrowWidth;
+                Rect arrow = new Rect(x, y, ArrowWidth, h);
+                x -= NumberWidth;
+                Rect before = new Rect(x, y, NumberWidth, h);
+                Rect label = new Rect(inRect.x, y, labelWidth, h);
+
+                Text.Anchor = TextAnchor.MiddleRight;
+                Widgets.Label(label, row.label);
+                Text.Anchor = TextAnchor.MiddleCenter;
+                Widgets.Label(arrow, "->");
+                Text.Anchor = TextAnchor.MiddleRight;
+                GUI.color = new Color(1f, 0.4f, 0.4f);
+                Widgets.Label(before, Kg(row.before));
+                Widgets.Label(after, Kg(row.after));
+                GUI.color = color;
+                y += h + RowGap;
+            }
             Text.Anchor = anchor;
             Text.Font = font;
+        }
+
+        private static float LabelWidth(float width)
+        {
+            return Mathf.Max(0f, width - NumberWidth * 2f - ArrowWidth - 6f);
+        }
+
+        private static float RowHeight(Row row, float labelWidth)
+        {
+            return Mathf.Max(22f, Mathf.Ceil(Text.CalcHeight(row.label, labelWidth)));
+        }
+
+        private static string Kg(float kg)
+        {
+            return kg.ToString("0.##", CultureInfo.InvariantCulture) + " kg";
         }
 
         private static float GetFloat(string key)
@@ -138,19 +199,14 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 && bool.TryParse(value, out bool parsed) && parsed;
         }
 
-        private static string Red(float kg)
-        {
-            return "<color=#ff5050>" + kg.ToString("0.##", CultureInfo.InvariantCulture) + " kg</color>";
-        }
-
-        private string BuildText()
+        private List<Row> BuildRows()
         {
             float pct = GetFloat(percentKey);
-            StringBuilder sb = new StringBuilder();
+            List<Row> rows = new List<Row>();
             foreach (CapacityExample example in examples)
             {
                 ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(example.race);
-                if (def?.race == null)
+                if (def?.race == null || (!def.race.Humanlike && !def.race.packAnimal))
                 {
                     continue;
                 }
@@ -173,18 +229,14 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     }
                 }
                 float beforeKg = Mathf.Max(0f, baseKg + implantKg);
-                float afterKg = Mathf.Max(0f, beforeKg + baseKg * pct / 100f);
-                if (sb.Length > 0)
+                rows.Add(new Row
                 {
-                    sb.AppendLine();
-                }
-                sb.Append((example.label ?? def.LabelCap.ToString()) + ": " + Red(beforeKg) + " -> " + Red(afterKg));
-                if (!def.race.Humanlike && !def.race.packAnimal)
-                {
-                    sb.Append(" (needs Caravan Packs)");
-                }
+                    label = example.label ?? def.LabelCap.ToString(),
+                    before = beforeKg,
+                    after = Mathf.Max(0f, beforeKg + baseKg * pct / 100f),
+                });
             }
-            return sb.ToString();
+            return rows;
         }
     }
 }

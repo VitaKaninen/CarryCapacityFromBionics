@@ -4,12 +4,9 @@
 1. Add support for **A Dog Said... Animal Prosthetics 2** (ADSAP2, `SamBucher.ADogSaidAnimalProsthetics2`,
    ws 3238353862) incl. its EPOE-Forked/MSE2 subparts and Kenshi Fauna parts; skip organs and wings.
    Facts + verified mechanics: `docs/SUPPORTED_MODS.md` (planned section).
-2. **Settings redesign** (user's idea):
-   - "Use simple settings" checkbox at the top. Simple = editable body-part weights (%) + tech
-     multipliers (bionic 2, archotech 3, prosthetic −1, crude −2); penalties below it, off by default
-     and hidden when unticked. Unticked = today's per-implant rows.
-   - Extra capacity on top: one percentage for everyone, with live kg examples beside it (normal
-     human, Dog, Muffalo, Thrumbo — read their body sizes from game data).
+2. **Settings redesign** — design as built is in `docs/REDESIGN_PLAN.md` (main box, Easy/Advanced,
+   penalty blocks, examples). Superseded early idea: per-part weights + tech multipliers (dropped:
+   Easy = one scale % over the defaults).
 
 ## Decisions made (user)
 - Animal bonuses = % of the animal's base capacity (body size × 35); support goes through the pack
@@ -40,7 +37,21 @@
 - `loadAfter` must list every packageId LoadFolders gates on (except `MSE2.Core`, used only to disable):
   NeoP defines parts in its Patches/, which run in load order.
 
+## Session 2 (2026-11-08, handoff at 343k tokens)
+Built over 3 rounds, each deployed + pushed (last commit 897d7f5): Easy/Advanced mode (scale %,
+patch time), one top box (custom radio, options left / data right, extra % moved in, ExtraCapacity
+folder removed), prosthetic-penalty + missing-part global checkboxes with blocks inside sections
+(missing parts inside Core Implants), penalty/missing rows default on, MedP penalty-only section,
+starting mode from saved values, table tooltips, all pack animals on hover.
+**Not yet seen in game:** round 3 (radio widget, option layout, TableTip ImmediateWindow, DecideMode).
+**Asked last, unanswered:**
+- Add two one-line C# comments? DecideMode: "Picks Easy or Advanced on first run: saved values that
+  differ from the defaults mean Advanced." TableTip: "Hover tooltip as a table: name left, numbers
+  right-aligned, extra columns when it is too tall."
+- May I recycle the stale `1.6/ExtraCapacity` folder in `<RimWorld>/Mods/CarryCapacityFromBionics`
+  (not loaded any more, but would be uploaded)? Needs the user's yes (game-folder write).
+- About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).
+
 ## Next steps
-1. Simple mode + per-mod examples built and deployed 2026-11-08 (`docs/REDESIGN_PLAN.md` §2);
-   awaiting the user's in-game test.
+1. User tests round 3 in game; fix what they report. Then the open questions above.
 2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

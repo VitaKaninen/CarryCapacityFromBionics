@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using Verse;
 using XmlExtensions.Setting;
@@ -34,6 +33,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float GroupGap = 8f;
         private const float HumanBaseKg = 35f;
 
+        public string header;
         public List<SimpleRow> rows = new List<SimpleRow>();
         public List<SimpleGroup> groups = new List<SimpleGroup>();
 
@@ -47,12 +47,13 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         {
             public string title;
             public List<Line> lines = new List<Line>();
-            public string tip;
+            public string tipHeader;
+            public List<string[]> tipRows = new List<string[]>();
         }
 
         protected override float CalculateHeight(float width)
         {
-            float height = 0f;
+            float height = string.IsNullOrEmpty(header) ? 0f : LineHeight;
             foreach (Block block in BuildBlocks())
             {
                 height += BlockHeight(block) + GroupGap;
@@ -67,11 +68,18 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             Color color = GUI.color;
             Text.Font = GameFont.Small;
             float y = inRect.y;
+            if (!string.IsNullOrEmpty(header))
+            {
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), header);
+                y += LineHeight;
+            }
+            int index = 0;
             foreach (Block block in BuildBlocks())
             {
                 Rect blockRect = new Rect(inRect.x, y, inRect.width, BlockHeight(block));
                 Widgets.DrawHighlightIfMouseover(blockRect);
-                TooltipHandler.TipRegion(blockRect, block.tip);
+                TableTip.DoTip(blockRect, 0x3CCFB00 + index++, block.tipHeader, block.tipRows);
 
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), block.title + ":");
@@ -169,10 +177,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     continue;
                 }
 
-                StringBuilder tip = new StringBuilder();
-                tip.AppendLine("Untick Simple settings to switch to advanced mode, where you can change any of these.");
-                tip.AppendLine();
-                tip.AppendLine(group.label + ":");
+                block.tipHeader = "Choose Advanced settings to change any of these.\n\n" + group.label + ":";
                 HashSet<string> seen = new HashSet<string>();
                 foreach (SimpleRow row in rows)
                 {
@@ -185,17 +190,16 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     {
                         continue;
                     }
-                    string text = "  " + row.label + ": " + Kg(kg * scale);
-                    if (seen.Add(text))
+                    string text = Kg(kg * scale);
+                    if (seen.Add(row.label + "|" + text))
                     {
-                        tip.AppendLine(text);
+                        block.tipRows.Add(new[] { row.label, text });
                     }
                 }
                 if (missing.HasValue)
                 {
-                    tip.AppendLine("  " + missing.Value.label + ": " + Kg(missing.Value.kg));
+                    block.tipRows.Add(new[] { missing.Value.label, Kg(missing.Value.kg) });
                 }
-                block.tip = tip.ToString().TrimEnd();
                 blocks.Add(block);
             }
             return blocks;

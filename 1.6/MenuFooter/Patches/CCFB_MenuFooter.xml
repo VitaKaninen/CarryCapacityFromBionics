@@ -10,19 +10,25 @@
 	<Operation Class="XmlExtensions.PatchOperationAdd">
 		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
 		<value>
-			<li Class="XmlExtensions.Setting.Gap">
-				<spacing>24</spacing>
-			</li>
-			<li Class="XmlExtensions.Setting.GapLine"/>
-			<li Class="XmlExtensions.Setting.Button">
-				<label>Reset all settings</label>
-				<height>30</height>
-				<confirm>true</confirm>
-				<message>Reset ALL of this mod's settings - every section - to their defaults?</message>
-				<tooltip>Resets every section's checkboxes and values to their defaults.</tooltip>
-				<actions>
-					<li Class="XmlExtensions.Action.ResetSettings"/>
-				</actions>
+			<li Class="XmlExtensions.Setting.ToggleableSettings">
+				<key>ToggleSectionSimple</key>
+				<caseTrue/>
+				<caseFalse>
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>24</spacing>
+					</li>
+					<li Class="XmlExtensions.Setting.GapLine"/>
+					<li Class="XmlExtensions.Setting.Button">
+						<label>Reset all settings</label>
+						<height>30</height>
+						<confirm>true</confirm>
+						<message>Reset ALL of this mod's settings - every section - to their defaults?</message>
+						<tooltip>Resets every section's checkboxes and values to their defaults.</tooltip>
+						<actions>
+							<li Class="XmlExtensions.Action.ResetSettings"/>
+						</actions>
+					</li>
+				</caseFalse>
 			</li>
 		</value>
 	</Operation>

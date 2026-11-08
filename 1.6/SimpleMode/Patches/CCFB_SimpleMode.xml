@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
+	<Operation Class="Vita.CarryCapacityFromBionics.MissingParts.PatchOperation_DecideMode"/>
 	<Operation Class="XmlExtensions.PatchOperationAdd">
 		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
 		<value>
@@ -15,111 +16,139 @@
 						<anchor>Middle</anchor>
 					</li>
 					<li Class="XmlExtensions.Setting.GapLine"/>
-					<li Class="XmlExtensions.Setting.RadioButtons">
+					<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_ModeChoice">
 						<key>ToggleSectionSimple</key>
 						<defaultValue>true</defaultValue>
-						<buttons>
+						<options>
 							<li>
-								<label>Easy settings: every implant uses its recommended value, adjusted with one scale</label>
 								<value>true</value>
-								<tooltip>The per-mod sections are hidden. The examples on the right show what the implants give.</tooltip>
+								<label>Easy settings</label>
+								<description>Every implant gets its recommended carry bonus. Change them all at once with one percentage.</description>
 							</li>
 							<li>
-								<label>Advanced settings: set every implant yourself in the sections below</label>
 								<value>false</value>
-								<tooltip>Every supported mod gets its own section, where each implant has its own checkbox and value.</tooltip>
+								<label>Advanced settings</label>
+								<description>Turn each implant on or off and set its own bonus, in a section per mod below.</description>
 							</li>
-						</buttons>
+						</options>
 					</li>
 					<li Class="XmlExtensions.Setting.GapLine"/>
 					<li Class="XmlExtensions.Setting.SplitColumn">
 						<tag>CCFB_MainColumns</tag>
 						<anchor>Top</anchor>
+						<gapSize>24</gapSize>
 						<leftCol>
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
 								<key>ToggleSectionSimple</key>
 								<caseTrue>
-									<li Class="XmlExtensions.Setting.SplitColumn">
+									<li Class="XmlExtensions.Setting.Group">
 										<tag>CCFB_ScaleRow</tag>
+										<settings>
+											<li Class="XmlExtensions.Setting.SplitColumn">
+												<split>0.79</split>
+												<anchor>Middle</anchor>
+												<leftCol>
+													<li Class="XmlExtensions.Setting.Text">
+														<text>Scale implant values by</text>
+													</li>
+												</leftCol>
+												<rightCol>
+													<li Class="XmlExtensions.Setting.Numeric">
+														<decimals>1</decimals>
+														<percent>true</percent>
+														<key>SimpleScale</key>
+														<defaultValue>100</defaultValue>
+													</li>
+												</rightCol>
+											</li>
+											<li Class="XmlExtensions.Setting.Text">
+												<text>&lt;color=#9a9a9a&gt;Multiplies every implant bonus. 100% = recommended values, 200% = double.&lt;/color&gt;</text>
+												<font>Tiny</font>
+												<padBelow>6</padBelow>
+											</li>
+										</settings>
+									</li>
+								</caseTrue>
+								<caseFalse/>
+							</li>
+							<li Class="XmlExtensions.Setting.Group">
+								<settings>
+									<li Class="XmlExtensions.Setting.SplitColumn">
 										<split>0.79</split>
 										<anchor>Middle</anchor>
 										<leftCol>
 											<li Class="XmlExtensions.Setting.Text">
-												<text>Scale implant values by</text>
-												<anchor>Right</anchor>
-												<tooltip>Every implant uses its recommended value multiplied by this percentage. 100% = the recommended values, 200% = double.</tooltip>
+												<text>Include prosthetic penalties</text>
+											</li>
+										</leftCol>
+										<rightCol>
+											<li Class="XmlExtensions.Setting.Checkbox">
+												<label></label>
+												<key>SimplePenalties</key>
+												<defaultValue>false</defaultValue>
+												<padRight>25</padRight>
+											</li>
+										</rightCol>
+									</li>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>&lt;color=#9a9a9a&gt;Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.&lt;/color&gt;</text>
+										<font>Tiny</font>
+										<padBelow>6</padBelow>
+									</li>
+								</settings>
+							</li>
+							<li Class="XmlExtensions.Setting.Group">
+								<settings>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<split>0.79</split>
+										<anchor>Middle</anchor>
+										<leftCol>
+											<li Class="XmlExtensions.Setting.Text">
+												<text>Include missing body part penalties</text>
+											</li>
+										</leftCol>
+										<rightCol>
+											<li Class="XmlExtensions.Setting.Checkbox">
+												<label></label>
+												<key>ToggleSectionMissingParts</key>
+												<defaultValue>false</defaultValue>
+												<padRight>25</padRight>
+											</li>
+										</rightCol>
+									</li>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>&lt;color=#9a9a9a&gt;Missing or damaged limbs, spine and pelvis lower carry capacity.&lt;/color&gt;</text>
+										<font>Tiny</font>
+										<padBelow>6</padBelow>
+									</li>
+								</settings>
+							</li>
+							<li Class="XmlExtensions.Setting.Group">
+								<tag>CCFB_ExtraHumanRow</tag>
+								<settings>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<split>0.79</split>
+										<anchor>Middle</anchor>
+										<leftCol>
+											<li Class="XmlExtensions.Setting.Text">
+												<text>Extra capacity for humans</text>
 											</li>
 										</leftCol>
 										<rightCol>
 											<li Class="XmlExtensions.Setting.Numeric">
 												<decimals>1</decimals>
 												<percent>true</percent>
-												<key>SimpleScale</key>
-												<defaultValue>100</defaultValue>
+												<key>ExtraCapacityHuman</key>
+												<defaultValue>0</defaultValue>
 											</li>
 										</rightCol>
 									</li>
-								</caseTrue>
-								<caseFalse/>
-							</li>
-							<li Class="XmlExtensions.Setting.SplitColumn">
-								<width>24</width>
-								<gapSize>6</gapSize>
-								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Checkbox">
-										<label></label>
-										<key>SimplePenalties</key>
-										<defaultValue>false</defaultValue>
-									</li>
-								</leftCol>
-								<rightCol>
 									<li Class="XmlExtensions.Setting.Text">
-										<text>Include prosthetic penalties</text>
-										<tooltip>Prosthetics that work worse than a natural limb (prosthetic, wooden and peg limbs) reduce carry capacity. In advanced mode, their rows show in each section.</tooltip>
+										<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else. A Dog Said... Animal Prosthetics 2 adds a pack animal setting.&lt;/color&gt;</text>
+										<font>Tiny</font>
+										<padBelow>6</padBelow>
 									</li>
-								</rightCol>
-							</li>
-							<li Class="XmlExtensions.Setting.SplitColumn">
-								<width>24</width>
-								<gapSize>6</gapSize>
-								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Checkbox">
-										<label></label>
-										<key>ToggleSectionMissingParts</key>
-										<defaultValue>false</defaultValue>
-									</li>
-								</leftCol>
-								<rightCol>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Include missing body part penalties</text>
-										<tooltip>Missing and damaged body parts reduce carry capacity by a percentage of the pawn's base capacity (body size x 35 kg). In advanced mode, the per-part values show in the Core Implants section.</tooltip>
-									</li>
-								</rightCol>
-							</li>
-							<li Class="XmlExtensions.Setting.Gap">
-								<spacing>12</spacing>
-							</li>
-							<li Class="XmlExtensions.Setting.SplitColumn">
-								<tag>CCFB_ExtraHumanRow</tag>
-								<split>0.79</split>
-								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Extra capacity for humans</text>
-										<anchor>Right</anchor>
-										<tooltip>Optional. Adds a percentage of each pawn's base capacity (body size x 35 kg) on top of everything else, in both easy and advanced mode. Babies are not affected. Install A Dog Said... Animal Prosthetics 2 to set a separate percentage for pack animals.</tooltip>
-									</li>
-								</leftCol>
-								<rightCol>
-									<li Class="XmlExtensions.Setting.Numeric">
-										<decimals>1</decimals>
-										<percent>true</percent>
-										<key>ExtraCapacityHuman</key>
-										<defaultValue>0</defaultValue>
-									</li>
-								</rightCol>
+								</settings>
 							</li>
 						</leftCol>
 						<rightCol>
@@ -128,6 +157,8 @@
 								<caseTrue>
 									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SimpleExamples">
 										<tag>CCFB_SimpleExamples</tag>
+										<header>Implant examples (hover for details):</header>
+										<padBelow>6</padBelow>
 										<rows/>
 										<groups>
 											<li>
@@ -282,11 +313,9 @@
 								</caseTrue>
 								<caseFalse/>
 							</li>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>Extra capacity:</text>
-							</li>
 							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_CapacityExamples">
 								<tag>CCFB_ExtraHumanExamples</tag>
+								<header>Extra capacity:</header>
 								<percentKey>ExtraCapacityHuman</percentKey>
 								<examples>
 									<li>
@@ -305,8 +334,8 @@
 						<key>ToggleSectionSimple</key>
 						<height>24</height>
 						<confirm>true</confirm>
-						<message>Reset the settings in this box to their defaults?</message>
-						<tooltip>Resets the choices in this box. The per-mod sections are not touched.</tooltip>
+						<message>Reset the settings in this box to their defaults (Easy settings)?</message>
+						<tooltip>Resets the choices in this box, which also switches back to Easy settings. The per-mod sections are not touched.</tooltip>
 						<actions>
 							<li Class="XmlExtensions.Action.ResetSettings">
 								<keys>

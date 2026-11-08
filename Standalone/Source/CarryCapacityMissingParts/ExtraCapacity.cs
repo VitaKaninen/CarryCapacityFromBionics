@@ -95,18 +95,21 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
     {
         public string label;
         public string race;
-        public string section;
-        public List<string> implants = new List<string>();
     }
 
     public class Setting_CapacityExamples : SettingContainer
     {
         private const float NumberWidth = 64f;
         private const float ArrowWidth = 24f;
-        private const float RowGap = 2f;
+        private const float Indent = 16f;
+        private const float LineHeight = 22f;
 
         public string percentKey;
+        public string header;
+        public bool hoverAllPackAnimals;
         public List<CapacityExample> examples = new List<CapacityExample>();
+
+        private static List<ThingDef> packAnimals;
 
         private struct Row
         {
@@ -117,16 +120,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         protected override float CalculateHeight(float width)
         {
-            GameFont font = Text.Font;
-            Text.Font = GameFont.Small;
-            float labelWidth = LabelWidth(width);
-            float height = 0f;
-            foreach (Row row in BuildRows())
-            {
-                height += RowHeight(row, labelWidth) + RowGap;
-            }
-            Text.Font = font;
-            return height;
+            return ((string.IsNullOrEmpty(header) ? 0 : 1) + BuildRows().Count) * LineHeight;
         }
 
         protected override void DrawSettingContents(Rect inRect)
@@ -135,43 +129,48 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             TextAnchor anchor = Text.Anchor;
             Color color = GUI.color;
             Text.Font = GameFont.Small;
-            float labelWidth = LabelWidth(inRect.width);
             float y = inRect.y;
-            foreach (Row row in BuildRows())
+            if (!string.IsNullOrEmpty(header))
             {
-                float h = RowHeight(row, labelWidth);
-                float x = inRect.xMax;
-                x -= NumberWidth;
-                Rect after = new Rect(x, y, NumberWidth, h);
-                x -= ArrowWidth;
-                Rect arrow = new Rect(x, y, ArrowWidth, h);
-                x -= NumberWidth;
-                Rect before = new Rect(x, y, NumberWidth, h);
-                Rect label = new Rect(inRect.x, y, labelWidth, h);
-
-                Text.Anchor = TextAnchor.MiddleRight;
-                Widgets.Label(label, row.label);
-                Text.Anchor = TextAnchor.MiddleCenter;
-                Widgets.Label(arrow, "->");
-                Text.Anchor = TextAnchor.MiddleRight;
-                GUI.color = new Color(1f, 0.4f, 0.4f);
-                Widgets.Label(before, Kg(row.before));
-                Widgets.Label(after, Kg(row.after));
-                GUI.color = color;
-                y += h + RowGap;
+                Text.Anchor = TextAnchor.MiddleLeft;
+                Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), header);
+                y += LineHeight;
             }
+            float pct = MissingPartsBootstrap.GetFloat(percentKey, 0f);
+            foreach (Row row in BuildRows(pct))
+            {
+                DrawRow(inRect, y, row.label, row.before, row.after);
+                y += LineHeight;
+            }
+            GUI.color = color;
             Text.Anchor = anchor;
             Text.Font = font;
+
+            if (hoverAllPackAnimals)
+            {
+                Widgets.DrawHighlightIfMouseover(inRect);
+                List<string[]> tip = new List<string[]>();
+                foreach (ThingDef def in PackAnimals())
+                {
+                    float baseKg = BaseKg(def);
+                    tip.Add(new[] { def.LabelCap.ToString(), Kg(baseKg), "->", Kg(baseKg + baseKg * pct / 100f) });
+                }
+                TableTip.DoTip(inRect, 0x3CCFB80, "Every pack animal in this game (adult):", tip);
+            }
         }
 
-        private static float LabelWidth(float width)
+        private static void DrawRow(Rect inRect, float y, string label, float before, float after)
         {
-            return Mathf.Max(0f, width - NumberWidth * 2f - ArrowWidth - 6f);
-        }
-
-        private static float RowHeight(Row row, float labelWidth)
-        {
-            return Mathf.Max(22f, Mathf.Ceil(Text.CalcHeight(row.label, labelWidth)));
+            float x = inRect.xMax - NumberWidth;
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(new Rect(inRect.x + Indent, y, x - ArrowWidth - NumberWidth - inRect.x - Indent, LineHeight), label);
+            Text.Anchor = TextAnchor.MiddleRight;
+            GUI.color = new Color(1f, 0.4f, 0.4f);
+            Widgets.Label(new Rect(x, y, NumberWidth, LineHeight), Kg(after));
+            Widgets.Label(new Rect(x - ArrowWidth - NumberWidth, y, NumberWidth, LineHeight), Kg(before));
+            GUI.color = Color.white;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(new Rect(x - ArrowWidth, y, ArrowWidth, LineHeight), "->");
         }
 
         private static string Kg(float kg)
@@ -179,25 +178,31 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             return kg.ToString("0.##", CultureInfo.InvariantCulture) + " kg";
         }
 
-        private static float GetFloat(string key)
+        private static float BaseKg(ThingDef def)
         {
-            if (XmlExtensions.SettingsManager.TryGetSetting(MissingPartsBootstrap.ModId, key, out string value)
-                && float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float parsed))
+            float bodySize = def.race.baseBodySize;
+            LifeStageAge adult = def.race.lifeStageAges?.LastOrDefault();
+            if (adult?.def != null)
             {
-                return parsed;
+                bodySize *= adult.def.bodySizeFactor;
             }
-            return 0f;
+            return bodySize * MassUtility.MassCapacityPerBodySize;
         }
 
-        private static bool GetBool(string key)
+        private static List<ThingDef> PackAnimals()
         {
-            return XmlExtensions.SettingsManager.TryGetSetting(MissingPartsBootstrap.ModId, key, out string value)
-                && bool.TryParse(value, out bool parsed) && parsed;
+            if (packAnimals == null)
+            {
+                packAnimals = DefDatabase<ThingDef>.AllDefsListForReading
+                    .Where(d => d.race != null && d.race.Animal && d.race.packAnimal)
+                    .OrderBy(d => d.label)
+                    .ToList();
+            }
+            return packAnimals;
         }
 
-        private List<Row> BuildRows()
+        private List<Row> BuildRows(float pct = 0f)
         {
-            float pct = GetFloat(percentKey);
             List<Row> rows = new List<Row>();
             foreach (CapacityExample example in examples)
             {
@@ -206,30 +211,12 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 {
                     continue;
                 }
-                float bodySize = def.race.baseBodySize;
-                LifeStageAge adult = def.race.lifeStageAges?.LastOrDefault();
-                if (adult?.def != null)
-                {
-                    bodySize *= adult.def.bodySizeFactor;
-                }
-                float baseKg = bodySize * MassUtility.MassCapacityPerBodySize;
-                float implantKg = 0f;
-                if (example.section == null || GetBool("ToggleSection" + example.section))
-                {
-                    foreach (string key in example.implants)
-                    {
-                        if (GetBool("Toggle" + key))
-                        {
-                            implantKg += GetFloat(key);
-                        }
-                    }
-                }
-                float beforeKg = Mathf.Max(0f, baseKg + implantKg);
+                float baseKg = BaseKg(def);
                 rows.Add(new Row
                 {
                     label = example.label ?? def.LabelCap.ToString(),
-                    before = beforeKg,
-                    after = Mathf.Max(0f, beforeKg + baseKg * pct / 100f),
+                    before = baseKg,
+                    after = Mathf.Max(0f, baseKg + baseKg * pct / 100f),
                 });
             }
             return rows;

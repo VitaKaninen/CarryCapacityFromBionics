@@ -8,22 +8,36 @@ the chosen numbers and are never patched or stored. Extra % and animals are % of
 
 ## 1+2. Main box: mode, options, extra % — built 2026-11-08 (layout v2, awaiting in-game test)
 `1.6/SimpleMode/Patches/CCFB_SimpleMode.xml` (LoadFolders lowest = applies first = top of menu)
-adds one Section box (tag `CCFB_MainBox`): title, RadioButtons on `ToggleSectionSimple`
-(values "true" = Easy / "false" = Advanced, default true), then a SplitColumn — left = options,
-right = data (user: options left, data right):
-- Left: `SimpleScale` % (Easy only), `SimplePenalties` checkbox, `ToggleSectionMissingParts`
-  checkbox, `ExtraCapacityHuman` % (+ `ExtraCapacityAnimal`, see ADSAP2 below). Descriptions are
-  tooltips. One "Reset these settings" button (key ToggleSectionSimple) for the box's keys.
-- Right: `Setting_SimpleExamples` (Easy only), then "Extra capacity:" + `Setting_CapacityExamples`
-  (Colonist; animals with ADSAP2) in both modes.
+adds one Section box (tag `CCFB_MainBox`): title, `Setting_ModeChoice` on `ToggleSectionSimple`
+(our C# radio: button left, Medium label, gray description below — user; XE RadioButtons puts
+the button on the right; values "true" = Easy / "false" = Advanced), then a SplitColumn — left =
+options, right = data (user):
+- Left: `SimpleScale` % (Easy only), `SimplePenalties`, `ToggleSectionMissingParts`,
+  `ExtraCapacityHuman` % (+ `ExtraCapacityAnimal`). Each option = Group: SplitColumn 0.79 (label
+  left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
+  explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
+  box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
+- Right: `Setting_SimpleExamples` (Easy only, header "(hover for details)"), then
+  `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
+  numbers right) — Colonist; with ADSAP2 Husky/Muffalo/Thrumbo + hover table of every pack
+  animal in DefDatabase (modded included, user).
+- Hover tooltips are `TableTip` (MenuWidgets.cs): an ImmediateWindow table — name left, numbers
+  right-aligned after a gap, wrapping into side-by-side column groups when taller than 85% of
+  the screen (user: multiple columns).
+- **Starting mode** (user): `PatchOperation_DecideMode`, first op of the SimpleMode file (runs at
+  patch time before any row; XE loads saved settings in its Mod constructor, earlier). Saved mode
+  "True"/"False" is normalised to lowercase (radio compares strings). No saved mode → reads our
+  `1.6/**/Patches/*.xml` ApplyPatch args: any saved non-negative row toggle/value or section
+  master differing from its default → Advanced, else Easy; exception → Advanced. Penalty rows
+  and missing-part rows are ignored (their defaults changed 2026-11-08).
 - Extra %: no on/off (user): 0 = off; old key `ToggleSectionExtraCapacity` retired (C# ignores it).
   `StatPart_ExtraCapacity` adds pct × body size × 35 (humanlike non-babies; animals only if
   `packAnimal`), injected only if a value ≠ 0. `Setting_CapacityExamples` field is `percentKey`
   (NOT `key`, which SettingContainer already has); non-pack races are omitted (user).
 - **ADSAP2 only** (user): `1.6/ExtraCapacity_Animals` (LoadFolders `IfModActive` ADSAP2, above
-  SimpleMode so it applies after) inserts the pack-animals % row after `CCFB_ExtraHumanRow`, the
-  Husky/Muffalo/Thrumbo examples after `CCFB_ExtraHumanExamples`, and swaps the humans tooltip
-  (which otherwise tells players to install ADSAP2). C# applies `ExtraCapacityAnimal` only if
+  SimpleMode so it applies after) inserts the pack-animals option after `CCFB_ExtraHumanRow`, the
+  animal examples after `CCFB_ExtraHumanExamples`, and swaps the humans explanation (which
+  otherwise mentions ADSAP2). C# applies `ExtraCapacityAnimal` only if
   ADSAP2 is active (packageId or `_steam` form).
 
 ### Easy vs advanced at patch time (`CCFB_ImplantCore` → `CCFB_ModeOffset`)

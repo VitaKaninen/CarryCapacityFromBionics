@@ -86,6 +86,8 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float BoxSize = 24f;
         private const float RowHeight = 22f;
         private const float TextLeft = 30f;
+        private const float OffsetX = 12f;
+        private const float OffsetY = -4f;
 
         public string enabledLabel = "Disable all";
         public string disabledLabel = "Enable all";
@@ -101,10 +103,12 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             string modId = MissingPartsBootstrap.ModId;
             bool anyOn = keys.Any(k => IsOn(modId, k));
             bool value = anyOn;
-            Widgets.CheckboxLabeled(new Rect(inRect.x, inRect.y, BoxSize, inRect.height), "", ref value);
+            float x = inRect.x + OffsetX;
+            float y = inRect.y + OffsetY;
+            Widgets.Checkbox(new Vector2(x, y), ref value, BoxSize);
             TextAnchor anchor = Text.Anchor;
             Text.Anchor = TextAnchor.MiddleLeft;
-            Rect labelRect = new Rect(inRect.x + TextLeft, inRect.y, inRect.width - TextLeft, inRect.height);
+            Rect labelRect = new Rect(x + TextLeft, y, inRect.xMax - x - TextLeft, BoxSize);
             Widgets.Label(labelRect, anyOn ? enabledLabel : disabledLabel);
             Text.Anchor = anchor;
             if (Widgets.ButtonInvisible(labelRect))

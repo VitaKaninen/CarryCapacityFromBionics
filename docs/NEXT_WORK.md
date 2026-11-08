@@ -66,6 +66,19 @@ Buttons offered: "Keep keys as is" / "Rename the keys". The user's own saved fil
 rows ON.
 **Still open:** About.xml description doesn't mention Easy/Advanced (user edits descriptions).
 
+- Round 9: section toggle deliberately offset (+12 x, −4 y; user: lean into it); About.xml got a
+  short Settings block. User asked to re-explain the key-rename question (re-explained, unanswered).
+
+## ADSAP2 draft values (shown to user round 9, not approved)
+% of the animal's base. Weights: leg/tremor leg 20, spine 20, shoulder (arm) 15, MSE2 forearm
+(`Arm`) 10, paw/hoof/foot/RG foot claw 6 (= human foot share of a leg), hand/pincer 5,
+toe/finger/claw 1, internal support 2.5 (its parts span 2.5–12.5). Bionic ×2, ladder-rounded:
+leg 50, spine 40, arm 35, forearm 25, paw/hoof/foot 15, hand/pincer 12.5, support 6,
+toe/finger/claw 2.5. Penalties −(1−eff)×w: leg −4, replacement spine −4, arm −8 (0.5; −3 with
+EPOE-Forked's 0.8), forearm −2, wooden paw −2.5, wooden hoof −1.5 (−2.5 EPOE), paw/hoof/foot
+−1.25, hand −1, toe/finger/claw −0.2. Vanilla PegLeg/WoodenFoot/WoodenHand/PowerClaw/HookHand
+also install on animals and already get the human flat-kg rows (open question to user).
+
 ## Next steps
-1. User tests rounds 4–7 in game; fix what they report. Then the key-rename question.
-2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).
+1. User tests rounds 4–9 in game; fix what they report. Then the key-rename question.
+2. Then ADSAP2 rows once the table above is approved.

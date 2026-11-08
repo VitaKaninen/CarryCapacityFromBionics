@@ -27,20 +27,25 @@ the chosen numbers and are never patched or stored. Extra % and animals are % of
   tells players to install ADSAP2). C# applies `ExtraCapacityAnimal` only if ADSAP2 is active
   (checks the packageId and its `_steam` form; `ModsConfig.IsActive` ignores the suffix).
 
-## 2. Simple mode (default ON, user)
-- `UseSimpleSettings` checkbox at the top + `SimpleScale` % (default 100). Ticked: per-mod
-  sections hidden (CCFB_Section body wrapped in a ToggleableSettings on it), simple panel shown.
-  Missing-parts and Extra sections show in both modes.
-- Patch time, `CCFB_Implant`: simple → value = kg default × SimpleScale / 100 (XE `CreateVariable`
-  `*`), toggle = the row's default toggle (per-row and section checkboxes ignored); advanced →
-  today's `UseSetting` path. Restart needed, like every setting.
-- `CCFB_ImplantNativeVEF`: simple → author's value × scale (100% = author's value), replacing the
-  native offset with VEF / added as `CarryCapacityBonus` without; advanced → unchanged (box
-  replaces the author's value, toggle off leaves it).
-- Examples (live, red, like Extra): one row per loaded mod section — a human with that mod's best
-  build. Defaults read via `XmlExtensions.SettingsManager.GetDefaultValue(modId, key)` (no
-  duplicated numbers); simple shows default × scale, advanced shows the current row values.
-  Vanilla: archotech man = 2 Archotech Arm + 2 Archotech Leg + Bionic Spine (35 + 145 = 180 kg).
+## 2. Simple mode — BUILT 2026-11-08, awaiting in-game test
+- Section "Simple settings" (`1.6/SimpleMode`, LoadFolders below ExtraCapacity = top of menu); its
+  master checkbox `ToggleSectionSimple` (default true) IS the simple/advanced switch. Body: text,
+  `SimplePenalties` checkbox (default false), `SimpleScale` % (default 100), examples widget.
+- Mod sections live inside a ToggleableSettings container (tag `CCFB_AdvancedSections`, key
+  `ToggleSectionSimple`, created by the first `CCFB_Section` call) → hidden in simple mode.
+  Simple/Extra/MissingParts call `CCFB_SectionAt` with the menu root so they show in both modes.
+- Patch time (both implant PatchDefs): simple → `CCFB_SimpleOffset`: default > 0 always applies,
+  < 0 only with SimplePenalties, 0 skipped; value = default × SimpleScale / 100
+  (`CCFB_ScaledOffset`, two CreateVariables). Section/row checkboxes ignored. Advanced → the old
+  section gate → toggle → UseSetting path. Both end in `CCFB_AddOffset` (vefOperation arg:
+  Add, or AddOrReplace for native-VEF rows → 100% = author's value).
+- Examples (`Setting_SimpleExamples`, `SimpleExamples.cs`): every row PatchDef registers
+  key/label/section/default into the widget's `rows` (inside the dedup guard, so once per key).
+  Groups in the SimpleMode file: per section a `featured` priority list (first 3 found shown),
+  optional `penalties` (first found, shown when SimplePenalties on), `missingLeg` (Vanilla only;
+  shown when the Missing body parts master + Leg row are on, value −pct × 35, not scaled).
+  Group hidden if no row of its section registered. Hover = whole section's scaled list
+  (zeros dropped, penalties only when on, identical lines deduped).
 
 ## 3. Animals
 - Pack animals only (vanilla or Caravan Packs; non-pack animals have capacity 0 — IL-verified).
@@ -49,8 +54,7 @@ the chosen numbers and are never patched or stored. Extra % and animals are % of
 - First mod: ADSAP2 (`SamBucher.ADogSaidAnimalProsthetics2`); Kenshi Fauna fork = `EL.KenshiFauna`.
 
 ## Build order
-1. Extra % + examples (done). 2. Simple mode toggle + scale + PatchDef branch. 3. Per-mod examples.
-4. ADSAP2 animal rows. Each step deployed and tested by the user before the next.
+1. Extra % + examples (done). 2. Simple mode + examples (built, untested). 3. ADSAP2 animal rows. Each step deployed and tested by the user before the next.
 
 ## Decisions (user 2026-11-08)
 1. Simple mode = one scale % over the defaults; default ON.

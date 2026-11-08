@@ -7,7 +7,7 @@
 		collapsible body (ToggleableSettings): master unticked = only the title shows, and
 		CCFB_Implant/CCFB_ImplantNativeVEF skip every hediff patch in the section (the master
 		gates them via OptionalPatch). The collapse is live; the patches need a restart as usual.
-		Args (in order): section label | section tag | master checkbox default (true/false).
+		Args (in order): section label | section tag | master checkbox default (true/false) | parent xpath.
 		Idempotent: if a SplitColumn tagged CCFB_{section} already exists, does nothing, so any
 		patch file may call it for the section it needs and patch-file order does not matter.
 	-->
@@ -19,10 +19,46 @@
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li[tag="CCFB_AdvancedSections"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
 						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</xpath>
+						<value>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<tag>CCFB_AdvancedSections</tag>
+								<key>ToggleSectionSimple</key>
+								<caseTrue/>
+								<caseFalse/>
+							</li>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+			<Operation Class="XmlExtensions.ApplyPatch">
+				<patchName>CCFB_SectionAt</patchName>
+				<arguments>
+					<li>{sectionLabel}</li>
+					<li>{section}</li>
+					<li>{masterDefault}</li>
+					<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li[tag="CCFB_AdvancedSections"]/caseFalse</li>
+				</arguments>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_SectionAt" Abstract="True">
+		<parameters>
+			<li>sectionLabel</li>
+			<li>section</li>
+			<li>masterDefault</li>
+			<li>parent</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]</xpath>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>{parent}</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>24</spacing>
@@ -200,6 +236,17 @@
 								<li>{key}</li>
 							</value>
 						</Operation>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_SimpleExamples"]/rows</xpath>
+							<value>
+								<li>
+									<key>{key}</key>
+									<label>{label}</label>
+									<section>{section}</section>
+									<value>{valueDefault}</value>
+								</li>
+							</value>
+						</Operation>
 					</caseFalse>
 				</Operation>
 
@@ -207,70 +254,49 @@
 				     thing: master off = no bonus from this section, individual toggles ignored. -->
 				<Operation Class="XmlExtensions.OptionalPatch">
 					<modId>Vita.CarryCapacityFromBionics</modId>
-					<key>ToggleSection{section}</key>
+					<key>ToggleSectionSimple</key>
 					<defaultValue>true</defaultValue>
 					<caseTrue>
-				<Operation Class="XmlExtensions.OptionalPatch">
-					<modId>Vita.CarryCapacityFromBionics</modId>
-					<key>Toggle{key}</key>
-					<defaultValue>{toggleDefault}</defaultValue>
-					<caseTrue>
-						<Operation Class="XmlExtensions.UseSetting">
-							<modId>Vita.CarryCapacityFromBionics</modId>
-							<key>{key}</key>
-							<defaultValue>{valueDefault}</defaultValue>
-							<apply>
-								<Operation Class="XmlExtensions.Conditional">
-									<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
-											<value>
-												<stages>
-													<li/>
-												</stages>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-								<Operation Class="XmlExtensions.Conditional">
-									<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
-											<value>
-												<statOffsets/>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-								<Operation Class="XmlExtensions.FindMod">
-									<mods>
-										<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
-									</mods>
-									<packageId>true</packageId>
-									<caseTrue>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-											<value>
-												<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
-											</value>
-										</Operation>
-									</caseTrue>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-											<value>
-												<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-							</apply>
+						<Operation Class="XmlExtensions.ApplyPatch">
+							<patchName>CCFB_SimpleOffset</patchName>
+							<arguments>
+								<li>{defName}</li>
+								<li>{valueDefault}</li>
+								<li>PatchOperationAdd</li>
+							</arguments>
 						</Operation>
 					</caseTrue>
-				</Operation>
-					</caseTrue>
+					<caseFalse>
+						<Operation Class="XmlExtensions.OptionalPatch">
+							<modId>Vita.CarryCapacityFromBionics</modId>
+							<key>ToggleSection{section}</key>
+							<defaultValue>true</defaultValue>
+							<caseTrue>
+								<Operation Class="XmlExtensions.OptionalPatch">
+									<modId>Vita.CarryCapacityFromBionics</modId>
+									<key>Toggle{key}</key>
+									<defaultValue>{toggleDefault}</defaultValue>
+									<caseTrue>
+										<Operation Class="XmlExtensions.UseSetting">
+											<modId>Vita.CarryCapacityFromBionics</modId>
+											<key>{key}</key>
+											<defaultValue>{valueDefault}</defaultValue>
+											<apply>
+												<Operation Class="XmlExtensions.ApplyPatch">
+													<patchName>CCFB_AddOffset</patchName>
+													<arguments>
+														<li>{defName}</li>
+														<li>{{key}}</li>
+														<li>PatchOperationAdd</li>
+													</arguments>
+												</Operation>
+											</apply>
+										</Operation>
+									</caseTrue>
+								</Operation>
+							</caseTrue>
+						</Operation>
+					</caseFalse>
 				</Operation>
 				</caseTrue>
 			</Operation>
@@ -379,6 +405,17 @@
 								<li>{key}</li>
 							</value>
 						</Operation>
+						<Operation Class="XmlExtensions.PatchOperationAdd">
+							<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_SimpleExamples"]/rows</xpath>
+							<value>
+								<li>
+									<key>{key}</key>
+									<label>{label}</label>
+									<section>{section}</section>
+									<value>{valueDefault}</value>
+								</li>
+							</value>
+						</Operation>
 					</caseFalse>
 				</Operation>
 
@@ -386,74 +423,203 @@
 				     The section's master checkbox gates the whole thing, like in CCFB_Implant. -->
 				<Operation Class="XmlExtensions.OptionalPatch">
 					<modId>Vita.CarryCapacityFromBionics</modId>
-					<key>ToggleSection{section}</key>
+					<key>ToggleSectionSimple</key>
 					<defaultValue>true</defaultValue>
 					<caseTrue>
-				<Operation Class="XmlExtensions.OptionalPatch">
-					<modId>Vita.CarryCapacityFromBionics</modId>
-					<key>Toggle{key}</key>
-					<defaultValue>{toggleDefault}</defaultValue>
-					<caseTrue>
-						<Operation Class="XmlExtensions.UseSetting">
-							<modId>Vita.CarryCapacityFromBionics</modId>
-							<key>{key}</key>
-							<defaultValue>{valueDefault}</defaultValue>
-							<apply>
-								<Operation Class="XmlExtensions.Conditional">
-									<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
-											<value>
-												<stages>
-													<li/>
-												</stages>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-								<Operation Class="XmlExtensions.Conditional">
-									<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
-											<value>
-												<statOffsets/>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-								<Operation Class="XmlExtensions.FindMod">
-									<mods>
-										<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
-									</mods>
-									<packageId>true</packageId>
-									<caseTrue>
-										<Operation Class="XmlExtensions.PatchOperationAddOrReplace">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-											<value>
-												<VEF_MassCarryCapacity>{{key}}</VEF_MassCarryCapacity>
-											</value>
-										</Operation>
-									</caseTrue>
-									<caseFalse>
-										<Operation Class="XmlExtensions.PatchOperationAdd">
-											<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
-											<value>
-												<CarryCapacityBonus>{{key}}</CarryCapacityBonus>
-											</value>
-										</Operation>
-									</caseFalse>
-								</Operation>
-							</apply>
+						<Operation Class="XmlExtensions.ApplyPatch">
+							<patchName>CCFB_SimpleOffset</patchName>
+							<arguments>
+								<li>{defName}</li>
+								<li>{valueDefault}</li>
+								<li>PatchOperationAddOrReplace</li>
+							</arguments>
 						</Operation>
 					</caseTrue>
-				</Operation>
-					</caseTrue>
+					<caseFalse>
+						<Operation Class="XmlExtensions.OptionalPatch">
+							<modId>Vita.CarryCapacityFromBionics</modId>
+							<key>ToggleSection{section}</key>
+							<defaultValue>true</defaultValue>
+							<caseTrue>
+								<Operation Class="XmlExtensions.OptionalPatch">
+									<modId>Vita.CarryCapacityFromBionics</modId>
+									<key>Toggle{key}</key>
+									<defaultValue>{toggleDefault}</defaultValue>
+									<caseTrue>
+										<Operation Class="XmlExtensions.UseSetting">
+											<modId>Vita.CarryCapacityFromBionics</modId>
+											<key>{key}</key>
+											<defaultValue>{valueDefault}</defaultValue>
+											<apply>
+												<Operation Class="XmlExtensions.ApplyPatch">
+													<patchName>CCFB_AddOffset</patchName>
+													<arguments>
+														<li>{defName}</li>
+														<li>{{key}}</li>
+														<li>PatchOperationAddOrReplace</li>
+													</arguments>
+												</Operation>
+											</apply>
+										</Operation>
+									</caseTrue>
+								</Operation>
+							</caseTrue>
+						</Operation>
+					</caseFalse>
 				</Operation>
 				</caseTrue>
 			</Operation>
 
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_AddOffset" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>value</li>
+			<li>vefOperation</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/HediffDef[defName="{defName}"]/stages</xpath>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
+						<value>
+							<stages>
+								<li/>
+							</stages>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="{defName}"]/stages/li</xpath>
+						<value>
+							<statOffsets/>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+			<Operation Class="XmlExtensions.FindMod">
+				<mods>
+					<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+				</mods>
+				<packageId>true</packageId>
+				<caseTrue>
+					<Operation Class="XmlExtensions.{vefOperation}">
+						<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+						<value>
+							<VEF_MassCarryCapacity>{value}</VEF_MassCarryCapacity>
+						</value>
+					</Operation>
+				</caseTrue>
+				<caseFalse>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="{defName}"]/stages/li/statOffsets</xpath>
+						<value>
+							<CarryCapacityBonus>{value}</CarryCapacityBonus>
+						</value>
+					</Operation>
+				</caseFalse>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_SimpleOffset" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>valueDefault</li>
+			<li>vefOperation</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.IfStatement">
+				<condition Class="XmlExtensions.Boolean.Comparison">
+					<value1>{valueDefault}</value1>
+					<value2>0</value2>
+					<relation>sg</relation>
+				</condition>
+				<caseTrue>
+					<Operation Class="XmlExtensions.ApplyPatch">
+						<patchName>CCFB_ScaledOffset</patchName>
+						<arguments>
+							<li>{defName}</li>
+							<li>{valueDefault}</li>
+							<li>{vefOperation}</li>
+						</arguments>
+					</Operation>
+				</caseTrue>
+				<caseFalse>
+					<Operation Class="XmlExtensions.IfStatement">
+						<condition Class="XmlExtensions.Boolean.Comparison">
+							<value1>{valueDefault}</value1>
+							<value2>0</value2>
+							<relation>sl</relation>
+						</condition>
+						<caseTrue>
+							<Operation Class="XmlExtensions.OptionalPatch">
+								<modId>Vita.CarryCapacityFromBionics</modId>
+								<key>SimplePenalties</key>
+								<defaultValue>false</defaultValue>
+								<caseTrue>
+									<Operation Class="XmlExtensions.ApplyPatch">
+										<patchName>CCFB_ScaledOffset</patchName>
+										<arguments>
+											<li>{defName}</li>
+											<li>{valueDefault}</li>
+											<li>{vefOperation}</li>
+										</arguments>
+									</Operation>
+								</caseTrue>
+							</Operation>
+						</caseTrue>
+					</Operation>
+				</caseFalse>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_ScaledOffset" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>valueDefault</li>
+			<li>vefOperation</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.UseSetting">
+				<modId>Vita.CarryCapacityFromBionics</modId>
+				<key>SimpleScale</key>
+				<defaultValue>100</defaultValue>
+				<apply>
+					<Operation Class="XmlExtensions.CreateVariable">
+						<storeIn>CCFB_Scaled</storeIn>
+						<value>{valueDefault}</value>
+						<value2>{SimpleScale}</value2>
+						<operation>*</operation>
+						<apply>
+							<Operation Class="XmlExtensions.CreateVariable">
+								<storeIn>CCFB_Final</storeIn>
+								<value>{CCFB_Scaled}</value>
+								<value2>100</value2>
+								<operation>/</operation>
+								<apply>
+									<Operation Class="XmlExtensions.ApplyPatch">
+										<patchName>CCFB_AddOffset</patchName>
+										<arguments>
+											<li>{defName}</li>
+											<li>{CCFB_Final}</li>
+											<li>{vefOperation}</li>
+										</arguments>
+									</Operation>
+								</apply>
+							</Operation>
+						</apply>
+					</Operation>
+				</apply>
+			</Operation>
 		</apply>
 	</XmlExtensions.PatchDef>
 

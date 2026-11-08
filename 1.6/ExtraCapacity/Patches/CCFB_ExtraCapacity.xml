@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Patch>
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Section</patchName>
+		<patchName>CCFB_SectionAt</patchName>
 		<arguments>
 			<li>Extra carry capacity</li>
 			<li>ExtraCapacity</li>
 			<li>false</li>
+			<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.Conditional">

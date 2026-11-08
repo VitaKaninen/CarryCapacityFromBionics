@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_SectionAt</patchName>
+		<arguments>
+			<li>Simple settings</li>
+			<li>Simple</li>
+			<li>true</li>
+			<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.Conditional">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[key="SimpleScale"]</xpath>
+		<caseFalse>
+			<Operation Class="XmlExtensions.PatchOperationReplace">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Checkbox"][key="ToggleSectionSimple"]/tooltip</xpath>
+				<value>
+					<tooltip>Ticked: simple mode, every implant uses its recommended value times one percentage. Unticked: advanced mode, every implant gets its own checkbox and value.</tooltip>
+				</value>
+			</Operation>
+			<Operation Class="XmlExtensions.PatchOperationReplace">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_Simple"]</xpath>
+				<value>
+					<li Class="XmlExtensions.Setting.Text">
+						<text>Every supported implant uses its recommended value, multiplied by the percentage below (100% = the recommended values). Untick Simple settings to switch to advanced mode, where you can turn each implant on or off and set its own value. Hover over an example to see every implant of that mod.</text>
+					</li>
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>12</spacing>
+					</li>
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<tag>CCFB_Simple</tag>
+						<anchor>Top</anchor>
+						<leftCol>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<width>24</width>
+								<gapSize>6</gapSize>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Checkbox">
+										<label></label>
+										<key>SimplePenalties</key>
+										<defaultValue>false</defaultValue>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Include prosthetic penalties</text>
+										<tooltip>Prosthetics that work worse than a natural limb (prosthetic, wooden and peg limbs) reduce carry capacity, scaled by the same percentage.</tooltip>
+									</li>
+								</rightCol>
+							</li>
+						</leftCol>
+						<rightCol>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<split>0.79</split>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Scale all implant values by</text>
+										<anchor>Right</anchor>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Numeric">
+										<decimals>1</decimals>
+										<percent>true</percent>
+										<key>SimpleScale</key>
+										<defaultValue>100</defaultValue>
+									</li>
+								</rightCol>
+							</li>
+						</rightCol>
+					</li>
+					<li Class="XmlExtensions.Setting.Gap">
+						<spacing>12</spacing>
+					</li>
+					<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SimpleExamples">
+						<tag>CCFB_SimpleExamples</tag>
+						<rows/>
+						<groups>
+							<li>
+								<label>Vanilla</label>
+								<section>Core</section>
+								<featured>
+									<li>BionicArm</li>
+									<li>ArchotechLeg</li>
+									<li>BionicSpine</li>
+								</featured>
+								<penalties>
+									<li>SimpleProstheticLeg</li>
+								</penalties>
+								<missingLeg>true</missingLeg>
+							</li>
+							<li>
+								<label>Advanced Archotech Arm</label>
+								<section>AdvancedArchotechArm</section>
+								<featured>
+									<li>AdvancedArchotechObliterator</li>
+								</featured>
+							</li>
+							<li>
+								<label>Archotech Expanded</label>
+								<section>ArchotechExpanded</section>
+								<featured>
+									<li>AEAdvancedArchotechArm</li>
+									<li>AEAdvancedArchotechLeg</li>
+									<li>AEArchotechSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>Astraltech</label>
+								<section>Astral</section>
+								<featured>
+									<li>AstralArm</li>
+									<li>AstralLeg</li>
+									<li>AstralSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>EPOE</label>
+								<section>EPOE</section>
+								<featured>
+									<li>EPOEPowerArm</li>
+									<li>EPOEAdvancedBionicLeg</li>
+									<li>EPOEAdvancedBionicSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>EPOE-Forked</label>
+								<section>EPOEForked</section>
+								<featured>
+									<li>EPOEPowerArm</li>
+									<li>EPOEAdvancedBionicLeg</li>
+									<li>EPOEAdvancedBionicSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>FSF Advanced Bionics</label>
+								<section>FSFABE</section>
+								<featured>
+									<li>FSFAdvBionicArm</li>
+									<li>FSFAdvBionicLeg</li>
+									<li>FSFArchotechSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>FSF Vanilla Bionics</label>
+								<section>FSFVBE</section>
+								<featured>
+									<li>FSFBionicPowerArm</li>
+									<li>FSFArchotechSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>Integrated Implants</label>
+								<section>II</section>
+								<featured>
+									<li>IIExtraArchotechArm</li>
+									<li>IIStrengthEnhancer</li>
+									<li>IILTS_ArchotechSpine</li>
+									<li>IILTS_ModularArchotechSpine</li>
+									<li>IISkeletalBracing</li>
+								</featured>
+							</li>
+							<li>
+								<label>Industrial Prosthetics</label>
+								<section>IP</section>
+								<featured>
+									<li>IPPoweredArm</li>
+									<li>IPPoweredLeg</li>
+									<li>IPPoweredSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>Medieval Prosthetics</label>
+								<section>MedP</section>
+								<penalties>
+									<li>MedPMechanicalLeg</li>
+								</penalties>
+							</li>
+							<li>
+								<label>Neolithic Prosthetics</label>
+								<section>NeoP</section>
+								<featured>
+									<li>NeoPInsectoidLimbs</li>
+									<li>NeoPSewnInBag</li>
+									<li>NeoPMuffaloSpine</li>
+								</featured>
+								<penalties>
+									<li>NeoPTotemicLeg</li>
+								</penalties>
+							</li>
+							<li>
+								<label>RBSE</label>
+								<section>RBSE</section>
+								<featured>
+									<li>RBSEPowerArm</li>
+									<li>RBSEAdvancedBionicLeg</li>
+									<li>RBSEAdvancedBionicSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>Save Our Ship 2</label>
+								<section>SoS2</section>
+								<featured>
+									<li>SoSPsychicManipulator</li>
+									<li>SoSArchotechSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>V.O.I.D</label>
+								<section>VOID</section>
+								<featured>
+									<li>RH2_VOIDArchotechArm</li>
+									<li>RH2_VOIDArchotechLeg</li>
+									<li>RH_VOIDBionicSpine</li>
+								</featured>
+							</li>
+							<li>
+								<label>YAPE</label>
+								<section>YAPE</section>
+								<featured>
+									<li>YAPEAdvancedBionicArm</li>
+									<li>YAPEUltratechBionicLeg</li>
+									<li>YAPEUltratechBionicSpine</li>
+								</featured>
+							</li>
+						</groups>
+					</li>
+				</value>
+			</Operation>
+			<Operation Class="XmlExtensions.PatchOperationAdd">
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSectionSimple"]/actions/li/keys</xpath>
+				<value>
+					<li>SimpleScale</li>
+					<li>SimplePenalties</li>
+				</value>
+			</Operation>
+		</caseFalse>
+	</Operation>
+</Patch>

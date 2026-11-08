@@ -18,11 +18,12 @@
 		Row args for CCFB_PartRow: key | label | toggle default | percent default | section tag | tooltip.
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Section</patchName>
+		<patchName>CCFB_SectionAt</patchName>
 		<arguments>
 			<li>Missing body parts</li>
 			<li>MissingParts</li>
 			<li>false</li>
+			<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings</li>
 		</arguments>
 	</Operation>
 

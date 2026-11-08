@@ -65,6 +65,7 @@
 		<li>1.6/MissingParts</li>
 		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/ExtraCapacity_Animals</li>
 		<li>1.6/ExtraCapacity</li>
+		<li>1.6/SimpleMode</li>
 		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
 		<li>Common</li>
 	</v1.5>
@@ -149,6 +150,7 @@
 		<li>1.6/MissingParts</li>
 		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/ExtraCapacity_Animals</li>
 		<li>1.6/ExtraCapacity</li>
+		<li>1.6/SimpleMode</li>
 
 		<!-- Standalone stat machinery (assembly + StatDef), only when VEF is NOT active.
 		     When VEF is active the patches write to VEF's own VEF_MassCarryCapacity stat instead;

@@ -41,6 +41,6 @@
   NeoP defines parts in its Patches/, which run in load order.
 
 ## Next steps
-1. Simple mode = one scale % over the defaults (revised 2026-11-08): plan in
-   `docs/REDESIGN_PLAN.md`; per-mod example builds await user approval.
+1. Simple mode + per-mod examples built and deployed 2026-11-08 (`docs/REDESIGN_PLAN.md` §2);
+   awaiting the user's in-game test.
 2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

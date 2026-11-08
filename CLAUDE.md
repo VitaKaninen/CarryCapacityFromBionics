@@ -89,6 +89,13 @@ RimWorld has **two separate carrying systems** — keep them straight:
   (ResetSettings with no keys = whole mod) lives in `1.6/MenuFooter/` — its LoadFolders entry
   must stay FIRST in the list so it applies last and lands at the bottom of the menu.
 
+**Simple vs advanced mode** (`ToggleSectionSimple`, default simple): simple mode applies every
+row's default × `SimpleScale`% at patch time and hides the mod sections (they sit in a
+ToggleableSettings tagged `CCFB_AdvancedSections`); `CCFB_Section` is a wrapper that puts a section
+there via `CCFB_SectionAt(label, tag, default, parentXpath)` — sections that must show in both
+modes (Simple, Extra, MissingParts) call `CCFB_SectionAt` with the menu root. Details:
+[`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md) section 2.
+
 `Common/Defs/SettingsMenu.xml` is just a skeleton (title + restart warning). All sections and rows
 are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
 menu needs no `MayRequire` gating at all.

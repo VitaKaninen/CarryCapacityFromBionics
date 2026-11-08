@@ -6,10 +6,10 @@ using Verse;
 namespace Vita.CarryCapacityFromBionics.MissingParts
 {
     // Reads the XML Extensions settings once at startup (settings changes require a restart,
-    // stated in the menu) and, only if the section's master checkbox is on, appends the penalty
+    // stated in the menu) and, only if the master checkbox is on, appends the penalty
     // StatPart to whichever mass-carry-capacity stat exists in this game:
     // VEF_MassCarryCapacity (VEF active) or CarryCapacityBonus (our Standalone folder, VEF absent).
-    // The master is the "Missing body parts" section checkbox created by CCFB_Section
+    // The master is the main box's "Include missing body part penalties" checkbox
     // (key ToggleSectionMissingParts, default OFF) = the StatPart is never injected by default,
     // zero behavior change.
     [StaticConstructorOnStartup]
@@ -64,13 +64,22 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             {
                 return;
             }
-            maxReductionFrac = System.Math.Abs(GetFloat("MissingPartMaxReduction", 100f)) / 100f;
+            bool simple = GetBool("ToggleSectionSimple", true);
+            if (!simple && !GetBool("ToggleSectionCore", true))
+            {
+                return;
+            }
+            maxReductionFrac = simple ? 1f : System.Math.Abs(GetFloat("MissingPartMaxReduction", 100f)) / 100f;
 
             bool anyPositive = false;
             foreach ((string key, string[] defNames, float pct) in defaultTable)
             {
                 float frac = 0f;
-                if (GetBool("ToggleMissingPart" + key, false))
+                if (simple)
+                {
+                    frac = pct / 100f;
+                }
+                else if (GetBool("ToggleMissingPart" + key, true))
                 {
                     frac = System.Math.Abs(GetFloat("MissingPart" + key, pct)) / 100f;
                 }
@@ -114,6 +123,18 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 stat.parts = new List<StatPart>();
             }
             stat.parts.Add(new StatPart_MissingBodyParts { parentStat = stat });
+        }
+
+        internal static float DefaultPct(string key)
+        {
+            foreach ((string k, string[] _, float pct) in defaultTable)
+            {
+                if (k == key)
+                {
+                    return pct;
+                }
+            }
+            return 0f;
         }
 
         internal static bool GetBool(string key, bool fallback)

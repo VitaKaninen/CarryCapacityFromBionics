@@ -32,7 +32,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
 |---|---|
 | Adding a mod or implant, or choosing kg values | [`docs/ADDING_A_MOD.md`](docs/ADDING_A_MOD.md) — value formula, weights, step-by-step roadmap |
 | Checking which mods/folders are supported, or planned/excluded ones | [`docs/SUPPORTED_MODS.md`](docs/SUPPORTED_MODS.md) |
-| Touching the missing-body-part penalty (C#, `CCFB_PartRow`, MissingParts section) | [`docs/MISSING_PARTS.md`](docs/MISSING_PARTS.md) |
+| Touching the missing-body-part penalty (C#, `CCFB_PartRow`, its block in Core Implants) | [`docs/MISSING_PARTS.md`](docs/MISSING_PARTS.md) |
 | Touching the Standalone C# (stat worker, `MassUtility.Capacity` transpiler) | [`docs/STANDALONE_CSHARP.md`](docs/STANDALONE_CSHARP.md) |
 | Starting a session, or resuming animal support / settings redesign | [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) — handoff, open questions |
 | Building simple mode, extra capacity %, or animal support | [`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md) |
@@ -89,12 +89,13 @@ RimWorld has **two separate carrying systems** — keep them straight:
   (ResetSettings with no keys = whole mod) lives in `1.6/MenuFooter/` — its LoadFolders entry
   must stay FIRST in the list so it applies last and lands at the bottom of the menu.
 
-**Simple vs advanced mode** (`ToggleSectionSimple`, default simple): simple mode applies every
-row's default × `SimpleScale`% at patch time and hides the mod sections (they sit in a
-ToggleableSettings tagged `CCFB_AdvancedSections`); `CCFB_Section` is a wrapper that puts a section
-there via `CCFB_SectionAt(label, tag, default, parentXpath)` — sections that must show in both
-modes (Simple, Extra, MissingParts) call `CCFB_SectionAt` with the menu root. Details:
-[`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md) section 2.
+**Main box + Easy/Advanced mode** (`ToggleSectionSimple` radio, default Easy): one box at the top
+(`1.6/SimpleMode`) holds the mode choice, the global options (scale %, prosthetic penalties,
+missing body parts, extra %) and the examples. Easy applies every row's default × `SimpleScale`%
+at patch time and hides the mod sections (they sit in a ToggleableSettings tagged
+`CCFB_AdvancedSections`); `CCFB_Section` wraps `CCFB_SectionAt(label, tag, default, parentXpath)`.
+Implant PatchDefs are thin wrappers over `CCFB_ImplantCore` (row placement, penalty gate) →
+`CCFB_ModeOffset` → `CCFB_AddOffset`. Details: [`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md).
 
 `Common/Defs/SettingsMenu.xml` is just a skeleton (title + restart warning). All sections and rows
 are injected at patch time by the PatchDefs, **only for folders that actually loaded** — so the
@@ -165,7 +166,7 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   two of those mods were active together.
 - **RimWorld processes `loadFolders` bottom-up** (last entry applies first), so patch-file
   application order — and therefore settings-menu section order — follows the reversed list.
-  LoadFolders.xml is deliberately listed in reverse (MissingParts below Core, Common last).
+  LoadFolders.xml is deliberately listed in reverse (SimpleMode = main box lowest, Common last).
   Correctness never depends on
   this (CCFB_Section is idempotent); only the menu's section order does.
 - The `CreateDocument`/`MergeDocument` side-document speed pattern was first blamed for the

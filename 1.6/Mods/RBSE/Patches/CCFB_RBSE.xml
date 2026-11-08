@@ -18,7 +18,7 @@
 			<li>SimpleProstheticHand</li>
 			<li>RBSESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.4</li>
 			<li>RBSE</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SimpleProstheticFoot</li>
 			<li>RBSESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.5</li>
 			<li>RBSE</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>ArtificialRadius</li>
 			<li>RBSEArtificialRadius</li>
 			<li>Artificial Radius</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>RBSE</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>ArtificialFemur</li>
 			<li>RBSEArtificialFemur</li>
 			<li>Artificial Femur</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1</li>
 			<li>RBSE</li>
 		</arguments>
@@ -62,7 +62,7 @@
 			<li>ArtificialHumerus</li>
 			<li>RBSEArtificialHumerus</li>
 			<li>Artificial Humerus</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>RBSE</li>
 		</arguments>
@@ -73,7 +73,7 @@
 			<li>ArtificialTibia</li>
 			<li>RBSEArtificialTibia</li>
 			<li>Artificial Tibia</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.4</li>
 			<li>RBSE</li>
 		</arguments>
@@ -84,7 +84,7 @@
 			<li>SpinalFusion</li>
 			<li>RBSESpinalFusion</li>
 			<li>Spinal Fusion</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-2</li>
 			<li>RBSE</li>
 		</arguments>

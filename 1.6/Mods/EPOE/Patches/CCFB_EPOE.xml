@@ -18,7 +18,7 @@
 			<li>SimpleProstheticHand</li>
 			<li>EPOESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.5</li>
 			<li>EPOE</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SimpleProstheticFoot</li>
 			<li>EPOESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.3</li>
 			<li>EPOE</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>ArtificialPelvis</li>
 			<li>EPOEArtificialPelvis</li>
 			<li>Artificial Pelvis</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.75</li>
 			<li>EPOE</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>ArtificialClavicle</li>
 			<li>EPOEArtificialClavicle</li>
 			<li>Artificial Clavicle</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>EPOE</li>
 		</arguments>
@@ -62,7 +62,7 @@
 			<li>HookHand</li>
 			<li>EPOEHookHand</li>
 			<li>Hook Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.25</li>
 			<li>EPOE</li>
 		</arguments>
@@ -73,7 +73,7 @@
 			<li>SteelArm</li>
 			<li>EPOESteelArm</li>
 			<li>Steel Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-3.5</li>
 			<li>EPOE</li>
 		</arguments>

@@ -18,7 +18,7 @@
 			<li>FSFProstheticHand</li>
 			<li>FSFProstheticHand</li>
 			<li>Prosthetic Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.4</li>
 			<li>FSFVBE</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>FSFProstheticFoot</li>
 			<li>FSFProstheticFoot</li>
 			<li>Prosthetic Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.1</li>
 			<li>FSFVBE</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>FSFProstheticSpine</li>
 			<li>FSFProstheticSpine</li>
 			<li>Prosthetic Spine</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.5</li>
 			<li>FSFVBE</li>
 		</arguments>

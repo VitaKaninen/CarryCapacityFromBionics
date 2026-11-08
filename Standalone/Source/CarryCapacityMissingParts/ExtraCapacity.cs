@@ -23,10 +23,6 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         static ExtraCapacityBootstrap()
         {
-            if (!MissingPartsBootstrap.GetBool("ToggleSectionExtraCapacity", false))
-            {
-                return;
-            }
             humanFrac = MissingPartsBootstrap.GetFloat(HumanKey, 0f) / 100f;
             if (AnimalProstheticsActive)
             {

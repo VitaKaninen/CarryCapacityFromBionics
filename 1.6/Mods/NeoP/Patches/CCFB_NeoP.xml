@@ -18,7 +18,7 @@
 			<li>SteelFinger</li>
 			<li>NeoPSteelFinger</li>
 			<li>Steel Finger</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>NeoP</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SteelToe</li>
 			<li>NeoPSteelToe</li>
 			<li>Steel Toe</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>NeoP</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>SteelHand</li>
 			<li>NeoPSteelHand</li>
 			<li>Steel Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.75</li>
 			<li>NeoP</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>NP_BearPaw</li>
 			<li>NeoPBearPaw</li>
 			<li>Bear Paw</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.3</li>
 			<li>NeoP</li>
 		</arguments>
@@ -62,7 +62,7 @@
 			<li>NP_CatPaw</li>
 			<li>NeoPCatPaw</li>
 			<li>Cat Paw</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>NeoP</li>
 		</arguments>
@@ -73,7 +73,7 @@
 			<li>ArtificialHoof</li>
 			<li>NeoPArtificialHoof</li>
 			<li>Artificial Hoof</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.25</li>
 			<li>NeoP</li>
 		</arguments>
@@ -84,7 +84,7 @@
 			<li>SilverArm</li>
 			<li>NeoPSilverArm</li>
 			<li>Silver Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-2.75</li>
 			<li>NeoP</li>
 		</arguments>
@@ -95,7 +95,7 @@
 			<li>TotemicArm</li>
 			<li>NeoPTotemicArm</li>
 			<li>Totemic Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.25</li>
 			<li>NeoP</li>
 		</arguments>
@@ -106,7 +106,7 @@
 			<li>TotemicTyrannoArm</li>
 			<li>NeoPTotemicTyrannoArm</li>
 			<li>Totemic Tyranno Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.75</li>
 			<li>NeoP</li>
 		</arguments>
@@ -117,7 +117,7 @@
 			<li>TotemicLeg</li>
 			<li>NeoPTotemicLeg</li>
 			<li>Totemic Leg</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-2.25</li>
 			<li>NeoP</li>
 		</arguments>
@@ -128,7 +128,7 @@
 			<li>WoodFinger</li>
 			<li>NeoPWoodFinger</li>
 			<li>Wood Finger</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>NeoP</li>
 		</arguments>
@@ -139,7 +139,7 @@
 			<li>WoodToe</li>
 			<li>NeoPWoodToe</li>
 			<li>Wood Toe</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>NeoP</li>
 		</arguments>
@@ -150,7 +150,7 @@
 			<li>ClubLeg</li>
 			<li>NeoPClubLeg</li>
 			<li>Club Leg</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-4.5</li>
 			<li>NeoP</li>
 		</arguments>

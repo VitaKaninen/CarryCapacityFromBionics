@@ -18,7 +18,7 @@
 			<li>SimpleProstheticArm</li>
 			<li>SimpleProstheticArm</li>
 			<li>Prosthetic Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-2.75</li>
 			<li>Core</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SimpleProstheticLeg</li>
 			<li>SimpleProstheticLeg</li>
 			<li>Prosthetic Leg</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.25</li>
 			<li>Core</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>WoodenHand</li>
 			<li>WoodenHand</li>
 			<li>Wooden Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.75</li>
 			<li>Core</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>WoodenFoot</li>
 			<li>WoodenFoot</li>
 			<li>Wooden Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.5</li>
 			<li>Core</li>
 		</arguments>
@@ -62,7 +62,7 @@
 			<li>PegLeg</li>
 			<li>PegLeg</li>
 			<li>Peg Leg</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-3.5</li>
 			<li>Core</li>
 		</arguments>

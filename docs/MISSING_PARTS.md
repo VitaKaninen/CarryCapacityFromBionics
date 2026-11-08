@@ -10,8 +10,9 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
 - `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
   `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
   (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
-  after the user saves the menu). The feature master = the section's checkbox
-  `ToggleSectionMissingParts` (created by CCFB_Section, default false). If it's on, appends
+  after the user saves the menu). The feature master = the main box's checkbox
+  `ToggleSectionMissingParts` (default false). Easy mode: every part at its compiled default,
+  cap 100%. Advanced mode: also needs `ToggleSectionCore` (rows live inside Core Implants). If it's on, appends
   `StatPart_MissingBodyParts` to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus`
   (GetNamedSilentFail — whichever exists). Master off = StatPart never injected = provably
   zero behavior change.
@@ -36,12 +37,13 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   only injected if at least one value is positive.
   Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
   stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
-- Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
-  ungated LoadFolders entry placed BELOW `1.6/Ludeon/Core` so it sits second (below Extra
-  carry capacity) and above Core Implants — deliberate exception to the alphabetical rule). First row = floor
+- Settings: a "Missing body part penalties" block inside Core Implants, shown in Advanced mode
+  when the main box checkbox is ticked (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`, ungated,
+  below `1.6/Ludeon/Core` in LoadFolders; it creates the Core section and inserts the block after
+  the `CCFB_Core` rows; reset keys go to Core's button). First row = floor
   `MissingPartFloor` (default 0 kg, positive, no checkbox); then per-part
-  `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
-  the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
+  `ToggleMissingPart<DefName>` (default **true** since 2026-11-08 — the main box checkbox is
+  the off switch) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
   (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
   feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; numeric uses XE
   `percent=true` — the STORED value is the plain percent number, e.g. "25", the field shows

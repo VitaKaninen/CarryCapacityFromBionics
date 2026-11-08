@@ -18,7 +18,7 @@
 			<li>SimpleProstheticFinger</li>
 			<li>EPOESimpleProstheticFinger</li>
 			<li>Prosthetic Finger</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.1</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SimpleProstheticToe</li>
 			<li>EPOESimpleProstheticToe</li>
 			<li>Prosthetic Toe</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.1</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>SimpleProstheticHand</li>
 			<li>EPOESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.4</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>SimpleProstheticFoot</li>
 			<li>EPOESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.5</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -62,7 +62,7 @@
 			<li>SimpleSpine</li>
 			<li>EPOESimpleSpine</li>
 			<li>Replacement Spine</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-1.5</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -73,7 +73,7 @@
 			<li>HookHand</li>
 			<li>EPOEHookHand</li>
 			<li>Hook Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.75</li>
 			<li>EPOEForked</li>
 		</arguments>
@@ -84,7 +84,7 @@
 			<li>SteelArm</li>
 			<li>EPOESteelArm</li>
 			<li>Steel Arm</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-2</li>
 			<li>EPOEForked</li>
 		</arguments>

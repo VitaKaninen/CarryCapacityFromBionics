@@ -18,7 +18,7 @@
 			<li>SimpleProstheticBIE_Finger</li>
 			<li>YAPESimpleProstheticFinger</li>
 			<li>Prosthetic Finger</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.1</li>
 			<li>YAPE</li>
 		</arguments>
@@ -29,7 +29,7 @@
 			<li>SimpleProstheticBIE_Toe</li>
 			<li>YAPESimpleProstheticToe</li>
 			<li>Prosthetic Toe</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.1</li>
 			<li>YAPE</li>
 		</arguments>
@@ -40,7 +40,7 @@
 			<li>SimpleProstheticBIE_Hand</li>
 			<li>YAPESimpleProstheticHand</li>
 			<li>Prosthetic Hand</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.2</li>
 			<li>YAPE</li>
 		</arguments>
@@ -51,7 +51,7 @@
 			<li>SimpleProstheticBIE_Foot</li>
 			<li>YAPESimpleProstheticFoot</li>
 			<li>Prosthetic Foot</li>
-			<li>false</li>
+			<li>true</li>
 			<li>-0.3</li>
 			<li>YAPE</li>
 		</arguments>

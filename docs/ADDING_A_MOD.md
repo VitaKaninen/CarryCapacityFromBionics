@@ -20,7 +20,9 @@
 - partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
   one, e.g. muscle stimulators, estimate from its capMods).
 - **Defaults convention**: positive values default ON; zero-value utility parts and all
-  negative (prosthetic-penalty) entries default OFF.
+  negative (prosthetic-penalty) entries default ON — the main box's "Include prosthetic
+  penalties" checkbox (off by default) gates them in both modes. A mod whose rows are ALL
+  penalties calls `CCFB_PenaltyOnlySection` instead of `CCFB_Section` (MedP).
 - **Implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several Integrated
   Implants ones) must never go through `CCFB_Implant` (double-dip in VEF games) — they get
   `CCFB_ImplantNativeVEF` instead (override/add, see CLAUDE.md architecture), defaults = author's values.
@@ -51,7 +53,7 @@
    `ApplyPatch → CCFB_Section` (label, tag) + one `ApplyPatch → CCFB_Implant` per hediff:
    args `defName | key | label | toggleDefault | kgDefault | sectionTag`.
 6. **LoadFolders.xml**: add gated entries. The settings-menu sections are kept in
-   ALPHABETICAL order by section label ("Missing body parts" first by design, then the
+   ALPHABETICAL order by section label (the main box first, then the
    Core/DLC sections); since the list applies
    bottom-up, the 3rd-party block is sorted reverse-alphabetically — insert the new mod at
    its alphabetical slot, base folder LAST within its folder group (so its rows show first

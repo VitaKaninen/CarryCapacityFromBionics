@@ -123,9 +123,8 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         {
             float scale = MissingPartsBootstrap.GetFloat("SimpleScale", 100f) / 100f;
             bool penalties = MissingPartsBootstrap.GetBool("SimplePenalties", false);
-            bool missingLeg = MissingPartsBootstrap.GetBool("ToggleSectionMissingParts", false)
-                && MissingPartsBootstrap.GetBool("ToggleMissingPartLeg", false);
-            float missingLegKg = -System.Math.Abs(MissingPartsBootstrap.GetFloat("MissingPartLeg", 25f)) / 100f * HumanBaseKg;
+            bool missingLeg = MissingPartsBootstrap.GetBool("ToggleSectionMissingParts", false);
+            float missingLegKg = -MissingPartsBootstrap.DefaultPct("Leg") / 100f * HumanBaseKg;
 
             List<Block> blocks = new List<Block>();
             foreach (SimpleGroup group in groups)

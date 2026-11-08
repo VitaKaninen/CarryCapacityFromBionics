@@ -43,18 +43,27 @@ patch time), one top box (custom radio, options left / data right, extra % moved
 folder removed), prosthetic-penalty + missing-part global checkboxes with blocks inside sections
 (missing parts inside Core Implants), penalty/missing rows default on, MedP penalty-only section,
 starting mode from saved values, table tooltips, all pack animals on hover.
-**Round 4 (user feedback on round 3), built + deployed, not yet seen in game:** radio button
-clickable, click-away unfocuses text boxes, section hide checkboxes removed, per-section
-"Prosthetic penalties" box (default off) + missing-parts box in Core in Advanced, main box as
-aligned rows with right-aligned data, pack-animal hover without corpses.
-**Round 7, built + deployed, not yet seen in game:** penalty and missing-part blocks always
-visible with their own Enable/Disable all box (rows default off in Advanced; old `Penalties<section>`
-key dropped), "Disabled" aligned with the number boxes, Advanced hover hint on the "Pack
-animals:" line. The user's own saved settings keep the old ON values (XE freezes defaults).
-**Asked last, unanswered:**
-- Right-column alignment interpreted as "data block right-aligned, as wide as its text"; confirm.
-- About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).
+
+## Session 3 (2026-11-08, handoff at ~330k tokens) — settings menu polish, rounds 4–7
+User asked (from in-game screenshots), all built, deployed and pushed (last 580f6af), **none of
+rounds 4–7 seen in game yet**:
+- DecideMode patch failure fixed (XE `AddMod` via reflection); two approved C# comments added.
+- Radio button clickable; click-away unfocuses text boxes (`Setting_UnfocusOnClick`).
+- Section hide checkboxes removed; each section starts with `Setting_SectionToggle`
+  ("Disable all" ticked / "Enable all" unticked, sets every row toggle, no memory — user
+  rejected the remembering version). Penalty and missing-part blocks: always visible, line above
+  the title, own toggle; their rows default OFF in Advanced; Easy keeps the main-box checkboxes.
+- Main box = aligned rows (option left, data right); data blocks share one width
+  (`DataColumn.Width`), right-aligned; "(hover for details)" = gray line above the data in Easy,
+  right end of "Pack animals:" in Advanced; hover list = pack animals only, no corpses.
+- One prosthesis example per mod in Easy when penalties are on; "Disabled" lined up with boxes.
+- Stale `1.6/ExtraCapacity` in the game copy recycled (user allowed deletions).
+**Asked last, unanswered:** rename the penalty/missing-part toggle keys so every player gets the
+new OFF defaults? (XE freezes saved defaults; renaming drops saved values for those rows.)
+Buttons offered: "Keep keys as is" / "Rename the keys". The user's own saved file still has those
+rows ON.
+**Still open:** About.xml description doesn't mention Easy/Advanced (user edits descriptions).
 
 ## Next steps
-1. User tests round 3 in game; fix what they report. Then the open questions above.
+1. User tests rounds 4–7 in game; fix what they report. Then the key-rename question.
 2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

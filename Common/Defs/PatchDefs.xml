@@ -37,9 +37,7 @@
 								<settings>
 									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
 										<tag>CCFB_{section}_All</tag>
-										<label>All implants in this section</label>
-										<tooltip>Unticking turns off every implant below and remembers which were on; ticking it again turns those back on.</tooltip>
-										<memoryKey>SectionMemory{section}</memoryKey>
+										<tooltip>Turns every implant in this section on or off at once.</tooltip>
 										<keys/>
 									</li>
 									<li Class="XmlExtensions.Setting.Gap">
@@ -220,6 +218,7 @@
 													<li Class="XmlExtensions.Setting.Gap">
 														<spacing>12</spacing>
 													</li>
+													<li Class="XmlExtensions.Setting.GapLine"/>
 													<li Class="XmlExtensions.Setting.SplitColumn">
 														<width>24</width>
 														<gapSize>6</gapSize>
@@ -240,7 +239,6 @@
 															</li>
 														</rightCol>
 													</li>
-													<li Class="XmlExtensions.Setting.GapLine"/>
 													<li Class="XmlExtensions.Setting.ToggleableSettings">
 														<key>Penalties{section}</key>
 														<caseTrue>

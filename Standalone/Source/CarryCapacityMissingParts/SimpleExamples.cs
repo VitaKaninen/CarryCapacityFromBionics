@@ -78,7 +78,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     width = Mathf.Max(width, Indent + Text.CalcSize(line.label).x + LabelGap + NumberWidth);
                 }
             }
-            inRect.xMin = inRect.xMax - Mathf.Min(inRect.width, width);
+            inRect.xMin = inRect.xMax - Mathf.Min(inRect.width, DataColumn.Width(width));
             float y = inRect.y;
             if (!string.IsNullOrEmpty(header))
             {
@@ -168,14 +168,12 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 }
                 if (penalties)
                 {
-                    foreach (string key in group.penalties)
+                    SimpleRow penalty = group.penalties.Select(FindRow).FirstOrDefault(r => r != null)
+                        ?? rows.Where(r => r.section == group.section && Parse(r.value) < 0f)
+                            .OrderBy(r => Parse(r.value)).FirstOrDefault();
+                    if (penalty != null)
                     {
-                        SimpleRow row = FindRow(key);
-                        if (row != null)
-                        {
-                            block.lines.Add(new Line { label = row.label, kg = Parse(row.value) * scale });
-                            break;
-                        }
+                        block.lines.Add(new Line { label = penalty.label, kg = Parse(penalty.value) * scale });
                     }
                 }
                 Line? missing = null;

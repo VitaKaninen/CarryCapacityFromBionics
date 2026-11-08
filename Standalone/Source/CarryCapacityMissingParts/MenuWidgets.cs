@@ -86,10 +86,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float BoxSize = 24f;
         private const float TextLeft = 30f;
 
-        public string memoryKey;
+        public string enabledLabel = "Disable all";
+        public string disabledLabel = "Enable all";
         public List<string> keys = new List<string>();
-
-        private bool registered;
 
         protected override float CalculateHeight(float width)
         {
@@ -99,21 +98,13 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         protected override void DrawSettingContents(Rect inRect)
         {
             string modId = MissingPartsBootstrap.ModId;
-            if (!registered)
-            {
-                registered = true;
-                if (!SettingsManager.TryGetSetting(modId, memoryKey, out _))
-                {
-                    SettingsManager.SetSetting(modId, memoryKey, "");
-                }
-            }
             bool anyOn = keys.Any(k => IsOn(modId, k));
             bool value = anyOn;
             Widgets.Checkbox(new Vector2(inRect.x, inRect.y + (inRect.height - BoxSize) / 2f), ref value);
             TextAnchor anchor = Text.Anchor;
             Text.Anchor = TextAnchor.MiddleLeft;
             Rect labelRect = new Rect(inRect.x + TextLeft, inRect.y, inRect.width - TextLeft, inRect.height);
-            Widgets.Label(labelRect, label);
+            Widgets.Label(labelRect, anyOn ? enabledLabel : disabledLabel);
             Text.Anchor = anchor;
             if (Widgets.ButtonInvisible(labelRect))
             {
@@ -123,21 +114,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             {
                 return;
             }
-            if (!value)
-            {
-                SettingsManager.SetSetting(modId, memoryKey, string.Join(",", keys.Where(k => IsOn(modId, k))));
-                foreach (string key in keys)
-                {
-                    SettingsManager.SetSetting(modId, key, "False");
-                }
-                return;
-            }
-            SettingsManager.TryGetSetting(modId, memoryKey, out string memory);
-            HashSet<string> restore = new HashSet<string>((memory ?? "").Split(',').Where(k => keys.Contains(k)));
             foreach (string key in keys)
             {
-                bool on = restore.Count > 0 ? restore.Contains(key) : DefaultOn(modId, key);
-                SettingsManager.SetSetting(modId, key, on ? "True" : "False");
+                SettingsManager.SetSetting(modId, key, value ? "True" : "False");
             }
         }
 
@@ -158,6 +137,25 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             {
                 return true;
             }
+        }
+    }
+
+    public static class DataColumn
+    {
+        private static int frame = -1;
+        private static float current;
+        private static float next;
+
+        public static float Width(float desired)
+        {
+            if (Time.frameCount != frame)
+            {
+                frame = Time.frameCount;
+                current = next;
+                next = 0f;
+            }
+            next = Mathf.Max(next, desired);
+            return Mathf.Max(current, desired);
         }
     }
 

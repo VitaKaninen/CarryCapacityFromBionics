@@ -73,10 +73,10 @@ RimWorld has **two separate carrying systems** — keep them straight:
 - **`CCFB_Section`** — creates a labeled menu section: title, then the `SplitColumn` tagged
   `CCFB_<section>`. Always expanded, no master checkbox (user 2026-11-08: a hide box looked like
   a disable box; old saved `ToggleSection<tag>` values are ignored). Args: `label | tag`.
-  Its first row is `Setting_SectionToggle` (C#, tag `CCFB_<section>_All`): "All implants in this
-  section" = ticked while any row toggle is on; unticking saves the on-keys to
-  `SectionMemory<section>` and sets every `Toggle<key>` false, ticking restores them (none
-  saved → row defaults). It stores no on/off of its own, so patch time needs no section gate.
+  Its first row is `Setting_SectionToggle` (C#, tag `CCFB_<section>_All`): ticked ("Disable all")
+  while any row toggle is on, else unticked ("Enable all"); clicking sets every `Toggle<key>`
+  to the new state. No memory of earlier states (user: it did nothing for default-off rows). It
+  stores no on/off of its own, so patch time needs no section gate.
   `CCFB_RowMenu` appends each `Toggle<key>` to its `keys`.
   **Idempotent** (guarded by an existence check), so every patch file calls it for the section
   it needs and file/folder ordering doesn't matter. The reset button keeps

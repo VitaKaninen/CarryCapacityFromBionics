@@ -20,8 +20,10 @@ options, right = data (user):
   left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
   explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
   box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
-- Hover hint: a gray line at the top of the box (`CCFB_HoverHint`, ToggleableSettings on the
-  mode; ADSAP2 fills its Advanced case), not in the data headers (user: readers look left).
+- Hover hint: gray right-anchored "(hover for details)" line above the data (`CCFB_HoverHint`,
+  ToggleableSettings on the mode; ADSAP2 fills its Advanced case), not in the data headers.
+- All data widgets share one width (`DataColumn.Width`: max desired width of the previous frame)
+  so their left edges line up (user).
 - Data: `Setting_SimpleExamples`, `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
   numbers right) — Colonist; with ADSAP2 Husky/Muffalo/Thrumbo + hover table of every pack
   animal in DefDatabase (category Pawn — corpse defs also carry `race`; modded included). That
@@ -67,7 +69,8 @@ options, right = data (user):
 ### Examples (`Setting_SimpleExamples`, `SimpleExamples.cs`)
 `CCFB_RowMenu` registers key/label/section/default into the widget's `rows` (inside the dedup
 guard, once per key). Groups in the SimpleMode file: per section a `featured` priority list (first
-3 found), optional `penalties` (first found, shown with SimplePenalties), `missingLeg` (Vanilla
+3 found), optional `penalties` (first found, shown with SimplePenalties; none listed/found → the
+section's most negative row, user: one prosthesis example per mod), `missingLeg` (Vanilla
 only; shown with ToggleSectionMissingParts, −default leg % × 35, not scaled). Group hidden if
 nothing of its section registered. Hover = whole section's scaled list (zeros dropped, penalties
 only when on, identical lines deduped).

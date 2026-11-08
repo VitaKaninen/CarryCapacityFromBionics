@@ -47,8 +47,9 @@ starting mode from saved values, table tooltips, all pack animals on hover.
 clickable, click-away unfocuses text boxes, section hide checkboxes removed, per-section
 "Prosthetic penalties" box (default off) + missing-parts box in Core in Advanced, main box as
 aligned rows with right-aligned data, pack-animal hover without corpses.
-**Round 5, built + deployed, not yet seen in game:** per-section "All implants in this section"
-box (remembers which rows were on), hover hint moved to the top left of the main box.
+**Round 6, built + deployed, not yet seen in game:** section box = "Disable all"/"Enable all"
+(no memory), right-aligned "(hover for details)" above the data, shared data width, one
+prosthesis example per mod with penalties on, line above the penalty block titles.
 **Asked last, unanswered:**
 - Right-column alignment interpreted as "data block right-aligned, as wide as its text"; confirm.
 - About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).

@@ -41,6 +41,7 @@
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>12</spacing>
 							</li>
+							<li Class="XmlExtensions.Setting.GapLine"/>
 							<li Class="XmlExtensions.Setting.SplitColumn">
 								<width>24</width>
 								<gapSize>6</gapSize>
@@ -61,7 +62,6 @@
 									</li>
 								</rightCol>
 							</li>
-							<li Class="XmlExtensions.Setting.GapLine"/>
 							<li Class="XmlExtensions.Setting.ToggleableSettings">
 								<key>ToggleSectionMissingParts</key>
 								<caseTrue>

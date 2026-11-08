@@ -134,8 +134,8 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             List<Row> rows = BuildRows(pct);
             float tableWidth = Indent + ArrowWidth + NumberWidth * 2f + LabelGap;
             float labelWidth = rows.Count == 0 ? 0f : rows.Max(r => Text.CalcSize(r.label).x);
-            float width = Mathf.Min(inRect.width, Mathf.Max(tableWidth + labelWidth,
-                string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x));
+            float width = Mathf.Min(inRect.width, DataColumn.Width(Mathf.Max(tableWidth + labelWidth,
+                string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x)));
             Rect block = new Rect(inRect.xMax - width, inRect.y, width, inRect.height);
             float y = block.y;
             if (!string.IsNullOrEmpty(header))

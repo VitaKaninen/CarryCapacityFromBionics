@@ -38,7 +38,8 @@
 						<key>ToggleSectionSimple</key>
 						<caseTrue>
 							<li Class="XmlExtensions.Setting.Text">
-								<text>&lt;color=#9a9a9a&gt;Hover over the examples on the right for details.&lt;/color&gt;</text>
+								<text>&lt;color=#9a9a9a&gt;(hover for details)&lt;/color&gt;</text>
+								<anchor>Right</anchor>
 								<padBelow>6</padBelow>
 							</li>
 						</caseTrue>

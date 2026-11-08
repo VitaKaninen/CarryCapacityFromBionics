@@ -43,7 +43,10 @@
   RBSE Adv Bionic Arm/Leg 1.3→1.5, Spine 1.2→1.0, Exoskeleton 1.15→1.0; YAPE SoSArchotechSpine
   1.25→2. Sheet-internal: RBSE humerus weight 3% (table 2.5%), Ambroisen Foot weight 7.5% (others
   0%), Artificial Hoof 10% (no hoof weight), EPOE-F toe −0.5 vs finger −0.3, intro text says feet 10%.
-  Also raised: for negative tiers the formula penalises a BETTER part more (eff × −tech).
+- **Penalty formula (user 2026-11-08):** tech < 0 → `−(1 − eff) × weight × 35`, no tier multiplier,
+  no extra scale (user finds the smaller penalties fine). Tech ≥ 0 unchanged (`eff × weight × tech × 35`).
+  Sheet: `=IF(E<0, -D*(1-C)*35, E*D*C*35)`. Old `eff × −tech` penalised better parts more and put
+  Wooden Foot / Peg Leg below the missing-part value. User will recompute the sheet; then sync the mod.
 - Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
   parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
 

@@ -37,9 +37,10 @@
   fixed body part, torso/waist parts, 5 multi-part parts, 3 with no tech level; VOID + SoS2 not
   installed, so unchecked. Rerun: scratch scripts are gone; re-derive from `docs/ADDING_A_MOD.md` step 8.
 
-## Open questions
-- Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
-  parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
+## Answered
+- Kenshi Fauna 1.6 fork (ws 3535797656) keeps packageId `EL.KenshiFauna`, so ADSAP2's Kenshi parts load.
+- `loadAfter` must list every packageId LoadFolders gates on (except `MSE2.Core`, used only to disable):
+  NeoP defines parts in its Patches/, which run in load order.
 
 ## Next steps
 1. User tests the synced defaults in game.

@@ -46,8 +46,11 @@
   `1.6/Mods/ADSAP2`, `CCFB_AnimalImplant` rows (% of the animal's base, C# `StatPart_AnimalImplants`
   reads `AnimalCapacityExtension.percent` off the hediff def). Its EPOE-Forked / MSE2 / Kenshi Fauna
   parts are ADSAP2's own defs (gated by ADSAP2's LoadFolders), so the existence guard covers them.
-  Values: sheet section "A Dog Said..." (Math ×100, not ×35). Vanilla PegLeg/WoodenFoot/WoodenHand/
-  PowerClaw/HookHand also install on animals and keep the human flat-kg rows.
+  Values: sheet section "A Dog Said..." (Math ×100, not ×35). Every animal row ALWAYS puts the
+  extension on its hediff (percent 0 when off), and on non-humanlike pawns the StatPart cancels
+  that hediff's own offset on the stat, so animals never get a human kg value. Needed because
+  ADSAP2 installs shared hediffs on animals (vanilla PegLeg/WoodenFoot/WoodenHand/PowerClaw,
+  EPOE-Forked HookHand), which have their own animal rows; humans are untouched.
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

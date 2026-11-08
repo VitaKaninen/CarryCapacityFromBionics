@@ -43,36 +43,45 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
     {
         public override void TransformValue(StatRequest req, ref float val)
         {
-            val += Extra(req, out _);
+            val += Extra(req, out _, out _);
         }
 
         public override string ExplanationPart(StatRequest req)
         {
-            float extra = Extra(req, out float pct);
-            if (extra == 0f)
+            float extra = Extra(req, out float pct, out bool found);
+            if (!found)
             {
                 return null;
             }
-            return "Animal implants (" + pct.ToString("0.##", CultureInfo.InvariantCulture) + "%): " + extra.ToStringMassOffset();
+            return "Animal implants (" + pct.ToString("0.##", CultureInfo.InvariantCulture) + "% of base, replaces the kg values above): " + extra.ToStringMassOffset();
         }
 
-        private static float Extra(StatRequest req, out float pct)
+        private float Extra(StatRequest req, out float pct, out bool found)
         {
             pct = 0f;
+            found = false;
             if (!(req.Thing is Pawn pawn) || pawn.RaceProps == null || pawn.RaceProps.Humanlike || pawn.health?.hediffSet == null)
             {
                 return 0f;
             }
+            float flat = 0f;
             List<Hediff> hediffs = pawn.health.hediffSet.hediffs;
             for (int i = 0; i < hediffs.Count; i++)
             {
                 AnimalCapacityExtension ext = hediffs[i].def.GetModExtension<AnimalCapacityExtension>();
-                if (ext != null)
+                if (ext == null)
                 {
-                    pct += ext.percent;
+                    continue;
+                }
+                found = true;
+                pct += ext.percent;
+                List<StatModifier> offsets = hediffs[i].CurStage?.statOffsets;
+                if (offsets != null)
+                {
+                    flat += offsets.GetStatOffsetFromList(parentStat);
                 }
             }
-            return pct / 100f * pawn.BodySize * MassUtility.MassCapacityPerBodySize;
+            return pct / 100f * pawn.BodySize * MassUtility.MassCapacityPerBodySize - flat;
         }
     }
 }

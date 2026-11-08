@@ -185,6 +185,7 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<!-- CCFB_AnimalImplant: like CCFB_Implant, but the value is a percent of the animal's base capacity. -->
 	<XmlExtensions.PatchDef Name="CCFB_AnimalImplant" Abstract="True">
 		<parameters>
 			<li>defName</li>
@@ -195,6 +196,30 @@
 			<li>section</li>
 		</parameters>
 		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
+				<caseTrue>
+					<Operation Class="XmlExtensions.Conditional">
+						<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
+						<caseFalse>
+							<Operation Class="XmlExtensions.PatchOperationAdd">
+								<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
+								<value>
+									<modExtensions/>
+								</value>
+							</Operation>
+						</caseFalse>
+					</Operation>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
+						<value>
+							<li Class="Vita.CarryCapacityFromBionics.MissingParts.AnimalCapacityExtension">
+								<percent>0</percent>
+							</li>
+						</value>
+					</Operation>
+				</caseTrue>
+			</Operation>
 			<Operation Class="XmlExtensions.ApplyPatch">
 				<patchName>CCFB_ImplantCore</patchName>
 				<arguments>
@@ -442,6 +467,7 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<!-- Right half of a row: kg box or percent box (animal rows). -->
 	<XmlExtensions.PatchDef Name="CCFB_RowValue_kg" Abstract="True">
 		<parameters>
 			<li>key</li>
@@ -655,6 +681,7 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<!-- Animal rows: the percent is stored on the hediff and applied by StatPart_AnimalImplants. -->
 	<XmlExtensions.PatchDef Name="CCFB_AddOffset_pct" Abstract="True">
 		<parameters>
 			<li>defName</li>
@@ -662,23 +689,10 @@
 			<li>vefOperation</li>
 		</parameters>
 		<apply>
-			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
-				<caseFalse>
-					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/HediffDef[defName="{defName}"]</xpath>
-						<value>
-							<modExtensions/>
-						</value>
-					</Operation>
-				</caseFalse>
-			</Operation>
-			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions</xpath>
+			<Operation Class="XmlExtensions.PatchOperationReplace">
+				<xpath>Defs/HediffDef[defName="{defName}"]/modExtensions/li[@Class="Vita.CarryCapacityFromBionics.MissingParts.AnimalCapacityExtension"]/percent</xpath>
 				<value>
-					<li Class="Vita.CarryCapacityFromBionics.MissingParts.AnimalCapacityExtension">
-						<percent>{value}</percent>
-					</li>
+					<percent>{value}</percent>
 				</value>
 			</Operation>
 		</apply>

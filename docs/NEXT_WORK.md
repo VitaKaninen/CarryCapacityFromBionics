@@ -74,8 +74,8 @@ rows ON.
 - ADSAP2 built (29 rows, `1.6/Mods/ADSAP2`, `CCFB_AnimalImplant`, `unit` arg kg|pct threaded
   through ImplantCore/RowMenu/ModeOffset/ScaledOffset). Values = sheet rows given to the user
   (user: good enough to start, may change after reviewing the sheet). Not tested in game.
-- Proposed XML comments removed pending approval: CCFB_AnimalImplant header, RowValue_kg/pct,
-  AddOffset_pct (text in the round-10 reply).
+- Approved comments added. Animal rows for shared parts (peg leg etc.) replace the human kg on
+  animals; full sheet block (rows 322–343) given to the user.
 
 ## Next steps
 1. User tests rounds 4–10 in game (incl. a pack animal with ADSAP2 parts); fix what they report.

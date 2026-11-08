@@ -63,6 +63,7 @@
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
 		<li>1.6/Ludeon/Core</li>
 		<li>1.6/MissingParts</li>
+		<li>1.6/ExtraCapacity</li>
 		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
 		<li>Common</li>
 	</v1.5>
@@ -143,8 +144,9 @@
 
 		<!-- Missing body part penalty (built-in feature, always loaded; rows feed the C# half
 		     in Common/Assemblies, not XML patches). Below Core so it applies first overall:
-		     "Missing body parts" is the TOP menu section, above Core Implants. -->
+		     "Missing body parts" sits above Core Implants. -->
 		<li>1.6/MissingParts</li>
+		<li>1.6/ExtraCapacity</li>
 
 		<!-- Standalone stat machinery (assembly + StatDef), only when VEF is NOT active.
 		     When VEF is active the patches write to VEF's own VEF_MassCarryCapacity stat instead;

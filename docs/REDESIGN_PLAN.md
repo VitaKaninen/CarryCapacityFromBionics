@@ -16,11 +16,15 @@ writes them to the HediffDef as a DefModExtension (`CCFB.ImplantData`). Source =
 add a Part column (scripted guess from weight + label, user checks), then script the arg edit
 across all patch files. Native-VEF rows get data but simple mode leaves the author's value alone.
 
-## 1. Extra capacity % (smallest; can ship first)
-- New top section: one % field (`CCFB_ExtraPercent`, default 0), applies to everyone with capacity
-  (humans and pack animals): + pct × base.
-- Beside it, a custom XE `SettingContainer` (C#) drawing live examples from the field's current
-  value and race body sizes read from DefDatabase: human, a dog, muffalo, thrumbo.
+## 1. Extra capacity % — BUILT 2026-11-08, awaiting in-game test
+- `1.6/ExtraCapacity` (LoadFolders entry right after MissingParts = top menu section).
+  Keys `ExtraCapacityHuman`, `ExtraCapacityAnimal` (percent numbers, default 0), master
+  `ToggleSectionExtraCapacity` (default true).
+- C# in `CarryCapacityMissingParts.dll` (`ExtraCapacity.cs`): `StatPart_ExtraCapacity` adds
+  pct × body size × 35 (humanlike non-babies; animals only if `packAnimal`), injected only if a
+  value ≠ 0. `Setting_CapacityExamples` (custom XE setting, field `percentKey` — NOT `key`, which
+  SettingContainer already has) draws live adult examples: Human; Husky, Muffalo, Thrumbo.
+- Test to confirm percent storage: 10% must show Human 35 -> 38.5 kg.
 
 ## 2. Simple mode
 - `UseSimpleSettings` checkbox at the top. Ticked: per-mod sections hidden (CCFB_Section body wrapped
@@ -43,8 +47,9 @@ across all patch files. Native-VEF rows get data but simple mode leaves the auth
 1. Extra % + examples. 2. Sheet Part column → per-row args in all files. 3. Simple mode StatPart + menu.
 4. ADSAP2 animal rows. Each step deployed and tested by the user before the next.
 
-## Decisions pending (recommendation first)
-1. Simple mode scales with body size (children get less, as the missing-parts penalty does) — or flat kg.
-2. Simple mode rounds each implant with the sheet ladder — or exact values.
-3. Simple mode hides per-implant on/off checkboxes — or keeps them as overrides.
-4. Extra % applies to pack animals too — or humans only.
+## Decisions (approved by user 2026-11-08)
+1. Simple mode scales with body size (children get less).
+2. Simple mode rounds each implant with the sheet ladder.
+3. Simple mode hides the per-implant on/off checkboxes.
+4. Extra %: TWO fields — one for humanlikes (`CCFB_ExtraPercent`), one for animals
+   (`CCFB_ExtraPercentAnimal`); examples: human beside the first, dog/muffalo/thrumbo beside the second.

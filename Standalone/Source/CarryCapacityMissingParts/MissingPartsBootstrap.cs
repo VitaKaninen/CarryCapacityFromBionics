@@ -116,7 +116,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             stat.parts.Add(new StatPart_MissingBodyParts { parentStat = stat });
         }
 
-        private static bool GetBool(string key, bool fallback)
+        internal static bool GetBool(string key, bool fallback)
         {
             if (XmlExtensions.SettingsManager.TryGetSetting(ModId, key, out string value)
                 && bool.TryParse(value, out bool parsed))
@@ -126,7 +126,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             return fallback;
         }
 
-        private static float GetFloat(string key, float fallback)
+        internal static float GetFloat(string key, float fallback)
         {
             if (XmlExtensions.SettingsManager.TryGetSetting(ModId, key, out string value)
                 && float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float parsed))

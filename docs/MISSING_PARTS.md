@@ -37,8 +37,8 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
   stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
 - Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
-  ungated LoadFolders entry placed BELOW `1.6/Ludeon/Core` so it is the **top menu section**,
-  above Core Implants — deliberate exception to the alphabetical rule). First row = floor
+  ungated LoadFolders entry placed BELOW `1.6/Ludeon/Core` so it sits second (below Extra
+  carry capacity) and above Core Implants — deliberate exception to the alphabetical rule). First row = floor
   `MissingPartFloor` (default 0 kg, positive, no checkbox); then per-part
   `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
   the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**

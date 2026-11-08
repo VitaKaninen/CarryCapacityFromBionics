@@ -177,7 +177,10 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - Settings changes require a **game restart** (stated in the menu UI).
 - XE `Setting.Numeric` **saves** its value rounded (half-to-even) to `<decimals>` every time the
   menu draws it (`Numeric.cs:92-95`), so `<decimals>` must cover the finest default (kg rows: 2,
-  for −2.75 etc.; at 1 they silently became −2.8).
+  for −2.75 etc.; at 1 they silently became −2.8). A `<percent>true</percent>` field saves the
+  typed percent number ("10" = 10%; vanilla's TextFieldPercent fraction is overwritten from the
+  text buffer), default min/max ±1e9; RimWorld forces en-US culture, so parse with Invariant.
+  (Decompiled 2026-11-08, XE 1.5 + 1.6 DLLs.)
 - The mod only ever adds `statOffsets` to the implant's `HediffDef` stage — never touches body
   parts or recipes.
 - Historic quirk kept for behavior parity: if a hediff has multiple `stages/li` with

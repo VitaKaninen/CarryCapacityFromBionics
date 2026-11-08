@@ -24,7 +24,7 @@ across all patch files. Native-VEF rows get data but simple mode leaves the auth
   pct × body size × 35 (humanlike non-babies; animals only if `packAnimal`), injected only if a
   value ≠ 0. `Setting_CapacityExamples` (custom XE setting, field `percentKey` — NOT `key`, which
   SettingContainer already has) draws live adult examples: Human; Husky, Muffalo, Thrumbo.
-- Test to confirm percent storage: 10% must show Human 35 -> 38.5 kg.
+- Percent storage verified by decompile (see CLAUDE.md conventions).
 
 ## 2. Simple mode
 - `UseSimpleSettings` checkbox at the top. Ticked: per-mod sections hidden (CCFB_Section body wrapped

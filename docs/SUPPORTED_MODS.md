@@ -63,8 +63,8 @@
   for 1.6 — same packageId, patch XML byte-identical, no DLL): it only adds
   `<packAnimal>true</packAnimal>` to species (Husky, LabradorRetriever, Thrumbo, Rhinoceros, bears,
   wolves…). That gives them vanilla capacity, so our bonus and PUAH inventory hauling work through
-  the normal path. User decision 2026-11-08: support pack animals only, no capacity-granting C#;
-  no missing-part penalty for animals.
+  the normal path, so no capacity-granting C# is needed. User decision 2026-11-08: no missing-part
+  penalty for animals.
 - EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
   Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
   Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,

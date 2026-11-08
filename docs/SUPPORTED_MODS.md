@@ -36,8 +36,10 @@
   (BeaverTail/O_BeaverTail/AlphaBeaverTail; GorillaArm/OD_GorillaArm/OD_ArmGorilla;
   CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). MuffaloSpine (50) and
   SyntheticMuffaloSpine (75) are native-VEF → `CCFB_ImplantNativeVEF` override in `NeoP_NativeVEF`.
-  SewnInBag's native bonus is vanilla CarryingCapacity (in-hands stat, not mass) → patched
-  normally; same reasoning applies to any future implant with an in-hands-only native bonus.
+  An implant whose only native bonus is vanilla CarryingCapacity (in-hands stat) is patched
+  normally. **SewnInBag is no longer one:** NeoP's 1.6/1.7 defs also give
+  `VEF_MassCarryCapacity MayRequire=VEF` 15, so our `CCFB_Implant` row double-dips in VEF games
+  (found 2026-11-08; move it to `NeoP_NativeVEF` once the user picks the default).
 - IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the
   Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 

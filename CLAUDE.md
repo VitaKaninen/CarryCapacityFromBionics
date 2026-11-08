@@ -36,6 +36,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
 | Touching the Standalone C# (stat worker, `MassUtility.Capacity` transpiler) | [`docs/STANDALONE_CSHARP.md`](docs/STANDALONE_CSHARP.md) |
 | Starting a session, or resuming animal support / settings redesign | [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) — handoff, open questions |
 | Building simple mode, extra capacity %, or animal support | [`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md) |
+| Writing PatchDefs, XE settings widgets, or C# that uses XML Extensions | [`docs/XML_EXTENSIONS.md`](docs/XML_EXTENSIONS.md) — XE quirks (patch-time SetSetting, Numeric rounding, box widths) |
 
 ## Architecture (PatchDef-based, single tree)
 
@@ -169,36 +170,7 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
   LoadFolders.xml is deliberately listed in reverse (SimpleMode = main box lowest, Common last).
   Correctness never depends on
   this (CCFB_Section is idempotent); only the menu's section order does.
-- The `CreateDocument`/`MergeDocument` side-document speed pattern was first blamed for the
-  shadowing symptom and removed (see git history). It was exonerated — the patch files never
-  ran at all — but it has not been re-verified in-game since, so re-adding it is optional
-  future work, to be tested with the diagnostic logging pattern from the debugging session.
-  XE source mirror for reference: `..\XmlExtensionsSource` (note: XE rewrote `MergeDocument`
-  to in-place `ReplaceWith` in v1.9.2).
-- Patch-time substitution nesting: in `CCFB_Implant`, `{{key}}` becomes `{<actual key>}` after
-  PatchDef substitution, which `UseSetting` then replaces with the setting's value (same pattern
-  as the wiki's Mood Matters tutorial).
-- `XmlExtensions.PatchDef` must be `Abstract="True"` with a `Name` attribute; called via
-  `ApplyPatch`'s `<patchName>`.
-- Only XmlExtensions operations accept `<xmlDoc>`; that's why the PatchDef uses
-  `XmlExtensions.Conditional` / `XmlExtensions.PatchOperationAdd` instead of the vanilla ops.
 - Settings changes require a **game restart** (stated in the menu UI).
-- C# calling XE `SettingsManager.SetSetting` at **patch time** throws KeyNotFound unless an XE op
-  for our modId already ran (`settingsPerMod[modId]` is filled by internal `AddMod`); XE logs it
-  only as "Patch operation … failed". `PatchOperation_DecideMode` runs first, so it calls `AddMod`
-  via reflection (present in XE 1.5–1.7 DLLs).
-- XE `Setting.Numeric` **saves** its value rounded (half-to-even) to `<decimals>` every time the
-  menu draws it (`Numeric.cs:92-95`), so `<decimals>` must cover the finest default (kg rows: 2,
-  for −2.75 etc.; at 1 they silently became −2.8). A `<percent>true</percent>` field saves the
-  typed percent number ("10" = 10%; vanilla's TextFieldPercent fraction is overwritten from the
-  text buffer), default min/max ±1e9; RimWorld forces en-US culture, so parse with Invariant.
-  (Decompiled 2026-11-08, XE 1.5 + 1.6 DLLs.)
-- **Every number box is the same narrow width** (user): a label-less `Numeric` in the right
-  column of a `SplitColumn` with `<split>0.79</split>` (label = right-anchored Text on the left),
-  inside a row's 0.5 right column; kg fields add `<padRight>25</padRight>` to line up with
-  percent fields (TextFieldPercent reserves 25 px for "%"). XE's `Numeric` is `internal`, so it
-  can't be subclassed. XE `PatchOperationInsert` (Prepend) reverses multi-node values;
-  `PatchOperationReplace` keeps their order.
 - The mod only ever adds `statOffsets` to the implant's `HediffDef` stage — never touches body
   parts or recipes.
 - Historic quirk kept for behavior parity: if a hediff has multiple `stages/li` with

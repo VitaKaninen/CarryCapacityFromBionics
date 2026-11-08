@@ -9,7 +9,6 @@
 		<arguments>
 			<li>V.O.I.D</li>
 			<li>VOID</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

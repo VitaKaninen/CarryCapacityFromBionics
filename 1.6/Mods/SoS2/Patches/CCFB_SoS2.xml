@@ -9,7 +9,6 @@
 		<arguments>
 			<li>SoS2</li>
 			<li>SoS2</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

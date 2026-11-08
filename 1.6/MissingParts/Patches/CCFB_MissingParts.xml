@@ -4,9 +4,9 @@
 		Missing body part penalty - settings section. These rows feed the C# half
 		(CarryCapacityMissingParts.dll in Common/Assemblies); they do NOT patch any defs.
 		The DLL reads the values once at startup via XmlExtensions.SettingsManager and only
-		acts when the main box's "Include missing body part penalties" checkbox
-		(ToggleSectionMissingParts, default OFF) is ticked. The rows sit in a block inside the
-		Core Implants section, shown only in advanced mode with that checkbox ticked.
+		acts when ToggleSectionMissingParts (default OFF) is ticked: in the main box in Easy
+		mode, or in the block's own header inside the Core Implants section in Advanced mode
+		(same key in both places).
 		Defaults here MUST stay in sync with the
 		compiled defaults in MissingPartsBootstrap.cs.
 		Values are PERCENTAGES of the pawn's base capacity (body size x 35 kg), positive,
@@ -24,7 +24,6 @@
 		<arguments>
 			<li>Core Implants</li>
 			<li>Core</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 
@@ -37,30 +36,50 @@
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_Core"]</xpath>
 				<order>Append</order>
 				<value>
-					<li Class="XmlExtensions.Setting.ToggleableSettings">
-						<key>ToggleSectionMissingParts</key>
-						<caseTrue>
-							<li Class="XmlExtensions.Setting.Gap">
-								<spacing>12</spacing>
-							</li>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>Missing body part penalties</text>
-								<font>Medium</font>
-							</li>
-							<li Class="XmlExtensions.Setting.GapLine"/>
-							<li Class="XmlExtensions.Setting.Text">
-								<text>Each enabled part below reduces a pawn's mass carry capacity (inventory and caravan weight) by a percentage of their base capacity while that part is missing. Base capacity is body size x 35 kg - 35 kg for an adult human, less for children - so the penalties scale with age and size. Damaged parts count in proportion to lost HP, and bionics, prosthetics and other replacements count as present. A safety net keeps the math sane: only the topmost missing part is counted, and a limb's combined reductions can never exceed the value of its topmost part - losing pieces of a limb never costs more than losing the whole limb. Hover any row for details.</text>
-							</li>
+					<li Class="XmlExtensions.Setting.Group">
+						<settings>
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>12</spacing>
 							</li>
 							<li Class="XmlExtensions.Setting.SplitColumn">
-								<tag>CCFB_MissingParts</tag>
-								<leftCol/>
-								<rightCol/>
+								<width>24</width>
+								<gapSize>6</gapSize>
+								<anchor>Middle</anchor>
+								<leftCol>
+									<li Class="XmlExtensions.Setting.Checkbox">
+										<label></label>
+										<key>ToggleSectionMissingParts</key>
+										<defaultValue>false</defaultValue>
+										<tooltip>Missing or damaged limbs, spine and pelvis lower carry capacity.</tooltip>
+									</li>
+								</leftCol>
+								<rightCol>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Missing body part penalties</text>
+										<font>Medium</font>
+										<anchor>Middle</anchor>
+									</li>
+								</rightCol>
 							</li>
-						</caseTrue>
-						<caseFalse/>
+							<li Class="XmlExtensions.Setting.GapLine"/>
+							<li Class="XmlExtensions.Setting.ToggleableSettings">
+								<key>ToggleSectionMissingParts</key>
+								<caseTrue>
+									<li Class="XmlExtensions.Setting.Text">
+										<text>Each enabled part below reduces a pawn's mass carry capacity (inventory and caravan weight) by a percentage of their base capacity while that part is missing. Base capacity is body size x 35 kg - 35 kg for an adult human, less for children - so the penalties scale with age and size. Damaged parts count in proportion to lost HP, and bionics, prosthetics and other replacements count as present. A safety net keeps the math sane: only the topmost missing part is counted, and a limb's combined reductions can never exceed the value of its topmost part - losing pieces of a limb never costs more than losing the whole limb. Hover any row for details.</text>
+									</li>
+									<li Class="XmlExtensions.Setting.Gap">
+										<spacing>12</spacing>
+									</li>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<tag>CCFB_MissingParts</tag>
+										<leftCol/>
+										<rightCol/>
+									</li>
+								</caseTrue>
+								<caseFalse/>
+							</li>
+						</settings>
 					</li>
 				</value>
 			</Operation>
@@ -99,6 +118,7 @@
 			<Operation Class="XmlExtensions.PatchOperationAdd">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSectionCore"]/actions/li/keys</xpath>
 				<value>
+					<li>ToggleSectionMissingParts</li>
 					<li>MissingPartMaxReduction</li>
 				</value>
 			</Operation>

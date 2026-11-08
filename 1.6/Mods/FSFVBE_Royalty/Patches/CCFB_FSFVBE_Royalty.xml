@@ -9,7 +9,6 @@
 		<arguments>
 			<li>[FSF] Vanilla Bionics Expansion</li>
 			<li>FSFVBE</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

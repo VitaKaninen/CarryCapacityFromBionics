@@ -5,11 +5,10 @@
 		defName | settings key | menu label | toggle default | kg default | menu section tag
 	-->
 	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_PenaltyOnlySection</patchName>
+		<patchName>CCFB_Section</patchName>
 		<arguments>
 			<li>Medieval Prosthetics</li>
 			<li>MedP</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

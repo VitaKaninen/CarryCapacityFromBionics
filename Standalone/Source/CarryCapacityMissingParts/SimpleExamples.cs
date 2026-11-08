@@ -31,6 +31,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float Indent = 16f;
         private const float LineHeight = 22f;
         private const float GroupGap = 8f;
+        private const float LabelGap = 12f;
         private const float HumanBaseKg = 35f;
 
         public string header;
@@ -67,6 +68,17 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             TextAnchor anchor = Text.Anchor;
             Color color = GUI.color;
             Text.Font = GameFont.Small;
+            List<Block> blocks = BuildBlocks();
+            float width = string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x;
+            foreach (Block block in blocks)
+            {
+                width = Mathf.Max(width, Text.CalcSize(block.title + ":").x);
+                foreach (Line line in block.lines)
+                {
+                    width = Mathf.Max(width, Indent + Text.CalcSize(line.label).x + LabelGap + NumberWidth);
+                }
+            }
+            inRect.xMin = inRect.xMax - Mathf.Min(inRect.width, width);
             float y = inRect.y;
             if (!string.IsNullOrEmpty(header))
             {
@@ -75,7 +87,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 y += LineHeight;
             }
             int index = 0;
-            foreach (Block block in BuildBlocks())
+            foreach (Block block in blocks)
             {
                 Rect blockRect = new Rect(inRect.x, y, inRect.width, BlockHeight(block));
                 Widgets.DrawHighlightIfMouseover(blockRect);

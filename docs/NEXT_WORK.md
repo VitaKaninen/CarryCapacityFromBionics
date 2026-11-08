@@ -43,10 +43,13 @@ patch time), one top box (custom radio, options left / data right, extra % moved
 folder removed), prosthetic-penalty + missing-part global checkboxes with blocks inside sections
 (missing parts inside Core Implants), penalty/missing rows default on, MedP penalty-only section,
 starting mode from saved values, table tooltips, all pack animals on hover.
-**Not yet seen in game:** round 3 (radio widget, option layout, TableTip ImmediateWindow); DecideMode failed on first test (fixed, retest).
+**Round 4 (user feedback on round 3), built + deployed, not yet seen in game:** radio button
+clickable, click-away unfocuses text boxes, section hide checkboxes removed, per-section
+"Prosthetic penalties" box (default off) + missing-parts box in Core in Advanced, main box as
+aligned rows with right-aligned data, pack-animal hover without corpses.
 **Asked last, unanswered:**
-- May I recycle the stale `1.6/ExtraCapacity` folder in `<RimWorld>/Mods/CarryCapacityFromBionics`
-  (not loaded any more, but would be uploaded)? Needs the user's yes (game-folder write).
+- "(hover for details) missing in adv mode": unclear which text; asked the user.
+- Right-column alignment interpreted as "data block right-aligned, as wide as its text"; confirm.
 - About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).
 
 ## Next steps

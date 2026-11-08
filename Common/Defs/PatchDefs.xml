@@ -2,13 +2,10 @@
 <Defs>
 
 	<!--
-		CCFB_Section: creates one labeled section in the settings menu - a header row with the
-		section's MASTER CHECKBOX (key ToggleSection{section}) next to the title, and a
-		collapsible body (ToggleableSettings): master unticked = only the title shows, and
-		CCFB_Implant/CCFB_ImplantNativeVEF skip every hediff patch in the section (the master
-		gates them via OptionalPatch). The collapse is live; the patches need a restart as usual.
-		Args (in order): section label | section tag | master checkbox default (true/false).
-		CCFB_SectionAt takes a 4th arg, the parent xpath (CCFB_Section passes the advanced container).
+		CCFB_Section: creates one labeled section in the settings menu (title, then the rows'
+		SplitColumn tagged CCFB_{section} and a "Reset this section" button), inside the
+		advanced-mode container.
+		Args (in order): section label | section tag.
 		Idempotent: if a SplitColumn tagged CCFB_{section} already exists, does nothing, so any
 		patch file may call it for the section it needs and patch-file order does not matter.
 	-->
@@ -16,97 +13,53 @@
 		<parameters>
 			<li>sectionLabel</li>
 			<li>section</li>
-			<li>masterDefault</li>
 		</parameters>
 		<apply>
 			<Operation Class="XmlExtensions.ApplyPatch">
 				<patchName>CCFB_AdvancedContainer</patchName>
 			</Operation>
-			<Operation Class="XmlExtensions.ApplyPatch">
-				<patchName>CCFB_SectionAt</patchName>
-				<arguments>
-					<li>{sectionLabel}</li>
-					<li>{section}</li>
-					<li>{masterDefault}</li>
-					<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li[tag="CCFB_AdvancedSections"]/caseFalse</li>
-				</arguments>
-			</Operation>
-		</apply>
-	</XmlExtensions.PatchDef>
-
-	<XmlExtensions.PatchDef Name="CCFB_SectionAt" Abstract="True">
-		<parameters>
-			<li>sectionLabel</li>
-			<li>section</li>
-			<li>masterDefault</li>
-			<li>parent</li>
-		</parameters>
-		<apply>
 			<Operation Class="XmlExtensions.Conditional">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]</xpath>
 				<caseFalse>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>{parent}</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li[tag="CCFB_AdvancedSections"]/caseFalse</xpath>
 						<value>
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>24</spacing>
 							</li>
-							<li Class="XmlExtensions.Setting.SplitColumn">
-								<width>24</width>
-								<gapSize>6</gapSize>
+							<li Class="XmlExtensions.Setting.Text">
+								<text>{sectionLabel}</text>
+								<font>Medium</font>
 								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Checkbox">
-										<label></label>
-										<key>ToggleSection{section}</key>
-										<defaultValue>{masterDefault}</defaultValue>
-										<tooltip>Enable or disable this entire section. Disabled: the section collapses and none of its rows apply (restart required for the bonuses themselves).</tooltip>
-									</li>
-								</leftCol>
-								<rightCol>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>{sectionLabel}</text>
-										<font>Medium</font>
-										<anchor>Middle</anchor>
-									</li>
-								</rightCol>
 							</li>
 							<li Class="XmlExtensions.Setting.GapLine"/>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>ToggleSection{section}</key>
-								<caseTrue>
-									<li Class="XmlExtensions.Setting.Section">
-										<settings>
-											<li Class="XmlExtensions.Setting.SplitColumn">
-												<tag>CCFB_{section}</tag>
-												<leftCol/>
-												<rightCol/>
-											</li>
-											<li Class="XmlExtensions.Setting.Gap">
-												<spacing>12</spacing>
-											</li>
-											<!-- Per-section reset. Every row PatchDef registers its keys into this
-											     button's ResetSettings list as it adds its row, so the button only
-											     ever touches THIS section's settings. -->
-											<li Class="XmlExtensions.Setting.Button">
-												<label>Reset this section</label>
-												<key>ToggleSection{section}</key>
-												<height>24</height>
-												<confirm>true</confirm>
-												<message>Reset every setting in this section to its default?</message>
-												<tooltip>Resets this section's checkboxes and values to their defaults. Other sections are not touched.</tooltip>
-												<actions>
-													<li Class="XmlExtensions.Action.ResetSettings">
-														<keys>
-															<li>ToggleSection{section}</li>
-														</keys>
-													</li>
-												</actions>
-											</li>
-										</settings>
+							<li Class="XmlExtensions.Setting.Section">
+								<settings>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<tag>CCFB_{section}</tag>
+										<leftCol/>
+										<rightCol/>
 									</li>
-								</caseTrue>
-								<caseFalse/>
+									<li Class="XmlExtensions.Setting.Gap">
+										<spacing>12</spacing>
+									</li>
+									<!-- Per-section reset. Every row PatchDef registers its keys into this
+									     button's ResetSettings list as it adds its row, so the button only
+									     ever touches THIS section's settings. -->
+									<li Class="XmlExtensions.Setting.Button">
+										<label>Reset this section</label>
+										<key>ToggleSection{section}</key>
+										<height>24</height>
+										<confirm>true</confirm>
+										<message>Reset every setting in this section to its default?</message>
+										<tooltip>Resets this section's checkboxes and values to their defaults. Other sections are not touched.</tooltip>
+										<actions>
+											<li Class="XmlExtensions.Action.ResetSettings">
+												<keys/>
+											</li>
+										</actions>
+									</li>
+								</settings>
 							</li>
 						</value>
 					</Operation>
@@ -132,44 +85,6 @@
 						</value>
 					</Operation>
 				</caseFalse>
-			</Operation>
-		</apply>
-	</XmlExtensions.PatchDef>
-
-	<XmlExtensions.PatchDef Name="CCFB_PenaltyOnlySection" Abstract="True">
-		<parameters>
-			<li>sectionLabel</li>
-			<li>section</li>
-			<li>masterDefault</li>
-		</parameters>
-		<apply>
-			<Operation Class="XmlExtensions.ApplyPatch">
-				<patchName>CCFB_AdvancedContainer</patchName>
-			</Operation>
-			<Operation Class="XmlExtensions.Conditional">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_Visible"]</xpath>
-				<caseFalse>
-					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings/li[tag="CCFB_AdvancedSections"]/caseFalse</xpath>
-						<value>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<tag>CCFB_{section}_Visible</tag>
-								<key>SimplePenalties</key>
-								<caseTrue/>
-								<caseFalse/>
-							</li>
-						</value>
-					</Operation>
-				</caseFalse>
-			</Operation>
-			<Operation Class="XmlExtensions.ApplyPatch">
-				<patchName>CCFB_SectionAt</patchName>
-				<arguments>
-					<li>{sectionLabel}</li>
-					<li>{section}</li>
-					<li>{masterDefault}</li>
-					<li>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_Visible"]/caseTrue</li>
-				</arguments>
 			</Operation>
 		</apply>
 	</XmlExtensions.PatchDef>
@@ -290,25 +205,51 @@
 										<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}"]</xpath>
 										<order>Append</order>
 										<value>
-											<li Class="XmlExtensions.Setting.ToggleableSettings">
-												<key>SimplePenalties</key>
-												<caseTrue>
+											<li Class="XmlExtensions.Setting.Group">
+												<settings>
 													<li Class="XmlExtensions.Setting.Gap">
 														<spacing>12</spacing>
 													</li>
-													<li Class="XmlExtensions.Setting.Text">
-														<text>Prosthetic penalties</text>
-														<font>Medium</font>
+													<li Class="XmlExtensions.Setting.SplitColumn">
+														<width>24</width>
+														<gapSize>6</gapSize>
+														<anchor>Middle</anchor>
+														<leftCol>
+															<li Class="XmlExtensions.Setting.Checkbox">
+																<label></label>
+																<key>Penalties{section}</key>
+																<defaultValue>false</defaultValue>
+																<tooltip>Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.</tooltip>
+															</li>
+														</leftCol>
+														<rightCol>
+															<li Class="XmlExtensions.Setting.Text">
+																<text>Prosthetic penalties</text>
+																<font>Medium</font>
+																<anchor>Middle</anchor>
+															</li>
+														</rightCol>
 													</li>
 													<li Class="XmlExtensions.Setting.GapLine"/>
-													<li Class="XmlExtensions.Setting.SplitColumn">
-														<tag>CCFB_{section}_Penalties</tag>
-														<leftCol/>
-														<rightCol/>
+													<li Class="XmlExtensions.Setting.ToggleableSettings">
+														<key>Penalties{section}</key>
+														<caseTrue>
+															<li Class="XmlExtensions.Setting.SplitColumn">
+																<tag>CCFB_{section}_Penalties</tag>
+																<leftCol/>
+																<rightCol/>
+															</li>
+														</caseTrue>
+														<caseFalse/>
 													</li>
-												</caseTrue>
-												<caseFalse/>
+												</settings>
 											</li>
+										</value>
+									</Operation>
+									<Operation Class="XmlExtensions.PatchOperationAdd">
+										<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
+										<value>
+											<li>Penalties{section}</li>
 										</value>
 									</Operation>
 								</caseFalse>
@@ -326,22 +267,50 @@
 							</Operation>
 							<Operation Class="XmlExtensions.OptionalPatch">
 								<modId>Vita.CarryCapacityFromBionics</modId>
-								<key>SimplePenalties</key>
-								<defaultValue>false</defaultValue>
+								<key>ToggleSectionSimple</key>
+								<defaultValue>true</defaultValue>
 								<caseTrue>
-									<Operation Class="XmlExtensions.ApplyPatch">
-										<patchName>CCFB_ModeOffset</patchName>
-										<arguments>
-											<li>{defName}</li>
-											<li>{key}</li>
-											<li>{label}</li>
-											<li>{toggleDefault}</li>
-											<li>{valueDefault}</li>
-											<li>{section}</li>
-											<li>{vefOperation}</li>
-										</arguments>
+									<Operation Class="XmlExtensions.OptionalPatch">
+										<modId>Vita.CarryCapacityFromBionics</modId>
+										<key>SimplePenalties</key>
+										<defaultValue>false</defaultValue>
+										<caseTrue>
+											<Operation Class="XmlExtensions.ApplyPatch">
+												<patchName>CCFB_ModeOffset</patchName>
+												<arguments>
+													<li>{defName}</li>
+													<li>{key}</li>
+													<li>{label}</li>
+													<li>{toggleDefault}</li>
+													<li>{valueDefault}</li>
+													<li>{section}</li>
+													<li>{vefOperation}</li>
+												</arguments>
+											</Operation>
+										</caseTrue>
 									</Operation>
 								</caseTrue>
+								<caseFalse>
+									<Operation Class="XmlExtensions.OptionalPatch">
+										<modId>Vita.CarryCapacityFromBionics</modId>
+										<key>Penalties{section}</key>
+										<defaultValue>false</defaultValue>
+										<caseTrue>
+											<Operation Class="XmlExtensions.ApplyPatch">
+												<patchName>CCFB_ModeOffset</patchName>
+												<arguments>
+													<li>{defName}</li>
+													<li>{key}</li>
+													<li>{label}</li>
+													<li>{toggleDefault}</li>
+													<li>{valueDefault}</li>
+													<li>{section}</li>
+													<li>{vefOperation}</li>
+												</arguments>
+											</Operation>
+										</caseTrue>
+									</Operation>
+								</caseFalse>
 							</Operation>
 						</caseTrue>
 						<caseFalse>
@@ -506,34 +475,25 @@
 					</Operation>
 				</caseTrue>
 				<caseFalse>
-					<!-- 2. Hediff statOffsets patch. The section's master checkbox gates the whole
-					     thing: master off = no bonus from this section, individual toggles ignored. -->
 					<Operation Class="XmlExtensions.OptionalPatch">
 						<modId>Vita.CarryCapacityFromBionics</modId>
-						<key>ToggleSection{section}</key>
-						<defaultValue>true</defaultValue>
+						<key>Toggle{key}</key>
+						<defaultValue>{toggleDefault}</defaultValue>
 						<caseTrue>
-							<Operation Class="XmlExtensions.OptionalPatch">
+							<Operation Class="XmlExtensions.UseSetting">
 								<modId>Vita.CarryCapacityFromBionics</modId>
-								<key>Toggle{key}</key>
-								<defaultValue>{toggleDefault}</defaultValue>
-								<caseTrue>
-									<Operation Class="XmlExtensions.UseSetting">
-										<modId>Vita.CarryCapacityFromBionics</modId>
-										<key>{key}</key>
-										<defaultValue>{valueDefault}</defaultValue>
-										<apply>
-											<Operation Class="XmlExtensions.ApplyPatch">
-												<patchName>CCFB_AddOffset</patchName>
-												<arguments>
-													<li>{defName}</li>
-													<li>{{key}}</li>
-													<li>{vefOperation}</li>
-												</arguments>
-											</Operation>
-										</apply>
+								<key>{key}</key>
+								<defaultValue>{valueDefault}</defaultValue>
+								<apply>
+									<Operation Class="XmlExtensions.ApplyPatch">
+										<patchName>CCFB_AddOffset</patchName>
+										<arguments>
+											<li>{defName}</li>
+											<li>{{key}}</li>
+											<li>{vefOperation}</li>
+										</arguments>
 									</Operation>
-								</caseTrue>
+								</apply>
 							</Operation>
 						</caseTrue>
 					</Operation>

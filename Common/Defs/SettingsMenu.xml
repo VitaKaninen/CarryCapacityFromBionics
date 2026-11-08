@@ -11,6 +11,7 @@
 		<label>Carry Capacity from Bionics</label>
 		<defaultSpacing>3</defaultSpacing>
 		<settings>
+			<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_UnfocusOnClick"/>
 			<!-- Red via inline rich text, not XE's <color> field: that field only exists in
 			     XML Extensions' 1.6 assembly and throws an XML error on 1.5. -->
 			<li Class="XmlExtensions.Setting.Text">

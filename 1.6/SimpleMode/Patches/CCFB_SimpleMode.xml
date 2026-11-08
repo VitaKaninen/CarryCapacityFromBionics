@@ -33,14 +33,13 @@
 						</options>
 					</li>
 					<li Class="XmlExtensions.Setting.GapLine"/>
-					<li Class="XmlExtensions.Setting.SplitColumn">
-						<tag>CCFB_MainColumns</tag>
-						<anchor>Top</anchor>
-						<gapSize>24</gapSize>
-						<leftCol>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>ToggleSectionSimple</key>
-								<caseTrue>
+					<li Class="XmlExtensions.Setting.ToggleableSettings">
+						<key>ToggleSectionSimple</key>
+						<caseTrue>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<anchor>Top</anchor>
+								<gapSize>24</gapSize>
+								<leftCol>
 									<li Class="XmlExtensions.Setting.Group">
 										<tag>CCFB_ScaleRow</tag>
 										<settings>
@@ -68,93 +67,60 @@
 											</li>
 										</settings>
 									</li>
-								</caseTrue>
-								<caseFalse/>
-							</li>
-							<li Class="XmlExtensions.Setting.Group">
-								<settings>
-									<li Class="XmlExtensions.Setting.SplitColumn">
-										<split>0.79</split>
-										<anchor>Middle</anchor>
-										<leftCol>
+									<li Class="XmlExtensions.Setting.Group">
+										<settings>
+											<li Class="XmlExtensions.Setting.SplitColumn">
+												<split>0.79</split>
+												<anchor>Middle</anchor>
+												<leftCol>
+													<li Class="XmlExtensions.Setting.Text">
+														<text>Include prosthetic penalties</text>
+													</li>
+												</leftCol>
+												<rightCol>
+													<li Class="XmlExtensions.Setting.Checkbox">
+														<label></label>
+														<key>SimplePenalties</key>
+														<defaultValue>false</defaultValue>
+														<padRight>25</padRight>
+													</li>
+												</rightCol>
+											</li>
 											<li Class="XmlExtensions.Setting.Text">
-												<text>Include prosthetic penalties</text>
+												<text>&lt;color=#9a9a9a&gt;Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.&lt;/color&gt;</text>
+												<font>Tiny</font>
+												<padBelow>6</padBelow>
 											</li>
-										</leftCol>
-										<rightCol>
-											<li Class="XmlExtensions.Setting.Checkbox">
-												<label></label>
-												<key>SimplePenalties</key>
-												<defaultValue>false</defaultValue>
-												<padRight>25</padRight>
+										</settings>
+									</li>
+									<li Class="XmlExtensions.Setting.Group">
+										<settings>
+											<li Class="XmlExtensions.Setting.SplitColumn">
+												<split>0.79</split>
+												<anchor>Middle</anchor>
+												<leftCol>
+													<li Class="XmlExtensions.Setting.Text">
+														<text>Include missing body part penalties</text>
+													</li>
+												</leftCol>
+												<rightCol>
+													<li Class="XmlExtensions.Setting.Checkbox">
+														<label></label>
+														<key>ToggleSectionMissingParts</key>
+														<defaultValue>false</defaultValue>
+														<padRight>25</padRight>
+													</li>
+												</rightCol>
 											</li>
-										</rightCol>
-									</li>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>&lt;color=#9a9a9a&gt;Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.&lt;/color&gt;</text>
-										<font>Tiny</font>
-										<padBelow>6</padBelow>
-									</li>
-								</settings>
-							</li>
-							<li Class="XmlExtensions.Setting.Group">
-								<settings>
-									<li Class="XmlExtensions.Setting.SplitColumn">
-										<split>0.79</split>
-										<anchor>Middle</anchor>
-										<leftCol>
 											<li Class="XmlExtensions.Setting.Text">
-												<text>Include missing body part penalties</text>
+												<text>&lt;color=#9a9a9a&gt;Missing or damaged limbs, spine and pelvis lower carry capacity.&lt;/color&gt;</text>
+												<font>Tiny</font>
+												<padBelow>6</padBelow>
 											</li>
-										</leftCol>
-										<rightCol>
-											<li Class="XmlExtensions.Setting.Checkbox">
-												<label></label>
-												<key>ToggleSectionMissingParts</key>
-												<defaultValue>false</defaultValue>
-												<padRight>25</padRight>
-											</li>
-										</rightCol>
+										</settings>
 									</li>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>&lt;color=#9a9a9a&gt;Missing or damaged limbs, spine and pelvis lower carry capacity.&lt;/color&gt;</text>
-										<font>Tiny</font>
-										<padBelow>6</padBelow>
-									</li>
-								</settings>
-							</li>
-							<li Class="XmlExtensions.Setting.Group">
-								<tag>CCFB_ExtraHumanRow</tag>
-								<settings>
-									<li Class="XmlExtensions.Setting.SplitColumn">
-										<split>0.79</split>
-										<anchor>Middle</anchor>
-										<leftCol>
-											<li Class="XmlExtensions.Setting.Text">
-												<text>Extra capacity for humans</text>
-											</li>
-										</leftCol>
-										<rightCol>
-											<li Class="XmlExtensions.Setting.Numeric">
-												<decimals>1</decimals>
-												<percent>true</percent>
-												<key>ExtraCapacityHuman</key>
-												<defaultValue>0</defaultValue>
-											</li>
-										</rightCol>
-									</li>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else. A Dog Said... Animal Prosthetics 2 adds a pack animal setting.&lt;/color&gt;</text>
-										<font>Tiny</font>
-										<padBelow>6</padBelow>
-									</li>
-								</settings>
-							</li>
-						</leftCol>
-						<rightCol>
-							<li Class="XmlExtensions.Setting.ToggleableSettings">
-								<key>ToggleSectionSimple</key>
-								<caseTrue>
+								</leftCol>
+								<rightCol>
 									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SimpleExamples">
 										<tag>CCFB_SimpleExamples</tag>
 										<header>Implant examples (hover for details):</header>
@@ -310,9 +276,45 @@
 											</li>
 										</groups>
 									</li>
-								</caseTrue>
-								<caseFalse/>
+								</rightCol>
 							</li>
+						</caseTrue>
+						<caseFalse/>
+					</li>
+					<li Class="XmlExtensions.Setting.SplitColumn">
+						<tag>CCFB_ExtraHumanRow</tag>
+						<anchor>Top</anchor>
+						<gapSize>24</gapSize>
+						<leftCol>
+							<li Class="XmlExtensions.Setting.Group">
+								<settings>
+									<li Class="XmlExtensions.Setting.SplitColumn">
+										<split>0.79</split>
+										<anchor>Middle</anchor>
+										<leftCol>
+											<li Class="XmlExtensions.Setting.Text">
+												<text>Extra capacity for humans</text>
+											</li>
+										</leftCol>
+										<rightCol>
+											<li Class="XmlExtensions.Setting.Numeric">
+												<decimals>1</decimals>
+												<percent>true</percent>
+												<key>ExtraCapacityHuman</key>
+												<defaultValue>0</defaultValue>
+											</li>
+										</rightCol>
+									</li>
+									<li Class="XmlExtensions.Setting.Text">
+										<tag>CCFB_ExtraHumanDesc</tag>
+										<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else. A Dog Said... Animal Prosthetics 2 adds a pack animal setting.&lt;/color&gt;</text>
+										<font>Tiny</font>
+										<padBelow>6</padBelow>
+									</li>
+								</settings>
+							</li>
+						</leftCol>
+						<rightCol>
 							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_CapacityExamples">
 								<tag>CCFB_ExtraHumanExamples</tag>
 								<header>Extra capacity:</header>

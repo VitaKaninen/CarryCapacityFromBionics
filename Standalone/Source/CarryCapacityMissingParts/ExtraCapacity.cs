@@ -103,6 +103,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float ArrowWidth = 24f;
         private const float Indent = 16f;
         private const float LineHeight = 22f;
+        private const float LabelGap = 12f;
 
         public string percentKey;
         public string header;
@@ -129,17 +130,23 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             TextAnchor anchor = Text.Anchor;
             Color color = GUI.color;
             Text.Font = GameFont.Small;
-            float y = inRect.y;
+            float pct = MissingPartsBootstrap.GetFloat(percentKey, 0f);
+            List<Row> rows = BuildRows(pct);
+            float tableWidth = Indent + ArrowWidth + NumberWidth * 2f + LabelGap;
+            float labelWidth = rows.Count == 0 ? 0f : rows.Max(r => Text.CalcSize(r.label).x);
+            float width = Mathf.Min(inRect.width, Mathf.Max(tableWidth + labelWidth,
+                string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x));
+            Rect block = new Rect(inRect.xMax - width, inRect.y, width, inRect.height);
+            float y = block.y;
             if (!string.IsNullOrEmpty(header))
             {
                 Text.Anchor = TextAnchor.MiddleLeft;
-                Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), header);
+                Widgets.Label(new Rect(block.x, y, block.width, LineHeight), header);
                 y += LineHeight;
             }
-            float pct = MissingPartsBootstrap.GetFloat(percentKey, 0f);
-            foreach (Row row in BuildRows(pct))
+            foreach (Row row in rows)
             {
-                DrawRow(inRect, y, row.label, row.before, row.after);
+                DrawRow(block, y, row.label, row.before, row.after);
                 y += LineHeight;
             }
             GUI.color = color;
@@ -148,6 +155,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
             if (hoverAllPackAnimals)
             {
+                inRect = block;
                 Widgets.DrawHighlightIfMouseover(inRect);
                 List<string[]> tip = new List<string[]>();
                 foreach (ThingDef def in PackAnimals())
@@ -194,7 +202,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             if (packAnimals == null)
             {
                 packAnimals = DefDatabase<ThingDef>.AllDefsListForReading
-                    .Where(d => d.race != null && d.race.Animal && d.race.packAnimal)
+                    .Where(d => d.category == ThingCategory.Pawn && d.race != null && d.race.Animal && d.race.packAnimal)
                     .OrderBy(d => d.label)
                     .ToList();
             }

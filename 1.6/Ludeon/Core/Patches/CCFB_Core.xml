@@ -9,7 +9,6 @@
 		<arguments>
 			<li>Core Implants</li>
 			<li>Core</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

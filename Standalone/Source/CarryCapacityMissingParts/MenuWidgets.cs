@@ -63,13 +63,14 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 bool chosen = string.Equals(current, option.value, System.StringComparison.OrdinalIgnoreCase);
                 Text.Font = GameFont.Medium;
                 float labelH = Text.CalcHeight(option.label, inRect.width - TextLeft);
-                Widgets.RadioButton(new Vector2(inRect.x + 2f, y + (labelH - RadioSize) / 2f), chosen);
+                bool clicked = Widgets.RadioButton(new Vector2(inRect.x + 2f, y + (labelH - RadioSize) / 2f), chosen);
                 Widgets.Label(new Rect(inRect.x + TextLeft, y, inRect.width - TextLeft, labelH), option.label);
                 Text.Font = GameFont.Small;
                 GUI.color = new Color(0.75f, 0.75f, 0.75f);
                 Widgets.Label(new Rect(inRect.x + TextLeft, y + labelH, inRect.width - TextLeft, h - labelH), option.description ?? "");
                 GUI.color = color;
-                if (Widgets.ButtonInvisible(row) && !chosen)
+                clicked |= Widgets.ButtonInvisible(row);
+                if (clicked && !chosen)
                 {
                     SettingsManager.SetSetting(MissingPartsBootstrap.ModId, key, option.value);
                 }
@@ -77,6 +78,27 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             }
             Text.Font = font;
             Text.Anchor = anchor;
+        }
+    }
+
+    public class Setting_UnfocusOnClick : SettingContainer
+    {
+        public Setting_UnfocusOnClick()
+        {
+            addDefaultSpacing = false;
+        }
+
+        protected override float CalculateHeight(float width)
+        {
+            return 0f;
+        }
+
+        protected override void DrawSettingContents(Rect inRect)
+        {
+            if (Event.current.type == EventType.MouseDown)
+            {
+                UI.UnfocusCurrentControl();
+            }
         }
     }
 
@@ -150,13 +172,6 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                             continue;
                         }
                         if (DiffersBool(modId, "Toggle" + args[1], args[3]) || DiffersFloat(modId, args[1], value))
-                        {
-                            return true;
-                        }
-                    }
-                    else if ((patch == "CCFB_Section" || patch == "CCFB_PenaltyOnlySection") && args.Count >= 3)
-                    {
-                        if (DiffersBool(modId, "ToggleSection" + args[1], args[2]))
                         {
                             return true;
                         }

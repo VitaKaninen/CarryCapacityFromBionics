@@ -70,22 +70,18 @@ RimWorld has **two separate carrying systems** — keep them straight:
   `II_NativeVEF` / `II_NativeVEF_Anomaly` (Strength Enhancer 25, Skeletal Bracing 25, Claw
   Tail 25, Hulkification 50) and `NeoP_NativeVEF` (see `docs/SUPPORTED_MODS.md`). Replaced the older
   `CCFB_ImplantStandaloneOnly` design (VEF-absent-only catch-up, no override) in June 2026.
-- **`CCFB_Section`** — creates a labeled menu section: header row = the section's **master
-  checkbox** (key `ToggleSection<tag>`, third arg = its default; true everywhere except
-  MissingParts) + title, then a collapsible body (`ToggleableSettings`) holding the
-  `SplitColumn` tagged `CCFB_<section>`. Master unticked → section collapses to just the
-  title (live, no restart) AND `CCFB_Implant`/`CCFB_ImplantNativeVEF` skip every hediff patch
-  in that section (an `OptionalPatch` on the master wraps the per-implant one; restart applies).
-  Args: `label | tag | master default`. **Idempotent** (guarded by an existence check), so every
-  patch file calls it for the section it needs and file/folder ordering doesn't matter.
+- **`CCFB_Section`** — creates a labeled menu section: title, then the `SplitColumn` tagged
+  `CCFB_<section>`. Always expanded, no master checkbox (user 2026-11-08: a hide box looked like
+  a disable box; old saved `ToggleSection<tag>` values are ignored). Args: `label | tag`.
+  **Idempotent** (guarded by an existence check), so every patch file calls it for the section
+  it needs and file/folder ordering doesn't matter. The reset button keeps
+  `key ToggleSection<tag>` only as the xpath handle for its keys list.
   Known edge case (YAPE/SoS2 only; EPOE/EPOE-Forked and FSF ABE/VBE are mutually exclusive
-  in game, so their shared keys never meet): deliberately-shared keys render
-  their one row in whichever section's file patches first, but each mod's hediff patches are
-  gated by its OWN file's section master — unticking the section that shows the row does not
-  disable the other mod's bonuses.
+  in game, so their shared keys never meet): deliberately-shared keys render their one row in
+  whichever section's file patches first, but a shared penalty row is gated by its OWN file's
+  `Penalties<section>` box.
   Each section body also ends with a **"Reset this section" button**: CCFB_Section creates it
-  with an `XmlExtensions.Action.ResetSettings` whose `keys` list starts with the master key,
-  and every row PatchDef appends its `Toggle<key>`/`<key>` pair (inside the dedup guard, so
+  with an `XmlExtensions.Action.ResetSettings` whose `keys` list starts empty, and every row PatchDef appends its `Toggle<key>`/`<key>` pair (inside the dedup guard, so
   shared keys register with the section that shows the row). A **"Reset all settings"** button
   (ResetSettings with no keys = whole mod) lives in `1.6/MenuFooter/` — its LoadFolders entry
   must stay FIRST in the list so it applies last and lands at the bottom of the menu.
@@ -94,7 +90,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
 (`1.6/SimpleMode`) holds the mode choice, the global options (scale %, prosthetic penalties,
 missing body parts, extra %) and the examples. Easy applies every row's default × `SimpleScale`%
 at patch time and hides the mod sections (they sit in a ToggleableSettings tagged
-`CCFB_AdvancedSections`); `CCFB_Section` wraps `CCFB_SectionAt(label, tag, default, parentXpath)`.
+`CCFB_AdvancedSections`).
 Implant PatchDefs are thin wrappers over `CCFB_ImplantCore` (row placement, penalty gate) →
 `CCFB_ModeOffset` → `CCFB_AddOffset`. Details: [`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md).
 

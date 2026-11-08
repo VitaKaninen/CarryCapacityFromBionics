@@ -25,6 +25,12 @@ workshop 2574315206, folders `1.5/`–`1.7/`).
   inside a row's 0.5 right column; kg fields add `<padRight>25</padRight>` to line up with
   percent fields (TextFieldPercent reserves 25 px for "%"). XE's `Numeric` is `internal`, so it
   can't be subclassed.
+- Vanilla `Widgets.RadioButton` is itself a `ButtonInvisible` that consumes the click; use its
+  return value, or a row-wide `ButtonInvisible` drawn after it never sees clicks on the button.
+- A focused text field stays focused when the user clicks empty space; `Setting_UnfocusOnClick`
+  (0 px, first setting in `SettingsMenu.xml`) calls `UI.UnfocusCurrentControl()` on every
+  MouseDown, before any field draws, so a clicked field still takes focus. Must stay first.
+- XE draws every setting each frame (no culling), so a per-frame hook in any setting runs.
 - XE `PatchOperationInsert` (Prepend) reverses multi-node values; `PatchOperationReplace` keeps
   their order.
 - `CreateDocument`/`MergeDocument` side-document speed pattern: removed after being wrongly

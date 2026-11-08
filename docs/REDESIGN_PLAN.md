@@ -12,51 +12,55 @@ adds one Section box (tag `CCFB_MainBox`): title, `Setting_ModeChoice` on `Toggl
 (our C# radio: button left, Medium label, gray description below — user; XE RadioButtons puts
 the button on the right; values "true" = Easy / "false" = Advanced), then a SplitColumn — left =
 options, right = data (user):
-- Left: `SimpleScale` % (Easy only), `SimplePenalties`, `ToggleSectionMissingParts`,
-  `ExtraCapacityHuman` % (+ `ExtraCapacityAnimal`). Each option = Group: SplitColumn 0.79 (label
+- Rows, each a SplitColumn (anchor Top) so the data sits beside its option (user): Easy-only row
+  = left `SimpleScale` %, `SimplePenalties`, `ToggleSectionMissingParts` | right implant
+  examples; then `CCFB_ExtraHumanRow` = `ExtraCapacityHuman` % | Colonist; ADSAP2 appends the
+  `ExtraCapacityAnimal` row after it. Data blocks are drawn right-aligned and only as wide as
+  their text (user). Each option = Group: SplitColumn 0.79 (label
   left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
   explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
   box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
-- Right: `Setting_SimpleExamples` (Easy only, header "(hover for details)"), then
-  `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
+- Data: `Setting_SimpleExamples` (header "(hover for details)"), `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
   numbers right) — Colonist; with ADSAP2 Husky/Muffalo/Thrumbo + hover table of every pack
-  animal in DefDatabase (modded included, user).
+  animal in DefDatabase (category Pawn — corpse defs also carry `race`; modded included). That
+  is exactly the set the bonus touches (`packAnimal`); Caravan Packs only sets `packAnimal` on a
+  fixed species list, so hauling/sentience-catalyst trainability is irrelevant.
 - Hover tooltips are `TableTip` (MenuWidgets.cs): an ImmediateWindow table — name left, numbers
   right-aligned after a gap, wrapping into side-by-side column groups when taller than 85% of
   the screen (user: multiple columns).
 - **Starting mode** (user): `PatchOperation_DecideMode`, first op of the SimpleMode file (runs at
   patch time before any row; XE loads saved settings in its Mod constructor, earlier). Saved mode
   "True"/"False" is normalised to lowercase (radio compares strings). No saved mode → reads our
-  `1.6/**/Patches/*.xml` ApplyPatch args: any saved non-negative row toggle/value or section
-  master differing from its default → Advanced, else Easy; exception → Advanced. Penalty rows
+  `1.6/**/Patches/*.xml` ApplyPatch args: any saved non-negative row toggle/value differing
+  from its default → Advanced, else Easy; exception → Advanced. Penalty rows
   and missing-part rows are ignored (their defaults changed 2026-11-08).
 - Extra %: no on/off (user): 0 = off; old key `ToggleSectionExtraCapacity` retired (C# ignores it).
   `StatPart_ExtraCapacity` adds pct × body size × 35 (humanlike non-babies; animals only if
   `packAnimal`), injected only if a value ≠ 0. `Setting_CapacityExamples` field is `percentKey`
   (NOT `key`, which SettingContainer already has); non-pack races are omitted (user).
 - **ADSAP2 only** (user): `1.6/ExtraCapacity_Animals` (LoadFolders `IfModActive` ADSAP2, above
-  SimpleMode so it applies after) inserts the pack-animals option after `CCFB_ExtraHumanRow`, the
-  animal examples after `CCFB_ExtraHumanExamples`, and swaps the humans explanation (which
+  SimpleMode so it applies after) appends the pack-animals row after `CCFB_ExtraHumanRow` and
+  swaps the humans explanation (`CCFB_ExtraHumanDesc`) (which
   otherwise mentions ADSAP2). C# applies `ExtraCapacityAnimal` only if
   ADSAP2 is active (packageId or `_steam` form).
 
 ### Easy vs advanced at patch time (`CCFB_ImplantCore` → `CCFB_ModeOffset`)
-- Negative rows (prosthetic penalties) apply only with `SimplePenalties`, in both modes; they
-  default ON (gated by that box instead, user). Their menu rows go into a "Prosthetic penalties"
-  block (ToggleableSettings on SimplePenalties, inserted after the section's `CCFB_{section}`
-  SplitColumn on the first negative row, rows tagged `CCFB_{section}_Penalties`). A mod whose rows
-  are all penalties (MedP) uses `CCFB_PenaltyOnlySection`: whole section hidden without penalties.
+- Negative rows (prosthetic penalties) default ON but are gated: Easy by `SimplePenalties`
+  (main box), Advanced by the section's own `Penalties{section}` box (default off, user). Their
+  rows go into a "Prosthetic penalties" block (Group inserted after the section's
+  `CCFB_{section}` SplitColumn on the first negative row: header checkbox + title, rows in a
+  ToggleableSettings on `Penalties{section}`, tagged `CCFB_{section}_Penalties`).
 - Easy: default ≠ 0 → default × SimpleScale / 100 (`CCFB_ScaledOffset`); section/row checkboxes
-  ignored. Advanced: section gate → row toggle → UseSetting. Both end in `CCFB_AddOffset`
+  ignored. Advanced: row toggle → UseSetting. Both end in `CCFB_AddOffset`
   (vefOperation: Add, or AddOrReplace for native-VEF rows → 100% = author's value).
 - Mod sections sit in a ToggleableSettings on ToggleSectionSimple (tag `CCFB_AdvancedSections`,
   `CCFB_AdvancedContainer`) → hidden in Easy mode.
 
 ### Missing body parts (user 2026-11-08)
-- Switched by the main box checkbox. Easy: every part at its compiled default %, cap 100%.
-  Advanced: rows live in a "Missing body part penalties" block inside Core Implants (inserted
-  after `CCFB_Core` by the MissingParts file, which creates the Core section itself), per-part
-  rows default ON; Core section master off = no missing-part penalty either.
+- One key `ToggleSectionMissingParts` (default off): main box checkbox in Easy; in Advanced the
+  checkbox heads the "Missing body part penalties" block inside Core Implants (inserted after
+  `CCFB_Core` by the MissingParts file, which creates the Core section itself). Easy: every part
+  at its compiled default %, cap 100%. Per-part rows default ON.
 
 ### Examples (`Setting_SimpleExamples`, `SimpleExamples.cs`)
 `CCFB_RowMenu` registers key/label/section/default into the widget's `rows` (inside the dedup
@@ -77,5 +81,5 @@ only when on, identical lines deduped).
 
 ## Decisions (user 2026-11-08)
 1. Simple mode = one scale % over the defaults; default ON.
-2. Easy mode hides per-implant and section checkboxes; options left, data right; one top box.
+2. Easy mode hides per-implant checkboxes; no section hide checkboxes at all; options left, data right; one top box.
 3. Extra %: TWO fields (built as `ExtraCapacityHuman` / `ExtraCapacityAnimal`, see section 1).

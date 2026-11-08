@@ -9,7 +9,6 @@
 		<arguments>
 			<li>Expanded Prosthetics and Organ Engineering - Forked</li>
 			<li>EPOEForked</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

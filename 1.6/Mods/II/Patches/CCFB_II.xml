@@ -10,7 +10,6 @@
 		<arguments>
 			<li>Integrated Implants</li>
 			<li>II</li>
-			<li>true</li>
 		</arguments>
 	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">

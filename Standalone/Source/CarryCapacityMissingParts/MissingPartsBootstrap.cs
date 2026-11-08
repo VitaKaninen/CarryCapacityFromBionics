@@ -65,10 +65,6 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 return;
             }
             bool simple = GetBool("ToggleSectionSimple", true);
-            if (!simple && !GetBool("ToggleSectionCore", true))
-            {
-                return;
-            }
             maxReductionFrac = simple ? 1f : System.Math.Abs(GetFloat("MissingPartMaxReduction", 100f)) / 100f;
 
             bool anyPositive = false;

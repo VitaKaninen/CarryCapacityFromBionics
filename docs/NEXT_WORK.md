@@ -1,0 +1,44 @@
+# Next work — handoff (session 2026-11-08)
+
+## User's asks
+1. Add support for **A Dog Said... Animal Prosthetics 2** (ADSAP2, `SamBucher.ADogSaidAnimalProsthetics2`,
+   ws 3238353862) incl. its EPOE-Forked/MSE2 subparts and Kenshi Fauna parts; skip organs and wings.
+   Facts + verified mechanics: `docs/SUPPORTED_MODS.md` (planned section).
+2. **Settings redesign** (user's idea):
+   - "Use simple settings" checkbox at the top. Simple = editable body-part weights (%) + tech
+     multipliers (bionic 2, archotech 3, prosthetic −1, crude −2); penalties below it, off by default
+     and hidden when unticked. Unticked = today's per-implant rows.
+   - Extra capacity on top: one percentage for everyone, with live kg examples beside it (normal
+     human, Dog, Muffalo, Thrumbo — read their body sizes from game data).
+
+## Decisions made (user)
+- Animal bonuses = % of the animal's base capacity (body size × 35); support goes through the pack
+  flag (vanilla or Caravan Packs), no capacity-granting C#. Quadrupeds: 20% per leg.
+- No missing-part penalty for animals.
+- The Google Sheet is the source of truth for values (mod re-synced 2026-11-08, commit 5862883).
+- Negative tech levels (−1/−2) are the user's own choice; keep the formula.
+- Standing read permission for the RimWorld install and workshop 294100 (in folder `CLAUDE.md`).
+
+## Done this session
+- ADSAP2 + Caravan Packs research; game IL verified (`MassUtility.Capacity` returns 0 for non-pack
+  animals; `Pawn.BodySize` = life-stage factor × race base size, no cap).
+- 24 implant defaults + missing-part femur 12.5 / foot 7.5 matched to the sheet; DLL rebuilt; deployed.
+  **Not yet tested in game.**
+- CLAUDE.md split into `docs/`.
+- Scan of all 320 patched hediffs vs source defs (simple-mode blockers): 64 non-replacement implants
+  (no efficiency, torso), 6 replacement parts with default efficiency 1.0, 6 II modular parts with no
+  fixed body part, torso/waist parts, 5 multi-part parts, 3 with no tech level; VOID + SoS2 not
+  installed, so unchecked. Rerun: scratch scripts are gone; re-derive from `docs/ADDING_A_MOD.md` step 8.
+
+## Open questions
+- **Last asked, not answered:** Sewn-In Bag now has a native `VEF_MassCarryCapacity` 15 (NeoP 1.6/1.7)
+  → double-dip with our 10 in VEF games. Move to `NeoP_NativeVEF`; default = author's 15 or our 10?
+- Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
+  parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
+- Artificial clavicle: sheet weight now 5% but "Value used" still −1 (math −1.58); mod has −1.
+
+## Next steps
+1. Fix Sewn-In Bag once answered.
+2. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
+   as one plan for user approval before code; settle how simple mode treats the blocker categories.
+3. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

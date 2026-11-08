@@ -84,6 +84,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
     public class Setting_SectionToggle : SettingContainer
     {
         private const float BoxSize = 24f;
+        private const float RowHeight = 22f;
         private const float TextLeft = 30f;
 
         public string enabledLabel = "Disable all";
@@ -92,7 +93,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         protected override float CalculateHeight(float width)
         {
-            return BoxSize;
+            return RowHeight;
         }
 
         protected override void DrawSettingContents(Rect inRect)
@@ -100,7 +101,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             string modId = MissingPartsBootstrap.ModId;
             bool anyOn = keys.Any(k => IsOn(modId, k));
             bool value = anyOn;
-            Widgets.Checkbox(new Vector2(inRect.x, inRect.y + (inRect.height - BoxSize) / 2f), ref value);
+            Widgets.CheckboxLabeled(new Rect(inRect.x, inRect.y, BoxSize, inRect.height), "", ref value);
             TextAnchor anchor = Text.Anchor;
             Text.Anchor = TextAnchor.MiddleLeft;
             Rect labelRect = new Rect(inRect.x + TextLeft, inRect.y, inRect.width - TextLeft, inRect.height);

@@ -47,16 +47,21 @@
 								<anchor>Middle</anchor>
 								<tooltip>Missing or damaged limbs, spine and pelvis lower carry capacity.</tooltip>
 							</li>
-							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
-								<tag>CCFB_MissingParts_All</tag>
-								<tooltip>Turns every missing body part penalty on or off at once.</tooltip>
-								<keys/>
-							</li>
 							<li Class="XmlExtensions.Setting.Text">
 								<text>Each enabled part below reduces a pawn's mass carry capacity (inventory and caravan weight) by a percentage of their base capacity while that part is missing. Base capacity is body size x 35 kg - 35 kg for an adult human, less for children - so the penalties scale with age and size. Damaged parts count in proportion to lost HP, and bionics, prosthetics and other replacements count as present. A safety net keeps the math sane: only the topmost missing part is counted, and a limb's combined reductions can never exceed the value of its topmost part - losing pieces of a limb never costs more than losing the whole limb. Hover any row for details.</text>
 							</li>
 							<li Class="XmlExtensions.Setting.Gap">
 								<spacing>12</spacing>
+							</li>
+							<li Class="XmlExtensions.Setting.SplitColumn">
+								<tag>CCFB_MissingPartsCap</tag>
+								<leftCol/>
+								<rightCol/>
+							</li>
+							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
+								<tag>CCFB_MissingParts_All</tag>
+								<tooltip>Turns every missing body part penalty on or off at once.</tooltip>
+								<keys/>
 							</li>
 							<li Class="XmlExtensions.Setting.SplitColumn">
 								<tag>CCFB_MissingParts</tag>
@@ -68,7 +73,7 @@
 				</value>
 			</Operation>
 			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/leftCol</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingPartsCap"]/leftCol</xpath>
 				<value>
 					<li Class="XmlExtensions.Setting.Text">
 						<text>Cap reduction to this amount</text>
@@ -77,7 +82,7 @@
 				</value>
 			</Operation>
 			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingParts"]/rightCol</xpath>
+				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_MissingPartsCap"]/rightCol</xpath>
 				<value>
 					<li Class="XmlExtensions.Setting.SplitColumn">
 						<split>0.79</split>

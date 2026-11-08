@@ -57,6 +57,8 @@ rounds 4–7 seen in game yet**:
   (`DataColumn.Width`), right-aligned; "(hover for details)" = gray line above the data in Easy,
   right end of "Pack animals:" in Advanced; hover list = pack animals only, no corpses.
 - One prosthesis example per mod in Easy when penalties are on; "Disabled" lined up with boxes.
+- Round 8: section toggle drawn like the row checkboxes (CheckboxLabeled, 22 px); missing-parts
+  toggle moved below the cap row (cap row now its own SplitColumn `CCFB_MissingPartsCap`).
 - Stale `1.6/ExtraCapacity` in the game copy recycled (user allowed deletions).
 **Asked last, unanswered:** rename the penalty/missing-part toggle keys so every player gets the
 new OFF defaults? (XE freezes saved defaults; renaming drops saved values for those rows.)

@@ -35,6 +35,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
 | Touching the missing-body-part penalty (C#, `CCFB_PartRow`, MissingParts section) | [`docs/MISSING_PARTS.md`](docs/MISSING_PARTS.md) |
 | Touching the Standalone C# (stat worker, `MassUtility.Capacity` transpiler) | [`docs/STANDALONE_CSHARP.md`](docs/STANDALONE_CSHARP.md) |
 | Starting a session, or resuming animal support / settings redesign | [`docs/NEXT_WORK.md`](docs/NEXT_WORK.md) — handoff, open questions |
+| Building simple mode, extra capacity %, or animal support | [`docs/REDESIGN_PLAN.md`](docs/REDESIGN_PLAN.md) |
 
 ## Architecture (PatchDef-based, single tree)
 

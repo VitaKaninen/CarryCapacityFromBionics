@@ -43,7 +43,6 @@
   NeoP defines parts in its Patches/, which run in load order.
 
 ## Next steps
-1. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
-   as one plan for user approval before code. Rows gain part/efficiency/tier args; open: whether
-   the kg math runs in XML Extensions (no arithmetic op found in `XmlExtensionsReference`) or C#.
+1. Simple mode + extra-capacity % + animals: plan in `docs/REDESIGN_PLAN.md`, awaiting user
+   approval and its 4 pending decisions. No code before that.
 2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

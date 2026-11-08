@@ -29,7 +29,7 @@
   animals; `Pawn.BodySize` = life-stage factor × race base size, no cap).
 - Sheet audited against every source def's `partEfficiency` (user fixed it), then 143 defaults in
   25 patch files synced to it; Sewn-In Bag → `NeoP_NativeVEF` (author's 15). Deployed.
-  **Not yet tested in game.** Shared keys now have per-file defaults (EPOE vs EPOE-Forked, FSF ABE 40
+  Tested in game by user (peg leg, prosthetic, menu values). Shared keys now have per-file defaults (EPOE vs EPOE-Forked, FSF ABE 40
   vs VBE 25 Archotech Spine); the pairs can't run together, so no conflict.
 - CLAUDE.md split into `docs/`.
 - Scan of all 320 patched hediffs vs source defs (simple-mode blockers): 64 non-replacement implants
@@ -43,8 +43,7 @@
   NeoP defines parts in its Patches/, which run in load order.
 
 ## Next steps
-1. User tests the synced defaults in game.
-2. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
+1. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
    as one plan for user approval before code. Rows gain part/efficiency/tier args; open: whether
    the kg math runs in XML Extensions (no arithmetic op found in `XmlExtensionsReference`) or C#.
-3. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).
+2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

@@ -320,6 +320,14 @@ reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, Arch
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
   deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
   weight convention for quadrupeds first).
+  ADSAP2 scan (2026-11-08): packageId `SamBucher.ADogSaidAnimalProsthetics2`, supports 1.4–1.6
+  (1.7 falls back to its `1.6/`). No native carry stats (no double-dip). Carrying-relevant
+  hediffs ≈29: core `1.6/Defs` (Bionic/SimpleProsthetic Leg+Arm, BionicSpineAnimal eff 1.0,
+  WoodenPaw/Hoof); `ModCompat/CommonSubparts` (paw/hoof/foot/toe/hand/finger/claw, gated
+  `vat.epoeforked,mse2.core` = ANY); `ModCompat/MSE2` (forearm, internal support, RG foot claw);
+  `ModCompat/EPOE-Forked` (SimpleSpineAnimal); `ModCompat/KenshiFauna` (`el.kenshifauna`: pincer,
+  tremor leg). Wings folder is 1.4-only. EPOE-Forked patches lower some partEfficiency values
+  (WoodenHoof 0.75→0.6). Open design question: flat kg vs body-size scaling (muffalo base ≈84 kg).
 - EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
   Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
   Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,

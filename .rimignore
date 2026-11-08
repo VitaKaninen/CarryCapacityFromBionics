@@ -11,6 +11,7 @@
 .rimignore
 .vs
 CLAUDE.md
+docs
 Thumbs.db
 bin
 obj

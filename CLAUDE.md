@@ -27,71 +27,13 @@ RimWorld has **two separate carrying systems** — keep them straight:
    (`VEF_MassCarryCapacity` when VEF is active, our own `CarryCapacityBonus` stat otherwise).
    It matters mostly with inventory-hauling mods (Pick Up and Haul / While You're Up).
 
-## Value methodology (matches the Google Sheet)
-
-`value ≈ partEfficiency × importanceWeight × techMultiplier × 35 kg`, then hand-rounded.
-
-- **Weights**: arm 15%, leg 25%, spine/pelvis/exoskeleton/membrane 20%, foot 10%, hand 5%,
-  femur ~13%, humerus/tibia 6%, radius/clavicle 3%, finger/toe 1%.
-- **Tech multiplier**: industrial bionic 2, spacer/archotech 3, below-natural prosthetic −1,
-  crude (peg leg/hook/wooden) −2, pure utility arms (drill/field/claw) → weight 0% → value 0.
-- partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
-  one, e.g. muscle stimulators, estimate from its capMods).
-- **Defaults convention**: positive values default ON; zero-value utility parts and all
-  negative (prosthetic-penalty) entries default OFF.
-- **Implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several Integrated
-  Implants ones) must never go through `CCFB_Implant` (double-dip in VEF games) — they get
-  `CCFB_ImplantNativeVEF` instead (override/add, see architecture), defaults = author's values.
-- Implants whose native bonus is only vanilla `CarryingCapacity` (the **in-hands** stat) are
-  patched normally — that stat never touches mass capacity, so there is no double-dip.
-
-## Roadmap: adding support for a new mod
-
-1. **Read the source mod**: find it under
-   `C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\<workshopId>`. Read its
-   `About/About.xml` (packageId!) and its `loadFolders.xml` — conditional subfolders there
-   (DLC- or mod-gated) must be mirrored by our gating, or we'll patch defs that don't exist.
-   Also sanity-check its XML actually parses (one stray bad file under `Defs/` can silently
-   kill the whole mod's def loading — happened with Integrated Implants, Dec 2025).
-2. **Extract candidate hediffs** (script it): every `HediffDef` touching arms / legs / spine /
-   pelvis / hands / feet / tails / extra limbs, with `partEfficiency`, `capMods`
-   (Manipulation/Moving), and any **native** `CarryingCapacity`/`VEF_MassCarryCapacity`
-   statOffsets. Recipes' `appliedOnFixedBodyParts` tell you the body part. Implants with a
-   native `VEF_MassCarryCapacity` must NOT go through `CCFB_Implant` (double-dip in VEF
-   games); use `CCFB_ImplantNativeVEF` in a `<ModShortName>_NativeVEF` folder (no VEF gating
-   needed), with the author's own values as defaults.
-3. **Compute values** with the formula above; present the table (math vs proposed) for approval;
-   update the Google Sheet.
-4. **Keys**: `<ModShortName><defName>` (strip `Left`/`Right` — L/R pairs share one key, the
-   menu dedup-guard shows a single row controlling both hediffs).
-5. **Create folder(s)** `1.6/Mods/<ModShortName>[_<Condition>]/Patches/CCFB_<Folder>.xml`
-   (filename MUST be unique across all folders — see gotchas). File = one
-   `ApplyPatch → CCFB_Section` (label, tag) + one `ApplyPatch → CCFB_Implant` per hediff:
-   args `defName | key | label | toggleDefault | kgDefault | sectionTag`.
-6. **LoadFolders.xml**: add gated entries. The settings-menu sections are kept in
-   ALPHABETICAL order by section label ("Missing body parts" first by design, then the
-   Core/DLC sections); since the list applies
-   bottom-up, the 3rd-party block is sorted reverse-alphabetically — insert the new mod at
-   its alphabetical slot, base folder LAST within its folder group (so its rows show first
-   in the section). Combine `IfModActiveAll="modA,modB"` and `IfModNotActive="modC"` freely.
-   **Row order inside a section** (June 2026 convention, mirrors the Google Sheet):
-   negative-value prosthetics first (−1 tech tier before the −2 crude tier), then zero-value
-   utility parts, then positives ascending by tech tier; within a tier small parts → large
-   (finger, toe, hand, foot, arm, leg, spine, pelvis/torso, whole-body/exoskeleton last);
-   variant families ascending by value (e.g. IP's Utility → base → Noble → Unique).
-7. **About.xml**: add the mod to the description's supported list and to `loadAfter`.
-   If any new **root-level** file/folder is added to the repo, check `.rimignore` (dev files
-   must not be uploaded to Steam — folder-wide rule, see parent CLAUDE.md).
-8. **Validate by script before testing**: all XML parses; every patched defName exists in the
-   source mod's def XML (catches typos AND naming-order surprises like `RBSE_LeftExtra...`);
-   no settings-key collisions; patch filenames unique. Then update this file's supported list.
-9. **Commit + push** (folder rule), **deploy** with the parent folder's
-   `python -I Tools/deploy/deploy.py . CarryCapacityFromBionics` (never `/MIR`: it deletes).
-10. **In-game test** (user does this): settings rows appear only when the mod is active; a pawn
-    with the implant shows base 35 + value in Gear tab / "Mass carry capacity" stat breakdown;
-    re-test with VEF active if time permits. NOTE: thanks to the missing-def guard, absent
-    hediffs are skipped *silently* — a clean log does NOT prove the patch landed; check the
-    in-game number. Log location: see the parent `CLAUDE.md` (it moved in 1.7).
+## Reference docs — load on demand
+| Load it when | Doc |
+|---|---|
+| Adding a mod or implant, or choosing kg values | [`docs/ADDING_A_MOD.md`](docs/ADDING_A_MOD.md) — value formula, weights, step-by-step roadmap |
+| Checking which mods/folders are supported, or planned/excluded ones | [`docs/SUPPORTED_MODS.md`](docs/SUPPORTED_MODS.md) |
+| Touching the missing-body-part penalty (C#, `CCFB_PartRow`, MissingParts section) | [`docs/MISSING_PARTS.md`](docs/MISSING_PARTS.md) |
+| Touching the Standalone C# (stat worker, `MassUtility.Capacity` transpiler) | [`docs/STANDALONE_CSHARP.md`](docs/STANDALONE_CSHARP.md) |
 
 ## Architecture (PatchDef-based, single tree)
 
@@ -123,7 +65,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
   `CCFB_Implant` would. Defaults are the author's own values, so out of the box everyone gets
   the author's bonus; the folders need no VEF gating and the rows show in every game. Used by
   `II_NativeVEF` / `II_NativeVEF_Anomaly` (Strength Enhancer 25, Skeletal Bracing 25, Claw
-  Tail 25, Hulkification 50) and `NeoP_NativeVEF` (see below). Replaced the older
+  Tail 25, Hulkification 50) and `NeoP_NativeVEF` (see `docs/SUPPORTED_MODS.md`). Replaced the older
   `CCFB_ImplantStandaloneOnly` design (VEF-absent-only catch-up, no override) in June 2026.
 - **`CCFB_Section`** — creates a labeled menu section: header row = the section's **master
   checkbox** (key `ToggleSection<tag>`, third arg = its default; true everywhere except
@@ -163,89 +105,6 @@ the parent mod's menu section:
 - `FSFABE_Royalty` (4 implants), `FSFABE_Anomaly` (1), `FSFVBE_Royalty` (2)
 - `EPOEForkedRoyalty` (whole mod needs Royalty; has its own section)
 
-## Missing body part penalty (C# feature, June 2026)
-
-Optional penalty (OFF by default, master toggle): pawns lose mass carry capacity for missing
-body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missing_parts_roadmap.md`.
-
-- **`Common/Assemblies/CarryCapacityMissingParts.dll`** — always loads (Common folder). Source:
-  `Standalone/Source/CarryCapacityMissingParts/` (SDK-style csproj, net472, build with
-  `dotnet build -c Release`; references `Krafs.Rimworld.Ref` + XmlExtensions.dll by absolute Workshop path;
-  output goes straight to Common/Assemblies). **No Harmony** — pure StatPart injection.
-- `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
-  `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
-  (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
-  after the user saves the menu). The feature master = the section's checkbox
-  `ToggleSectionMissingParts` (created by CCFB_Section, default false). If it's on, appends
-  `StatPart_MissingBodyParts` to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus`
-  (GetNamedSilentFail — whichever exists). Master off = StatPart never injected = provably
-  zero behavior change.
-- Why StatPart works for both games: VEF and our Standalone assembly both transpile
-  `MassUtility.Capacity` to return `GetStatValue(<their stat>)`, and StatParts run in
-  `StatWorker.FinalizeValue` — after base + all implant statOffsets, before the minValue clamp.
-  (A Capacity postfix was rejected: it would run twice — inside the StatWorker base-value call
-  AND the outer call — double-dipping the penalty.)
-- Rules implemented in `StatPart_MissingBodyParts`: all values are **percentages of the
-  pawn's base capacity** (`BodySize × 35` kg — penalties scale with body size, i.e. children
-  lose less in kg; user decision June 2026). Topmost visible missing part only
-  (`GetMissingPartsCommonAncestors`, verified: BFS from core, skips subtrees under added parts —
-  bionics/prosthetics count as present); damaged attached part contributes
-  `pct × base × (1 − HP/maxHP)`; contributions grouped by limb root (highest TABLE ancestor
-  or self) and each group capped at the root's value (mangled leg never worse than amputation).
-  **Spine/Pelvis are one pair**: kept OUT of the weights map, handled separately — the WORSE
-  of the two counts (max, not sum), one explanation line (`Missing spine+pelvis` when both).
-  **Total reduction is capped** by the `MissingPartMaxReduction` setting (default 100% of
-  base); negative finals are impossible (both stats have `minValue 0` — ours got it for this).
-  **Part defs stay in the weights map even at 0** (unticked or zeroed): a limb root at 0
-  caps its whole subtree at 0, so "Leg = 0" really disables the entire leg; the StatPart is
-  only injected if at least one value is positive.
-  Explanation lines (itemized per part + cap lines + "Raised to minimum") appear in the
-  stat-breakdown dialog via `ExplanationPart`; that dialog is the only display surface (decided).
-- Settings: section "Missing body parts" (`1.6/MissingParts/Patches/CCFB_MissingParts.xml`,
-  ungated LoadFolders entry placed BELOW `1.6/Ludeon/Core` so it is the **top menu section**,
-  above Core Implants — deliberate exception to the alphabetical rule). First row = floor
-  `MissingPartFloor` (default 0 kg, positive, no checkbox); then per-part
-  `ToggleMissingPart<DefName>` (default **false** — everything in this section is off out of
-  the box) + `MissingPart<DefName>` kg rows via the menu-row-only PatchDef **`CCFB_PartRow`**
-  (no hediff patch — all missing parts share one MissingBodyPart hediff def, which is why this
-  feature is C#-only; CCFB_PartRow takes a 6th arg = the row tooltip; numeric uses XE
-  `percent=true` — the STORED value is the plain percent number, e.g. "25", the field shows
-  "25%". Numeric-label gotcha: XE gives the label exactly half the (width − padLeft) box;
-  dropping padLeft bought room for "Reduce carry capacity by"). Values are positive percents.
-  Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent,
-  and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
-  `MissingPartSpinePelvis`), Leg 25 = Femur 15 + Tibia 5 + Foot 5; Foot = 5 × Toe 1;
-  Shoulder 15 = Clavicle 5 + Arm 10; Arm = Humerus 2.5 + Radius 2.5 + Hand 5;
-  Hand = 5 × Finger 1. First row = `MissingPartMaxReduction` ("Cap reduction to this
-  amount", default 100%). NOTE: keys `MissingPartFloor` and the old kg-value semantics are
-  RETIRED — never reuse a key when its meaning changes (stale saved values would misparse).
-  The section body opens with an explainer Text (inserted before the SplitColumn via
-  `PatchOperationInsert`); every row has a tooltip (spine/pelvis explain why they matter
-  for non-walking pawns: inventory + caravan weight pool).
-
-## The Standalone C# half (unchanged by the refactor)
-
-When VEF is active, VEF's own `VEF_MassCarryCapacity` stat machinery applies the bonus — no
-assembly needed. Otherwise the `Standalone` folder loads (`IfModNotActive` in LoadFolders):
-
-- `Standalone/Defs/Stats/CarryCapacityBonus.xml` — our `CarryCapacityBonus` StatDef
-  (label "Mass carry capacity", `hideAtValue` 35, custom `workerClass`).
-- `StatWorker_CarryCapacityBonus.cs` — adds vanilla `MassUtility.Capacity(pawn)` (computed
-  with the transpiler's injection suppressed to avoid recursion) in **`GetValueUnfinalized`**,
-  NOT `GetBaseValueFor`: that method is only virtual since RimWorld 1.6, so a GetBaseValueFor
-  override silently never runs on 1.5 — base stays `defaultBaseValue` 0 and every pawn shows
-  0/0 kg with an empty breakdown (July 2026 1.5-support bug). `GetExplanationUnfinalized`
-  override prepends the "Base value" line the vanilla explanation no longer produces.
-- `CarryCapacityFromBionics.cs` — Harmony **transpiler** on `MassUtility.Capacity`; overwrites the
-  result with `pawn.GetStatValue(CarryCapacityBonus)`; `includeStatWorkerResult` guards re-entry.
-- `CarryCapacityDefOf.cs` / `HarmonyPatches.cs` — DefOf handle, `PatchAll(typeof(HarmonyPatches).Assembly)` on startup.
-
-C# targets .NET Framework 4.7.2; solution at `Standalone/Source/CarryCapacityStandalone/`
-(SDK-style csproj since July 2026, `dotnet build -c Release` outputs straight to
-`Standalone/Assemblies/`; references `Krafs.Rimworld.Ref` 1.6.4871 + `Lib.Harmony` 2.4.1 from NuGet,
-not the install — one net472 DLL serves 1.5, 1.6 and 1.7; the code only uses members that exist
-in all three). Built DLL is committed under `Standalone/Assemblies/`.
-
 ## RimWorld 1.5 support (July 2026)
 
 `About.xml` lists 1.5–1.7; the `<v1.5>` LoadFolders block reuses the same `1.6/...` folders
@@ -273,67 +132,6 @@ into `<v1.5>` accordingly (comment above the block explains the translation).
 Source of truth for what loads when. `Common` always loads; `Standalone` loads only without VEF;
 each source folder is gated on its mod (`IfModActive`) or mod+DLC (`IfModActiveAll`). Folders
 reachable via two packageIds get two entries (RBSE/RBSE‑HC, EPOE old/new, ArchotechExpanded both).
-
-### Supported third-party mods (folder ↔ packageId)
-- FSFABE — `FrozenSnowFox.AdvancedBionicsExpansion`
-- FSFVBE — `FrozenSnowFox.VanillaBionicsExpansion`
-- RBSE — `rah.rbse` **and** `rah.rbsehc`
-- EPOE — `ykara.epoe` **and** `ykara.elstrages.epoe`
-- EPOEForked — `vat.epoeforked`
-- EPOEForkedRoyalty — `vat.epoeforkedroyalty` (+ Royalty)
-- ArchotechExpanded — `teok25.archotechexpanded` **and** `teok25.archotechexpanded.prosthetics`
-- AdvancedArchotechArm — `NightKosh.AdvancedArchotechArm`
-- VOID — `RH2.Faction.VOID`
-- SoS2 — `kentington.saveourship2`
-- II (Integrated Implants) — `lts.I`, plus suffixed folders mirroring that mod's own conditional
-  loading: `II_NoAEP` (needs Archotech Expanded Prosthetics ABSENT), `II_NoMSE2` (needs Medical
-  System Expansion 2 ABSENT), and donor-mod extra-arm folders `II_EPOEForked`,
-  `II_EPOEForkedRoyalty`, `II_FSFABE`, `II_FSFABE_Royalty`, `II_RBSE` (each needs lts.I + the
-  donor mod (+DLC) + MSE2 absent). All inject into the single "Integrated Implants" section.
-  Left/right extra-arm hediffs are separate defs sharing one settings key (menu shows one row).
-  Implants the mod buffs natively via VEF_MassCarryCapacity (StrengthEnhancer, SkeletalBracing,
-  LTS_ManipulationTail, HulkificationSurgery) are NOT patched normally (double-dip), but go
-  through the **native-VEF override** `CCFB_ImplantNativeVEF` in `II_NativeVEF` /
-  `II_NativeVEF_Anomaly` (gated lts.I (+Anomaly), no VEF gate) at the author's values 25/25/25/50.
-  Fully skipped: ghoul claws (ghouls don't haul/caravan), venom tail (no carrying-relevant caps).
-- YAPE (Yet Another Prosthetic Expansion - Core) — `MrKociak.YetAnotherProstheticExpansionModCore`.
-  YAPE ships its own copies of SoS2's archotech parts (same defNames `SoSArchotechSpine`/`Skin`);
-  `YAPE_NoSoS2` (gated YAPE + SoS2 ABSENT) patches those with the keys **shared** with the SoS2
-  section, so exactly one folder ever patches them and one menu row renders.
-- MedP (Medieval Prosthetics) — `NunahurAlShamikh.MedP`. Ambroisen tier is eff 1.0
-  (natural-equivalent) → 0-value rows, default off.
-- Astral (Astraltech Bionic Implants) — `AnthonyTherrien.AstraltechBionics`. Replacement parts
-  (arm/leg/spine/pelvis/torso, eff 2.0–2.5) plus eff-1.0 booster implants valued from their
-  Moving/Manipulation capMods (muscle-stimulator precedent). Organs/senses skipped.
-- NeoP (Neolithic Prosthetics) — `Uga.Booga`, plus suffixed folders mirroring its conditional
-  loading: `NeoP_Odyssey` (Odyssey DLC), `NeoP_VAE` (Vanilla Animals Expanded),
-  `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys
-  (BeaverTail/O_BeaverTail/AlphaBeaverTail; GorillaArm/OD_GorillaArm/OD_ArmGorilla;
-  CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). MuffaloSpine (50) and
-  SyntheticMuffaloSpine (75) are native-VEF → `CCFB_ImplantNativeVEF` override in `NeoP_NativeVEF`.
-  SewnInBag's native bonus is vanilla CarryingCapacity (in-hands stat, not mass) → patched
-  normally; same reasoning applies to any future implant with an in-hands-only native bonus.
-- IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the
-  Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
-
-## Planned future support (per VitaKaninen, 2026-06)
-- YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
-  deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
-  weight convention for quadrupeds first).
-  ADSAP2 scan (2026-11-08): packageId `SamBucher.ADogSaidAnimalProsthetics2`, supports 1.4–1.6
-  (1.7 falls back to its `1.6/`). No native carry stats (no double-dip). Carrying-relevant
-  hediffs ≈29: core `1.6/Defs` (Bionic/SimpleProsthetic Leg+Arm, BionicSpineAnimal eff 1.0,
-  WoodenPaw/Hoof); `ModCompat/CommonSubparts` (paw/hoof/foot/toe/hand/finger/claw, gated
-  `vat.epoeforked,mse2.core` = ANY); `ModCompat/MSE2` (forearm, internal support, RG foot claw);
-  `ModCompat/EPOE-Forked` (SimpleSpineAnimal); `ModCompat/KenshiFauna` (`el.kenshifauna`: pincer,
-  tremor leg). Wings folder is 1.4-only. EPOE-Forked patches lower some partEfficiency values
-  (WoodenHoof 0.75→0.6). Open design question: flat kg vs body-size scaling (muffalo base ≈84 kg).
-- EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
-  Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
-  Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,
-  candidate hediffs + proposed values are in `.claude/new_mods_proposal.md`. Note for VAI:
-  it defines `ArchotechSpine` — the same defName Archotech Expanded already patches — so its
-  folder would need `IfModNotActive` on both teok25 packageIds.
 
 ## Conventions / gotchas
 - **RimWorld 1.5 vs 1.6 differences that bit us (July 2026):**

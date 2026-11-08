@@ -1,20 +1,10 @@
-# Redesign plan: extra capacity %, simple mode, animals (draft 2026-11-08, awaiting user approval)
+# Redesign plan: extra capacity %, simple mode, animals (2026-11-08)
 
-## Core idea
-Today's per-implant rows ("advanced mode") stay exactly as they are: XML adds flat kg statOffsets.
-Everything new runs in C#, as StatParts on the carry stat (same pattern as the missing-parts
-penalty: `CarryCapacityMissingParts.dll`, no Harmony, XE settings read once at startup, injected into
-`VEF_MassCarryCapacity` and/or `CarryCapacityBonus`). Reason: animals and the extra % are a share of
-each pawn's base capacity (body size × 35), which only exists at runtime. XE *does* have patch-time
-math (`CreateVariable`, `PatchOperationMath`), but it can't see body size.
-
-## Per-row data
-`CCFB_Implant` / `CCFB_ImplantNativeVEF` gain 3 args: `part | efficiency | tier`
-(part from a fixed list: Arm, Leg, Shoulder, Clavicle, Femur, Tibia, Foot, Hand, Humerus, Radius,
-Finger, Toe, Spine, Pelvis, BothArms, BothLegs, Body, None; tier 2/3/-1/-2). The PatchDef always
-writes them to the HediffDef as a DefModExtension (`CCFB.ImplantData`). Source = the Google Sheet:
-add a Part column (scripted guess from weight + label, user checks), then script the arg edit
-across all patch files. Native-VEF rows get data but simple mode leaves the author's value alone.
+## Core idea (revised by user 2026-11-08)
+Advanced mode = today's per-implant rows (flat kg statOffsets, XML). Simple mode = the same
+defaults scaled by ONE % — no per-row part/efficiency/tier data: those game values only informed
+the chosen numbers and are never patched or stored. Extra % and animals are % of base
+(body size × 35), so they stay C# StatParts (`CarryCapacityMissingParts.dll`, no Harmony).
 
 ## 1. Extra capacity % — BUILT; % math passed in game 2026-11-08 (+3.5 kg at 10%)
 - `1.6/ExtraCapacity` (LoadFolders entry right after MissingParts = top menu section).
@@ -37,29 +27,32 @@ across all patch files. Native-VEF rows get data but simple mode leaves the auth
   tells players to install ADSAP2). C# applies `ExtraCapacityAnimal` only if ADSAP2 is active
   (checks the packageId and its `_steam` form; `ModsConfig.IsActive` ignores the suffix).
 
-## 2. Simple mode
-- `UseSimpleSettings` checkbox at the top. Ticked: per-mod sections hidden (CCFB_Section body wrapped
-  in a ToggleableSettings on it), simple panel shown. Missing-parts section shows in both modes.
-- Simple panel: part weights % (defaults = sheet weights), Bionic ×2, Archotech ×3, quadruped leg 20%,
-  and "Include prosthetic penalties" (off; its rows hidden when off).
-- Patch time: in simple mode `CCFB_Implant` skips the statOffset (still writes the data).
-- Runtime StatPart: per installed hediff with data: tier > 0 → eff × weight × tier × base;
-  tier < 0 (only if penalties on) → −(1 − eff) × weight × base. Rounded with the sheet ladder
-  (ADDING_A_MOD.md) → default simple mode on an adult human reproduces the advanced defaults.
-- Toggle needs a restart (patch-time switch), like every other setting.
+## 2. Simple mode (default ON, user)
+- `UseSimpleSettings` checkbox at the top + `SimpleScale` % (default 100). Ticked: per-mod
+  sections hidden (CCFB_Section body wrapped in a ToggleableSettings on it), simple panel shown.
+  Missing-parts and Extra sections show in both modes.
+- Patch time, `CCFB_Implant`: simple → value = kg default × SimpleScale / 100 (XE `CreateVariable`
+  `*`), toggle = the row's default toggle (per-row and section checkboxes ignored); advanced →
+  today's `UseSetting` path. Restart needed, like every setting.
+- `CCFB_ImplantNativeVEF`: simple → author's value × scale (100% = author's value), replacing the
+  native offset with VEF / added as `CarryCapacityBonus` without; advanced → unchanged (box
+  replaces the author's value, toggle off leaves it).
+- Examples (live, red, like Extra): one row per loaded mod section — a human with that mod's best
+  build. Defaults read via `XmlExtensions.SettingsManager.GetDefaultValue(modId, key)` (no
+  duplicated numbers); simple shows default × scale, advanced shows the current row values.
+  Vanilla: archotech man = 2 Archotech Arm + 2 Archotech Leg + Bionic Spine (35 + 145 = 180 kg).
 
 ## 3. Animals
 - Pack animals only (vanilla or Caravan Packs; non-pack animals have capacity 0 — IL-verified).
-- New `CCFB_AnimalImplant` PatchDef: row value is a % of the animal's base, applied by the StatPart
-  in both modes. No missing-part penalty for animals.
+- New `CCFB_AnimalImplant` PatchDef: row value is a % of the animal's base, applied by a StatPart;
+  simple mode scales it too. No missing-part penalty for animals.
 - First mod: ADSAP2 (`SamBucher.ADogSaidAnimalProsthetics2`); Kenshi Fauna fork = `EL.KenshiFauna`.
 
 ## Build order
-1. Extra % + examples. 2. Sheet Part column → per-row args in all files. 3. Simple mode StatPart + menu.
+1. Extra % + examples (done). 2. Simple mode toggle + scale + PatchDef branch. 3. Per-mod examples.
 4. ADSAP2 animal rows. Each step deployed and tested by the user before the next.
 
-## Decisions (approved by user 2026-11-08)
-1. Simple mode scales with body size (children get less).
-2. Simple mode rounds each implant with the sheet ladder.
-3. Simple mode hides the per-implant on/off checkboxes.
-4. Extra %: TWO fields (built as `ExtraCapacityHuman` / `ExtraCapacityAnimal`, see section 1).
+## Decisions (user 2026-11-08)
+1. Simple mode = one scale % over the defaults; default ON.
+2. Simple mode hides per-implant and section checkboxes.
+3. Extra %: TWO fields (built as `ExtraCapacityHuman` / `ExtraCapacityAnimal`, see section 1).

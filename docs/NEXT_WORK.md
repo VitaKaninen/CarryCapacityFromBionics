@@ -18,10 +18,8 @@
 - The Google Sheet is the source of truth for values. Value rules + rounding: `docs/ADDING_A_MOD.md`
   (penalties = `−(1 − eff) × weight × 35`, user 2026-11-08; smaller penalties wanted).
 - Sheet's missing-part kg column need not sum to parents (user): the mod uses the Weight % only.
-- **No auto-scan of mod files** (user 2026-11-08): support stays a hand-curated list of mods. Simple
-  mode computes from per-row data we write ourselves (body part / efficiency / tech tier, as in the
-  sheet), not from the hediff defs at runtime. The scan's "blockers" (no efficiency, torso, II modular
-  parts, multi-part, no tech level) are just values we choose once per row; efficiency fallback 1.
+- **No auto-scan of mod files** (user 2026-11-08): support stays a hand-curated list of mods.
+  Part efficiency / tech tier only informed the chosen values; they are never stored or patched.
 - Standing read permission for the RimWorld install and workshop 294100 (in folder `CLAUDE.md`).
 
 ## Done this session
@@ -43,6 +41,6 @@
   NeoP defines parts in its Patches/, which run in load order.
 
 ## Next steps
-1. Simple mode + extra-capacity % + animals: plan in `docs/REDESIGN_PLAN.md`, awaiting user
-   approval and its 4 pending decisions. No code before that.
+1. Simple mode = one scale % over the defaults (revised 2026-11-08): plan in
+   `docs/REDESIGN_PLAN.md`; per-mod example builds await user approval.
 2. Then ADSAP2 rows (draft % table was shown to the user; recompute with 20%-per-leg weights).

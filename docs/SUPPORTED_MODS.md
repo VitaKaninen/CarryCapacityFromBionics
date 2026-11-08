@@ -59,6 +59,12 @@
   never reach non-pack animals (dogs). PUAH (Mehni, GitHub) then sees `WillBeOverEncumbered…` =
   true and falls back to a vanilla single-stack haul. Animal support for non-pack haulers needs new
   C# (e.g. a Capacity postfix for animals), not just XML.
+  **Resolved by Caravan Packs** (`VFME.CaravanPacks`, ws 2255432128 up to 1.5 and fork ws 3609057140
+  for 1.6 — same packageId, patch XML byte-identical, no DLL): it only adds
+  `<packAnimal>true</packAnimal>` to species (Husky, LabradorRetriever, Thrumbo, Rhinoceros, bears,
+  wolves…). That gives them vanilla capacity, so our bonus and PUAH inventory hauling work through
+  the normal path. User decision 2026-11-08: support pack animals only, no capacity-granting C#;
+  no missing-part penalty for animals.
 - EXCLUDED by decision (2026-06-10, not updated past RimWorld 1.5): Vanilla Archotech
   Implants (ws 2715093425, 1.3), [SMP] Simple Archotech Implants (ws 2462646185, 1.5),
   Cybernetic Organism and Neural Network (ws 2045064990, 1.4). If they ever update to 1.6,

@@ -49,7 +49,7 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
   dropping padLeft bought room for "Reduce carry capacity by"). Values are positive percents.
   Defaults (VitaKaninen's June 2026 table; children of each limb sum EXACTLY to their parent,
   and a fully stripped body = exactly 100%): Spine/Pelvis 20 (ONE row/key
-  `MissingPartSpinePelvis`), Leg 25 = Femur 15 + Tibia 5 + Foot 5; Foot = 5 × Toe 1;
+  `MissingPartSpinePelvis`), Leg 25 = Femur 12.5 + Tibia 5 + Foot 7.5; Toe 1 (5 toes < foot);
   Shoulder 15 = Clavicle 5 + Arm 10; Arm = Humerus 2.5 + Radius 2.5 + Hand 5;
   Hand = 5 × Finger 1. First row = `MissingPartMaxReduction` ("Cap reduction to this
   amount", default 100%). NOTE: keys `MissingPartFloor` and the old kg-value semantics are

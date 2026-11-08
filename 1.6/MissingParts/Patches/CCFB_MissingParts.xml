@@ -101,7 +101,7 @@
 			<li>MissingPartFemur</li>
 			<li>Femur (each)</li>
 			<li>false</li>
-			<li>15</li>
+			<li>12.5</li>
 			<li>MissingParts</li>
 			<li>Inner thigh bone - can be destroyed while the leg itself survives.</li>
 		</arguments>
@@ -123,7 +123,7 @@
 			<li>MissingPartFoot</li>
 			<li>Foot (each)</li>
 			<li>false</li>
-			<li>5</li>
+			<li>7.5</li>
 			<li>MissingParts</li>
 			<li>If the whole leg is gone, only the leg value applies - the foot is not charged again.</li>
 		</arguments>

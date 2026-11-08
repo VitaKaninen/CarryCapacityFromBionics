@@ -3,8 +3,10 @@
 
 `value ≈ partEfficiency × importanceWeight × techMultiplier × 35 kg`, then hand-rounded.
 
-- **Weights**: arm 15%, leg 25%, spine/pelvis/exoskeleton/membrane 20%, foot 10%, hand 5%,
-  femur ~13%, humerus/tibia 6%, radius/clavicle 3%, finger/toe 1%.
+- **Weights** (the Google Sheet is the source; same table as the missing-parts penalty): arm 15%,
+  leg 25%, spine/pelvis/exoskeleton/membrane 20%, femur 12.5%, foot 7.5%, tibia 5%, clavicle 5%,
+  hand 5%, humerus/radius 2.5%, finger/toe 1%. Quadrupeds: 20% per leg (user 2026-11-08).
+  Mod defaults were re-synced to the sheet 2026-11-08 (feet had used 10%, bones the old weights).
 - **Tech multiplier**: industrial bionic 2, spacer/archotech 3, below-natural prosthetic −1,
   crude (peg leg/hook/wooden) −2, pure utility arms (drill/field/claw) → weight 0% → value 0.
 - partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without

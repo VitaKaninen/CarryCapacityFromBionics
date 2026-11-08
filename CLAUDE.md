@@ -76,15 +76,15 @@ RimWorld has **two separate carrying systems** — keep them straight:
   Its first row is `Setting_SectionToggle` (C#, tag `CCFB_<section>_All`): ticked ("Disable all")
   while any row toggle is on, else unticked ("Enable all"); clicking sets every `Toggle<key>`
   to the new state. No memory of earlier states (user: it did nothing for default-off rows). It
-  stores no on/off of its own, so patch time needs no section gate.
-  `CCFB_RowMenu` appends each `Toggle<key>` to its `keys`.
+  stores no on/off of its own, so patch time needs no section gate. `CCFB_RowMenu` appends each
+  `Toggle<key>` to `<target>_All` (`CCFB_<section>_All` or `CCFB_<section>_Penalties_All`), and
+  `CCFB_PartRow` to `CCFB_MissingParts_All`: the penalty and missing-part blocks each have their own.
   **Idempotent** (guarded by an existence check), so every patch file calls it for the section
   it needs and file/folder ordering doesn't matter. The reset button keeps
   `key ToggleSection<tag>` only as the xpath handle for its keys list.
   Known edge case (YAPE/SoS2 only; EPOE/EPOE-Forked and FSF ABE/VBE are mutually exclusive
   in game, so their shared keys never meet): deliberately-shared keys render their one row in
-  whichever section's file patches first, but a shared penalty row is gated by its OWN file's
-  `Penalties<section>` box.
+  whichever section's file patches first (its toggle registers with that section's box).
   Each section body also ends with a **"Reset this section" button**: CCFB_Section creates it
   with an `XmlExtensions.Action.ResetSettings` whose `keys` list starts empty, and every row PatchDef appends its `Toggle<key>`/`<key>` pair (inside the dedup guard, so
   shared keys register with the section that shows the row). A **"Reset all settings"** button

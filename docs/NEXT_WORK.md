@@ -47,9 +47,10 @@ starting mode from saved values, table tooltips, all pack animals on hover.
 clickable, click-away unfocuses text boxes, section hide checkboxes removed, per-section
 "Prosthetic penalties" box (default off) + missing-parts box in Core in Advanced, main box as
 aligned rows with right-aligned data, pack-animal hover without corpses.
-**Round 6, built + deployed, not yet seen in game:** section box = "Disable all"/"Enable all"
-(no memory), right-aligned "(hover for details)" above the data, shared data width, one
-prosthesis example per mod with penalties on, line above the penalty block titles.
+**Round 7, built + deployed, not yet seen in game:** penalty and missing-part blocks always
+visible with their own Enable/Disable all box (rows default off in Advanced; old `Penalties<section>`
+key dropped), "Disabled" aligned with the number boxes, Advanced hover hint on the "Pack
+animals:" line. The user's own saved settings keep the old ON values (XE freezes defaults).
 **Asked last, unanswered:**
 - Right-column alignment interpreted as "data block right-aligned, as wide as its text"; confirm.
 - About.xml description doesn't mention Easy/Advanced yet (user edits descriptions).

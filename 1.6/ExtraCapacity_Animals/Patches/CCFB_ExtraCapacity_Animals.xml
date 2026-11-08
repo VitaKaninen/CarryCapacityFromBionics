@@ -9,16 +9,6 @@
 					<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else.&lt;/color&gt;</text>
 				</value>
 			</Operation>
-			<Operation Class="XmlExtensions.PatchOperationAdd">
-				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_HoverHint"]/caseFalse</xpath>
-				<value>
-					<li Class="XmlExtensions.Setting.Text">
-						<text>&lt;color=#9a9a9a&gt;(hover for details)&lt;/color&gt;</text>
-						<anchor>Right</anchor>
-						<padBelow>6</padBelow>
-					</li>
-				</value>
-			</Operation>
 			<Operation Class="XmlExtensions.PatchOperationInsert">
 				<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_ExtraHumanRow"]</xpath>
 				<order>Append</order>
@@ -57,6 +47,7 @@
 						<rightCol>
 							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_CapacityExamples">
 								<header>Pack animals:</header>
+								<advancedHint>(hover for details)</advancedHint>
 								<percentKey>ExtraCapacityAnimal</percentKey>
 								<hoverAllPackAnimals>true</hoverAllPackAnimals>
 								<examples>

@@ -20,9 +20,9 @@
 - partEfficiency comes from the hediff's `addedPartProps/partEfficiency` (for implants without
   one, e.g. muscle stimulators, estimate from its capMods).
 - **Defaults convention**: positive values default ON; zero-value utility parts and all
-  negative (prosthetic-penalty) entries default ON — they are gated by the main box's
-  `SimplePenalties` (Easy) or the section's own `Penalties<section>` box (Advanced), both off
-  by default. A mod whose rows are all penalties still uses plain `CCFB_Section` (MedP).
+  negative (prosthetic-penalty) entries are written ON, but the arg is ignored: they apply in Easy
+  only with the main box's `SimplePenalties` and in Advanced default OFF per row. A mod whose rows
+  are all penalties still uses plain `CCFB_Section` (MedP).
 - **Implants that already grant `VEF_MassCarryCapacity` natively** (e.g. several Integrated
   Implants ones) must never go through `CCFB_Implant` (double-dip in VEF games) — they get
   `CCFB_ImplantNativeVEF` instead (override/add, see CLAUDE.md architecture), defaults = author's values.

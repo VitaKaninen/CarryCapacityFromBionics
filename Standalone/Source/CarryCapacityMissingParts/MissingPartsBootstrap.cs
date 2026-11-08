@@ -6,12 +6,12 @@ using Verse;
 namespace Vita.CarryCapacityFromBionics.MissingParts
 {
     // Reads the XML Extensions settings once at startup (settings changes require a restart,
-    // stated in the menu) and, only if the master checkbox is on, appends the penalty
+    // stated in the menu) and, only if some part is on, appends the penalty
     // StatPart to whichever mass-carry-capacity stat exists in this game:
     // VEF_MassCarryCapacity (VEF active) or CarryCapacityBonus (our Standalone folder, VEF absent).
-    // The master is the main box's "Include missing body part penalties" checkbox
-    // (key ToggleSectionMissingParts, default OFF) = the StatPart is never injected by default,
-    // zero behavior change.
+    // Easy mode: the main box's checkbox (key ToggleSectionMissingParts, default OFF) turns on
+    // every part. Advanced mode: each part's own checkbox (default OFF). Nothing on = the
+    // StatPart is never injected, zero behavior change.
     [StaticConstructorOnStartup]
     public static class MissingPartsBootstrap
     {
@@ -60,11 +60,11 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         static MissingPartsBootstrap()
         {
-            if (!GetBool("ToggleSectionMissingParts", false))
+            bool simple = GetBool("ToggleSectionSimple", true);
+            if (simple && !GetBool("ToggleSectionMissingParts", false))
             {
                 return;
             }
-            bool simple = GetBool("ToggleSectionSimple", true);
             maxReductionFrac = simple ? 1f : System.Math.Abs(GetFloat("MissingPartMaxReduction", 100f)) / 100f;
 
             bool anyPositive = false;
@@ -75,7 +75,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                 {
                     frac = pct / 100f;
                 }
-                else if (GetBool("ToggleMissingPart" + key, true))
+                else if (GetBool("ToggleMissingPart" + key, false))
                 {
                     frac = System.Math.Abs(GetFloat("MissingPart" + key, pct)) / 100f;
                 }

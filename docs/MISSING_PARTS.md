@@ -10,9 +10,9 @@ body parts and, scaled by lost HP, for damaged ones. Design spec: `.claude/missi
 - `MissingPartsBootstrap` (`[StaticConstructorOnStartup]`): reads XE settings once via
   `XmlExtensions.SettingsManager.TryGetSetting("Vita.CarryCapacityFromBionics", key)`
   (string values; compiled defaults MUST mirror the XML row defaults — XE only stores a key
-  after the user saves the menu). The feature master = checkbox `ToggleSectionMissingParts`
-  (default false; shown in the main box in Easy, in the block header inside Core Implants in
-  Advanced — same key). Easy mode: every part at its compiled default, cap 100%. If it's on, appends
+  after the user saves the menu). Easy mode: the main box checkbox `ToggleSectionMissingParts`
+  (default false) = every part at its compiled default, cap 100%. Advanced: each row's own toggle
+  (default false). If any part is on, appends
   `StatPart_MissingBodyParts` to `VEF_MassCarryCapacity` and/or `CarryCapacityBonus`
   (GetNamedSilentFail — whichever exists). Master off = StatPart never injected = provably
   zero behavior change.

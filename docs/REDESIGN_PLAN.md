@@ -20,8 +20,8 @@ options, right = data (user):
   left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
   explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
   box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
-- Hover hint: gray right-anchored "(hover for details)" line above the data (`CCFB_HoverHint`,
-  ToggleableSettings on the mode; ADSAP2 fills its Advanced case), not in the data headers.
+- Hover hint "(hover for details)": Easy = gray right-anchored line above the data
+  (`CCFB_HoverHint`); Advanced = right end of the "Pack animals:" header (`advancedHint`, ADSAP2).
 - All data widgets share one width (`DataColumn.Width`: max desired width of the previous frame)
   so their left edges line up (user).
 - Data: `Setting_SimpleExamples`, `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,
@@ -49,11 +49,11 @@ options, right = data (user):
   ADSAP2 is active (packageId or `_steam` form).
 
 ### Easy vs advanced at patch time (`CCFB_ImplantCore` → `CCFB_ModeOffset`)
-- Negative rows (prosthetic penalties) default ON but are gated: Easy by `SimplePenalties`
-  (main box), Advanced by the section's own `Penalties{section}` box (default off, user). Their
-  rows go into a "Prosthetic penalties" block (Group inserted after the section's
-  `CCFB_{section}` SplitColumn on the first negative row: header checkbox + title, rows in a
-  ToggleableSettings on `Penalties{section}`, tagged `CCFB_{section}_Penalties`).
+- Negative rows (prosthetic penalties): Easy applies them only with `SimplePenalties` (main box);
+  Advanced uses each row's own toggle, forced to default OFF (the `toggleDefault` arg is ignored
+  for negative rows). Rows go into a "Prosthetic penalties" block, always visible (user: never
+  hide, just disable): Group inserted after `CCFB_{section}` on the first negative row = line,
+  title, `Setting_SectionToggle` (`CCFB_{section}_Penalties_All`), rows (`CCFB_{section}_Penalties`).
 - Easy: default ≠ 0 → default × SimpleScale / 100 (`CCFB_ScaledOffset`); section/row checkboxes
   ignored. Advanced: row toggle → UseSetting. Both end in `CCFB_AddOffset`
   (vefOperation: Add, or AddOrReplace for native-VEF rows → 100% = author's value).
@@ -61,10 +61,10 @@ options, right = data (user):
   `CCFB_AdvancedContainer`) → hidden in Easy mode.
 
 ### Missing body parts (user 2026-11-08)
-- One key `ToggleSectionMissingParts` (default off): main box checkbox in Easy; in Advanced the
-  checkbox heads the "Missing body part penalties" block inside Core Implants (inserted after
-  `CCFB_Core` by the MissingParts file, which creates the Core section itself). Easy: every part
-  at its compiled default %, cap 100%. Per-part rows default ON.
+- Easy: main box checkbox `ToggleSectionMissingParts` (default off) = every part at its compiled
+  default %, cap 100%. Advanced: the per-part row toggles alone (default OFF, C# fallback false
+  too); the block inside Core Implants (inserted after `CCFB_Core` by the MissingParts file,
+  which creates the Core section itself) is always visible, with its own `Setting_SectionToggle`.
 
 ### Examples (`Setting_SimpleExamples`, `SimpleExamples.cs`)
 `CCFB_RowMenu` registers key/label/section/default into the widget's `rows` (inside the dedup

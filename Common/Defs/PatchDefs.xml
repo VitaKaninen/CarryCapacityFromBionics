@@ -219,45 +219,24 @@
 														<spacing>12</spacing>
 													</li>
 													<li Class="XmlExtensions.Setting.GapLine"/>
-													<li Class="XmlExtensions.Setting.SplitColumn">
-														<width>24</width>
-														<gapSize>6</gapSize>
+													<li Class="XmlExtensions.Setting.Text">
+														<text>Prosthetic penalties</text>
+														<font>Medium</font>
 														<anchor>Middle</anchor>
-														<leftCol>
-															<li Class="XmlExtensions.Setting.Checkbox">
-																<label></label>
-																<key>Penalties{section}</key>
-																<defaultValue>false</defaultValue>
-																<tooltip>Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.</tooltip>
-															</li>
-														</leftCol>
-														<rightCol>
-															<li Class="XmlExtensions.Setting.Text">
-																<text>Prosthetic penalties</text>
-																<font>Medium</font>
-																<anchor>Middle</anchor>
-															</li>
-														</rightCol>
+														<tooltip>Prosthetics weaker than a natural limb (prosthetic, wooden, peg) lower carry capacity.</tooltip>
 													</li>
-													<li Class="XmlExtensions.Setting.ToggleableSettings">
-														<key>Penalties{section}</key>
-														<caseTrue>
-															<li Class="XmlExtensions.Setting.SplitColumn">
-																<tag>CCFB_{section}_Penalties</tag>
-																<leftCol/>
-																<rightCol/>
-															</li>
-														</caseTrue>
-														<caseFalse/>
+													<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
+														<tag>CCFB_{section}_Penalties_All</tag>
+														<tooltip>Turns every prosthetic penalty in this section on or off at once.</tooltip>
+														<keys/>
+													</li>
+													<li Class="XmlExtensions.Setting.SplitColumn">
+														<tag>CCFB_{section}_Penalties</tag>
+														<leftCol/>
+														<rightCol/>
 													</li>
 												</settings>
 											</li>
-										</value>
-									</Operation>
-									<Operation Class="XmlExtensions.PatchOperationAdd">
-										<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[@Class="XmlExtensions.Setting.Button"][key="ToggleSection{section}"]/actions/li/keys</xpath>
-										<value>
-											<li>Penalties{section}</li>
 										</value>
 									</Operation>
 								</caseFalse>
@@ -267,7 +246,7 @@
 								<arguments>
 									<li>{key}</li>
 									<li>{label}</li>
-									<li>{toggleDefault}</li>
+									<li>false</li>
 									<li>{valueDefault}</li>
 									<li>{section}</li>
 									<li>CCFB_{section}_Penalties</li>
@@ -299,24 +278,17 @@
 									</Operation>
 								</caseTrue>
 								<caseFalse>
-									<Operation Class="XmlExtensions.OptionalPatch">
-										<modId>Vita.CarryCapacityFromBionics</modId>
-										<key>Penalties{section}</key>
-										<defaultValue>false</defaultValue>
-										<caseTrue>
-											<Operation Class="XmlExtensions.ApplyPatch">
-												<patchName>CCFB_ModeOffset</patchName>
-												<arguments>
-													<li>{defName}</li>
-													<li>{key}</li>
-													<li>{label}</li>
-													<li>{toggleDefault}</li>
-													<li>{valueDefault}</li>
-													<li>{section}</li>
-													<li>{vefOperation}</li>
-												</arguments>
-											</Operation>
-										</caseTrue>
+									<Operation Class="XmlExtensions.ApplyPatch">
+										<patchName>CCFB_ModeOffset</patchName>
+										<arguments>
+											<li>{defName}</li>
+											<li>{key}</li>
+											<li>{label}</li>
+											<li>false</li>
+											<li>{valueDefault}</li>
+											<li>{section}</li>
+											<li>{vefOperation}</li>
+										</arguments>
 									</Operation>
 								</caseFalse>
 							</Operation>
@@ -419,6 +391,7 @@
 								<caseFalse>
 									<li Class="XmlExtensions.Setting.Text">
 										<text>Disabled</text>
+										<padRight>25</padRight>
 										<anchor>Right</anchor>
 									</li>
 								</caseFalse>
@@ -433,7 +406,7 @@
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">
-						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_All"]/keys</xpath>
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="{target}_All"]/keys</xpath>
 						<value>
 							<li>Toggle{key}</li>
 						</value>
@@ -685,10 +658,17 @@
 								<caseFalse>
 									<li Class="XmlExtensions.Setting.Text">
 										<text>Disabled</text>
+										<padRight>25</padRight>
 										<anchor>Right</anchor>
 									</li>
 								</caseFalse>
 							</li>
+						</value>
+					</Operation>
+					<Operation Class="XmlExtensions.PatchOperationAdd">
+						<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_{section}_All"]/keys</xpath>
+						<value>
+							<li>Toggle{key}</li>
 						</value>
 					</Operation>
 					<Operation Class="XmlExtensions.PatchOperationAdd">

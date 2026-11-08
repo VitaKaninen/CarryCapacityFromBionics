@@ -107,6 +107,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         public string percentKey;
         public string header;
+        public string advancedHint;
         public bool hoverAllPackAnimals;
         public List<CapacityExample> examples = new List<CapacityExample>();
 
@@ -134,14 +135,26 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             List<Row> rows = BuildRows(pct);
             float tableWidth = Indent + ArrowWidth + NumberWidth * 2f + LabelGap;
             float labelWidth = rows.Count == 0 ? 0f : rows.Max(r => Text.CalcSize(r.label).x);
-            float width = Mathf.Min(inRect.width, DataColumn.Width(Mathf.Max(tableWidth + labelWidth,
-                string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x)));
+            string hint = MissingPartsBootstrap.GetBool("ToggleSectionSimple", true) ? null : advancedHint;
+            float headerWidth = string.IsNullOrEmpty(header) ? 0f : Text.CalcSize(header).x;
+            if (!string.IsNullOrEmpty(hint))
+            {
+                headerWidth += LabelGap + Text.CalcSize(hint).x;
+            }
+            float width = Mathf.Min(inRect.width, DataColumn.Width(Mathf.Max(tableWidth + labelWidth, headerWidth)));
             Rect block = new Rect(inRect.xMax - width, inRect.y, width, inRect.height);
             float y = block.y;
             if (!string.IsNullOrEmpty(header))
             {
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(new Rect(block.x, y, block.width, LineHeight), header);
+                if (!string.IsNullOrEmpty(hint))
+                {
+                    Text.Anchor = TextAnchor.MiddleRight;
+                    GUI.color = new Color(0.6f, 0.6f, 0.6f);
+                    Widgets.Label(new Rect(block.x, y, block.width, LineHeight), hint);
+                    GUI.color = color;
+                }
                 y += LineHeight;
             }
             foreach (Row row in rows)

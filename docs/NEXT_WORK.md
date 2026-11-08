@@ -35,15 +35,20 @@
   installed, so unchecked. Rerun: scratch scripts are gone; re-derive from `docs/ADDING_A_MOD.md` step 8.
 
 ## Open questions
-- **Last asked, not answered:** Sewn-In Bag now has a native `VEF_MassCarryCapacity` 15 (NeoP 1.6/1.7)
-  → double-dip with our 10 in VEF games. Move to `NeoP_NativeVEF`; default = author's 15 or our 10?
+- Sheet efficiency audit (2026-11-08; sheet vs source `partEfficiency`): mod values all match the
+  sheet's "Value used". Efficiency mismatches reported to user, awaiting their sheet decisions:
+  vanilla Prosthetic Arm 0.85→0.50; AE Archotech Spine 2.0→1.7; EPOE Prosthetic Hand 0.8→0.7;
+  EPOE-F Prosthetic Foot 0.9→0.8, Hook Hand 0.3→0.6, Steel Arm 0.35→0.6, Adv Power Claw 1.25→1.0,
+  Adv Bionic Spine 1.35→1.25; FSF VBE Archotech Spine 1.25 (ABE's same defName 2.0, shared key);
+  RBSE Adv Bionic Arm/Leg 1.3→1.5, Spine 1.2→1.0, Exoskeleton 1.15→1.0; YAPE SoSArchotechSpine
+  1.25→2. Sheet-internal: RBSE humerus weight 3% (table 2.5%), Ambroisen Foot weight 7.5% (others
+  0%), Artificial Hoof 10% (no hoof weight), EPOE-F toe −0.5 vs finger −0.3, intro text says feet 10%.
+  Also raised: for negative tiers the formula penalises a BETTER part more (eff × −tech).
 - Kenshi Fauna 1.6 fork (pookiemaru): does it keep packageId `el.kenshifauna`? ADSAP2 gates its Kenshi
   parts on that ID. User hasn't supplied it; can now be read from the workshop folder directly.
-- Artificial clavicle (EPOE): sheet (2026-11-08) has efficiency 1.5, Value used −1, math −2.63; EPOE def
-  efficiency is 0.8 (math −1.4). User said "changed to 1.5" — likely meant Value used −1.5. Mod has −1.
 
 ## Next steps
-1. Fix Sewn-In Bag once answered.
+1. Apply whatever the user changes in the sheet after the efficiency audit.
 2. Design simple mode + extra-capacity % + animal support (C# StatPart, settings layout, new keys)
    as one plan for user approval before code. Rows gain part/efficiency/tier args; open: whether
    the kg math runs in XML Extensions (no arithmetic op found in `XmlExtensionsReference`) or C#.

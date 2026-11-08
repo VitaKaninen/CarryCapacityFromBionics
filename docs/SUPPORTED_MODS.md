@@ -34,12 +34,11 @@
   loading: `NeoP_Odyssey` (Odyssey DLC), `NeoP_VAE` (Vanilla Animals Expanded),
   `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys
   (BeaverTail/O_BeaverTail/AlphaBeaverTail; GorillaArm/OD_GorillaArm/OD_ArmGorilla;
-  CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). MuffaloSpine (50) and
-  SyntheticMuffaloSpine (75) are native-VEF → `CCFB_ImplantNativeVEF` override in `NeoP_NativeVEF`.
-  An implant whose only native bonus is vanilla CarryingCapacity (in-hands stat) is patched
-  normally. **SewnInBag is no longer one:** NeoP's 1.6/1.7 defs also give
-  `VEF_MassCarryCapacity MayRequire=VEF` 15, so our `CCFB_Implant` row double-dips in VEF games
-  (found 2026-11-08; move it to `NeoP_NativeVEF` once the user picks the default).
+  CharmOfPanda/OD_CharmOfPanda; KangarooLeg/O_KangarooLeg). SewnInBag (15), MuffaloSpine (50) and
+  SyntheticMuffaloSpine (75) are native-VEF → `CCFB_ImplantNativeVEF` in `NeoP_NativeVEF`, defaults
+  = author's values (SewnInBag's native 15 exists only in NeoP 1.6/1.7; 1.5 has only in-hands
+  CarryingCapacity). Many NeoP parts (Tyranno arm, mantis hands, Gallimimus leg, muffalo spines,
+  CharmOfPanda) are defined inside NeoP's `Patches/` files, not `Defs/` — a Defs-only scan misses them.
 - IP (Industrial Prosthetics) — `Mey.Prosthetics`. 46 hediffs → 16 keys: the
   Combat/Labor/Construct/Social/Military variants of a tier share one key (L/R convention).
 

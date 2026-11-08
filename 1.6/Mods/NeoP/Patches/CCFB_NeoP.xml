@@ -331,15 +331,4 @@
 			<li>NeoP</li>
 		</arguments>
 	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_Implant</patchName>
-		<arguments>
-			<li>SewnInBag</li>
-			<li>NeoPSewnInBag</li>
-			<li>Sewn-In Bag</li>
-			<li>true</li>
-			<li>10</li>
-			<li>NeoP</li>
-		</arguments>
-	</Operation>
 </Patch>

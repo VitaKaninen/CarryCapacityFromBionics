@@ -19,6 +19,17 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
+			<li>SewnInBag</li>
+			<li>NeoPSewnInBag</li>
+			<li>Sewn-In Bag</li>
+			<li>true</li>
+			<li>15</li>
+			<li>NeoP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantNativeVEF</patchName>
+		<arguments>
 			<li>MuffaloSpine</li>
 			<li>NeoPMuffaloSpine</li>
 			<li>Muffalo Spine</li>

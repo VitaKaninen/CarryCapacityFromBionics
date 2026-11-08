@@ -62,5 +62,4 @@ across all patch files. Native-VEF rows get data but simple mode leaves the auth
 1. Simple mode scales with body size (children get less).
 2. Simple mode rounds each implant with the sheet ladder.
 3. Simple mode hides the per-implant on/off checkboxes.
-4. Extra %: TWO fields — one for humanlikes (`CCFB_ExtraPercent`), one for animals
-   (`CCFB_ExtraPercentAnimal`); examples: human beside the first, dog/muffalo/thrumbo beside the second.
+4. Extra %: TWO fields (built as `ExtraCapacityHuman` / `ExtraCapacityAnimal`, see section 1).

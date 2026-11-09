@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Wolfein Race</li>
+			<li>Wolfein</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Wolfein_MetalClawInstalled</li>
+			<li>WolfeinMetalClaw</li>
+			<li>Metal Claw</li>
+			<li>false</li>
+			<li>0</li>
+			<li>Wolfein</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Wolfein_MechinalArmInstalled</li>
+			<li>WolfeinMechinalArm</li>
+			<li>Mechinal Arm</li>
+			<li>true</li>
+			<li>10</li>
+			<li>Wolfein</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>Wolfein_MechinalLegInstalled</li>
+			<li>WolfeinMechinalLeg</li>
+			<li>Mechinal Leg</li>
+			<li>true</li>
+			<li>17.5</li>
+			<li>Wolfein</li>
+		</arguments>
+	</Operation>
+</Patch>

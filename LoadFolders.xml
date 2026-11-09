@@ -23,6 +23,7 @@
 		<li>1.6/MenuFooter</li>
 		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
 		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
+		<li IfModActive="MelonDove.WolfeinRace">1.6/Mods/Wolfein</li>
 		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
 		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
 		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>
@@ -85,6 +86,7 @@
 		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore" IfModNotActive="kentington.saveourship2">1.6/Mods/YAPE_NoSoS2</li>
 		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModCore">1.6/Mods/YAPE</li>
 
+		<li IfModActive="MelonDove.WolfeinRace">1.6/Mods/Wolfein</li>
 		<li IfModActive="RH2.Faction.VOID">1.6/Mods/VOID</li>
 		<li IfModActive="kentington.saveourship2">1.6/Mods/SoS2</li>
 		<li IfModActive="rah.rbsehc">1.6/Mods/RBSE</li>

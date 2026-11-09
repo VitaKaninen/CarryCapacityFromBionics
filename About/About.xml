@@ -13,6 +13,8 @@ Adds Extra pawn inventory and caravan carrying capacity from Bionics.
 
 This is intended to be used with mods such as [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1279012058]Pick Up And Haul[/url] or [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3742459652]Hauler's Dream[/url], that utilize the player's inventory for hauling around the map.
 
+Animal prosthetics mods will add carry capacity to pack animals. The [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3609057140]Caravan Packs[/url] mod will allow your hauling animals to use the extra carry capacity for hauling items around on your home map, in addition to caravans.
+
 [b]Settings:[/b]
 Easy: one percentage scales every bonus.
 Advanced: set each implant on its own.
@@ -51,6 +53,7 @@ Optional: penalties for prosthetics, and for missing or injured body parts.
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=850428056]Rah's Bionics and Surgery Expansion - Hardcore Edition[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1909914131]SoS2[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2883208829]V.O.I.D Faction[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3473140562]Wolfein Race[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2808876573]Yet another prosthetic expansion mod - Animals[/url] (pack animals)
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2808872704]Yet another prosthetic expansion mod - Core[/url]
 
@@ -98,5 +101,6 @@ If you find any bugs, have some suggestions, or would like to see other mods sup
 		<li>Mey.Prosthetics</li>
 		<li>SamBucher.ADogSaidAnimalProsthetics2</li>
 		<li>MrKociak.YetAnotherProstheticExpansionModAnimals</li>
+		<li>MelonDove.WolfeinRace</li>
 	</loadAfter>
 </ModMetaData>

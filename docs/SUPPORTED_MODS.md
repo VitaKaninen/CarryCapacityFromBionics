@@ -73,6 +73,12 @@
   carrying). No native carry stats. Its DLL only toggles an Alpha Implants patch.
   Values: sheet section "YAPE - Animals" (rows 332–341, ×100); menu order = sheet order. With SoS2,
   SoSArchotechSpine is SoS2's (eff 1.25 → 75%), but the default stays 120 (sheet note only).
+- Wolfein Race — `MelonDove.WolfeinRace` (ws 3473140562), folder `1.6/Mods/Wolfein`, keys `Wolfein*`.
+  Rows: Metal Claw 0, Mechinal Arm 10, Mechinal Leg 17.5 (industrial, eff 1.0). Its 1.5 build has
+  no Mechinal Arm (guard skips it). Skipped on purpose: both Heavy Gear Augmentations — they carry
+  Ancot Library's `Ancot_ExtraCaravanCarryCapacity` (+6 / +3), which Ancot adds via a Harmony
+  postfix on `MassUtility.Capacity` (halved when VEF is active); a CCFB row would stack on it, not
+  replace it. Ears/tails: no carrying.
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - (built) YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

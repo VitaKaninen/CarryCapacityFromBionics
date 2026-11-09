@@ -30,6 +30,12 @@
 - Astral (Astraltech Bionic Implants) — `AnthonyTherrien.AstraltechBionics`. Replacement parts
   (arm/leg/spine/pelvis/torso, eff 2.0–2.5) plus eff-1.0 booster implants valued from their
   Moving/Manipulation capMods (muscle-stimulator precedent). Organs/senses skipped.
+- BionicPawns (Bionic Pawns) — `Xercaine.Spacer.Bionics` (1.6 only, so not in the `<v1.5>` block).
+  One folder holds the base rows AND the FSF ABE (`XER_AdvancedBionic*`) / YAPE (`BIE_Ultratech*`)
+  rows, so the menu keeps the sheet's order; those defs exist only when Bionic Pawns' own
+  name-gated compat patches ran, and the HediffDef guard skips them otherwise (needs our
+  `loadAfter` on it). Muscles are one torso implant (body-wide Moving/Manipulation) valued
+  from capMods; spine/skeletons are eff 1.0 → 0-value rows, default off. Organs/senses skipped.
 - NeoP (Neolithic Prosthetics) — `Uga.Booga`, plus suffixed folders mirroring its conditional
   loading: `NeoP_Odyssey` (Odyssey DLC), `NeoP_VAE` (Vanilla Animals Expanded),
   `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys

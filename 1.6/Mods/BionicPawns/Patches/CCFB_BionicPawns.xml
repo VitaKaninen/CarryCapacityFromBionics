@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Bionic Pawns</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_BionicMuscles</li>
+			<li>BPXER_BionicMuscles</li>
+			<li>Bionic Muscles</li>
+			<li>true</li>
+			<li>45</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_ArchotechMuscles</li>
+			<li>BPXER_ArchotechMuscles</li>
+			<li>Archotech Muscles</li>
+			<li>true</li>
+			<li>70</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_AdvancedBionicMuscles</li>
+			<li>BPXER_AdvancedBionicMuscles</li>
+			<li>Adv. Bionic Muscles</li>
+			<li>true</li>
+			<li>70</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_UltratechMuscles</li>
+			<li>BPBIE_UltratechMuscles</li>
+			<li>Ultratech Muscles</li>
+			<li>true</li>
+			<li>95</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_BionicSkeleton</li>
+			<li>BPXER_BionicSkeleton</li>
+			<li>Bionic Skeleton</li>
+			<li>false</li>
+			<li>0</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_ArchotechSkeleton</li>
+			<li>BPXER_ArchotechSkeleton</li>
+			<li>Archotech Skeleton</li>
+			<li>false</li>
+			<li>0</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_AdvancedBionicSkeleton</li>
+			<li>BPXER_AdvancedBionicSkeleton</li>
+			<li>Adv. Bionic Skeleton</li>
+			<li>false</li>
+			<li>0</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BIE_UltratechSkeleton</li>
+			<li>BPBIE_UltratechSkeleton</li>
+			<li>Ultratech Skeleton</li>
+			<li>false</li>
+			<li>0</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>XER_ArchotechSpine</li>
+			<li>BPXER_ArchotechSpine</li>
+			<li>Archotech Spine</li>
+			<li>false</li>
+			<li>0</li>
+			<li>BP</li>
+		</arguments>
+	</Operation>
+</Patch>

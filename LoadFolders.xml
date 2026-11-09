@@ -133,6 +133,7 @@
 		<li IfModActiveAll="vat.epoeforkedroyalty,Ludeon.RimWorld.Royalty">1.6/Mods/EPOEForkedRoyalty</li>
 
 		<!-- Astraltech Bionic Implants -->
+		<li IfModActive="Xercaine.Spacer.Bionics">1.6/Mods/BionicPawns</li>
 		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
 
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>

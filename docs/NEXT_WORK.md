@@ -81,6 +81,8 @@ rows ON.
   them; section toggle back to row-checkbox position with the unit header on its row; animal picker +
   box hover added. Not seen in game.
 
+User tests every deployed change in game right away; rounds 4–11 and ADSAP2 on pack animals are
+confirmed working. The "not seen in game" notes above are outdated.
+
 ## Next steps
-1. User tests rounds 4–10 in game (incl. a pack animal with ADSAP2 parts); fix what they report.
-2. Sync ADSAP2 defaults to the sheet once the user revises it.
+1. Sync ADSAP2 defaults to the sheet once the user revises it.

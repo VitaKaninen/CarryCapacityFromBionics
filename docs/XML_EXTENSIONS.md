@@ -21,7 +21,8 @@ workshop 2574315206, folders `1.5/`–`1.7/`).
   typed percent number ("10" = 10%; vanilla's TextFieldPercent fraction is overwritten from the
   text buffer), default min/max ±1e9; RimWorld forces en-US culture, so parse with Invariant.
 - **Every number box is the same narrow width** (user): a label-less `Numeric` in the right
-  column of a `SplitColumn` with `<split>0.79</split>` (label = right-anchored Text on the left),
+  column of a `SplitColumn` with `<split>0.79</split>` (left side empty: the unit text is shown once,
+  as the column header drawn by `Setting_SectionToggle` from its `unit` field, kg|pct; user),
   inside a row's 0.5 right column; kg fields add `<padRight>25</padRight>` to line up with
   percent fields (TextFieldPercent reserves 25 px for "%"). XE's `Numeric` is `internal`, so it
   can't be subclassed.

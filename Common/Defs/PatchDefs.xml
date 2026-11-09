@@ -38,6 +38,7 @@
 									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
 										<tag>CCFB_{section}_All</tag>
 										<tooltip>Turns every implant in this section on or off at once.</tooltip>
+										<unit>kg</unit>
 										<keys/>
 									</li>
 									<li Class="XmlExtensions.Setting.Gap">
@@ -282,6 +283,7 @@
 													<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
 														<tag>CCFB_{section}_Penalties_All</tag>
 														<tooltip>Turns every prosthetic penalty in this section on or off at once.</tooltip>
+														<unit>{unit}</unit>
 														<keys/>
 													</li>
 													<li Class="XmlExtensions.Setting.SplitColumn">
@@ -485,12 +487,7 @@
 							<li Class="XmlExtensions.Setting.SplitColumn">
 								<split>0.79</split>
 								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Extra carry capacity in kg</text>
-										<anchor>Right</anchor>
-									</li>
-								</leftCol>
+								<leftCol/>
 								<rightCol>
 									<li Class="XmlExtensions.Setting.Numeric">
 										<decimals>2</decimals>
@@ -531,13 +528,12 @@
 							<li Class="XmlExtensions.Setting.SplitColumn">
 								<split>0.79</split>
 								<anchor>Middle</anchor>
-								<leftCol>
-									<li Class="XmlExtensions.Setting.Text">
-										<text>Extra carry capacity in % of base</text>
-										<anchor>Right</anchor>
-									</li>
-								</leftCol>
+								<leftCol/>
 								<rightCol>
+									<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_AnimalTip">
+										<valueKey>{key}</valueKey>
+										<defaultValue>{valueDefault}</defaultValue>
+									</li>
 									<li Class="XmlExtensions.Setting.Numeric">
 										<decimals>2</decimals>
 										<percent>true</percent>

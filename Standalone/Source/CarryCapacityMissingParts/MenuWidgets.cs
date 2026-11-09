@@ -86,11 +86,11 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float BoxSize = 24f;
         private const float RowHeight = 22f;
         private const float TextLeft = 30f;
-        private const float OffsetX = 12f;
-        private const float OffsetY = -4f;
+        private const float BoxPadRight = 25f;
 
         public string enabledLabel = "Disable all";
         public string disabledLabel = "Enable all";
+        public string unit;
         public List<string> keys = new List<string>();
 
         protected override float CalculateHeight(float width)
@@ -103,13 +103,17 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             string modId = MissingPartsBootstrap.ModId;
             bool anyOn = keys.Any(k => IsOn(modId, k));
             bool value = anyOn;
-            float x = inRect.x + OffsetX;
-            float y = inRect.y + OffsetY;
-            Widgets.Checkbox(new Vector2(x, y), ref value, BoxSize);
+            Widgets.CheckboxLabeled(new Rect(inRect.x, inRect.y, BoxSize, inRect.height), "", ref value);
             TextAnchor anchor = Text.Anchor;
             Text.Anchor = TextAnchor.MiddleLeft;
-            Rect labelRect = new Rect(x + TextLeft, y, inRect.xMax - x - TextLeft, BoxSize);
+            Rect labelRect = new Rect(inRect.x + TextLeft, inRect.y, inRect.width / 2f - TextLeft, inRect.height);
             Widgets.Label(labelRect, anyOn ? enabledLabel : disabledLabel);
+            string header = Header();
+            if (header != null)
+            {
+                Text.Anchor = TextAnchor.MiddleRight;
+                Widgets.Label(new Rect(inRect.x + inRect.width / 2f, inRect.y, inRect.width / 2f - BoxPadRight, inRect.height), header);
+            }
             Text.Anchor = anchor;
             if (Widgets.ButtonInvisible(labelRect))
             {
@@ -122,6 +126,19 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             foreach (string key in keys)
             {
                 SettingsManager.SetSetting(modId, key, value ? "True" : "False");
+            }
+        }
+
+        private string Header()
+        {
+            switch (unit)
+            {
+                case "kg":
+                    return "Extra carry capacity in kg";
+                case "pct":
+                    return "Extra carry capacity in % of base";
+                default:
+                    return null;
             }
         }
 

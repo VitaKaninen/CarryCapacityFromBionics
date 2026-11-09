@@ -77,6 +77,10 @@ rows ON.
 - Approved comments added. Animal rows for shared parts (peg leg etc.) replace the human kg on
   animals; full sheet block (rows 322–343) given to the user.
 
+- Round 11: user tested prosthetics in game (fine). Sheet rows 322–344 checked; menu reordered to
+  them; section toggle back to row-checkbox position with the unit header on its row; animal picker +
+  box hover added. Not seen in game.
+
 ## Next steps
 1. User tests rounds 4–10 in game (incl. a pack animal with ADSAP2 parts); fix what they report.
 2. Sync ADSAP2 defaults to the sheet once the user revises it.

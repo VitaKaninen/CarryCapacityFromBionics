@@ -7,6 +7,87 @@
 			<li>ADSAP2</li>
 		</arguments>
 	</Operation>
+	<Operation Class="XmlExtensions.PatchOperationReplace">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_ADSAP2_All"]/unit</xpath>
+		<value>
+			<unit>pct</unit>
+		</value>
+	</Operation>
+	<Operation Class="XmlExtensions.PatchOperationInsert">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_ADSAP2_All"]</xpath>
+		<order>Prepend</order>
+		<value>
+			<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_AnimalPicker">
+				<tooltip>Pick a pack animal. Hover a number box below to see what that value means in kg for this animal.</tooltip>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenHand</li>
+			<li>ADSAPWoodenHand</li>
+			<li>Wooden Hand</li>
+			<li>true</li>
+			<li>-2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>HookHand</li>
+			<li>ADSAPHookHand</li>
+			<li>Hook Hand</li>
+			<li>true</li>
+			<li>-2</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenPawAnimal</li>
+			<li>ADSAPWoodenPawAnimal</li>
+			<li>Wooden Paw</li>
+			<li>true</li>
+			<li>-2.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenHoofAnimal</li>
+			<li>ADSAPWoodenHoofAnimal</li>
+			<li>Wooden Hoof</li>
+			<li>true</li>
+			<li>-1.5</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>WoodenFoot</li>
+			<li>ADSAPWoodenFoot</li>
+			<li>Wooden Foot</li>
+			<li>true</li>
+			<li>-1.25</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>PegLeg</li>
+			<li>ADSAPPegLeg</li>
+			<li>Peg Leg</li>
+			<li>true</li>
+			<li>-8</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_AnimalImplant</patchName>
 		<arguments>
@@ -142,66 +223,11 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_AnimalImplant</patchName>
 		<arguments>
-			<li>WoodenPawAnimal</li>
-			<li>ADSAPWoodenPawAnimal</li>
-			<li>Wooden Paw</li>
-			<li>true</li>
-			<li>-2.5</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>WoodenHoofAnimal</li>
-			<li>ADSAPWoodenHoofAnimal</li>
-			<li>Wooden Hoof</li>
-			<li>true</li>
-			<li>-1.5</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>WoodenHand</li>
-			<li>ADSAPWoodenHand</li>
-			<li>Wooden Hand</li>
-			<li>true</li>
-			<li>-2</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>HookHand</li>
-			<li>ADSAPHookHand</li>
-			<li>Hook Hand</li>
-			<li>true</li>
-			<li>-2</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>WoodenFoot</li>
-			<li>ADSAPWoodenFoot</li>
-			<li>Wooden Foot</li>
-			<li>true</li>
-			<li>-1.25</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>PegLeg</li>
-			<li>ADSAPPegLeg</li>
-			<li>Peg Leg</li>
-			<li>true</li>
-			<li>-8</li>
+			<li>PowerClaw</li>
+			<li>ADSAPPowerClaw</li>
+			<li>Power Claw</li>
+			<li>false</li>
+			<li>0</li>
 			<li>ADSAP2</li>
 		</arguments>
 	</Operation>
@@ -307,17 +333,6 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_AnimalImplant</patchName>
 		<arguments>
-			<li>BionicInternalSupportAnimal</li>
-			<li>ADSAPBionicInternalSupportAnimal</li>
-			<li>Bionic Internal Support</li>
-			<li>true</li>
-			<li>6</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
 			<li>BionicForearmAnimal</li>
 			<li>ADSAPBionicForearmAnimal</li>
 			<li>Bionic Forearm</li>
@@ -353,9 +368,20 @@
 		<arguments>
 			<li>BionicTremorLegAnimal</li>
 			<li>ADSAPBionicTremorLegAnimal</li>
-			<li>Bionic Tremor Leg</li>
+			<li>Tremor Leg</li>
 			<li>true</li>
 			<li>50</li>
+			<li>ADSAP2</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicInternalSupportAnimal</li>
+			<li>ADSAPBionicInternalSupportAnimal</li>
+			<li>Bionic Internal Support</li>
+			<li>true</li>
+			<li>6</li>
 			<li>ADSAP2</li>
 		</arguments>
 	</Operation>
@@ -367,17 +393,6 @@
 			<li>Bionic Spine</li>
 			<li>true</li>
 			<li>40</li>
-			<li>ADSAP2</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>PowerClaw</li>
-			<li>ADSAPPowerClaw</li>
-			<li>Power Claw</li>
-			<li>false</li>
-			<li>0</li>
 			<li>ADSAP2</li>
 		</arguments>
 	</Operation>

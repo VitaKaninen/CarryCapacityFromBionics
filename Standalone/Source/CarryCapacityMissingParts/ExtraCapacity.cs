@@ -199,7 +199,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             return kg.ToString("0.##", CultureInfo.InvariantCulture) + " kg";
         }
 
-        private static float BaseKg(ThingDef def)
+        internal static float BaseKg(ThingDef def)
         {
             float bodySize = def.race.baseBodySize;
             LifeStageAge adult = def.race.lifeStageAges?.LastOrDefault();
@@ -210,7 +210,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             return bodySize * MassUtility.MassCapacityPerBodySize;
         }
 
-        private static List<ThingDef> PackAnimals()
+        internal static List<ThingDef> PackAnimals()
         {
             if (packAnimals == null)
             {

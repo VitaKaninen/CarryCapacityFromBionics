@@ -51,6 +51,9 @@
   that hediff's own offset on the stat, so animals never get a human kg value. Needed because
   ADSAP2 installs shared hediffs on animals (vanilla PegLeg/WoodenFoot/WoodenHand/PowerClaw,
   EPOE-Forked HookHand), which have their own animal rows; humans are untouched.
+  Menu order = the sheet's row order. Section top: `Setting_AnimalPicker` (key `ADSAPExampleAnimal`,
+  default Muffalo, pack animals only); each % box has a 0-height `Setting_AnimalTip` hover showing kg
+  for that animal.
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

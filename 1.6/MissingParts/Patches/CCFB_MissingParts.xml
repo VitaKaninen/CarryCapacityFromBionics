@@ -61,6 +61,7 @@
 							<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_SectionToggle">
 								<tag>CCFB_MissingParts_All</tag>
 								<tooltip>Turns every missing body part penalty on or off at once.</tooltip>
+								<unit>reduce</unit>
 								<keys/>
 							</li>
 							<li Class="XmlExtensions.Setting.SplitColumn">

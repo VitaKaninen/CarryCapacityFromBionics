@@ -73,7 +73,7 @@ RimWorld has **two separate carrying systems** — keep them straight:
 - **`CCFB_Section`** — creates a labeled menu section: title, then the `SplitColumn` tagged
   `CCFB_<section>`. Always expanded, no master checkbox (user 2026-11-08: a hide box looked like
   a disable box; old saved `ToggleSection<tag>` values are ignored). Args: `label | tag`.
-  Its first row is `Setting_SectionToggle` (C#, tag `CCFB_<section>_All`; its `unit` kg|pct also draws
+  Its first row is `Setting_SectionToggle` (C#, tag `CCFB_<section>_All`; its `unit` kg|pct|reduce also draws
   the number column's header on the same row, so rows carry no unit text): ticked ("Disable all")
   while any row toggle is on, else unticked ("Enable all"); clicking sets every `Toggle<key>`
   to the new state. No memory of earlier states (user: it did nothing for default-off rows). It

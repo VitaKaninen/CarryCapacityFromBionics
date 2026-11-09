@@ -137,6 +137,8 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
                     return "Extra carry capacity in kg";
                 case "pct":
                     return "Extra carry capacity in % of base";
+                case "reduce":
+                    return "Reduce carry capacity by";
                 default:
                     return null;
             }

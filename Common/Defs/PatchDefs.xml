@@ -789,12 +789,7 @@
 									<li Class="XmlExtensions.Setting.SplitColumn">
 										<split>0.79</split>
 										<anchor>Middle</anchor>
-										<leftCol>
-											<li Class="XmlExtensions.Setting.Text">
-												<text>Reduce carry capacity by</text>
-												<anchor>Right</anchor>
-											</li>
-										</leftCol>
+										<leftCol/>
 										<rightCol>
 											<li Class="XmlExtensions.Setting.Numeric">
 												<decimals>1</decimals>

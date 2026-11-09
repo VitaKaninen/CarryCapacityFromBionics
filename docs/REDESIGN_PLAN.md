@@ -20,8 +20,8 @@ options, right = data (user):
   left | control right; checkboxes `padRight 25` to line up with % boxes) + a Tiny gray one-line
   explanation (inline rich-text color, 1.5-safe). One "Reset these settings" button resets the
   box incl. the mode → Easy (user). The footer "Reset all settings" shows only in Advanced (user).
-- Hover hint "(hover for details)": Easy = gray right-anchored line above the data
-  (`CCFB_HoverHint`); Advanced = right end of the "Pack animals:" header (`advancedHint`, ADSAP2).
+- Hover hint "(hover for details)": Easy = `Setting_SimpleExamples.hint`, gray right-aligned line
+  under its "Implant examples:" header (6 px gap; user); Advanced = right end of the "Pack animals:" header (`advancedHint`, ADSAP2).
 - All data widgets share one width (`DataColumn.Width`: max desired width of the previous frame)
   so their left edges line up (user).
 - Data: `Setting_SimpleExamples`, `Setting_CapacityExamples` (fields `header`, `percentKey`, `hoverAllPackAnimals`; label left,

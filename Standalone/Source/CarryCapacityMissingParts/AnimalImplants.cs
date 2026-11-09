@@ -48,6 +48,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         public const string DefaultAnimal = "Muffalo";
         private const float RowHeight = 28f;
         private const float ButtonWidth = 240f;
+        private const float LabelGap = 8f;
 
         public string label = "Example animal:";
 
@@ -69,13 +70,13 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         protected override void DrawSettingContents(Rect inRect)
         {
-            TextAnchor anchor = Text.Anchor;
-            Text.Anchor = TextAnchor.MiddleLeft;
-            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width / 2f, inRect.height), label);
-            Text.Anchor = anchor;
             ThingDef selected = Selected();
             string text = selected == null ? "-" : selected.LabelCap + " (" + Kg(Setting_CapacityExamples.BaseKg(selected)) + ")";
             Rect button = new Rect(inRect.xMax - ButtonWidth, inRect.y, ButtonWidth, inRect.height);
+            TextAnchor anchor = Text.Anchor;
+            Text.Anchor = TextAnchor.MiddleRight;
+            Widgets.Label(new Rect(inRect.x, inRect.y, button.x - LabelGap - inRect.x, inRect.height), label);
+            Text.Anchor = anchor;
             if (Widgets.ButtonText(button, text))
             {
                 List<FloatMenuOption> options = Setting_CapacityExamples.PackAnimals()

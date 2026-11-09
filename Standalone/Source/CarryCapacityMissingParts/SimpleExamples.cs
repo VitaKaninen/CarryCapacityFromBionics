@@ -33,8 +33,10 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
         private const float GroupGap = 8f;
         private const float LabelGap = 12f;
         private const float HumanBaseKg = 35f;
+        private const float HintGap = 6f;
 
         public string header;
+        public string hint;
         public List<SimpleRow> rows = new List<SimpleRow>();
         public List<SimpleGroup> groups = new List<SimpleGroup>();
 
@@ -54,7 +56,7 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         protected override float CalculateHeight(float width)
         {
-            float height = string.IsNullOrEmpty(header) ? 0f : LineHeight;
+            float height = (string.IsNullOrEmpty(header) ? 0f : LineHeight) + (string.IsNullOrEmpty(hint) ? 0f : HintGap + LineHeight);
             foreach (Block block in BuildBlocks())
             {
                 height += BlockHeight(block) + GroupGap;
@@ -84,6 +86,15 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
             {
                 Text.Anchor = TextAnchor.MiddleLeft;
                 Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), header);
+                y += LineHeight;
+            }
+            if (!string.IsNullOrEmpty(hint))
+            {
+                y += HintGap;
+                Text.Anchor = TextAnchor.MiddleRight;
+                GUI.color = new Color(0.6f, 0.6f, 0.6f);
+                Widgets.Label(new Rect(inRect.x, y, inRect.width, LineHeight), hint);
+                GUI.color = color;
                 y += LineHeight;
             }
             int index = 0;

@@ -42,11 +42,11 @@ options, right = data (user):
   `StatPart_ExtraCapacity` adds pct × body size × 35 (humanlike non-babies; animals only if
   `packAnimal`), injected only if a value ≠ 0. `Setting_CapacityExamples` field is `percentKey`
   (NOT `key`, which SettingContainer already has); non-pack races are omitted (user).
-- **ADSAP2 only** (user): `1.6/ExtraCapacity_Animals` (LoadFolders `IfModActive` ADSAP2, above
+- **Animal mods only** (user; ADSAP2 or YAPE - Animals): `1.6/ExtraCapacity_Animals` (LoadFolders `IfModActive` either, above
   SimpleMode so it applies after) appends the pack-animals row after `CCFB_ExtraHumanRow` and
   swaps the humans explanation (`CCFB_ExtraHumanDesc`) (which
   otherwise mentions ADSAP2). C# applies `ExtraCapacityAnimal` only if
-  ADSAP2 is active (packageId or `_steam` form).
+  one of them is active (packageId or `_steam` form).
 
 ### Easy vs advanced at patch time (`CCFB_ImplantCore` → `CCFB_ModeOffset`)
 - Negative rows (prosthetic penalties): Easy applies them only with `SimplePenalties` (main box);

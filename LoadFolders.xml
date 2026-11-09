@@ -60,11 +60,12 @@
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
 		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/Mods/ADSAP2</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModAnimals">1.6/Mods/YAPE_Animals</li>
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
 		<li IfModActive="Ludeon.RimWorld.Royalty">1.6/Ludeon/Royalty</li>
 		<li>1.6/Ludeon/Core</li>
 		<li>1.6/MissingParts</li>
-		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/ExtraCapacity_Animals</li>
+		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2,MrKociak.YetAnotherProstheticExpansionModAnimals">1.6/ExtraCapacity_Animals</li>
 		<li>1.6/SimpleMode</li>
 		<li IfModNotActive="OskarPotocki.VanillaFactionsExpanded.Core">Standalone</li>
 		<li>Common</li>
@@ -140,6 +141,7 @@
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="NightKosh.AdvancedArchotechArm">1.6/Mods/AdvancedArchotechArm</li>
 		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/Mods/ADSAP2</li>
+		<li IfModActive="MrKociak.YetAnotherProstheticExpansionModAnimals">1.6/Mods/YAPE_Animals</li>
 
 		<!-- Core + DLC patches -->
 		<li IfModActive="Ludeon.RimWorld.Anomaly">1.6/Ludeon/Anomaly</li>
@@ -150,7 +152,7 @@
 		     in Common/Assemblies, not XML patches). Below Core so it applies first overall:
 		     "Missing body parts" sits above Core Implants. -->
 		<li>1.6/MissingParts</li>
-		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2">1.6/ExtraCapacity_Animals</li>
+		<li IfModActive="SamBucher.ADogSaidAnimalProsthetics2,MrKociak.YetAnotherProstheticExpansionModAnimals">1.6/ExtraCapacity_Animals</li>
 		<li>1.6/SimpleMode</li>
 
 		<!-- Standalone stat machinery (assembly + StatDef), only when VEF is NOT active.

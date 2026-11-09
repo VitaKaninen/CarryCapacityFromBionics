@@ -16,7 +16,9 @@ namespace Vita.CarryCapacityFromBionics.MissingParts
 
         public static bool AnimalProstheticsActive =>
             ModsConfig.IsActive("SamBucher.ADogSaidAnimalProsthetics2")
-            || ModsConfig.IsActive("SamBucher.ADogSaidAnimalProsthetics2_steam");
+            || ModsConfig.IsActive("SamBucher.ADogSaidAnimalProsthetics2_steam")
+            || ModsConfig.IsActive("MrKociak.YetAnotherProstheticExpansionModAnimals")
+            || ModsConfig.IsActive("MrKociak.YetAnotherProstheticExpansionModAnimals_steam");
 
         public static float humanFrac;
         public static float animalFrac;

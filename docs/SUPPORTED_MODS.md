@@ -65,9 +65,15 @@
   Menu order = the sheet's row order. Section top: `Setting_AnimalPicker` (key `ADSAPExampleAnimal`,
   default Muffalo, pack animals only); each % box has a 0-height `Setting_AnimalTip` hover showing kg
   for that animal.
+- YAPE - Animals — `MrKociak.YetAnotherProstheticExpansionModAnimals` (ws 2808876573), folder
+  `1.6/Mods/YAPE_Animals`, keys `YAPEA*`, same `CCFB_AnimalImplant` + picker setup as ADSAP2.
+  Rows: its 5 `BIE_Animal<Tier>_Leg` limbs (installs on Leg/InsectLeg/Shoulder, 20% per leg) plus
+  4 human spines it lets animals take (vanilla BionicSpine, YAPE Adv./Ultratech, SoSArchotechSpine),
+  which get animal rows so animals don't get the human kg. Jaws/tails/noses/ears skipped (no
+  carrying). No native carry stats. Its DLL only toggles an Alpha Implants patch.
 
 ## Planned future support (per VitaKaninen, 2026-06)
-- YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
+- (built) YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —
   deferred animal wave (animal mass capacity = caravan capacity, worth doing; needs a per-leg
   weight convention for quadrupeds first).
   ADSAP2 scan (2026-11-08): packageId `SamBucher.ADogSaidAnimalProsthetics2`, supports 1.4–1.6

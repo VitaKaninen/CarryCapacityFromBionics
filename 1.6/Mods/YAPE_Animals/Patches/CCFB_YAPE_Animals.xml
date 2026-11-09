@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Yet Another Prosthetic Expansion - Animals</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.PatchOperationReplace">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_YAPEA_All"]/unit</xpath>
+		<value>
+			<unit>pct</unit>
+		</value>
+	</Operation>
+	<Operation Class="XmlExtensions.PatchOperationInsert">
+		<xpath>Defs/XmlExtensions.SettingsMenuDef[modId="Vita.CarryCapacityFromBionics"]/settings//li[tag="CCFB_YAPEA_All"]</xpath>
+		<order>Prepend</order>
+		<value>
+			<li Class="Vita.CarryCapacityFromBionics.MissingParts.Setting_AnimalPicker">
+				<tooltip>Pick a pack animal. Hover a number box below to see what that value means in kg for this animal.</tooltip>
+			</li>
+		</value>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalProsthetic_Leg</li>
+			<li>YAPEABIEAnimalProstheticLeg</li>
+			<li>Prosthetic Animal Limb</li>
+			<li>true</li>
+			<li>-3</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalBionic_Leg</li>
+			<li>YAPEABIEAnimalBionicLeg</li>
+			<li>Bionic Animal Limb</li>
+			<li>true</li>
+			<li>50</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalAdvancedBionic_Leg</li>
+			<li>YAPEABIEAnimalAdvancedBionicLeg</li>
+			<li>Adv. Bionic Animal Limb</li>
+			<li>true</li>
+			<li>90</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalUltratech_Leg</li>
+			<li>YAPEABIEAnimalUltratechLeg</li>
+			<li>Ultratech Animal Limb</li>
+			<li>true</li>
+			<li>105</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalArchotech_Leg</li>
+			<li>YAPEABIEAnimalArchotechLeg</li>
+			<li>Archotech Animal Limb</li>
+			<li>true</li>
+			<li>120</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BionicSpine</li>
+			<li>YAPEABionicSpine</li>
+			<li>Bionic Spine</li>
+			<li>true</li>
+			<li>40</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicSpine</li>
+			<li>YAPEAAdvancedBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
+			<li>true</li>
+			<li>90</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_UltratechBionicSpine</li>
+			<li>YAPEAUltratechBionicSpine</li>
+			<li>Ultratech Bionic Spine</li>
+			<li>true</li>
+			<li>105</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>SoSArchotechSpine</li>
+			<li>YAPEASoSArchotechSpine</li>
+			<li>Archotech Spine</li>
+			<li>true</li>
+			<li>120</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+</Patch>

@@ -308,7 +308,7 @@
 									</li>
 									<li Class="XmlExtensions.Setting.Text">
 										<tag>CCFB_ExtraHumanDesc</tag>
-										<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else. A Dog Said... Animal Prosthetics 2 adds a pack animal setting.&lt;/color&gt;</text>
+										<text>&lt;color=#9a9a9a&gt;Adds this share of every humanlike's base capacity (35 kg for an adult), on top of everything else. A Dog Said... Animal Prosthetics 2 or Yet Another Prosthetic Expansion - Animals adds a pack animal setting.&lt;/color&gt;</text>
 										<font>Tiny</font>
 										<padBelow>6</padBelow>
 									</li>

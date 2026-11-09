@@ -10,7 +10,6 @@ namespace Vita.CarryCapacityFromBionics
         {
             var harmony = new Harmony("Vita.CarryCapacityFromBionics");
             harmony.PatchAll(typeof(HarmonyPatches).Assembly);
-            Log.Message("[CarryCapacityFromBionics Debug] Harmony patches applied.");
         }
     }
 }

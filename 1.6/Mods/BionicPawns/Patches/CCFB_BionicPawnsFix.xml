@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech" and normalize-space(.)="FSFAdvBionicAcidJaw" and .!="FSFAdvBionicAcidJaw"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">FSFAdvBionicAcidJaw</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech" and normalize-space(.)="FSFAdvBionicFlameJaw" and .!="FSFAdvBionicFlameJaw"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">FSFAdvBionicFlameJaw</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFBionicDrillArm" and .!="FSFBionicDrillArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty">FSFBionicDrillArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFBionicFieldArm" and .!="FSFBionicFieldArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.VanillaBionicsExpansion, Ludeon.RimWorld.Royalty">FSFBionicFieldArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFBionicDrillArm" and .!="FSFBionicDrillArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">FSFBionicDrillArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFBionicFieldArm" and .!="FSFBionicFieldArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">FSFBionicFieldArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFAdvBionicDrillArm" and .!="FSFAdvBionicDrillArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">FSFAdvBionicDrillArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty" and normalize-space(.)="FSFAdvBionicFieldArm" and .!="FSFAdvBionicFieldArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Royalty">FSFAdvBionicFieldArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech" and normalize-space(.)="FSFAdvBionicMedicArm" and .!="FSFAdvBionicMedicArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">FSFAdvBionicMedicArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech" and normalize-space(.)="FSFArchotechMedicArm" and .!="FSFArchotechMedicArm"]</xpath>
+				<value>
+					<li MayRequire="FrozenSnowFox.AdvancedBionicsExpansion, Ludeon.RimWorld.Biotech">FSFArchotechMedicArm</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, MrKociak.YetAnotherProstheticExpansionModCore">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="MrKociak.YetAnotherProstheticExpansionModCore" and normalize-space(.)="BIE_UltratechBionicHeart" and .!="BIE_UltratechBionicHeart"]</xpath>
+				<value>
+					<li MayRequire="MrKociak.YetAnotherProstheticExpansionModCore">BIE_UltratechBionicHeart</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, MrKociak.YetAnotherProstheticExpansionModCore">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="MrKociak.YetAnotherProstheticExpansionModCore" and normalize-space(.)="BIE_AdvancedBionicStomach" and .!="BIE_AdvancedBionicStomach"]</xpath>
+				<value>
+					<li MayRequire="MrKociak.YetAnotherProstheticExpansionModCore">BIE_AdvancedBionicStomach</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, MrKociak.YetAnotherProstheticExpansionModCore">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="MrKociak.YetAnotherProstheticExpansionModCore" and normalize-space(.)="BIE_AdvancedBionicKidney" and .!="BIE_AdvancedBionicKidney"]</xpath>
+				<value>
+					<li MayRequire="MrKociak.YetAnotherProstheticExpansionModCore">BIE_AdvancedBionicKidney</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, MrKociak.YetAnotherProstheticExpansionModCore">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="MrKociak.YetAnotherProstheticExpansionModCore" and normalize-space(.)="BIE_UltratechBionicKidney" and .!="BIE_UltratechBionicKidney"]</xpath>
+				<value>
+					<li MayRequire="MrKociak.YetAnotherProstheticExpansionModCore">BIE_UltratechBionicKidney</li>
+				</value>
+			</li>
+			<li Class="PatchOperationReplace" MayRequire="Xercaine.Spacer.Bionics, MrKociak.YetAnotherProstheticExpansionModCore">
+				<success>Always</success>
+				<xpath>Defs/HediffDef[defName="XER_ArtificialBody" or defName="XER_ArchotechBody"]//options/li[@MayRequire="MrKociak.YetAnotherProstheticExpansionModCore" and normalize-space(.)="BIE_UltratechBionicLiver" and .!="BIE_UltratechBionicLiver"]</xpath>
+				<value>
+					<li MayRequire="MrKociak.YetAnotherProstheticExpansionModCore">BIE_UltratechBionicLiver</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+</Patch>

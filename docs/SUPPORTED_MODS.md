@@ -36,6 +36,11 @@
   name-gated compat patches ran, and the HediffDef guard skips them otherwise (needs our
   `loadAfter` on it). Muscles are one torso implant (body-wide Moving/Manipulation) valued
   from capMods; spine/skeletons are eff 1.0 → 0-value rows, default off. Organs/senses skipped.
+  `CCFB_BionicPawnsFix.xml` repairs Bionic Pawns' own bug: 16 `options/li` in its
+  `Defs/Hediffs_Local_Misc.xml` have the defName on a new line, and RimWorld uses the raw
+  InnerText as the name → "Could not resolve cross-reference" with FSF ABE/VBE/YAPE active.
+  One Replace per (name, MayRequire), gated on Bionic Pawns + that entry's own mods; the xpath
+  only matches a still-wrapped entry and `success Always` keeps it silent once the author fixes it.
 - NeoP (Neolithic Prosthetics) — `Uga.Booga`, plus suffixed folders mirroring its conditional
   loading: `NeoP_Odyssey` (Odyssey DLC), `NeoP_VAE` (Vanilla Animals Expanded),
   `NeoP_VAE_NoOdyssey` (VAE + Odyssey ABSENT), `NeoP_AlphaAnimals`. Variant defs share keys

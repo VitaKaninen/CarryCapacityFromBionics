@@ -47,9 +47,31 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_AnimalImplant</patchName>
 		<arguments>
+			<li>BionicSpine</li>
+			<li>YAPEABionicSpine</li>
+			<li>Bionic Spine</li>
+			<li>true</li>
+			<li>40</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
 			<li>BIE_AnimalAdvancedBionic_Leg</li>
 			<li>YAPEABIEAnimalAdvancedBionicLeg</li>
 			<li>Adv. Bionic Animal Limb</li>
+			<li>true</li>
+			<li>90</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AdvancedBionicSpine</li>
+			<li>YAPEAAdvancedBionicSpine</li>
+			<li>Adv. Bionic Spine</li>
 			<li>true</li>
 			<li>90</li>
 			<li>YAPEA</li>
@@ -69,44 +91,22 @@
 	<Operation Class="XmlExtensions.ApplyPatch">
 		<patchName>CCFB_AnimalImplant</patchName>
 		<arguments>
-			<li>BIE_AnimalArchotech_Leg</li>
-			<li>YAPEABIEAnimalArchotechLeg</li>
-			<li>Archotech Animal Limb</li>
-			<li>true</li>
-			<li>120</li>
-			<li>YAPEA</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>BionicSpine</li>
-			<li>YAPEABionicSpine</li>
-			<li>Bionic Spine</li>
-			<li>true</li>
-			<li>40</li>
-			<li>YAPEA</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
-			<li>BIE_AdvancedBionicSpine</li>
-			<li>YAPEAAdvancedBionicSpine</li>
-			<li>Adv. Bionic Spine</li>
-			<li>true</li>
-			<li>90</li>
-			<li>YAPEA</li>
-		</arguments>
-	</Operation>
-	<Operation Class="XmlExtensions.ApplyPatch">
-		<patchName>CCFB_AnimalImplant</patchName>
-		<arguments>
 			<li>BIE_UltratechBionicSpine</li>
 			<li>YAPEAUltratechBionicSpine</li>
 			<li>Ultratech Bionic Spine</li>
 			<li>true</li>
 			<li>105</li>
+			<li>YAPEA</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_AnimalImplant</patchName>
+		<arguments>
+			<li>BIE_AnimalArchotech_Leg</li>
+			<li>YAPEABIEAnimalArchotechLeg</li>
+			<li>Archotech Animal Limb</li>
+			<li>true</li>
+			<li>120</li>
 			<li>YAPEA</li>
 		</arguments>
 	</Operation>

@@ -71,6 +71,8 @@
   4 human spines it lets animals take (vanilla BionicSpine, YAPE Adv./Ultratech, SoSArchotechSpine),
   which get animal rows so animals don't get the human kg. Jaws/tails/noses/ears skipped (no
   carrying). No native carry stats. Its DLL only toggles an Alpha Implants patch.
+  Values: sheet section "YAPE - Animals" (rows 332–341, ×100); menu order = sheet order. With SoS2,
+  SoSArchotechSpine is SoS2's (eff 1.25 → 75%), but the default stays 120 (sheet note only).
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - (built) YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

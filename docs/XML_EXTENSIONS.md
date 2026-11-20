@@ -34,7 +34,11 @@ workshop 2574315206, folders `1.5/`–`1.7/`).
 - **A changed default reaches only players who never saved.** Every keyed setting's
   `Initialize` → `SetDefaultValue` → `RegisterKey` writes the default into
   `allSettings.dataDict`, which is saved whole; `OptionalPatch`/`UseSetting` do the same at
-  patch time. Afterwards the stored value wins. To force a new default on everyone, use a new key.
+  patch time, and XE calls `WriteSettings()` at every startup (`XmlExtensions.cs:91`), so a default
+  is persisted on the first launch even if the menu is never opened. Afterwards the stored value
+  wins. To force a new default on everyone, use a new key. A default that depends on another mod
+  (Fray with/without FSF ABE) therefore never switches on an existing install with the same key
+  (seen in game 2026-11-20).
 - XE draws every setting each frame (no culling), so a per-frame hook in any setting runs.
 - XE `PatchOperationInsert` (Prepend) reverses multi-node values; `PatchOperationReplace` keeps
   their order.

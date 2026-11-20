@@ -43,6 +43,7 @@ Optional: penalties for prosthetics, and for missing or injured body parts.
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882712052]EPOE 1.6 Update (Expanded Prosthetics and Organ Engineering)[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1949064302]EPOE-Forked: Expanded Prosthetics and Organ Engineering - Forked[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2008970276]EPOE-Forked: Royalty DLC expansion[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3466051591]Fray of the Fog[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2006925330]FSF Advanced Bionics Expansion[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1419675146]FSF Vanilla Bionics Expansion[/url]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3420999158]Industrial Prosthetics[/url]
@@ -102,5 +103,6 @@ If you find any bugs, have some suggestions, or would like to see other mods sup
 		<li>SamBucher.ADogSaidAnimalProsthetics2</li>
 		<li>MrKociak.YetAnotherProstheticExpansionModAnimals</li>
 		<li>MelonDove.WolfeinRace</li>
+		<li>notdvd.fraymod</li>
 	</loadAfter>
 </ModMetaData>

@@ -52,6 +52,8 @@
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE_Anomaly</li>
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
+		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/Fray_FSFABE</li>
+		<li IfModActive="notdvd.fraymod" IfModNotActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/Fray</li>
 		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
 		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
 		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
@@ -130,6 +132,8 @@
 		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Anomaly">1.6/Mods/FSFABE_Anomaly</li>
 		<li IfModActiveAll="FrozenSnowFox.AdvancedBionicsExpansion,Ludeon.RimWorld.Royalty">1.6/Mods/FSFABE_Royalty</li>
 		<li IfModActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/FSFABE</li>
+		<li IfModActiveAll="notdvd.fraymod,FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/Fray_FSFABE</li>
+		<li IfModActive="notdvd.fraymod" IfModNotActive="FrozenSnowFox.AdvancedBionicsExpansion">1.6/Mods/Fray</li>
 		<li IfModActive="vat.epoeforked">1.6/Mods/EPOEForked</li>
 		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
 		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>

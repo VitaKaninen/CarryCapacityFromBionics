@@ -79,6 +79,17 @@
   Ancot Library's `Ancot_ExtraCaravanCarryCapacity` (+6 / +3), which Ancot adds via a Harmony
   postfix on `MassUtility.Capacity` (halved when VEF is active); a CCFB row would stack on it, not
   replace it. Ears/tails: no carrying.
+- Fray of the Fog — `notdvd.fraymod` (ws 3466051591; requires VEF). Folders `1.6/Mods/Fray` (FSF ABE
+  absent) and `Fray_FSFABE` (ABE active: Fray's own ABE patch raises eff 1.45/1.55 → 1.90/2.10,
+  spine 1.30/1.35 → 1.45/1.55), same `Fray*` keys, only the defaults differ — so a player's untouched
+  value follows ABE being added mid-save. Base and `_Upgraded` (infused after 30 days) defs are
+  separate rows; user set the values (math rounded so every infused row beats its base):
+  arm 20/25 (ABE 30/35), leg 35/40 (50/55), spine 25/30 (30/35; Biotech-only defs, guard skips).
+  Legs natively grant VEF_MassCarryCapacity 20 → `CCFB_ImplantNativeVEF` (override). Arm/spine
+  native `CarryingCapacity` is in-hands only → normal rows. 1.5 can't AND two mods, so there
+  `Fray_FSFABE` is gated on ABE alone and its `CCFB_Section` call sits in a
+  `PatchOperationConditional` on Fray's arm def (no empty section without Fray). Skipped: organs,
+  eyes, jaw, psymind; psyskin gland only lowers Moving.
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - (built) YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

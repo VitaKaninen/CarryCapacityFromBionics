@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="dvd_BionicArmFray"]</xpath>
+		<match Class="XmlExtensions.ApplyPatch">
+			<patchName>CCFB_Section</patchName>
+			<arguments>
+				<li>Fray of the Fog</li>
+				<li>Fray</li>
+			</arguments>
+		</match>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>dvd_BionicArmFray</li>
+			<li>FrayBionicArm</li>
+			<li>Fraytech Arm</li>
+			<li>true</li>
+			<li>30</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>dvd_BionicArmFray_Upgraded</li>
+			<li>FrayBionicArmInfused</li>
+			<li>Infused Fraytech Arm</li>
+			<li>true</li>
+			<li>35</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantNativeVEF</patchName>
+		<arguments>
+			<li>dvd_BionicLegFray</li>
+			<li>FrayBionicLeg</li>
+			<li>Fraytech Leg</li>
+			<li>true</li>
+			<li>50</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_ImplantNativeVEF</patchName>
+		<arguments>
+			<li>dvd_BionicLegFray_Upgraded</li>
+			<li>FrayBionicLegInfused</li>
+			<li>Infused Fraytech Leg</li>
+			<li>true</li>
+			<li>55</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>dvd_BionicSpineFray</li>
+			<li>FrayBionicSpine</li>
+			<li>Fraytech Spine</li>
+			<li>true</li>
+			<li>30</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>dvd_BionicSpineFray_Upgraded</li>
+			<li>FrayBionicSpineInfused</li>
+			<li>Infused Fraytech Spine</li>
+			<li>true</li>
+			<li>35</li>
+			<li>Fray</li>
+		</arguments>
+	</Operation>
+</Patch>

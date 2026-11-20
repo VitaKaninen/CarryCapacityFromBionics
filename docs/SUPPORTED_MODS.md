@@ -81,8 +81,9 @@
   replace it. Ears/tails: no carrying.
 - Fray of the Fog — `notdvd.fraymod` (ws 3466051591; requires VEF). Folders `1.6/Mods/Fray` (FSF ABE
   absent) and `Fray_FSFABE` (ABE active: Fray's own ABE patch raises eff 1.45/1.55 → 1.90/2.10,
-  spine 1.30/1.35 → 1.45/1.55), same `Fray*` keys, only the defaults differ — so a player's untouched
-  value follows ABE being added mid-save. Base and `_Upgraded` (infused after 30 days) defs are
+  spine 1.30/1.35 → 1.45/1.55). The ABE folder uses its own keys (`Fray*ABE`): XE stores every
+  default at first launch, so a shared key would keep the non-ABE value forever (see
+  `XML_EXTENSIONS.md`). A value a player edits in one set does not carry to the other. Base and `_Upgraded` (infused after 30 days) defs are
   separate rows; user set the values (math rounded so every infused row beats its base):
   arm 20/25 (ABE 30/35), leg 35/40 (50/55), spine 25/30 (30/35; Biotech-only defs, guard skips).
   Legs natively grant VEF_MassCarryCapacity 20 → `CCFB_ImplantNativeVEF` (override). Arm/spine

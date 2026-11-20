@@ -14,7 +14,7 @@
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
 			<li>dvd_BionicArmFray</li>
-			<li>FrayBionicArm</li>
+			<li>FrayBionicArmABE</li>
 			<li>Fraytech Arm</li>
 			<li>true</li>
 			<li>30</li>
@@ -25,7 +25,7 @@
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
 			<li>dvd_BionicArmFray_Upgraded</li>
-			<li>FrayBionicArmInfused</li>
+			<li>FrayBionicArmInfusedABE</li>
 			<li>Infused Fraytech Arm</li>
 			<li>true</li>
 			<li>35</li>
@@ -36,7 +36,7 @@
 		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>dvd_BionicLegFray</li>
-			<li>FrayBionicLeg</li>
+			<li>FrayBionicLegABE</li>
 			<li>Fraytech Leg</li>
 			<li>true</li>
 			<li>50</li>
@@ -47,7 +47,7 @@
 		<patchName>CCFB_ImplantNativeVEF</patchName>
 		<arguments>
 			<li>dvd_BionicLegFray_Upgraded</li>
-			<li>FrayBionicLegInfused</li>
+			<li>FrayBionicLegInfusedABE</li>
 			<li>Infused Fraytech Leg</li>
 			<li>true</li>
 			<li>55</li>
@@ -58,7 +58,7 @@
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
 			<li>dvd_BionicSpineFray</li>
-			<li>FrayBionicSpine</li>
+			<li>FrayBionicSpineABE</li>
 			<li>Fraytech Spine</li>
 			<li>true</li>
 			<li>30</li>
@@ -69,7 +69,7 @@
 		<patchName>CCFB_Implant</patchName>
 		<arguments>
 			<li>dvd_BionicSpineFray_Upgraded</li>
-			<li>FrayBionicSpineInfused</li>
+			<li>FrayBionicSpineInfusedABE</li>
 			<li>Infused Fraytech Spine</li>
 			<li>true</li>
 			<li>35</li>

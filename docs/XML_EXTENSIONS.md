@@ -31,7 +31,8 @@ workshop 2574315206, folders `1.5/`–`1.7/`).
 - A focused text field stays focused when the user clicks empty space; `Setting_UnfocusOnClick`
   (0 px, first setting in `SettingsMenu.xml`) calls `UI.UnfocusCurrentControl()` on every
   MouseDown, before any field draws, so a clicked field still takes focus. Must stay first.
-- **A changed default reaches only players who never saved.** Every keyed setting's
+- **XE saves defaults too, not only changed values; a changed default reaches only installs that
+  never launched with that key.** Every keyed setting's
   `Initialize` → `SetDefaultValue` → `RegisterKey` writes the default into
   `allSettings.dataDict`, which is saved whole; `OptionalPatch`/`UseSetting` do the same at
   patch time, and XE calls `WriteSettings()` at every startup (`XmlExtensions.cs:91`), so a default

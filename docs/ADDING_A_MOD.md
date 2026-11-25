@@ -44,6 +44,10 @@
    native `VEF_MassCarryCapacity` must NOT go through `CCFB_Implant` (double-dip in VEF
    games); use `CCFB_ImplantNativeVEF` in a `<ModShortName>_NativeVEF` folder (no VEF gating
    needed), with the author's own values as defaults.
+   **Check each hediff's abstract parents for `stages`**: patches run before inheritance, so
+   `CCFB_AddOffset_kg` sees none on the child and adds a second stage → "stages are not in order
+   of minSeverity" + the parent's stage effects lost. Give the child its own `<stages Inherit="False">`
+   copy of the parent's stage before the implant call (Beyond Our Reach :: Redux tenebral limbs).
 3. **Compute values** with the formula above; present the table (math vs proposed) for approval;
    update the Google Sheet.
 4. **Keys**: `<ModShortName><defName>` (strip `Left`/`Right` — L/R pairs share one key, the

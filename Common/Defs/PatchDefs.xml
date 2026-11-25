@@ -237,6 +237,32 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<XmlExtensions.PatchDef Name="CCFB_UtilityStageImplant" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>key</li>
+			<li>label</li>
+			<li>toggleDefault</li>
+			<li>valueDefault</li>
+			<li>section</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.ApplyPatch">
+				<patchName>CCFB_ImplantCore</patchName>
+				<arguments>
+					<li>{defName}</li>
+					<li>{key}</li>
+					<li>{label}</li>
+					<li>{toggleDefault}</li>
+					<li>{valueDefault}</li>
+					<li>{section}</li>
+					<li>PatchOperationAdd</li>
+					<li>kgUtilityStage</li>
+				</arguments>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
 	<XmlExtensions.PatchDef Name="CCFB_ImplantCore" Abstract="True">
 		<parameters>
 			<li>defName</li>
@@ -511,6 +537,26 @@
 		</apply>
 	</XmlExtensions.PatchDef>
 
+	<XmlExtensions.PatchDef Name="CCFB_RowValue_kgUtilityStage" Abstract="True">
+		<parameters>
+			<li>key</li>
+			<li>valueDefault</li>
+			<li>target</li>
+			<li>togglePrefix</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.ApplyPatch">
+				<patchName>CCFB_RowValue_kg</patchName>
+				<arguments>
+					<li>{key}</li>
+					<li>{valueDefault}</li>
+					<li>{target}</li>
+					<li>{togglePrefix}</li>
+				</arguments>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
 	<XmlExtensions.PatchDef Name="CCFB_RowValue_pct" Abstract="True">
 		<parameters>
 			<li>key</li>
@@ -673,6 +719,43 @@
 						</value>
 					</Operation>
 				</caseFalse>
+			</Operation>
+		</apply>
+	</XmlExtensions.PatchDef>
+
+	<XmlExtensions.PatchDef Name="CCFB_AddOffset_kgUtilityStage" Abstract="True">
+		<parameters>
+			<li>defName</li>
+			<li>value</li>
+			<li>vefOperation</li>
+		</parameters>
+		<apply>
+			<Operation Class="XmlExtensions.Conditional">
+				<xpath>Defs/HediffDef[defName="{defName}"]/stages/li[minSeverity="1.5"]/statOffsets</xpath>
+				<caseTrue>
+					<Operation Class="XmlExtensions.FindMod">
+						<mods>
+							<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+						</mods>
+						<packageId>true</packageId>
+						<caseTrue>
+							<Operation Class="XmlExtensions.PatchOperationAdd">
+								<xpath>Defs/HediffDef[defName="{defName}"]/stages/li[minSeverity="1.5"]/statOffsets</xpath>
+								<value>
+									<VEF_MassCarryCapacity>{value}</VEF_MassCarryCapacity>
+								</value>
+							</Operation>
+						</caseTrue>
+						<caseFalse>
+							<Operation Class="XmlExtensions.PatchOperationAdd">
+								<xpath>Defs/HediffDef[defName="{defName}"]/stages/li[minSeverity="1.5"]/statOffsets</xpath>
+								<value>
+									<CarryCapacityBonus>{value}</CarryCapacityBonus>
+								</value>
+							</Operation>
+						</caseFalse>
+					</Operation>
+				</caseTrue>
 			</Operation>
 		</apply>
 	</XmlExtensions.PatchDef>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Section</patchName>
+		<arguments>
+			<li>Beyond Our Reach :: Redux</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_SolarBionicArm</li>
+			<li>BORReduxSolarArm</li>
+			<li>Solar Arm</li>
+			<li>true</li>
+			<li>25</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_SolarBionicLeg</li>
+			<li>BORReduxSolarLeg</li>
+			<li>Solar Leg</li>
+			<li>true</li>
+			<li>40</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_SolarBionicSpine</li>
+			<li>BORReduxSolarSpine</li>
+			<li>Solar Spine</li>
+			<li>true</li>
+			<li>35</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_QuasarBionicArm</li>
+			<li>BORReduxQuasarArm</li>
+			<li>Kwazaari Arm</li>
+			<li>true</li>
+			<li>35</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_QuasarBionicLeg</li>
+			<li>BORReduxQuasarLeg</li>
+			<li>Kwazaari Leg</li>
+			<li>true</li>
+			<li>60</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_QuasarBionicSpine</li>
+			<li>BORReduxQuasarSpine</li>
+			<li>Kwazaari Spine</li>
+			<li>true</li>
+			<li>50</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="BOR_TenebralBionicArm"][not(stages)]</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="BOR_TenebralBionicArm"]</xpath>
+			<value>
+				<stages Inherit="False">
+					<li>
+						<painOffset>0.01</painOffset>
+					</li>
+				</stages>
+			</value>
+		</match>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_TenebralBionicArm</li>
+			<li>BORReduxTenebralArm</li>
+			<li>Tenebral Arm</li>
+			<li>true</li>
+			<li>65</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="BOR_TenebralBionicLeg"][not(stages)]</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="BOR_TenebralBionicLeg"]</xpath>
+			<value>
+				<stages Inherit="False">
+					<li>
+						<painOffset>0.01</painOffset>
+					</li>
+				</stages>
+			</value>
+		</match>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_TenebralBionicLeg</li>
+			<li>BORReduxTenebralLeg</li>
+			<li>Tenebral Leg</li>
+			<li>true</li>
+			<li>110</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/HediffDef[defName="BOR_TenebralBionicSpine"][not(stages)]</xpath>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/HediffDef[defName="BOR_TenebralBionicSpine"]</xpath>
+			<value>
+				<stages Inherit="False">
+					<li>
+						<painOffset>0.01</painOffset>
+					</li>
+				</stages>
+			</value>
+		</match>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_TenebralBionicSpine</li>
+			<li>BORReduxTenebralSpine</li>
+			<li>Tenebral Spine</li>
+			<li>true</li>
+			<li>90</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_UmbralBionicArm</li>
+			<li>BORReduxUmbralArm</li>
+			<li>Umbral Arm</li>
+			<li>true</li>
+			<li>100</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_UmbralBionicLeg</li>
+			<li>BORReduxUmbralLeg</li>
+			<li>Umbral Leg</li>
+			<li>true</li>
+			<li>165</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_Implant</patchName>
+		<arguments>
+			<li>BOR_UmbralBionicSpine</li>
+			<li>BORReduxUmbralSpine</li>
+			<li>Umbral Spine</li>
+			<li>true</li>
+			<li>135</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+	<Operation Class="XmlExtensions.ApplyPatch">
+		<patchName>CCFB_UtilityStageImplant</patchName>
+		<arguments>
+			<li>BOR_UmbralExoskeleton</li>
+			<li>BORReduxUmbralExoskeleton</li>
+			<li>Umbral Exoskeleton (utility form)</li>
+			<li>true</li>
+			<li>135</li>
+			<li>BORRedux</li>
+		</arguments>
+	</Operation>
+</Patch>

@@ -58,6 +58,7 @@
 		<li IfModActive="ykara.elstrages.epoe">1.6/Mods/EPOE</li>
 		<li IfModActive="ykara.epoe">1.6/Mods/EPOE</li>
 		<li IfModActive="vat.epoeforkedroyalty">1.6/Mods/EPOEForkedRoyalty</li>
+		<li IfModActive="bambaryla.bor">1.6/Mods/BOR</li>
 		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>
 		<li IfModActive="teok25.archotechexpanded">1.6/Mods/ArchotechExpanded</li>
@@ -141,6 +142,8 @@
 
 		<!-- Astraltech Bionic Implants -->
 		<li IfModActive="Xercaine.Spacer.Bionics">1.6/Mods/BionicPawns</li>
+		<li IfModActive="bambaryla.bor.redux">1.6/Mods/BORRedux</li>
+		<li IfModActive="bambaryla.bor">1.6/Mods/BOR</li>
 		<li IfModActive="AnthonyTherrien.AstraltechBionics">1.6/Mods/Astral</li>
 
 		<li IfModActive="teok25.archotechexpanded.prosthetics">1.6/Mods/ArchotechExpanded</li>

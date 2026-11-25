@@ -86,23 +86,3 @@ confirmed working. The "not seen in game" notes above are outdated.
 
 ## Next steps
 1. Sync ADSAP2 defaults to the sheet once the user revises it.
-
-## Session 2026-11-25 (handoff at ~300k): Beyond Our Reach :: Redux (investigated, NOT built)
-User asked what support would involve, then: exoskeleton bonus only in utility form, and how the
-Umbral transformation works. No code written. Asked last: build it, any value changes? **Unanswered.**
-- `bambaryla.bor.redux`, ws 3844019895, 1.7 only, needs VEF. Plan: folder `1.6/Mods/BORRedux`,
-  `<v1.6>` LoadFolders entry only, About.xml `loadAfter` + supported list, SUPPORTED_MODS.md. Section
-  label "Beyond Our Reach :: Redux". Excludes old `bambaryla.bor` (same defNames, other efficiencies).
-- defNames `BOR_{Solar,Quasar,Tenebral,Umbral}Bionic{Arm,Leg,Spine}`; label Quasar as "Kwazaari".
-  kg (tech 3): Solar 25/40/35, Kwazaari 35/60/50, Tenebral 65/110/90, Umbral 100/165/135;
-  `BOR_SolarBionicPrecisionHand` 5. No native carry stats on implants; no DLL conflict.
-- Tenebral arm/leg/spine inherit a stage (painOffset 0.01): add a child `<stages Inherit="False">` copy
-  first (see ADDING_A_MOD.md).
-- `BOR_UmbralExoskeleton` 135, utility stage only (`stages/li[minSeverity="1.5"]`; that stage has
-  statOffsets). Needs a new AddOffset variant in PatchDefs.xml (templates patch every stage; `unit` selects
-  `CCFB_AddOffset_{unit}` and `CCFB_RowValue_{unit}`).
-- Umbral spine: no surgery in the Workshop build and not in the pact list (`Hediffs_Umbral.xml`
-  replacements), so unobtainable now; GitHub main (older than Workshop) still has surgery. User believes
-  a ritual gives it (not found). Plan: include the row anyway.
-- Skipped: organs, glands, combat/stat implants on natural parts, exoskull, utility pod.
-- The user adds the 14 rows to the Google Sheet. Show any new comments for approval first.

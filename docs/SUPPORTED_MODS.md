@@ -91,6 +91,19 @@
   `Fray_FSFABE` is gated on ABE alone and its `CCFB_Section` call sits in a
   `PatchOperationConditional` on Fray's arm def (no empty section without Fray). Skipped: organs,
   eyes, jaw, psymind; psyskin gland only lowers Moving.
+- Beyond Our Reach — two mods with the same defNames, mutually incompatible; separate folders and keys
+  (`BOR*` / `BORRedux*`) because Solar/Quasar efficiencies differ:
+  - `1.6/Mods/BOR` — original `bambaryla.bor` (ws 3253594129, 1.5 + 1.6; not installed, read from GitHub
+    `bambaryla-mods/RimworldBeyondOurReach` branch `1.6`; `main` is Redux-like code): eff Solar 1.875, Quasar 2.8125 →
+    30/50/40, 45/75/60.
+  - `1.6/Mods/BORRedux` — `bambaryla.bor.redux` (ws 3844019895, 1.7 only, `<v1.6>` block only): eff 1.56 / 2.34 →
+    25/40/35, 35/60/50 (Quasar labelled Kwazaari).
+  - Both: Tenebral 4.22 → 65/110/90, Umbral 6.33 → 100/165/135 (arm/leg/spine, tech 3; user: not too high).
+  - Redux Tenebral parts inherit a `painOffset 0.01` stage → child `<stages Inherit="False">` copy first
+    (see ADDING_A_MOD.md). The original's base has no stages.
+  - Redux Umbral exoskeleton 135: `CCFB_UtilityStageImplant` (unit `kgUtilityStage`) patches only
+    `stages/li[minSeverity="1.5"]` = utility form. Redux Umbral spine has no known way to get it; row kept (user).
+  - Excluded (user): solar precision hand, organs, glands, combat/stat implants, exoskull, utility pod.
 
 ## Planned future support (per VitaKaninen, 2026-06)
 - (built) YAPE - Animals (ws 2808876573) and A Dog Said... Animal Prosthetics 2 (ws 3238353862) —

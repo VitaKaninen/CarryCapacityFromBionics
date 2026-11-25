@@ -46,3 +46,6 @@ workshop 2574315206, folders `1.5/`–`1.7/`).
 - `CreateDocument`/`MergeDocument` side-document speed pattern: removed after being wrongly
   blamed for the loadFolders shadowing bug; never re-verified in game, so re-adding it is optional
   and needs an in-game test (XE rewrote `MergeDocument` to in-place `ReplaceWith` in v1.9.2).
+- **Never use `Comparison` relation `neq` on numbers:** XE `Helpers.RelationOnString` has no numeric `neq`
+  case; it falls to the default `==`, silently (1.7 DLL). Use `eq` with `<caseFalse>`. This made Easy mode
+  apply no bonus at all (found 2026-11-25).

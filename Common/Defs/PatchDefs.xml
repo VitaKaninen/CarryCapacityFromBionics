@@ -624,9 +624,9 @@
 						<condition Class="XmlExtensions.Boolean.Comparison">
 							<value1>{valueDefault}</value1>
 							<value2>0</value2>
-							<relation>neq</relation>
+							<relation>eq</relation>
 						</condition>
-						<caseTrue>
+						<caseFalse>
 							<Operation Class="XmlExtensions.ApplyPatch">
 								<patchName>CCFB_ScaledOffset</patchName>
 								<arguments>
@@ -636,7 +636,7 @@
 									<li>{unit}</li>
 								</arguments>
 							</Operation>
-						</caseTrue>
+						</caseFalse>
 					</Operation>
 				</caseTrue>
 				<caseFalse>
